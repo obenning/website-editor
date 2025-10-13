@@ -527,7 +527,17 @@
             html = html.replace('{{overlayElements}}', overlayElements);
             html = html.replace('{{svgElement}}', svgElement);
             // Universelle Button-Styles
-            const buttonStyles = getUniversalButtonStyles(props);
+            // === BUTTON-STYLING (KORREKT) ===
+const buttonStyles = getUniversalButtonStyles({
+    buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'secondary',
+    buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
+    buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+    buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
+    buttonBackground: props.primaryButtonBackground || props.buttonBackground,
+    buttonColor: props.primaryButtonColor || props.buttonColor
+});
+
+console.log('🔍 API Hero Button Styles:', buttonStyles);
             html = html.replace('{{buttonBackground}}', buttonStyles.background);
             html = html.replace('{{buttonColor}}', buttonStyles.color);
             html = html.replace('{{buttonPadding}}', buttonStyles.padding);
@@ -1141,8 +1151,15 @@
 
             let buttonElement = '';
             if (showButton && props.buttonText) {
-                // Universelle Button-Styles
-                const buttonStyles = getUniversalButtonStyles(props);
+                // === BUTTON-STYLING (KORREKT) ===
+                const buttonStyles = getUniversalButtonStyles({
+                    buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'secondary',
+                    buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
+                    buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+                    buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
+                    buttonBackground: props.primaryButtonBackground || props.buttonBackground,
+                    buttonColor: props.primaryButtonColor || props.buttonColor
+                });
                 const actualButtonBackground = buttonStyles.background;
                 const actualButtonColor = buttonStyles.color;
                 const actualButtonPadding = buttonStyles.padding;
