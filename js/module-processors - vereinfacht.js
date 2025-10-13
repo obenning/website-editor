@@ -4545,6 +4545,28 @@
             // CSS am Anfang hinzufügen
             html = hoverCSS + html;
 
+            // === BUTTON-VERARBEITUNG (NEU HINZUGEFÜGT) ===
+            if (props.showButton === 'true' || props.primaryButtonText || props.buttonText) {
+                const buttonStyles = getUniversalButtonStyles({
+                    buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'primary',
+                    buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'medium',
+                    buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+                    buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'medium',
+                    buttonBackground: props.primaryButtonBackground || props.buttonBackground,
+                    buttonColor: props.primaryButtonColor || props.buttonTextColor
+                });
+                
+                // Template-Platzhalter ersetzen
+                html = html.replace('{{buttonUrl}}', props.primaryButtonLink || props.buttonUrl || '#');
+                html = html.replace('{{buttonBackground}}', buttonStyles.background);
+                html = html.replace('{{buttonTextColor}}', buttonStyles.color);
+                html = html.replace('{{buttonPadding}}', buttonStyles.padding);
+                html = html.replace('{{buttonRadius}}', buttonStyles.borderRadius);
+                html = html.replace('{{buttonText}}', props.primaryButtonText || props.buttonText || '');
+                html = html.replace('{{buttonTarget}}', props.buttonTarget || '_self');
+                html = html.replace('{{buttonSpacing}}', props.buttonSpacing || '3rem');
+            }
+
             return html;
         } 
 
@@ -5070,6 +5092,11 @@
             }
 
             return html;
+        }
+
+        // Alias für Backward Compatibility
+        function processKerberosImageText(module, html) {
+            return processKerberosImageTextModern(module, html);
         }
 
         function processKerberosGuideFlow(module, html) {
