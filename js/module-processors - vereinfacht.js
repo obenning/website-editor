@@ -537,8 +537,20 @@
             html = html.replace('{{subtitleSpacing}}', props.subtitleSpacing || '1rem');
             html = html.replace(/{{moduleId}}/g, module.id);
             
+            // === ALLE BUTTON-PLATZHALTER ERSETZEN ===
+            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{primaryButtonColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
+            html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
+            html = html.replace(/\{\{primaryButtonText\}\}/g, props.primaryButtonText || props.buttonText || '');
+            html = html.replace(/\{\{primaryButtonLink\}\}/g, props.primaryButtonLink || props.buttonLink || '#');
+
             console.log('✅ API Hero verarbeitet - Hintergrund:', backgroundColor.substring(0, 50) + '...');
-            
+
             return html;
         }
 
@@ -1162,8 +1174,20 @@
             html = html.replace('{{svgMobileSize}}', svgMobileSize);
             html = html.replace(/{{moduleId}}/g, module.id);
             
+            // === ZUSÄTZLICHE BUTTON-PLATZHALTER ERSETZEN ===
+            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{primaryButtonColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
+            html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
+            html = html.replace(/\{\{buttonShadow\}\}/g, buttonStyles.boxShadow);
+            html = html.replace(/\{\{primaryButtonShadow\}\}/g, buttonStyles.boxShadow);
+
             console.log('✅ SVG Hero Content generiert - VOLLSTÄNDIG KORRIGIERT');
-            
+
             return html;
         }
         
@@ -4766,39 +4790,16 @@
             html = html.replace('{{buttonPadding}}', buttonStyles.padding);
             html = html.replace('{{buttonRadius}}', buttonStyles.borderRadius);
 
+            // === EXPLIZITE BUTTON-PLATZHALTER ERSETZEN ===
+            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
+            html = html.replace(/\{\{buttonShadow\}\}/g, buttonStyles.boxShadow);
+
             return html;
         }
 
-        // === ERWEITERTE SVG HERO PROCESSING ===
-        function processSvgHero(template, properties) {
-            let html = template.html;
-            
-            // SVG Element Processing
-            let svgElement = '';
-            if (properties.svgType === 'url' && properties.svgUrl) {
-                const widthMapping = getSizeOptions('svgWidth');
-                const heightMapping = getSizeOptions('svgHeight');
-                const width = widthMapping[properties.svgWidthType] || properties.svgWidthType;
-                const height = heightMapping[properties.svgHeightType] || properties.svgHeightType;
-                
-                svgElement = `<img src="${properties.svgUrl}" alt="${properties.svgAlt}" class="hero-svg" style="width: ${width}; height: ${height}; opacity: ${properties.svgOpacityType}; filter: ${properties.svgFilterType};" />`;
-            } else if (properties.svgType === 'code' && properties.svgCode) {
-                svgElement = `<div class="hero-svg-code" style="width: ${width}; height: ${height}; opacity: ${properties.svgOpacityType}; filter: ${properties.svgFilterType}; color: ${properties.svgColor};">${properties.svgCode}</div>`;
-            }
-            
-            html = html.replace('{{svgElement}}', svgElement);
-            
-            // Button Processing mit Type-Mappings
-            const buttonPaddingMapping = getSpacingOptions('buttonPadding');
-            const buttonRadiusMapping = getRadiusOptions();
-            const buttonShadowMapping = getShadowOptions();
-            
-            html = html.replace('{{buttonPaddingType}}', buttonPaddingMapping[properties.buttonPaddingType] || properties.buttonPaddingType);
-            html = html.replace('{{buttonRadiusType}}', buttonRadiusMapping[properties.buttonRadiusType] || properties.buttonRadiusType);
-            html = html.replace('{{buttonShadowType}}', buttonShadowMapping[properties.buttonShadowType] || properties.buttonShadowType);
-            
-            return html;
-        }
 
         // === ERWEITERTE FEATURES GRID PROCESSING ===
         function processFeaturesGrid(template, properties) {
@@ -6645,7 +6646,26 @@
             console.log('✅ Feature Breaker Content generiert (RichText-basiert Final)');
             
             // NUR CONTENT ERSETZEN, TEMPLATE BLEIBT INTAKT
-            return html.replace('{{breakerContent}}', breakerContent);
+            html = html.replace('{{breakerContent}}', breakerContent);
+
+            // === BUTTON-PLATZHALTER IM GENERIERTEN CONTENT ERSETZEN ===
+            // Primary Button
+            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
+            html = html.replace(/\{\{buttonShadow\}\}/g, buttonStyles.boxShadow);
+            html = html.replace(/\{\{buttonBorder\}\}/g, buttonStyles.border || 'none');
+
+            // Secondary Button
+            html = html.replace(/\{\{secondaryButtonBackground\}\}/g, secondaryButtonStyles.background);
+            html = html.replace(/\{\{secondaryButtonColor\}\}/g, secondaryButtonStyles.color);
+            html = html.replace(/\{\{secondaryButtonPadding\}\}/g, secondaryButtonStyles.padding);
+            html = html.replace(/\{\{secondaryButtonRadius\}\}/g, secondaryButtonStyles.borderRadius);
+            html = html.replace(/\{\{secondaryButtonShadow\}\}/g, secondaryButtonStyles.boxShadow);
+            html = html.replace(/\{\{secondaryButtonBorder\}\}/g, secondaryButtonStyles.border || '2px solid rgba(255,255,255,0.3)');
+
+            return html;
         }
         
         function processKerberosWarningFacts(module, html) {
@@ -7244,7 +7264,6 @@ window.ModuleProcessors = {
     processKerberosCompanyPresentation,
     processKerberosBenefits,
     processKerberosHeroAdvanced,
-    processSvgHero,
     processFeaturesGrid,
     processUniversalTypeMappings,
     processTestimonialsCarousel,
