@@ -1,0 +1,102 @@
+
+        /* ========================================
+   📱 RESPONSIVE & MOBILE
+   ======================================== */
+
+        /* Tablet Responsive */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .kerberos-module-module_5 .hero-svg-code {
+                width: var(--svg-tablet-width) !important;
+                height: var(--svg-tablet-height) !important;
+            }
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 1200px) {
+            .editor-main {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .panel-content {
+                height: auto;
+                max-height: 300px;
+            }
+
+            .three-column-editor {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+
+            /* SVG Responsive */
+            .kerberos-module-module_5 .hero-svg-code {
+                width: var(--svg-mobile-width) !important;
+                height: var(--svg-mobile-height) !important;
+            }
+
+            /* Hero Module Spacing Fix */
+            section[class*="kerberos-module"] {
+                margin-bottom: 0 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .sqs-block-code section {
+                margin-bottom: 0 !important;
+            }
+
+            div[style*="max-width: 1200px"] {
+                padding-bottom: 0 !important;
+            }
+
+            /* Form Improvements */
+            .column-group {
+                padding: 1rem;
+            }
+
+            .property-group {
+                padding: 1rem;
+            }
+
+            .point-input {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+
+            .point-input span {
+                align-self: flex-start;
+            }
+
+            /* Disable Transform Effects on Mobile */
+            .solution-box {
+                transform: none !important;
+            }
+
+            .solution-highlight {
+                transform: none !important;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            section[class*="kerberos-module"] {
+                padding: 3rem 0 0 0 !important;
+                margin: 0 !important;
+            }
+
+            .sqs-block-code {
+                margin-bottom: 0 !important;
+                padding-bottom: 0 !important;
+            }
+        }
+
+        /* Ultra-small screens */
+        @media (max-width: 360px) {
+            section[class*="kerberos-module"] {
+                padding: 2rem 0 0 0 !important;
+            }
+        }

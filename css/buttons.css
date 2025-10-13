@@ -1,0 +1,100 @@
+
+
+
+        /* ========================================
+   🔘 BUTTON SYSTEM
+   ======================================== */
+
+        /* Base Button */
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.9;
+        }
+
+        /* Button Variants */
+        .btn-primary {
+            background: var(--kerberos-primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-success {
+            background: var(--kerberos-success);
+            color: white;
+        }
+
+        .btn-warning {
+            background: var(--kerberos-orange);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--kerberos-danger);
+            color: white;
+        }
+
+        /* Control Buttons */
+        .control-btn {
+            width: 22px;
+            height: 22px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-edit {
+            background: var(--kerberos-secondary);
+            color: white;
+        }
+
+        .btn-copy {
+            background: var(--kerberos-accent);
+            color: white;
+        }
+
+        .btn-move {
+            background: var(--kerberos-orange);
+            color: white;
+        }
+
+        .btn-delete {
+            background: var(--kerberos-danger);
+            color: white;
+        }
+
+        .copy-btn {
+            background: var(--kerberos-accent);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }

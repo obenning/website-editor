@@ -1,0 +1,20 @@
+
+
+        /* ========================================
+   🎯 PRINT STYLES
+   ======================================== */
+
+        @media print {
+
+            .editor-header,
+            .panel,
+            .module-controls,
+            .notification {
+                display: none !important;
+            }
+
+            .canvas {
+                border: none !important;
+                box-shadow: none !important;
+            }
+        }

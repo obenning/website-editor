@@ -1,0 +1,170 @@
+{
+  "templates": {
+    "total": 26,
+    "top_properties": {
+      "description": 28,
+      "sectionSpacing": 27,
+      "id": 26,
+      "name": 26,
+      "category": 26,
+      "titleColor": 26,
+      "backgroundColor": 25,
+      "titleSpacing": 22,
+      "title": 21,
+      "subtitleColor": 20,
+      "subtitle": 17,
+      "textColor": 15,
+      "buttonText": 11,
+      "buttonLink": 10,
+      "buttonPaddingType": 10,
+      "buttonRadiusType": 10,
+      "cardBackground": 8,
+      "textSpacing": 8,
+      "contentGap": 8,
+      "cardBorder": 7,
+      "iconSizeType": 7,
+      "buttonShadowType": 7,
+      "iconSpacing": 6,
+      "iconColor": 6,
+      "buttonIcon": 6,
+      "cardRadiusType": 6,
+      "cardShadowType": 6,
+      "primaryColor": 5,
+      "buttonSpacing": 5,
+      "buttonStyleType": 5
+    }
+  },
+  "processors": {
+    "total": 61,
+    "loop_functions": [
+      [
+        "processKerberosFAQ",
+        "10"
+      ],
+      [
+        "processKerberosTestimonials",
+        "30"
+      ],
+      [
+        "processKerberosTeamGalleryFixed",
+        "6"
+      ],
+      [
+        "processKerberosProductOverview",
+        "12"
+      ],
+      [
+        "processKerberosTestimonialsPro",
+        "6"
+      ],
+      [
+        "processKerberosFeatures",
+        "12"
+      ],
+      [
+        "processKerberosTimeline",
+        "8"
+      ],
+      [
+        "processKerberosFeaturesModern",
+        "6"
+      ],
+      [
+        "processKerberosApiDocumentation",
+        "4"
+      ],
+      [
+        "processKerberosPricingInteractive",
+        "3"
+      ],
+      [
+        "processKerberosNewsletterModern",
+        "4"
+      ],
+      [
+        "processKerberosStats",
+        "4"
+      ],
+      [
+        "processKerberosStatsWithHover",
+        "4"
+      ],
+      [
+        "processKerberosProductShowcase",
+        "4"
+      ],
+      [
+        "processKerberosIntegrationsGridModern",
+        "12"
+      ],
+      [
+        "processKerberosIntegrationsGrid",
+        "12"
+      ],
+      [
+        "processKerberosFeatureComparisonExtended",
+        "10"
+      ],
+      [
+        "processKerberosPricingResponseExtended",
+        "10"
+      ],
+      [
+        "processStatsModule",
+        "4"
+      ],
+      [
+        "processTeamGalleryModule",
+        "4"
+      ],
+      [
+        "processKerberosTeamGallery",
+        "6"
+      ],
+      [
+        "processProductOverviewModule",
+        "12"
+      ],
+      [
+        "processKerberosApiEndpoints",
+        "4"
+      ],
+      [
+        "processKerberosBenefits",
+        "6"
+      ],
+      [
+        "processFeaturesGrid",
+        "12"
+      ],
+      [
+        "processTestimonialsCarousel",
+        "15"
+      ],
+      [
+        "processKerberosSolutionsOverview",
+        "12"
+      ],
+      [
+        "processKerberosProductShowcase",
+        "4"
+      ],
+      [
+        "processKerberosProductFadeOverview",
+        "3"
+      ],
+      [
+        "processKerberosWarningFacts",
+        "6"
+      ],
+      [
+        "processKerberosFeaturesGrid",
+        "8"
+      ],
+      [
+        "processKerberosTestimonialsCarousel",
+        "6"
+      ]
+    ]
+  }
+}

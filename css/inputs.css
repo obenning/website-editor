@@ -1,0 +1,99 @@
+
+        /* ========================================
+   🎨 INPUT COMPONENTS
+   ======================================== */
+
+        /* Color Picker */
+        .color-picker {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .color-option.selected {
+            border-color: var(--kerberos-dark);
+            transform: scale(1.1);
+        }
+
+        /* Icon Picker */
+        .icon-picker {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            gap: 0.5rem;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border: 1px solid var(--kerberos-border);
+            border-radius: 4px;
+        }
+
+        .icon-option {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--kerberos-border);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1.2rem;
+        }
+
+        .icon-option:hover {
+            background: var(--kerberos-secondary);
+            color: white;
+        }
+
+        .icon-option.selected {
+            background: var(--kerberos-primary);
+            color: white;
+        }
+
+        /* Image Upload */
+        .image-upload {
+            border: 2px dashed var(--kerberos-border);
+            border-radius: 4px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .image-upload:hover {
+            border-color: var(--kerberos-secondary);
+            background: rgba(0, 156, 230, 0.05);
+        }
+
+        .image-preview {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        /* SVG Sizer */
+        .svg-sizer select:focus {
+            outline: none;
+            border-color: var(--kerberos-primary);
+            box-shadow: 0 0 0 2px rgba(6, 58, 168, 0.2);
+        }
+
+        .svg-sizer select:hover {
+            border-color: var(--kerberos-secondary);
+        }

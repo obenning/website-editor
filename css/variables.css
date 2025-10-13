@@ -1,0 +1,29 @@
+/* ========================================
+   🎨 CSS VARIABLES & RESET
+   ======================================== */
+:root {
+    --kerberos-primary: #063AA8;
+    --kerberos-secondary: #009CE6;
+    --kerberos-accent: #B265E9;
+    --kerberos-orange: #EF8646;
+    --kerberos-success: #28a745;
+    --kerberos-danger: #dc3545;
+    --kerberos-dark: #212529;
+    --kerberos-light: #F8F9FA;
+    --kerberos-border: #DEE2E6;
+    --kerberos-shadow: 0 4px 12px rgba(6, 58, 168, 0.1);
+    --kerberos-shadow-hover: 0 8px 24px rgba(6, 58, 168, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--kerberos-light);
+    color: var(--kerberos-dark);
+    line-height: 1.6;
+}

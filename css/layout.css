@@ -1,0 +1,66 @@
+/* ========================================
+   🗃️ LAYOUT SYSTEM
+   ======================================== */
+
+/* Editor Header */
+.editor-header {
+    background: linear-gradient(135deg, var(--kerberos-primary), var(--kerberos-secondary));
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: var(--kerberos-shadow);
+}
+
+/* Main Grid Layout */
+.editor-main {
+    display: grid;
+    grid-template-columns: 300px 1fr 380px;
+    gap: 1rem;
+    padding: 1rem;
+    min-height: calc(100vh - 80px);
+}
+
+/* Panel System */
+.panel {
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--kerberos-shadow);
+    overflow: hidden;
+}
+
+.panel-header {
+    background: var(--kerberos-primary);
+    color: white;
+    padding: 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.panel-content {
+    padding: 1rem;
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+}
+
+/* Canvas */
+.canvas {
+    background: #fafbfc;
+    border: 2px dashed var(--kerberos-border);
+    border-radius: 8px;
+    min-height: 600px;
+    position: relative;
+    padding: 1rem;
+}
+
+.canvas.drag-over {
+    border-color: var(--kerberos-secondary);
+    background: rgba(0, 156, 230, 0.05);
+}
+
+.canvas-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #6c757d;
+}

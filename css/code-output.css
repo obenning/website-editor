@@ -1,0 +1,19 @@
+
+
+        /* ========================================
+   💻 CODE & OUTPUT
+   ======================================== */
+
+        .code-output {
+            background: #1a1a1a;
+            color: #e6e6e6;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 1rem;
+            border: 1px solid var(--kerberos-border);
+        }

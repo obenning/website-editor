@@ -1,0 +1,81 @@
+        /* ========================================
+   📦 MODULE COMPONENTS
+   ======================================== */
+
+        /* Module Library */
+        .module-template {
+            border: 1px solid var(--kerberos-border);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #fafbfc;
+        }
+
+        .module-template:hover {
+            border-color: var(--kerberos-secondary);
+            background: white;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 156, 230, 0.1);
+        }
+
+        .module-name {
+            font-weight: 600;
+            color: var(--kerberos-primary);
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .module-description {
+            font-size: 0.8rem;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+
+        .category-title {
+            color: var(--kerberos-primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Canvas Modules */
+        .canvas-module {
+            position: relative;
+            margin-bottom: 1rem;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            transition: all 0.2s;
+            padding: 0.5rem;
+            pointer-events: auto;
+        }
+
+        .canvas-module:hover {
+            border-color: var(--kerberos-secondary);
+            background: rgba(0, 156, 230, 0.02);
+        }
+
+        .canvas-module.selected {
+            border-color: var(--kerberos-primary);
+            background: rgba(6, 58, 168, 0.05);
+            z-index: 5;
+            position: relative;
+        }
+
+        .module-controls {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            display: none;
+            gap: 0.25rem;
+            z-index: 15;
+            pointer-events: auto;
+        }
+
+        .canvas-module:hover .module-controls,
+        .canvas-module.selected .module-controls {
+            display: flex;
+        }

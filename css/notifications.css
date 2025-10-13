@@ -1,0 +1,23 @@
+        /* ========================================
+   🔔 NOTIFICATIONS
+   ======================================== */
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--kerberos-primary);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 6px;
+            box-shadow: var(--kerberos-shadow);
+            z-index: 3000;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }

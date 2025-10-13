@@ -1,0 +1,24 @@
+
+        /* ========================================
+   🚀 HERO MODULE FIXES
+   ======================================== */
+
+        /* Universal Hero-Module Bottom-Spacing Fix */
+        section[class*="kerberos-module"] {
+            margin-bottom: 0 !important;
+            display: block !important;
+        }
+
+        .sqs-block-code section[class*="kerberos-module"] {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        section[class*="kerberos-module"]+* {
+            margin-top: 0 !important;
+        }
+
+        section[style*="background: linear-gradient"] {
+            margin-bottom: 0 !important;
+            margin-top: 0 !important;
+        }
