@@ -4790,12 +4790,22 @@
             html = html.replace('{{buttonPadding}}', buttonStyles.padding);
             html = html.replace('{{buttonRadius}}', buttonStyles.borderRadius);
 
-            // === EXPLIZITE BUTTON-PLATZHALTER ERSETZEN ===
+            // === BUTTON-PLATZHALTER ERSETZEN (ALTE + NEUE SYNTAX) ===
+            // Alte Syntax (buttonBackground, etc.)
             html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
             html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
             html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
             html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
             html = html.replace(/\{\{buttonShadow\}\}/g, buttonStyles.boxShadow);
+
+            // NEUE Syntax (primaryButtonBackground, etc.)
+            html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{primaryButtonColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
+            html = html.replace(/\{\{primaryButtonShadow\}\}/g, buttonStyles.boxShadow);
+
+            console.log('✅ Hero Advanced Button-Styles gesetzt:', buttonStyles);
 
             return html;
         }
