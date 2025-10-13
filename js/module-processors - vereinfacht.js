@@ -547,20 +547,20 @@
 
             // === UNIVERSELLE BUTTON-STYLES ===
             const primaryButtonStyles = getUniversalButtonStyles({
-                buttonStyleType: props.buttonStyleType || 'primary',
-                buttonPaddingType: props.buttonPaddingType || 'medium',
-                buttonRadiusType: props.buttonRadiusType || 'medium',
-                buttonShadowType: props.buttonShadowType || 'medium',
-                buttonBackground: props.buttonBg,
-                buttonColor: props.buttonColor
+                buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'primary',
+                buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'medium',
+                buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+                buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'medium',
+                buttonBackground: props.primaryButtonBackground || props.buttonBg,
+                buttonColor: props.primaryButtonColor || props.buttonColor
             });
 
             const secondaryButtonStyles = getUniversalButtonStyles({
                 buttonStyleType: props.secondaryButtonStyleType || 'outline',
-                buttonPaddingType: props.secondaryButtonPaddingType || 'medium', 
+                buttonPaddingType: props.secondaryButtonPaddingType || 'medium',
                 buttonRadiusType: props.secondaryButtonRadiusType || 'medium',
                 buttonShadowType: props.secondaryButtonShadowType || 'none',
-                buttonBackground: props.secondaryButtonBg || 'transparent',
+                buttonBackground: props.secondaryButtonBackground || props.secondaryButtonBg || 'transparent',
                 buttonColor: props.secondaryButtonColor
             });
 
@@ -679,11 +679,12 @@
 
             // === BUTTON-STYLING (UNIVERSELL KORRIGIERT) ===
             const buttonStyles = getUniversalButtonStyles({
-                buttonStyleType: props.buttonStyleType || 'primary',
-                buttonPaddingType: props.buttonSizeType || 'medium',
-                buttonRadiusType: props.buttonRadiusType || 'medium',
-                buttonBackground: props.buttonBackground,
-                buttonColor: props.buttonColor
+                buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'secondary',
+                buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
+                buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+                buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
+                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
+                buttonColor: props.primaryButtonColor || props.buttonColor
             });
 
             const actualButtonStyle = buttonStyles.background;
@@ -1933,27 +1934,30 @@
 
             // === UNIVERSELLE BUTTON-STYLES ===
             const primaryButtonStyles = getUniversalButtonStyles({
-                buttonStyleType: props.buttonStyleType || 'primary',
-                buttonPaddingType: props.buttonPaddingType || 'medium',
-                buttonRadiusType: props.buttonRadiusType || 'medium',
-                buttonShadowType: props.buttonShadowType || 'medium',
-                buttonBackground: props.buttonBg,
-                buttonColor: props.buttonColor
+                buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'primary',
+                buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'medium',
+                buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+                buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'medium',
+                buttonBackground: props.primaryButtonBackground || props.buttonBg,
+                buttonColor: props.primaryButtonColor || props.buttonColor
             });
 
             const secondaryButtonStyles = getUniversalButtonStyles({
                 buttonStyleType: props.secondaryButtonStyleType || 'outline',
                 buttonPaddingType: props.secondaryButtonPaddingType || 'medium',
-                buttonRadiusType: props.buttonRadiusType || 'medium',
+                buttonRadiusType: props.secondaryButtonRadiusType || 'medium',
                 buttonShadowType: props.secondaryButtonShadowType || 'none',
-                buttonBackground: props.secondaryButtonBg || 'transparent',
+                buttonBackground: props.secondaryButtonBackground || props.secondaryButtonBg || 'transparent',
                 buttonColor: props.secondaryButtonColor
             });
 
             // Primary Button
-            if (props.buttonText) {
+            if (props.primaryButtonText || props.buttonText) {
+                const primaryText = props.primaryButtonText || props.buttonText;
+                const primaryLink = props.primaryButtonLink || props.buttonLink || '#';
+
                 buttonSection += `
-                    <a class="kerberos-btn kerberos-btn-${module.id}" href="${props.buttonLink || '#'}" 
+                    <a class="kerberos-btn kerberos-btn-${module.id}" href="${primaryLink}"
                     style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: ${primaryButtonStyles.background}; color: ${primaryButtonStyles.color}; padding: ${primaryButtonStyles.padding}; border-radius: ${primaryButtonStyles.borderRadius}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: ${primaryButtonStyles.boxShadow}; border: ${primaryButtonStyles.border || 'none'}; margin-right: 1rem;">
                         ${props.buttonText}
                         ${props.buttonIcon ? '<span style="font-family: \'Font Awesome 5 Pro\';">' + props.buttonIcon + '</span>' : ''}
@@ -4269,11 +4273,12 @@
 
             // === UNIVERSELLE BUTTON-STYLES ===
             const buttonStyles = getUniversalButtonStyles({
-                buttonStyleType: props.buttonStyleType || 'primary',
-                buttonPaddingType: props.buttonPaddingType || 'medium',
-                buttonRadiusType: props.buttonRadiusType || 'medium',
-                buttonBackground: props.buttonBackground,
-                buttonColor: props.buttonColor
+                buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'secondary',
+                buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
+                buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+                buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
+                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
+                buttonColor: props.primaryButtonColor || props.buttonColor
             });
 
             // Ersetze templateId im CSS
@@ -4665,11 +4670,12 @@
             
             // === BUTTON-STYLING (UNIVERSELL KORRIGIERT) ===
             const buttonStyles = getUniversalButtonStyles({
-                buttonStyleType: props.buttonStyleType || 'primary',
-                buttonPaddingType: props.buttonPaddingType || 'medium',
-                buttonRadiusType: props.buttonRadiusType || 'medium',
-                buttonBackground: props.buttonBackground,
-                buttonColor: props.buttonColor
+                buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'secondary',
+                buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
+                buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+                buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
+                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
+                buttonColor: props.primaryButtonColor || props.buttonColor
             });
 
             // === TEMPLATE-ERSETZUNGEN ===
@@ -4780,12 +4786,12 @@
                         if (key.includes('secondary') || key.includes('Secondary')) {
                             // Secondary Button
                             const secondaryButtonStyles = getUniversalButtonStyles({
-                                buttonStyleType: properties.secondaryButtonStyleType || 'outline',
-                                buttonPaddingType: properties.secondaryButtonPaddingType || 'large',
-                                buttonRadiusType: properties.secondaryButtonRadiusType || 'medium',
-                                buttonShadowType: properties.secondaryButtonShadowType || 'none',
-                                buttonBackground: properties.secondaryButtonBackground,
-                                buttonColor: properties.secondaryButtonColor
+                                buttonStyleType: props.secondaryButtonStyleType || 'outline',
+                                buttonPaddingType: props.secondaryButtonPaddingType || 'medium',
+                                buttonRadiusType: props.secondaryButtonRadiusType || 'medium',
+                                buttonShadowType: props.secondaryButtonShadowType || 'none',
+                                buttonBackground: props.secondaryButtonBackground || props.secondaryButtonBg || 'transparent',
+                                buttonColor: props.secondaryButtonColor
                             });
                             html = html.replace(/\{\{secondaryButtonBackground\}\}/g, secondaryButtonStyles.background);
                             html = html.replace(/\{\{secondaryButtonColor\}\}/g, secondaryButtonStyles.color);
@@ -6448,20 +6454,20 @@
             
             // === UNIVERSELLE BUTTON-STYLES ===
             const buttonStyles = getUniversalButtonStyles({
-                buttonStyleType: props.buttonStyleType || 'secondary',
-                buttonPaddingType: props.buttonPaddingType || 'large',
-                buttonRadiusType: props.buttonRadiusType || 'medium',
-                buttonShadowType: props.buttonShadowType || 'strong',
-                buttonBackground: props.buttonBackground,
-                buttonColor: props.buttonColor
+                buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'secondary',
+                buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
+                buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+                buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
+                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
+                buttonColor: props.primaryButtonColor || props.buttonColor
             });
 
             const secondaryButtonStyles = getUniversalButtonStyles({
                 buttonStyleType: props.secondaryButtonStyleType || 'outline',
-                buttonPaddingType: props.secondaryButtonPaddingType || 'large',
-                buttonRadiusType: props.secondaryButtonRadiusType || 'medium', 
+                buttonPaddingType: props.secondaryButtonPaddingType || 'medium',
+                buttonRadiusType: props.secondaryButtonRadiusType || 'medium',
                 buttonShadowType: props.secondaryButtonShadowType || 'none',
-                buttonBackground: props.secondaryButtonBackground,
+                buttonBackground: props.secondaryButtonBackground || props.secondaryButtonBg || 'transparent',
                 buttonColor: props.secondaryButtonColor
             });
 
@@ -6647,12 +6653,12 @@
             
             // === UNIVERSELLE BUTTON-STYLES ===
             const buttonStyles = getUniversalButtonStyles({
-                buttonStyleType: props.buttonStyleType || 'primary',
-                buttonPaddingType: props.ctaPaddingType || 'large',
-                buttonRadiusType: props.ctaRadiusType || 'medium',
-                buttonShadowType: props.ctaShadowType || 'medium',
-                buttonBackground: props.ctaBackground,
-                buttonColor: props.ctaColor
+                buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'secondary',
+                buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
+                buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+                buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
+                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
+                buttonColor: props.primaryButtonColor || props.buttonColor
             });
             
             // === FALLBACK-WERTE FÜR ALLE PROPERTIES ===
