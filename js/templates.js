@@ -639,14 +639,14 @@
                     "textColor": "#FFFFFF",
                     "textSpacing": "2rem",
 
-                    // === SICHTBARKEIT ===
+                    // === SICHTBARKEIT (KONSISTENT) ===
                     "showSubtitle": "true",
                     "showText": "true",
                     "showSvg": "true",
-                    "showPrimaryButton": "true",
-                    "showPrimaryButtonIcon": "true",
+                    "showButton": "true",  // ← GEÄNDERT von "showPrimaryButton" zu "showButton"
+                    "showButtonIcon": "true",  // ← GEÄNDERT von "showPrimaryButtonIcon" zu "showButtonIcon"
 
-                    // === SVG PROPERTIES (OPTIMIERT) ===
+                    // === SVG PROPERTIES ===
                     "svgType": "url",
                     "svgUrl": "https://www.svgrepo.com/show/530438/ddos-protection.svg",
                     "svgCode": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"50\" cy=\"50\" r=\"40\" fill=\"currentColor\"/></svg>",
@@ -657,17 +657,27 @@
                     "svgColor": "#FFFFFF",
                     "svgHoverTransform": "scale(1.05)",
 
-                    // === PRIMARY BUTTON ===
-                    "primaryButtonText": "Mehr erfahren",
-                    "primaryButtonLink": "#",
-                    "primaryButtonStyleType": "outline",
-                    "primaryButtonColor": "#FFFFFF",
-                    "primaryButtonPaddingType": "medium",
-                    "primaryButtonRadiusType": "medium",
-                    "primaryButtonIcon": "&#xf061;",
-                    "primaryButtonShadowType": "medium",
+                    // === BUTTON PROPERTIES (MIT BACKWARD COMPATIBILITY) ===
+                    "buttonText": "Mehr erfahren",  // ← ALTE Syntax für Backward Compatibility
+                    "primaryButtonText": "Mehr erfahren",  // ← NEUE Syntax
+                    "buttonLink": "#",  // ← ALTE Syntax
+                    "primaryButtonLink": "#",  // ← NEUE Syntax
+                    "buttonStyleType": "outline",  // ← ALTE Syntax
+                    "primaryButtonStyleType": "outline",  // ← NEUE Syntax
+                    "buttonColor": "#FFFFFF",  // ← ALTE Syntax
+                    "primaryButtonColor": "#FFFFFF",  // ← NEUE Syntax
+                    "buttonBackground": "transparent",  // ← ALTE Syntax
+                    "primaryButtonBackground": "transparent",  // ← NEUE Syntax
+                    "buttonPaddingType": "large",  // ← ALTE Syntax
+                    "primaryButtonPaddingType": "large",  // ← NEUE Syntax
+                    "buttonRadiusType": "medium",  // ← ALTE Syntax
+                    "primaryButtonRadiusType": "medium",  // ← NEUE Syntax
+                    "buttonIcon": "&#xf061;",  // ← ALTE Syntax
+                    "primaryButtonIcon": "&#xf061;",  // ← NEUE Syntax
+                    "buttonShadowType": "medium",  // ← ALTE Syntax
+                    "primaryButtonShadowType": "medium",  // ← NEUE Syntax
 
-                    // === BACKGROUND (MIT GRADIENT SYSTEM) ===
+                    // === BACKGROUND ===
                     "backgroundColor": "linear-gradient(135deg, #063AA8, #009CE6)",
                     "backgroundImage": "",
                     "backgroundType": "gradient",
