@@ -4541,31 +4541,36 @@
             // Template-Platzhalter ersetzen
             html = html.replace('{{benefitItems}}', benefitItems);
             html = html.replace('{{benefitMinWidth}}', benefitMinWidth);
-            
+
+            // === BUTTON-PLATZHALTER ERSETZEN (NEU) ===
+            // Button-Styles generieren
+            const buttonStyles = getUniversalButtonStyles({
+                buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'primary',
+                buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'medium',
+                buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+                buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'medium',
+                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
+                buttonColor: props.primaryButtonColor || props.buttonTextColor
+            });
+
+            // Alle Button-Platzhalter ersetzen (sowohl alte als auch neue Syntax)
+            html = html.replace(/\{\{buttonUrl\}\}/g, props.primaryButtonLink || props.buttonUrl || '#');
+            html = html.replace(/\{\{primaryButtonLink\}\}/g, props.primaryButtonLink || props.buttonUrl || '#');
+            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{buttonTextColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{primaryButtonColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
+            html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
+            html = html.replace(/\{\{buttonText\}\}/g, props.primaryButtonText || props.buttonText || '');
+            html = html.replace(/\{\{primaryButtonText\}\}/g, props.primaryButtonText || props.buttonText || '');
+            html = html.replace(/\{\{buttonTarget\}\}/g, props.buttonTarget || '_self');
+            html = html.replace(/\{\{buttonSpacing\}\}/g, props.buttonSpacing || '3rem');
+
             // CSS am Anfang hinzufügen
             html = hoverCSS + html;
-
-            // === BUTTON-VERARBEITUNG (NEU HINZUGEFÜGT) ===
-            if (props.showButton === 'true' || props.primaryButtonText || props.buttonText) {
-                const buttonStyles = getUniversalButtonStyles({
-                    buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'primary',
-                    buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'medium',
-                    buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
-                    buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'medium',
-                    buttonBackground: props.primaryButtonBackground || props.buttonBackground,
-                    buttonColor: props.primaryButtonColor || props.buttonTextColor
-                });
-                
-                // Template-Platzhalter ersetzen
-                html = html.replace('{{buttonUrl}}', props.primaryButtonLink || props.buttonUrl || '#');
-                html = html.replace('{{buttonBackground}}', buttonStyles.background);
-                html = html.replace('{{buttonTextColor}}', buttonStyles.color);
-                html = html.replace('{{buttonPadding}}', buttonStyles.padding);
-                html = html.replace('{{buttonRadius}}', buttonStyles.borderRadius);
-                html = html.replace('{{buttonText}}', props.primaryButtonText || props.buttonText || '');
-                html = html.replace('{{buttonTarget}}', props.buttonTarget || '_self');
-                html = html.replace('{{buttonSpacing}}', props.buttonSpacing || '3rem');
-            }
 
             return html;
         } 
