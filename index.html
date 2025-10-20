@@ -5952,22 +5952,20 @@
                 'strong': '0 8px 24px rgba(6,58,168,0.25)'
             };
 
-            // Button-Style auflösen mit intelligenter Textfarbe
+            // Button-Style auflösen - NUR über styleType, KEINE manuellen Überschreibungen
             const styleType = props.buttonStyleType || 'primary';
             const buttonStyle = buttonStyleMap[styleType] || buttonStyleMap['primary'];
             
-            // Fallback: Wenn buttonColor gesetzt ist, überschreibt es die Auto-Textfarbe
-            const finalTextColor = props.buttonColor || buttonStyle.text;
-            const finalBgColor = props.buttonBackground || buttonStyle.bg;
-            const finalBorder = buttonStyle.border || 'none';
-
+            // WICHTIG: Keine Fallbacks auf buttonBackground/buttonColor mehr!
+            // Der StyleType bestimmt ALLES
+            
             return {
-                background: finalBgColor,
-                color: finalTextColor,
+                background: buttonStyle.bg,
+                color: buttonStyle.text,
                 padding: buttonPaddingMap[props.buttonPaddingType] || '0.75rem 1.5rem',
                 borderRadius: buttonRadiusMap[props.buttonRadiusType] || '8px',
                 boxShadow: buttonShadowMap[props.buttonShadowType] || '0 4px 12px rgba(6,58,168,0.2)',
-                border: finalBorder,
+                border: buttonStyle.border || 'none',
                 textDecoration: 'none',
                 display: 'inline-flex',
                 alignItems: 'center',
