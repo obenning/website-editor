@@ -528,16 +528,16 @@
             html = html.replace('{{svgElement}}', svgElement);
             // Universelle Button-Styles
             // === BUTTON-STYLING (KORREKT) ===
-const buttonStyles = getUniversalButtonStyles({
-    buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'secondary',
-    buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
-    buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
-    buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
-    buttonBackground: props.primaryButtonBackground || props.buttonBackground,
-    buttonColor: props.primaryButtonColor || props.buttonColor
-});
-
-console.log('🔍 API Hero Button Styles:', buttonStyles);
+        const buttonStyles = getUniversalButtonStyles({
+            buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'secondary',
+            buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
+            buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+            buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
+            buttonBackground: props.primaryButtonBackground || props.buttonBackground,
+            buttonColor: props.primaryButtonColor || props.buttonColor
+        });
+        
+        console.log('🔍 API Hero Button Styles:', buttonStyles);
             html = html.replace('{{buttonBackground}}', buttonStyles.background);
             html = html.replace('{{buttonColor}}', buttonStyles.color);
             html = html.replace('{{buttonPadding}}', buttonStyles.padding);
@@ -2531,9 +2531,28 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
                 gridColumnsCSS = `repeat(${gridColumns}, 1fr)`;
             }
 
+            // === UNIVERSELLE BUTTON-STYLES ===
+            const buttonStyles = getUniversalButtonStyles({
+                buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'primary',
+                buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
+                buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+                buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
+                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
+                buttonColor: props.primaryButtonColor || props.buttonColor
+            });
+
             // HTML Template-Platzhalter ersetzen
             html = html.replace('{{benefitItems}}', benefitItems);
             html = html.replace(/repeat\(\{\{gridColumns\}\}, 1fr\)/g, gridColumnsCSS);
+            
+            // === BUTTON-PLATZHALTER ERSETZEN ===
+            html = html.replace(/\{\{primaryButtonText\}\}/g, props.primaryButtonText || props.buttonText || '');
+            html = html.replace(/\{\{primaryButtonLink\}\}/g, props.primaryButtonLink || props.buttonLink || '#');
+            html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{primaryButtonColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
+            html = html.replace(/\{\{primaryButtonShadow\}\}/g, buttonStyles.boxShadow);
 
             return html;
         }
@@ -6912,12 +6931,9 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
             // === ERSETZE ALLE PLATZHALTER (MIT BUTTON-STYLES) ===
             html = html
                 .replace('{{factsContent}}', factsHTML)
-                .replace('{{backgroundOpacityValue}}', backgroundOpacityValue)
-                .replace(/\{\{buttonPaddingValue\}\}/g, buttonStyles.padding)
-                .replace(/\{\{buttonRadiusValue\}\}/g, buttonStyles.borderRadius)
-                .replace(/\{\{buttonShadowValue\}\}/g, buttonStyles.boxShadow);
+                .replace('{{backgroundOpacityValue}}', backgroundOpacityValue);
 
-            // === ZUSÄTZLICHE BUTTON-PLATZHALTER ERSETZEN ===
+            // === ALLE BUTTON-PLATZHALTER ERSETZEN ===
             html = html.replace(/\{\{primaryButtonText\}\}/g, props.primaryButtonText || props.buttonText || '');
             html = html.replace(/\{\{primaryButtonLink\}\}/g, props.primaryButtonLink || props.buttonLink || '#');
             html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
