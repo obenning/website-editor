@@ -1792,10 +1792,15 @@
                     "textColor": "#6c757d",
 
                     // === PRIMARY BUTTON ===
-                    "primaryButtonText": "Mehr erfahren",
-                    "primaryButtonLink": "#",
-                    "primaryButtonBackground": "#063AA8",
-                    "primaryButtonColor": "#FFFFFF",
+                   // === PRIMARY BUTTON ===
+                   "buttonText": "Mehr erfahren",
+                   "buttonLink": "#",
+                   "buttonBgColor": "#063AA8",
+                   "buttonTextColor": "#FFFFFF",
+                   "buttonStyleType": "primary",
+                   "buttonPaddingType": "medium",
+                   "buttonRadiusType": "medium",
+                   "buttonShadowType": "medium",
 
                     // === IMAGE ===
                     "imageUrl": "https://images.squarespace-cdn.com/content/651eacf7cae17a228645a660/384fcd3a-8979-4ff0-a714-da53b56331a7/KYC-Pr%C3%BCfbericht+-+Max+Mustermann+-+API.jpg",
