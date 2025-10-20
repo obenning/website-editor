@@ -219,10 +219,6 @@
                     "showPrimaryButton": "true",
                     "primaryButtonText": "Jetzt kostenlos beraten lassen",
                     "primaryButtonLink": "/unternehmen/kontakt",
-                    "primaryButtonBackground": "#063AA8",
-                    "primaryButtonColor": "#FFFFFF",
-                    "primaryButtonPaddingType": "medium",
-                    "primaryButtonRadiusType": "medium",
                     "primaryButtonSpacing": "3rem",
                     "primaryButtonTarget": "_self"
                 }
@@ -387,11 +383,8 @@
                     
                     // === PRIMARY BUTTON ===
                     "primaryButtonText": "Jetzt Beratung anfragen",
-                    "primaryButtonColor": "#FFFFFF",
                     "primaryButtonLink": "#kontakt",
                     "primaryButtonStyleType": "primary",
-                    "primaryButtonPaddingType": "medium",
-                    "primaryButtonRadiusType": "medium",
                     
                     // === ICON ===
                     "iconClass": "",
@@ -442,11 +435,8 @@
                     
                     // === PRIMARY BUTTON ===
                     "primaryButtonText": "Jetzt Beratung anfragen",
-                    "primaryButtonColor": "#FFFFFF",
                     "primaryButtonLink": "#kontakt",
                     "primaryButtonStyleType": "primary",
-                    "primaryButtonPaddingType": "medium",
-                    "primaryButtonRadiusType": "medium",
                     
                     // === ICON ===
                     "iconClass": "",
@@ -513,11 +503,11 @@
                             {{solutionBoxes}}
                         </div>
                         <div style="text-align: center; margin: {{ctaSpacing}} 0; display: {{showCTA}};">
-                            <a href="{{ctaLink}}" style="background: {{ctaBackgroundColor}}; color: {{ctaTextColor}}; text-decoration: none; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease; font-family: var(--body-font-font-family); box-shadow: {{primaryButtonShadowType}}; display: inline-block;">{{ctaText}}</a>
+                            <a href="{{ctaLink}}" style="background: {{ctaBackgroundColor}}; color: {{ctaTextColor}}; text-decoration: none; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease; font-family: var(--body-font-font-family); box-shadow: {{primaryButtonShadow}}; display: inline-block;">{{ctaText}}</a>
                         </div>
                         <div style="height: 3px; background: linear-gradient(to right, {{challengeColor}} 0%, {{challengeColor}} 33%, {{requirementColor}} 33%, {{requirementColor}} 66%, {{solutionColor}} 66%, {{solutionColor}} 100%); margin: 0 auto 2rem auto; border-radius: 2px; opacity: 0.8; max-width: 600px; display: {{showConnectionLine}};"></div>
                         <div style="text-align: center; margin-top: {{ctaSpacing}}; display: {{showBottomCTA}};">
-                            <a href="{{bottomCtaLink}}" style="background: {{ctaBackgroundColor}}; color: {{ctaTextColor}}; text-decoration: none; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease; font-family: var(--body-font-font-family); box-shadow: {{primaryButtonShadowType}};">{{bottomCtaText}}</a>
+                            <a href="{{bottomCtaLink}}" style="background: {{ctaBackgroundColor}}; color: {{ctaTextColor}}; text-decoration: none; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease; font-family: var(--body-font-font-family); box-shadow: {{primaryButtonShadow}};">{{bottomCtaText}}</a>
                         </div>
                     </div>
                 </section>`,
@@ -581,9 +571,6 @@
                     // === EFFEKTE & INTERAKTION ===
                     "hoverTransformType": "translateY(-8px)",
                     "hoverShadowType": "strong",
-                    "primaryButtonPaddingType": "large",
-                    "primaryButtonRadiusType": "medium",
-                    "primaryButtonShadowType": "medium",
 
                     // === SICHTBARKEITS-EINSTELLUNGEN ===
                     "showConnectionLine": "true",
@@ -664,18 +651,8 @@
                     "primaryButtonLink": "#",  // ← NEUE Syntax
                     "buttonStyleType": "outline",  // ← ALTE Syntax
                     "primaryButtonStyleType": "outline",  // ← NEUE Syntax
-                    "buttonColor": "#FFFFFF",  // ← ALTE Syntax
-                    "primaryButtonColor": "#FFFFFF",  // ← NEUE Syntax
-                    "buttonBackground": "transparent",  // ← ALTE Syntax
-                    "primaryButtonBackground": "transparent",  // ← NEUE Syntax
-                    "buttonPaddingType": "large",  // ← ALTE Syntax
-                    "primaryButtonPaddingType": "large",  // ← NEUE Syntax
-                    "buttonRadiusType": "medium",  // ← ALTE Syntax
-                    "primaryButtonRadiusType": "medium",  // ← NEUE Syntax
                     "buttonIcon": "&#xf061;",  // ← ALTE Syntax
                     "primaryButtonIcon": "&#xf061;",  // ← NEUE Syntax
-                    "buttonShadowType": "medium",  // ← ALTE Syntax
-                    "primaryButtonShadowType": "medium",  // ← NEUE Syntax
 
                     // === BACKGROUND ===
                     "backgroundColor": "linear-gradient(135deg, #063AA8, #009CE6)",
@@ -739,12 +716,7 @@
                     "primaryButtonText": "API jetzt testen",
                     "primaryButtonLink": "/unternehmen/kontakt",
                     "primaryButtonStyleType": "outline",
-                    "primaryButtonColor": "#FFFFFF",
-                    "primaryButtonBackground": "transparent",
-                    "primaryButtonPaddingType": "medium",
-                    "primaryButtonRadiusType": "medium",
                     "primaryButtonIcon": "&#xf061;",
-                    "primaryButtonShadowType": "medium",
 
                     // === BACKGROUND (MIT GRADIENT SYSTEM) ===
                     "backgroundColor": "linear-gradient(135deg, #063AA8, #009CE6)",
@@ -800,7 +772,7 @@
                                 </div>
                             </div>
                             <div style="text-align: center; margin-top: {{ctaSpacing}}; padding-top: {{ctaSpacing}}; border-top: 1px solid {{cardBorder}};">
-                                <a href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryColor}}; color: white; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadowType}};">{{primaryButtonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span></a>
+                                <a href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryColor}}; color: white; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">{{primaryButtonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span></a>
                             </div>
                         </div>
                     </div>
@@ -861,9 +833,6 @@
                     "primaryButtonText": "Live-Demo anfordern",
                     "primaryButtonLink": "#demo",
                     "primaryButtonIcon": "&#xf04b;",
-                    "primaryButtonPaddingType": "medium",
-                    "primaryButtonRadiusType": "medium",
-                    "primaryButtonShadowType": "medium"
                 },
                 "customized": true
             },
@@ -959,23 +928,13 @@
                     "buttonText": "Vollständige API-Dokumentation",
                     "buttonIcon": "&#xf35d;",
                     "buttonStyleType": "primary",
-                    "buttonPaddingType": "medium",
-                    "buttonRadiusType": "medium",
-                    "buttonShadowType": "medium",
 
                     // === STYLING ===
                     "cardBackground": "#FFFFFF",
                     "cardBorder": "#DEE2E6",
                     "textColor": "#212529",
-                    "primaryButtonPaddingType": "medium",
-                    "primaryButtonRadiusType": "medium",
 
                     // === HOVER EFFEKTE ===
-                    "buttonTextColor": "#FFFFFF",
-                    "primaryButtonHoverColor": "#FFFFFF",
-                    "primaryButtonHoverBg": "rgba(6,58,168,0.8)",
-                    "primaryButtonHoverTransformType": "translateY(-2px)",
-                    "primaryButtonHoverShadowType": "strong",
                     "cardHoverTransformType": "translateY(-2px)",
                     "cardHoverShadowType": "strong"
                 },
@@ -1208,7 +1167,7 @@
                                 <div>
                                     <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0; line-height: 1.2;">{{title}}</h2>
                                     <div style="color: {{textColor}}; font-size: {{textSizeType}}; line-height: {{lineHeightType}}; margin-bottom: {{textSpacing}};">{{description}}</div>
-                                    <a href="{{primaryButtonLink}}" style="display: inline-flex; align-items: center; gap: 0.5rem; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; text-decoration: none; font-weight: 500; transition: all 0.3s ease;">{{primaryButtonText}}</a>
+                                    <a href="{{primaryButtonLink}}" style="display: inline-flex; align-items: center; gap: 0.5rem; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; font-weight: 500; transition: all 0.3s ease;">{{primaryButtonText}}</a>
                                 </div>
                                 {{rightSideContent}}
                             </div>
@@ -1245,10 +1204,6 @@
                     // === PRIMARY BUTTON ===
                     "primaryButtonText": "Über uns",
                     "primaryButtonLink": "/unternehmen/ueber-uns",
-                    "primaryButtonBackground": "#063AA8",
-                    "primaryButtonColor": "#FFFFFF",
-                    "primaryButtonPaddingType": "medium",
-                    "primaryButtonRadiusType": "small",
 
                     // === DESIGN ===
                     "backgroundColor": "#FFFFFF",
@@ -1795,12 +1750,7 @@
                    // === PRIMARY BUTTON ===
                    "buttonText": "Mehr erfahren",
                    "buttonLink": "#",
-                   "buttonBgColor": "#063AA8",
-                   "buttonTextColor": "#FFFFFF",
                    "buttonStyleType": "primary",
-                   "buttonPaddingType": "medium",
-                   "buttonRadiusType": "medium",
-                   "buttonShadowType": "medium",
 
                     // === IMAGE ===
                     "imageUrl": "https://images.squarespace-cdn.com/content/651eacf7cae17a228645a660/384fcd3a-8979-4ff0-a714-da53b56331a7/KYC-Pr%C3%BCfbericht+-+Max+Mustermann+-+API.jpg",
@@ -1846,7 +1796,7 @@
                                     <p style="font-family: var(--body-font-font-family); font-size: {{textSizeType}}; line-height: var(--body-font-line-height); color: {{textColor}}; margin: 0;">{{text}}</p>
                                 </div>
                                 <div style="margin-top: {{primaryButtonSpacing}}; display: {{showPrimaryButton}};">
-                                    <a href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; border: {{primaryButtonBorderType}}; box-shadow: {{primaryButtonShadowType}};">
+                                    <a href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; border: {{primaryButtonBorderType}}; box-shadow: {{primaryButtonShadow}};">
                                         {{primaryButtonText}}
                                         <span style="font-family: 'Font Awesome 5 Pro'; display: {{showPrimaryButtonIcon}};">{{primaryButtonIcon}}</span>
                                     </a>
@@ -1869,12 +1819,7 @@
                     // === PRIMARY BUTTON ===
                     "primaryButtonText": "Mehr erfahren",
                     "primaryButtonLink": "#",
-                    "primaryButtonBackground": "#063AA8",
-                    "primaryButtonColor": "#FFFFFF",
-                    "primaryButtonPaddingType": "medium",
-                    "primaryButtonRadiusType": "medium",
                     "primaryButtonBorderType": "none",
-                    "primaryButtonShadowType": "medium",
                     "primaryButtonSpacing": "2rem",
                     "primaryButtonIcon": "&#xf061;",
                     "showPrimaryButton": "true",
@@ -1965,23 +1910,13 @@
                     // === PRIMARY BUTTON ===
                     "primaryButtonText": "Kostenlose Beratung",
                     "primaryButtonLink": "#kontakt",
-                    "primaryButtonBackground": "#FFFFFF",
-                    "primaryButtonTextColor": "#063AA8",
                     "primaryButtonStyleType": "primary",
-                    "primaryButtonPaddingType": "large",
-                    "primaryButtonRadiusType": "medium",
-                    "primaryButtonShadowType": "strong",
                     "primaryButtonIcon": "&#xf095;",
 
                     // === SECONDARY BUTTON ===
                     "secondaryButtonText": "Portfolio ansehen",
                     "secondaryButtonLink": "#portfolio",
-                    "secondaryButtonBackground": "transparent",
-                    "secondaryButtonTextColor": "#FFFFFF",
                     "secondaryButtonStyleType": "outline",
-                    "secondaryButtonPaddingType": "large",
-                    "secondaryButtonRadiusType": "medium",
-                    "secondaryButtonShadowType": "none",
                     "secondaryButtonIcon": "&#xf35d;",
                     "showSecondaryButton": "true",
 
@@ -2025,22 +1960,12 @@
                     "primaryButtonLink": "#",
                     "primaryButtonIcon": "&#xf061;",
                     "primaryButtonStyleType": "secondary", 
-                    "primaryButtonPaddingType": "large",
-                    "primaryButtonRadiusType": "medium", 
-                    "primaryButtonShadowType": "strong",
-                    "primaryButtonBackground": "#FFFFFF", 
-                    "primaryButtonColor": "#063AA8",
 
                     // === SECONDARY BUTTON ===
                     "secondaryButtonText": "Mehr erfahren",
                     "secondaryButtonLink": "#",
                     "secondaryButtonIcon": "&#xf0c2;",
                     "secondaryButtonStyleType": "outline",
-                    "secondaryButtonPaddingType": "large",
-                    "secondaryButtonRadiusType": "medium",
-                    "secondaryButtonShadowType": "none", 
-                    "secondaryButtonBackground": "transparent",
-                    "secondaryButtonColor": "#FFFFFF",
                     "showSecondaryButton": "true",
 
                     // === BUTTON LAYOUT ===
@@ -2064,10 +1989,6 @@
                     "sectionSpacing": "4rem 0",
 
                     // === HOVER PROPERTIES ===  
-                    "primaryButtonHoverBg": "rgba(6,58,168,0.8)",
-                    "primaryButtonHoverColor": "#FFFFFF",
-                    "secondaryButtonHoverBg": "#FFFFFF",
-                    "secondaryButtonHoverColor": "#063AA8"
                 }
             },
 
@@ -2248,7 +2169,7 @@
                             {{timelineSteps}}
                         </div>
                         <div style="text-align: center; margin-top: {{ctaSpacing}}; padding-top: {{ctaSpacing}}; border-top: 1px solid rgba(0,0,0,0.05);">
-                            <a href="{{ctaLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{ctaBackground}}; color: {{ctaColor}}; padding: {{ctaPaddingType}}; border-radius: {{ctaRadiusType}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{ctaShadowType}};">
+                            <a href="{{ctaLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{ctaBackground}}; color: {{ctaColor}}; padding: {{ctaPadding}}; border-radius: {{ctaRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{ctaShadow}};">
                                 {{ctaText}}
                                 <span style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span>
                             </a>
@@ -2338,13 +2259,8 @@
                     // === CTA ===
                     "ctaText": "Jetzt starten",
                     "ctaLink": "/signup",
-                    "ctaBackground": "#063AA8",
-                    "ctaColor": "#FFFFFF",
                     "ctaIcon": "&#xf061;",
                     "ctaSpacing": "4rem",
-                    "ctaPaddingType": "large",
-                    "ctaRadiusType": "medium",
-                    "ctaShadowType": "medium"
                 }
             },
 
@@ -2682,22 +2598,12 @@
                     // === PRIMARY BUTTON ===
                     "primaryButtonText": "Beratung anfragen",
                     "primaryButtonLink": "#kontakt",
-                    "primaryButtonBackground": "#063AA8",
-                    "primaryButtonColor": "#FFFFFF",
-                    "primaryButtonPaddingType": "medium",
-                    "primaryButtonRadiusType": "medium",
-                    "primaryButtonShadowType": "medium",
                     "primaryButtonIcon": "&#xf061;",
 
                     // === SECONDARY BUTTON ===
                     "secondaryButtonText": "Mehr erfahren",
                     "secondaryButtonLink": "#info",
-                    "secondaryButtonBackground": "transparent",
-                    "secondaryButtonColor": "#063AA8",
                     "secondaryButtonBorderType": "2px solid #063AA8",
-                    "secondaryButtonPaddingType": "medium",
-                    "secondaryButtonRadiusType": "medium",
-                    "secondaryButtonShadowType": "none",
                     "secondaryButtonIcon": "&#xf05a;",
                     "showSecondaryButton": "true",
 
@@ -2770,7 +2676,7 @@
                             {{featureCards}}
                         </div>
                         <div style="text-align: center; margin-top: {{ctaSpacing}};">
-                            <a class="kerberos-btn-features" href="{{ctaLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{ctaBackground}}; color: {{ctaColor}}; padding: {{ctaPaddingType}}; border-radius: {{ctaRadiusType}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{ctaShadowType}};">{{ctaText}}<span style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span></a>
+                            <a class="kerberos-btn-features" href="{{ctaLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{ctaBackground}}; color: {{ctaColor}}; padding: {{ctaPadding}}; border-radius: {{ctaRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{ctaShadow}};">{{ctaText}}<span style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span></a>
                         </div>
                     </div>
                 </section>`,
@@ -2808,18 +2714,9 @@
                     "ctaText": "Alle Features entdecken",
                     "ctaLink": "#features",
                     "ctaIcon": "&#xf061;",
-                    "ctaBackground": "#063AA8",
-                    "ctaColor": "#FFFFFF",
                     "ctaSpacing": "3rem",
-                    "ctaPaddingType": "large",
-                    "ctaRadiusType": "medium",
-                    "ctaShadowType": "medium",
 
                     // === BUTTON HOVER ===
-                    "primaryButtonHoverBg": "rgba(6,58,168,0.8)",
-                    "primaryButtonHoverColor": "#FFFFFF",
-                    "buttonHoverTransformType": "translateY(-2px)",
-                    "buttonHoverShadowType": "strong",
 
                     // === FEATURES 1-12 ===
                     "feature1Title": "Automatisierte KYC",
