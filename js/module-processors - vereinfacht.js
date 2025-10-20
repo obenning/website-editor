@@ -3377,8 +3377,17 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
             // Text Content zusammenbauen
             const titleElement = '<h3 style="font-family: var(--heading-font-font-family); font-size: var(--heading-3-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ' + titleColor + '; margin: 0 0 1rem 0;">' + safeTitle + '</h3>';
             const textElement = '<p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ' + textColor + '; margin: 0 0 2rem 0;">' + safeText + '</p>';
-            const buttonElement = '<a href="' + safeButtonLink + '" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: ' + buttonBgColor + '; color: ' + buttonTextColor + '; padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; display: inline-block;">' + safeButtonText + '</a>';
-
+            // Button mit universellen Styles
+            const buttonStyles = getUniversalButtonStyles({
+                    buttonStyleType: props.buttonStyleType || 'primary',
+                    buttonPaddingType: props.buttonPaddingType || 'medium',
+                    buttonRadiusType: props.buttonRadiusType || 'medium',
+                    buttonShadowType: props.buttonShadowType || 'medium',
+                    buttonBackground: props.buttonBgColor || props.buttonBackground,
+                    buttonColor: props.buttonTextColor || props.buttonColor
+             });
+        
+        const buttonElement = '<a href="' + safeButtonLink + '" class="kerberos-btn kerberos-btn-' + module.id + '" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: ' + buttonStyles.background + '; color: ' + buttonStyles.color + '; padding: ' + buttonStyles.padding + '; border-radius: ' + buttonStyles.borderRadius + '; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: ' + buttonStyles.boxShadow + '; transition: all 0.3s ease; border: ' + (buttonStyles.border || 'none') + ';">' + safeButtonText + '</a>';
             const textContent = iconElement + titleElement + textElement + buttonElement;
 
             // Image Content (bedingt)
@@ -4336,6 +4345,14 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
                 buttonBackground: props.primaryButtonBackground || props.buttonBackground,
                 buttonColor: props.primaryButtonColor || props.buttonColor
             });
+
+            // Button-Styles in HTML einsetzen
+            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
+            html = html.replace(/\{\{buttonShadow\}\}/g, buttonStyles.boxShadow);
+            html = html.replace(/\{\{buttonBorder\}\}/g, buttonStyles.border || 'none');
 
             // Ersetze templateId im CSS
             html = html.replace(/\{\{templateId\}\}/g, module.id);
@@ -7101,7 +7118,7 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
                             left: 1rem; 
                             top: 50%; 
                             transform: translateY(-50%); 
-                            background: ${props.buttonBackground || '#063AA8'}; 
+                            background: ${props.primaryColor || props.buttonBackground || '#063AA8'}; 
                             color: white; 
                             border: none; 
                             width: 50px; 
@@ -7125,7 +7142,7 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
                             right: 1rem; 
                             top: 50%; 
                             transform: translateY(-50%); 
-                            background: ${props.buttonBackground || '#063AA8'}; 
+                            background: ${props.primaryColor || props.buttonBackground || '#063AA8'}; 
                             color: white; 
                             border: none; 
                             width: 50px; 
