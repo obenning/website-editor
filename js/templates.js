@@ -2667,18 +2667,7 @@
                         <div style="margin-bottom: {{textSpacing}};">
                             <div style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}};">{{textContent}}</div>
                         </div>
-                        <div style="margin-bottom: {{buttonSpacing}};">
-                            <div style="display: flex; flex-wrap: wrap; gap: {{buttonGapType}}; justify-content: {{buttonJustifyType}};">
-                                <a href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">
-                                    {{primaryButtonText}}
-                                    <span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span>
-                                </a>
-                                <a href="{{secondaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{secondaryButtonBackground}}; color: {{secondaryButtonTextColor}}; padding: {{secondaryButtonPadding}}; border-radius: {{secondaryButtonRadius}}; text-decoration: none; display: {{showSecondaryButton}}; align-items: center; gap: 0.5rem; border: {{secondaryButtonBorder}}; transition: all 0.3s ease; box-shadow: {{secondaryButtonShadow}};">
-                                    {{secondaryButtonText}}
-                                    <span style="font-family: 'Font Awesome 5 Pro';">{{secondaryButtonIcon}}</span>
-                                </a>
-                            </div>
-                        </div>
+                        {{buttonSection}}
                     </div>
                 </section>`,
                 "properties": {
