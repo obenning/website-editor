@@ -2000,8 +2000,8 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
                 buttonSection += `
                     <a class="kerberos-btn kerberos-btn-${module.id}" href="${primaryLink}"
                     style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: ${primaryButtonStyles.background}; color: ${primaryButtonStyles.color}; padding: ${primaryButtonStyles.padding}; border-radius: ${primaryButtonStyles.borderRadius}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: ${primaryButtonStyles.boxShadow}; border: ${primaryButtonStyles.border || 'none'}; margin-right: 1rem;">
-                        ${props.buttonText}
-                        ${props.buttonIcon ? '<span style="font-family: \'Font Awesome 5 Pro\';">' + props.buttonIcon + '</span>' : ''}
+                        ${primaryText}
+                        ${props.primaryButtonIcon || props.buttonIcon ? '<span style="font-family: \'Font Awesome 5 Pro\';">' + (props.primaryButtonIcon || props.buttonIcon) + '</span>' : ''}
                     </a>`;
             }
 
@@ -6958,6 +6958,7 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
         }
 
         // 2. MODERNE CALL-TO-ACTION
+        // MODERNE CALL-TO-ACTION
         function processKerberosCtaModern(module, html) {
             const props = module.properties;
             
@@ -6966,6 +6967,40 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
                 const template = MODULE_TEMPLATES.find(t => t.id === module.templateId);
                 html = template ? template.html : '<div>Template nicht gefunden</div>';
             }
+            
+            // === UNIVERSELLE BUTTON-STYLES ===
+            const primaryButtonStyles = getUniversalButtonStyles({
+                buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'primary',
+                buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
+                buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+                buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
+                buttonBackground: props.primaryButtonBg || props.primaryButtonBackground,
+                buttonColor: props.primaryButtonColor || props.primaryButtonTextColor
+            });
+        
+            const secondaryButtonStyles = getUniversalButtonStyles({
+                buttonStyleType: props.secondaryButtonStyleType || 'outline',
+                buttonPaddingType: props.secondaryButtonPaddingType || 'large',
+                buttonRadiusType: props.secondaryButtonRadiusType || 'medium',
+                buttonShadowType: props.secondaryButtonShadowType || 'none',
+                buttonBackground: props.secondaryButtonBg || props.secondaryButtonBackground || 'transparent',
+                buttonColor: props.secondaryButtonColor || props.secondaryButtonTextColor
+            });
+        
+            // Button-Styles einsetzen
+            html = html.replace(/\{\{primaryButtonBackground\}\}/g, primaryButtonStyles.background);
+            html = html.replace(/\{\{primaryButtonTextColor\}\}/g, primaryButtonStyles.color);
+            html = html.replace(/\{\{primaryButtonPadding\}\}/g, primaryButtonStyles.padding);
+            html = html.replace(/\{\{primaryButtonRadius\}\}/g, primaryButtonStyles.borderRadius);
+            html = html.replace(/\{\{primaryButtonShadow\}\}/g, primaryButtonStyles.boxShadow);
+            html = html.replace(/\{\{primaryButtonBorder\}\}/g, primaryButtonStyles.border || 'none');
+            
+            html = html.replace(/\{\{secondaryButtonBackground\}\}/g, secondaryButtonStyles.background);
+            html = html.replace(/\{\{secondaryButtonTextColor\}\}/g, secondaryButtonStyles.color);
+            html = html.replace(/\{\{secondaryButtonPadding\}\}/g, secondaryButtonStyles.padding);
+            html = html.replace(/\{\{secondaryButtonRadius\}\}/g, secondaryButtonStyles.borderRadius);
+            html = html.replace(/\{\{secondaryButtonShadow\}\}/g, secondaryButtonStyles.boxShadow);
+            html = html.replace(/\{\{secondaryButtonBorder\}\}/g, secondaryButtonStyles.border || '2px solid ' + (props.primaryColor || '#063AA8'));
             
             // Animation CSS
             const animationCSS = `
