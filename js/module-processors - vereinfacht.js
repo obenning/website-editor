@@ -1212,6 +1212,25 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
         function processKerberosTripleSolution(module, html) {
             const props = module.properties;
 
+            console.log('🎯 Processing Challenge-Solution Module:', module.id);
+            
+            // === UNIVERSELLE BUTTON-STYLES ===
+            const buttonStyles = getUniversalButtonStyles({
+                buttonStyleType: props.primaryButtonStyleType || 'primary',
+                buttonPaddingType: props.primaryButtonPaddingType || 'large',
+                buttonRadiusType: props.primaryButtonRadiusType || 'medium',
+                buttonShadowType: props.primaryButtonShadowType || 'strong',
+                buttonBackground: props.ctaBackgroundColor,
+                buttonColor: props.ctaTextColor
+            });
+
+            // Button-Platzhalter ersetzen
+            html = html.replace(/\{\{ctaBackgroundColor\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{ctaTextColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
+            html = html.replace(/\{\{primaryButtonShadow\}\}/g, buttonStyles.boxShadow);
+                
             console.log('🔍 SOLUTION TRIPLE - Process läuft!');
             // WICHTIG: Generiere die Solution Boxes HTML
             let solutionBoxesHtml = '';
@@ -2048,6 +2067,30 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
 
         function processKerberosTimeline(module, html) {
             const props = module.properties;
+
+            console.log('🎯 Processing Process Timeline Module:', module.id);
+            
+            // === CTA-BUTTON VORBEREITUNG ===
+            const showCta = props.ctaText && props.ctaLink;
+            
+            if (showCta) {
+                // Universelle Button-Styles anwenden
+                const buttonStyles = getUniversalButtonStyles({
+                    buttonStyleType: props.primaryButtonStyleType || 'primary',
+                    buttonPaddingType: props.primaryButtonPaddingType || 'large',
+                    buttonRadiusType: props.primaryButtonRadiusType || 'medium',
+                    buttonShadowType: props.primaryButtonShadowType || 'strong',
+                    buttonBackground: props.primaryButtonBackground,
+                    buttonColor: props.primaryButtonColor
+                });
+
+                html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
+                html = html.replace(/\{\{primaryButtonColor\}\}/g, buttonStyles.color);
+                html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
+                html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
+                html = html.replace(/\{\{primaryButtonShadow\}\}/g, buttonStyles.boxShadow);
+            }    
+                
             let timelineSteps = '';
 
             for (let i = 1; i <= 8; i++) {
@@ -4517,6 +4560,7 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
         }
 
         function processKerberosBenefits(module, html) {
+            console.log('🎯 Processing Benefits Module:', module.id);
             const props = module.properties;
             const showIcons = props.showIcons === 'true';
             let benefitItems = '';
@@ -4678,11 +4722,35 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
             html = html.replace(/\{\{buttonTarget\}\}/g, props.buttonTarget || '_self');
             html = html.replace(/\{\{buttonSpacing\}\}/g, props.buttonSpacing || '3rem');
 
+            // === BUTTON-VERARBEITUNG ===
+            const showButton = props.showPrimaryButton === 'true';
+            
+            if (showButton) {
+                // Universelle Button-Styles anwenden
+                const buttonStyles = getUniversalButtonStyles({
+                    buttonStyleType: props.primaryButtonStyleType || 'primary',
+                    buttonPaddingType: props.primaryButtonPaddingType || 'medium',
+                    buttonRadiusType: props.primaryButtonRadiusType || 'medium',
+                    buttonShadowType: props.primaryButtonShadowType || 'none',
+                    buttonBackground: props.primaryButtonBackground,
+                    buttonColor: props.primaryButtonColor
+                });
+
+                html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
+                html = html.replace(/\{\{primaryButtonColor\}\}/g, buttonStyles.color);
+                html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
+                html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
+                html = html.replace(/\{\{primaryButtonShadow\}\}/g, buttonStyles.boxShadow || 'none');
+            } else {
+                // Button ausblenden
+                html = html.replace(/<div style="text-align: center; margin-top: \{\{primaryButtonSpacing\}\};">[\s\S]*?<\/div>(?=\s*<\/div>\s*<\/section>)/g, '');
+            }
+
             // CSS am Anfang hinzufügen
             html = hoverCSS + html;
 
             return html;
-        } 
+        }
 
         // REPARIERTE FUNKTION: Spezielle Gruppierung für Challenge-Solution Module
         function groupChallengeSolutionProperties(properties) {
@@ -6609,9 +6677,9 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
             
             const props = module.properties || {};
             
-            // === UNIVERSELLE BUTTON-STYLES ===
+            // === UNIVERSELLE BUTTON-STYLES (KORRIGIERT) ===
             const buttonStyles = getUniversalButtonStyles({
-                buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'secondary',
+                buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'primary',
                 buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
                 buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                 buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
@@ -6712,6 +6780,8 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
             return html;
         }
         
+        console.log('🎯 Processing Warning Facts Module:', module.id);
+
         function processKerberosWarningFacts(module, html) {
             const props = module.properties;
 
@@ -6814,15 +6884,7 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
                 factsHTML += '</div>';
             }
 
-            // === ERSETZE ALLE PLATZHALTER ===
-            html = html
-                .replace('{{factsContent}}', factsHTML)
-                .replace('{{backgroundOpacityValue}}', backgroundOpacityValue)
-                .replace('{{buttonPaddingValue}}', buttonPaddingValue)
-                .replace('{{buttonRadiusValue}}', buttonRadiusValue) 
-                .replace('{{buttonShadowValue}}', buttonShadowValue);
-
-            // === BUTTON-PLATZHALTER ERSETZEN ===
+            // === BUTTON-STYLES ZUERST GENERIEREN ===
             const buttonStyles = getUniversalButtonStyles({
                 buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'primary',
                 buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
@@ -6832,6 +6894,15 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
                 buttonColor: props.primaryButtonColor || props.buttonTextColor
             });
 
+            // === ERSETZE ALLE PLATZHALTER (MIT BUTTON-STYLES) ===
+            html = html
+                .replace('{{factsContent}}', factsHTML)
+                .replace('{{backgroundOpacityValue}}', backgroundOpacityValue)
+                .replace(/\{\{buttonPaddingValue\}\}/g, buttonStyles.padding)
+                .replace(/\{\{buttonRadiusValue\}\}/g, buttonStyles.borderRadius)
+                .replace(/\{\{buttonShadowValue\}\}/g, buttonStyles.boxShadow);
+
+            // === ZUSÄTZLICHE BUTTON-PLATZHALTER ERSETZEN ===
             html = html.replace(/\{\{primaryButtonText\}\}/g, props.primaryButtonText || props.buttonText || '');
             html = html.replace(/\{\{primaryButtonLink\}\}/g, props.primaryButtonLink || props.buttonLink || '#');
             html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
@@ -6839,6 +6910,13 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
             html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
             html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
             html = html.replace(/\{\{primaryButtonShadow\}\}/g, buttonStyles.boxShadow);
+            
+            // Legacy-Kompatibilität (falls Template alte Platzhalter verwendet)
+            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
+            html = html.replace(/\{\{buttonShadow\}\}/g, buttonStyles.boxShadow);
 
             return html;
         }
