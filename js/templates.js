@@ -878,12 +878,6 @@
                         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
                         cursor: pointer !important;
                     }
-                    .kerberos-btn-{{templateId}}:hover {
-                        background: {{primaryButtonHoverBg}} !important;
-                        color: {{primaryButtonHoverColor}} !important;
-                        transform: {{primaryButtonHoverTransformType}} !important;
-                        box-shadow: {{primaryButtonHoverShadowType}} !important;
-                    }
                     .kerberos-module-{{templateId}} .api-endpoint-card {
                         transition: all 0.3s ease !important;
                     }
@@ -903,7 +897,7 @@
                             {{endpointCards}}
                         </div>
                         <div style="margin-top: {{ctaSpacing}}; text-align: center;">
-                            <a class="kerberos-btn kerberos-btn-{{templateId}}" href="{{docsLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryColor}}; color: {{buttonTextColor}}; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;">{{primaryButtonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span></a>
+                            <a class="kerberos-btn kerberos-btn-{{templateId}}" href="{{docsLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{buttonBackground}}; color: {{buttonColor}}; padding: {{buttonPadding}}; border-radius: {{buttonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{buttonShadow}}; border: {{buttonBorder}};">{{buttonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{buttonIcon}}</span></a>
                         </div>
                     </div>
                 </section>`,
@@ -962,8 +956,12 @@
 
                     // === BUTTON & LINKS ===
                     "docsLink": "/unternehmen/kontakt",
-                    "primaryButtonText": "Vollständige API-Dokumentation",
-                    "primaryButtonIcon": "&#xf35d;",
+                    "buttonText": "Vollständige API-Dokumentation",
+                    "buttonIcon": "&#xf35d;",
+                    "buttonStyleType": "primary",
+                    "buttonPaddingType": "medium",
+                    "buttonRadiusType": "medium",
+                    "buttonShadowType": "medium",
 
                     // === STYLING ===
                     "cardBackground": "#FFFFFF",
