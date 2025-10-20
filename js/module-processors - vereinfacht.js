@@ -1230,6 +1230,13 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
             html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
             html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
             html = html.replace(/\{\{primaryButtonShadow\}\}/g, buttonStyles.boxShadow);
+            html = html.replace(/\{\{primaryButtonBorder\}\}/g, buttonStyles.border || 'none');
+            
+            // Legacy-Kompatibilität für alte Template-Versionen
+            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
+            html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
+            html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
                 
             console.log('🔍 SOLUTION TRIPLE - Process läuft!');
             // WICHTIG: Generiere die Solution Boxes HTML
@@ -2089,6 +2096,7 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
                 html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
                 html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
                 html = html.replace(/\{\{primaryButtonShadow\}\}/g, buttonStyles.boxShadow);
+                html = html.replace(/\{\{primaryButtonBorder\}\}/g, buttonStyles.border || 'none');
             }    
                 
             let timelineSteps = '';
@@ -4741,6 +4749,13 @@ console.log('🔍 API Hero Button Styles:', buttonStyles);
                 html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
                 html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
                 html = html.replace(/\{\{primaryButtonShadow\}\}/g, buttonStyles.boxShadow || 'none');
+                html = html.replace(/\{\{primaryButtonBorder\}\}/g, buttonStyles.border || 'none');
+                
+                // Legacy-Kompatibilität
+                html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+                html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
+                html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
+                html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
             } else {
                 // Button ausblenden
                 html = html.replace(/<div style="text-align: center; margin-top: \{\{primaryButtonSpacing\}\};">[\s\S]*?<\/div>(?=\s*<\/div>\s*<\/section>)/g, '');
