@@ -1703,6 +1703,8 @@
                 html += `<textarea class="form-control" oninput="updateProperty('${key}', this.value)" style="min-height: 80px;">${value}</textarea>`;
             } else if (fieldType === 'boolean') {
                 html += renderBooleanPicker(key, value);
+            } else if (key.match(/contact\d+Position/i)) {
+                html += `<input type="text" class="form-control" value="${value}" oninput="updateProperty('${key}', this.value)">`;
             } else if (fieldType === 'position') {
                 html += renderPositionPicker(key, value);
             } else if (fieldType === 'size-dropdown') {
