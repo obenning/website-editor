@@ -7181,7 +7181,7 @@
                 buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
                 buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                 buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
-                buttonBackground: props.primaryButtonBg || props.primaryButtonBackground,
+                buttonBackground: props.primaryButtonBackground,
                 buttonColor: props.primaryButtonColor || props.primaryButtonTextColor
             });
         
@@ -7190,7 +7190,7 @@
                 buttonPaddingType: props.secondaryButtonPaddingType || 'large',
                 buttonRadiusType: props.secondaryButtonRadiusType || 'medium',
                 buttonShadowType: props.secondaryButtonShadowType || 'none',
-                buttonBackground: props.secondaryButtonBg || props.secondaryButtonBackground || 'transparent',
+                buttonBackground: props.secondaryButtonBackground || 'transparent',
                 buttonColor: props.secondaryButtonColor || props.secondaryButtonTextColor
             });
         
