@@ -533,8 +533,8 @@
             buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
             buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
             buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
-            buttonBackground: props.primaryButtonBackground || props.buttonBackground,
-            buttonColor: props.primaryButtonColor || props.buttonColor
+            buttonBackground: props.primaryButtonBackground,
+            buttonColor: props.primaryButtonColor
         });
         
         console.log('🔍 API Hero Button Styles:', buttonStyles);
@@ -548,7 +548,7 @@
             html = html.replace(/{{moduleId}}/g, module.id);
             
             // === ALLE BUTTON-PLATZHALTER ERSETZEN ===
-            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            
             html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
             html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
             html = html.replace(/\{\{primaryButtonColor\}\}/g, buttonStyles.color);
@@ -573,8 +573,8 @@
                 buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'medium',
                 buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                 buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'medium',
-                buttonBackground: props.primaryButtonBackground || props.buttonBg,
-                buttonColor: props.primaryButtonColor || props.buttonColor
+                buttonBackground: props.primaryButtonBackground,
+                buttonColor: props.primaryButtonColor
             });
 
             const secondaryButtonStyles = getUniversalButtonStyles({
@@ -582,7 +582,7 @@
                 buttonPaddingType: props.secondaryButtonPaddingType || 'medium',
                 buttonRadiusType: props.secondaryButtonRadiusType || 'medium',
                 buttonShadowType: props.secondaryButtonShadowType || 'none',
-                buttonBackground: props.secondaryButtonBackground || props.secondaryButtonBg || 'transparent',
+                buttonBackground: props.secondaryButtonBackground || 'transparent',
                 buttonColor: props.secondaryButtonColor
             });
 
@@ -705,8 +705,8 @@
                 buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
                 buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                 buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
-                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
-                buttonColor: props.primaryButtonColor || props.buttonColor
+                buttonBackground: props.primaryButtonBackground,
+                buttonColor: props.primaryButtonColor
             });
 
             const actualButtonStyle = buttonStyles.background;
@@ -1157,8 +1157,8 @@
                     buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
                     buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                     buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
-                    buttonBackground: props.primaryButtonBackground || props.buttonBackground,
-                    buttonColor: props.primaryButtonColor || props.buttonColor
+                    buttonBackground: props.primaryButtonBackground,
+                    buttonColor: props.primaryButtonColor
                 });
                 const actualButtonBackground = buttonStyles.background;
                 const actualButtonColor = buttonStyles.color;
@@ -1192,7 +1192,7 @@
             html = html.replace(/{{moduleId}}/g, module.id);
             
             // === ZUSÄTZLICHE BUTTON-PLATZHALTER ERSETZEN ===
-            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            
             html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
             html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
             html = html.replace(/\{\{primaryButtonColor\}\}/g, buttonStyles.color);
@@ -1233,7 +1233,7 @@
             html = html.replace(/\{\{primaryButtonBorder\}\}/g, buttonStyles.border || 'none');
             
             // Legacy-Kompatibilität für alte Template-Versionen
-            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            
             html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
             html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
             html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
@@ -2005,8 +2005,8 @@
                 buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'medium',
                 buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                 buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'medium',
-                buttonBackground: props.primaryButtonBackground || props.buttonBg,
-                buttonColor: props.primaryButtonColor || props.buttonColor
+                buttonBackground: props.primaryButtonBackground,
+                buttonColor: props.primaryButtonColor
             });
 
             const secondaryButtonStyles = getUniversalButtonStyles({
@@ -2014,7 +2014,7 @@
                 buttonPaddingType: props.secondaryButtonPaddingType || 'medium',
                 buttonRadiusType: props.secondaryButtonRadiusType || 'medium',
                 buttonShadowType: props.secondaryButtonShadowType || 'none',
-                buttonBackground: props.secondaryButtonBackground || props.secondaryButtonBg || 'transparent',
+                buttonBackground: props.secondaryButtonBackground || 'transparent',
                 buttonColor: props.secondaryButtonColor
             });
 
@@ -2537,8 +2537,8 @@
                 buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
                 buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                 buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
-                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
-                buttonColor: props.primaryButtonColor || props.buttonColor
+                buttonBackground: props.primaryButtonBackground,
+                buttonColor: props.primaryButtonColor
             });
 
             // HTML Template-Platzhalter ersetzen
@@ -4420,12 +4420,12 @@
                 buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
                 buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                 buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
-                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
-                buttonColor: props.primaryButtonColor || props.buttonColor
+                buttonBackground: props.primaryButtonBackground,
+                buttonColor: props.primaryButtonColor
             });
 
             // Button-Styles in HTML einsetzen
-            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            
             html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
             html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
             html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
@@ -4570,7 +4570,7 @@
                     buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                     buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'medium',
                     buttonBackground: props.primaryButtonBackground || props.buttonBgColor || props.buttonBackground,
-                    buttonColor: props.primaryButtonColor || props.buttonTextColor || props.buttonColor
+                    buttonColor: props.primaryButtonColor
                 });
                 
                 html = html.replace(/\{\{buttonText\}\}/g, props.primaryButtonText || props.buttonText || '');
@@ -4578,7 +4578,7 @@
                 html = html.replace(/\{\{buttonLink\}\}/g, props.primaryButtonLink || props.buttonLink || '#');
                 html = html.replace(/\{\{primaryButtonLink\}\}/g, props.primaryButtonLink || props.buttonLink || '#');
                 html = html.replace(/\{\{buttonBgColor\}\}/g, buttonStyles.background);
-                html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+                
                 html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
                 html = html.replace(/\{\{buttonTextColor\}\}/g, buttonStyles.color);
                 html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
@@ -4737,14 +4737,14 @@
                 buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'medium',
                 buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                 buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'medium',
-                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
-                buttonColor: props.primaryButtonColor || props.buttonTextColor
+                buttonBackground: props.primaryButtonBackground,
+                buttonColor: props.primaryButtonColor
             });
 
             // Alle Button-Platzhalter ersetzen (sowohl alte als auch neue Syntax)
             html = html.replace(/\{\{buttonUrl\}\}/g, props.primaryButtonLink || props.buttonUrl || '#');
             html = html.replace(/\{\{primaryButtonLink\}\}/g, props.primaryButtonLink || props.buttonUrl || '#');
-            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            
             html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
             html = html.replace(/\{\{buttonTextColor\}\}/g, buttonStyles.color);
             html = html.replace(/\{\{primaryButtonColor\}\}/g, buttonStyles.color);
@@ -4779,7 +4779,7 @@
                 html = html.replace(/\{\{primaryButtonBorder\}\}/g, buttonStyles.border || 'none');
                 
                 // Legacy-Kompatibilität
-                html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+                
                 html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
                 html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
                 html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
@@ -4920,8 +4920,8 @@
                 buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
                 buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                 buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
-                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
-                buttonColor: props.primaryButtonColor || props.buttonColor
+                buttonBackground: props.primaryButtonBackground,
+                buttonColor: props.primaryButtonColor
             });
 
             // === TEMPLATE-ERSETZUNGEN ===
@@ -4936,7 +4936,7 @@
 
             // === BUTTON-PLATZHALTER ERSETZEN (ALTE + NEUE SYNTAX) ===
             // Alte Syntax (buttonBackground, etc.)
-            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            
             html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
             html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
             html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
@@ -5023,7 +5023,7 @@
                                 buttonPaddingType: props.secondaryButtonPaddingType || 'medium',
                                 buttonRadiusType: props.secondaryButtonRadiusType || 'medium',
                                 buttonShadowType: props.secondaryButtonShadowType || 'none',
-                                buttonBackground: props.secondaryButtonBackground || props.secondaryButtonBg || 'transparent',
+                                buttonBackground: props.secondaryButtonBackground || 'transparent',
                                 buttonColor: props.secondaryButtonColor
                             });
                             html = html.replace(/\{\{secondaryButtonBackground\}\}/g, secondaryButtonStyles.background);
@@ -5036,7 +5036,7 @@
                         } else {
                             // Primary Button
                             const buttonStyles = getUniversalButtonStyles(properties);
-                            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+                            
                             html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
                             html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
                             html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
@@ -5310,7 +5310,7 @@
                     buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                     buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'medium',
                     buttonBackground: props.primaryButtonBackground || props.buttonBgColor || props.buttonBackground,
-                    buttonColor: props.primaryButtonColor || props.buttonTextColor || props.buttonColor
+                    buttonColor: props.primaryButtonColor
                 });
                 
                 html = html.replace(/\{\{buttonText\}\}/g, props.primaryButtonText || props.buttonText || '');
@@ -5318,7 +5318,7 @@
                 html = html.replace(/\{\{buttonLink\}\}/g, props.primaryButtonLink || props.buttonLink || '#');
                 html = html.replace(/\{\{primaryButtonLink\}\}/g, props.primaryButtonLink || props.buttonLink || '#');
                 html = html.replace(/\{\{buttonBgColor\}\}/g, buttonStyles.background);
-                html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+                
                 html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
                 html = html.replace(/\{\{buttonTextColor\}\}/g, buttonStyles.color);
                 html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
@@ -6815,8 +6815,8 @@
                 buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
                 buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                 buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
-                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
-                buttonColor: props.primaryButtonColor || props.buttonColor
+                buttonBackground: props.primaryButtonBackground,
+                buttonColor: props.primaryButtonColor
             });
 
             const secondaryButtonStyles = getUniversalButtonStyles({
@@ -6824,7 +6824,7 @@
                 buttonPaddingType: props.secondaryButtonPaddingType || 'medium',
                 buttonRadiusType: props.secondaryButtonRadiusType || 'medium',
                 buttonShadowType: props.secondaryButtonShadowType || 'none',
-                buttonBackground: props.secondaryButtonBackground || props.secondaryButtonBg || 'transparent',
+                buttonBackground: props.secondaryButtonBackground || 'transparent',
                 buttonColor: props.secondaryButtonColor
             });
 
@@ -6894,7 +6894,7 @@
 
             // === BUTTON-PLATZHALTER IM GENERIERTEN CONTENT ERSETZEN ===
             // Primary Button
-            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            
             html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
             html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
             html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
@@ -7022,8 +7022,8 @@
                 buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
                 buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                 buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
-                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
-                buttonColor: props.primaryButtonColor || props.buttonTextColor
+                buttonBackground: props.primaryButtonBackground,
+                buttonColor: props.primaryButtonColor
             });
 
             // === ERSETZE ALLE PLATZHALTER (MIT BUTTON-STYLES) ===
@@ -7041,7 +7041,7 @@
             html = html.replace(/\{\{primaryButtonShadow\}\}/g, buttonStyles.boxShadow);
             
             // Legacy-Kompatibilität (falls Template alte Platzhalter verwendet)
-            html = html.replace(/\{\{buttonBackground\}\}/g, buttonStyles.background);
+            
             html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
             html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
             html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
@@ -7060,8 +7060,8 @@
                 buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'large',
                 buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
                 buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'strong',
-                buttonBackground: props.primaryButtonBackground || props.buttonBackground,
-                buttonColor: props.primaryButtonColor || props.buttonColor
+                buttonBackground: props.primaryButtonBackground,
+                buttonColor: props.primaryButtonColor
             });
             
             // === FALLBACK-WERTE FÜR ALLE PROPERTIES ===
