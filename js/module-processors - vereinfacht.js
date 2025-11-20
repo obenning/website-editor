@@ -7587,6 +7587,7 @@ function processKerberosAboutStats(module, html) {
     
     return html;
 }
+
 function processKerberosFaqInteractive(module, html) {
     const props = module.properties;
     let faqItems = '';
@@ -7634,7 +7635,7 @@ function processKerberosFaqInteractive(module, html) {
             </div>
         `;
     }
-    
+}  
   function processKerberosFaqInteractive(module, html) {
     const props = module.properties;
     let faqItems = '';
