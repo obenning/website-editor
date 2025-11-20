@@ -3571,16 +3571,6 @@ function applyUniversalProcessing(module, html, props) {
         'svgElement', 'overlayElements', 'buttonSection', 'layoutContent'
     ];
     
-
-    // === GESCHÜTZTE PLATZHALTER WIEDERHERSTELLEN ===
-    Object.entries(placeholderBackups).forEach(([placeholder, marker]) => {
-        // Wenn der Marker noch vorhanden ist, zurück zum Platzhalter konvertieren
-        // (damit spezifische Processors ihn noch verarbeiten können)
-        if (processedHtml.includes(marker)) {
-            processedHtml = processedHtml.replace(new RegExp(marker, 'g'), `{{${placeholder}}}`);
-        }
-    });
-    
     Object.keys(props).forEach(key => {
         if (excludedPlaceholders.includes(key)) {
             return;
@@ -3607,28 +3597,7 @@ function applyUniversalProcessing(module, html, props) {
         console.error('❌ Fehler bei Hover-Effekten:', error);
     }
     
-    // === GESCHÜTZTE PLATZHALTER (nicht durch universelle Ersetzung überschreiben) ===
-    const protectedPlaceholders = [
-        'faqItems',
-        'testimonialCards',
-        'serviceBlocks',
-        'solutionsGrid',
-        'statsCards',
-        'carouselContent'
-    ];
-
-    // Temporär geschützte Platzhalter durch Marker ersetzen
-    const placeholderBackups = {};
-    protectedPlaceholders.forEach(placeholder => {
-        const marker = `___PROTECTED_${placeholder}___`;
-        const regex = new RegExp(`{{${placeholder}}}`, 'g');
-        if (processedHtml.includes(`{{${placeholder}}}`)) {
-            // Sichern des Inhalts zwischen den Platzhaltern
-            placeholderBackups[placeholder] = marker;
-            processedHtml = processedHtml.replace(regex, marker);
-        }
-    });
-
+    
     // === UNIVERSELLE TEMPLATE-PLATZHALTER ERSETZUNG ===
     processedHtml = processUniversalPlaceholders(processedHtml, props);
     console.log('✅ Universelle Platzhalter ersetzt');
