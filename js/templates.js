@@ -3409,5 +3409,350 @@
         "feature10Column3": "",
         "feature10Column4": ""
     }
+},
+{
+    "id": "kerberos-services-overview",
+    "name": "Services Overview (Two Column)",
+    "category": "Content & Services",
+    "description": "Services-Übersicht mit abwechselnden Bild/Text-Spalten und Solutions-Grid",
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
+        <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
+            {{serviceBlocks}}
+            {{solutionsGrid}}
+        </div>
+    </section>`,
+    "properties": {
+        // === LAYOUT ===
+        "backgroundColor": "#FFFFFF",
+        "sectionSpacing": "4rem 0",
+        "maxWidth": "1200px",
+        
+        // === SERVICE BLOCKS (1-3) ===
+        "service1Active": "true",
+        "service1Title": "Geldwäscheprävention",
+        "service1Description": "Sie wollen alle Ihre <strong>Pflichten nach dem Geldwäschegesetz</strong> einfach einhalten? Holen Sie sich jetzt schnelle Unterstützung von Kerberos.<br><br>Erhalten Sie umfangreiche Unterstützung bei der Erstellung Ihrer Risikoanalyse, Richtlinien, Arbeitsanweisungen, der Durchführung von Mitarbeiterschulungen, Geschäftspartnerprüfungen (KYC / eDD), Abgabe von Verdachtsmeldungen und Vielem mehr.",
+        "service1Image": "https://images.squarespace-cdn.com/content/v1/651eacf7cae17a228645a660/62f8698b-4d95-40f3-aa0a-807eb13c9d73/AML-des_Laptop.png",
+        "service1ButtonText": "Vorteile erkunden",
+        "service1ButtonLink": "/loesungen/geldwaeschepraevention",
+        "service1Layout": "image-left",
+        
+        "service2Active": "true",
+        "service2Title": "Externe Geldwäschebeauftragte",
+        "service2Description": "Sie benötigen <strong>Geldwäschebeauftragte</strong>? Wir stellen Ihnen hochqualifizierte externe Geldwäschebeauftragte sowie deren Stellvertreter zur Seite. Zusätzlich unterstützen wir Sie bei der Erfüllung Ihrer weiteren Pflichten, zum Beispiel Geschäftspartnerprüfungen, Risikoanalysen, Mitarbeiterschulungen und mehr.<br><br>Sichern Sie sich effektiv vor Compliance-Verstößen und deren Folgen.",
+        "service2Image": "https://images.squarespace-cdn.com/content/v1/651eacf7cae17a228645a660/9a39fc50-6fa3-48a2-9d3c-4868f238d3a9/Zwei+Personen+mit+Dokumenten.jpg",
+        "service2ButtonText": "Angebot anfordern",
+        "service2ButtonLink": "/unternehmen/kontakt",
+        "service2Layout": "image-right",
+        
+        "service3Active": "false",
+        "service3Title": "",
+        "service3Description": "",
+        "service3Image": "",
+        "service3ButtonText": "",
+        "service3ButtonLink": "",
+        "service3Layout": "image-left",
+        
+        // === SOLUTIONS SECTION ===
+        "showSolutions": "true",
+        "solutionsTitle": "Lösungen für Ihren Bedarf",
+        "solutionsTitleColor": "#063AA8",
+        
+        // === SOLUTIONS 1-8 ===
+        "solution1Active": "true",
+        "solution1Title": "Mitarbeiterschulungen",
+        "solution1Description": "Branchenspezifische Schulungen inklusive Abschlusszertifikaten",
+        "solution1Link": "/loesungen/mitarbeiterschulungen",
+        
+        "solution2Active": "true",
+        "solution2Title": "Due Diligence",
+        "solution2Description": "Geschäftspartnerprüfungen und Monitoring",
+        "solution2Link": "/loesungen/due-diligence",
+        
+        "solution3Active": "true",
+        "solution3Title": "Hinweisgebersysteme",
+        "solution3Description": "(Anonyme) Hinweisannahme von Mitarbeiter:innen",
+        "solution3Link": "/loesungen/hinweisgebersystem",
+        
+        "solution4Active": "true",
+        "solution4Title": "Datenschutz",
+        "solution4Description": "Audits, Schulungen und Datenschutz-Management",
+        "solution4Link": "/loesungen/datenschutz",
+        
+        "solution5Active": "true",
+        "solution5Title": "Zertifizierungen",
+        "solution5Description": "(Auffrischungs-)Schulungen für Geldwäschebeauftragte",
+        "solution5Link": "/loesungen/zertifizierungen",
+        
+        "solution6Active": "false",
+        "solution6Title": "",
+        "solution6Description": "",
+        "solution6Link": "",
+        
+        "solution7Active": "false",
+        "solution7Title": "",
+        "solution7Description": "",
+        "solution7Link": "",
+        
+        "solution8Active": "false",
+        "solution8Title": "",
+        "solution8Description": "",
+        "solution8Link": "",
+        
+        // === STYLING ===
+        "cardBackground": "#F8F9FA",
+        "cardBorder": "#E9ECEF",
+        "cardHoverShadow": "0 12px 30px rgba(6,58,168,0.12)",
+        "titleColor": "#063AA8",
+        "textColor": "#495057",
+        "buttonBackground": "linear-gradient(135deg, #063AA8, #009CE6)",
+        "buttonColor": "#FFFFFF"
+    }
+},
+{
+    "id": "kerberos-testimonials-horizontal",
+    "name": "Testimonials Horizontal Scroll",
+    "category": "Team & About",
+    "description": "Horizontales Testimonials-Carousel mit Scroll-Funktion und Quote-Icons",
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
+        <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
+            <div style="text-align: center; margin-bottom: {{titleSpacing}};">
+                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; margin: 0;">{{subtitle}}</p>
+            </div>
+            
+            <div class="testimonial-container" style="position: relative; overflow-x: auto; overflow-y: hidden; border-radius: 12px; background: {{containerBackground}}; box-shadow: {{containerShadow}}; scroll-behavior: smooth; padding: 1rem;">
+                <div class="testimonial-track" style="display: flex; gap: 2rem; scroll-snap-type: x mandatory;">
+                    {{testimonialCards}}
+                </div>
+            </div>
+            
+            <div class="scroll-hint" style="padding: 1rem 0; display: flex; justify-content: center; align-items: center; gap: 0.5rem; color: {{hintColor}}; font-size: 0.875rem; opacity: 0.7;">
+                <span style="font-family: 'Font Awesome 5 Pro';">&#xf054;</span>
+                <span>{{scrollHintText}}</span>
+            </div>
+        </div>
+    </section>`,
+    "properties": {
+        // === HEADER ===
+        "title": "Was unsere Kunden sagen",
+        "titleColor": "#063AA8",
+        "titleSpacing": "3rem",
+        "subtitle": "Erfahrungen von zufriedenen Kunden",
+        "subtitleColor": "#6c757d",
+        
+        // === LAYOUT ===
+        "backgroundColor": "#FFFFFF",
+        "sectionSpacing": "6rem 0",
+        "maxWidth": "1400px",
+        "containerBackground": "linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%)",
+        "containerShadow": "0 2px 16px rgba(6,58,168,0.04)",
+        
+        // === TESTIMONIALS 1-6 ===
+        "testimonial1Active": "true",
+        "testimonial1Name": "Sebastian Stengel",
+        "testimonial1Position": "Inhaber von Stengel Immobilienservice",
+        "testimonial1Quote": "Wir schätzen die Kompetenz und Zuverlässigkeit von Kerberos Compliance als Partner in Sachen Geldwäscheprävention sehr. Ihre umfassende Beratung, Schulung und schnelle KYC-Prüfung im Alltagsgeschäft sind ein echter Mehrwert für unser Unternehmen.",
+        "testimonial1Image": "https://images.squarespace-cdn.com/content/v1/651eacf7cae17a228645a660/1fbfd20c-c841-4c25-b2d5-0a49855f8f5f/Stengel.jpg",
+        
+        "testimonial2Active": "true",
+        "testimonial2Name": "Michael Mühlmann",
+        "testimonial2Position": "Dipl. Sachverständiger (DIA) bei der ISB München Immobilien GmbH",
+        "testimonial2Quote": "Geldwäsche ist ein zentrales Thema, besonders in der Immobilienbranche. Als eine der besten Adressen für Immobilieneigentümer in München freuen wir uns mit Kerberos Compliance einen kompetenten Partner an unserer Seite zu haben.",
+        "testimonial2Image": "https://images.squarespace-cdn.com/content/v1/651eacf7cae17a228645a660/8edd847b-856c-43a3-ba32-2d6a7fb88494/ISB.jpg",
+        
+        "testimonial3Active": "true",
+        "testimonial3Name": "Wolfgang Hödl",
+        "testimonial3Position": "Geschäftsinhaber",
+        "testimonial3Quote": "Seit der Zusammenarbeit mit der Firma Kerberos haben wir ein gutes Gefühl beim Thema Geldwäschegesetz. Großartige und engagierte Mitarbeiter, innovatives Unternehmen, einfache Handhabung der App – wer sich für Kerberos entscheidet, entscheidet sich richtig!",
+        "testimonial3Image": "https://images.squarespace-cdn.com/content/v1/651eacf7cae17a228645a660/2f3ce909-45ed-4d96-8f45-72816eb81d0e/Hödl.jpg",
+        
+        "testimonial4Active": "false",
+        "testimonial5Active": "false",
+        "testimonial6Active": "false",
+        
+        // === STYLING ===
+        "cardBackground": "#FFFFFF",
+        "cardShadow": "0 2px 12px rgba(6,58,168,0.06)",
+        "cardHoverShadow": "0 8px 24px rgba(6,58,168,0.12)",
+        "quoteIconColor": "#009CE6",
+        "nameColor": "#063AA8",
+        "positionColor": "#6C757D",
+        "quoteColor": "#212529",
+        "hintColor": "#6C757D",
+        "scrollHintText": "Horizontal scrollen für weitere Testimonials"
+    }
+},
+{
+    "id": "kerberos-about-stats",
+    "name": "About Section mit Stats Grid",
+    "category": "Team & About",
+    "description": "Hero-Section mit Logo + Stats-Grid mit Zahlen und Icons",
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
+        <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
+            <!-- Hero Section -->
+            <div style="background: {{heroBackground}}; border-radius: 16px; padding: {{heroPadding}}; margin-bottom: 3rem; display: grid; grid-template-columns: {{heroGridColumns}}; gap: 2rem; align-items: center;">
+                <div>
+                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: {{badgeBackground}}; color: {{badgeColor}}; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid {{badgeBorder}};">
+                        <span style="font-family: 'Font Awesome 5 Pro';">{{badgeIcon}}</span>
+                        <span>{{badgeText}}</span>
+                    </div>
+                    <h2 style="font-family: var(--heading-font-font-family); font-size: {{heroTitleSize}}; font-weight: var(--heading-font-font-weight); color: {{heroTitleColor}}; margin-bottom: 1.5rem; line-height: 1.2;">{{heroTitle}}</h2>
+                    <p style="font-family: var(--body-font-font-family); font-size: {{heroTextSize}}; line-height: 1.7; color: {{heroTextColor}}; margin-bottom: 2rem;">{{heroDescription}}</p>
+                    <a href="{{heroButtonLink}}" style="display: inline-flex; align-items: center; gap: 0.75rem; background: {{heroButtonBackground}}; color: {{heroButtonColor}}; text-decoration: none; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; box-shadow: {{heroButtonShadow}};">
+                        <span style="font-family: 'Font Awesome 5 Pro';">{{heroButtonIcon}}</span>
+                        {{heroButtonText}}
+                    </a>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <img src="{{heroLogoImage}}" alt="{{heroLogoAlt}}" style="max-width: 100%; height: auto; max-height: 300px; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(6,58,168,0.15));" />
+                </div>
+            </div>
+            
+            <!-- Stats Section -->
+            <div style="background: {{statsBackground}}; border-radius: 16px; padding: {{statsPadding}}; box-shadow: {{statsShadow}}; border: 1px solid {{statsBorder}};">
+                <h3 style="font-family: var(--heading-font-font-family); font-size: {{statsTitleSize}}; font-weight: 700; color: {{statsTitleColor}}; text-align: center; margin-bottom: 3rem;">{{statsTitle}}</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                    {{statsCards}}
+                </div>
+            </div>
+        </div>
+    </section>`,
+    "properties": {
+        // === HERO SECTION ===
+        "heroTitle": "AML Compliance Made Easy",
+        "heroTitleColor": "#063AA8",
+        "heroTitleSize": "2.5rem",
+        "heroDescription": "Seit 2017 ist es unsere Aufgabe, die <strong>Anforderungen des Geldwäschegesetzes für alle einfach umsetzbar</strong> zu machen. Wir beraten und unterstützen Unternehmen nicht nur mit fachlicher Expertise, sondern bauen zudem unser Angebot technischer und standardisierter Lösungen stetig aus.",
+        "heroTextColor": "#495057",
+        "heroTextSize": "1.1rem",
+        "heroBackground": "linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%)",
+        "heroPadding": "3rem 2rem",
+        "heroGridColumns": "2fr 1fr",
+        
+        // === BADGE ===
+        "badgeText": "Seit 2017",
+        "badgeIcon": "&#xf3ed;",
+        "badgeBackground": "rgba(6,58,168,0.1)",
+        "badgeColor": "#063AA8",
+        "badgeBorder": "rgba(6,58,168,0.2)",
+        
+        // === HERO BUTTON ===
+        "heroButtonText": "Über uns",
+        "heroButtonLink": "/unternehmen/ueber-uns",
+        "heroButtonIcon": "&#xf0c0;",
+        "heroButtonBackground": "linear-gradient(135deg, #063AA8, #009CE6)",
+        "heroButtonColor": "#FFFFFF",
+        "heroButtonShadow": "0 4px 15px rgba(6,58,168,0.2)",
+        
+        // === HERO LOGO ===
+        "heroLogoImage": "https://images.squarespace-cdn.com/content/651eacf7cae17a228645a660/c9119242-38b8-4c9c-86b9-04e7d102a08f/Just-K-Logo-Kerberos.png",
+        "heroLogoAlt": "Kerberos Logo",
+        
+        // === STATS SECTION ===
+        "statsTitle": "Unsere Erfolge in Zahlen",
+        "statsTitleColor": "#063AA8",
+        "statsTitleSize": "1.75rem",
+        "statsBackground": "#FFFFFF",
+        "statsPadding": "3rem 2rem",
+        "statsShadow": "0 8px 32px rgba(6,58,168,0.08)",
+        "statsBorder": "#E9ECEF",
+        
+        // === STATS 1-6 ===
+        "stat1Active": "true",
+        "stat1Type": "label",
+        "stat1Label": "Alle Branchen",
+        "stat1Description": "Unsere Kunden stammen aus allen verpflichteten Branchen",
+        "stat1Icon": "&#xf1ad;",
+        "stat1Color": "#063AA8",
+        
+        "stat2Active": "true",
+        "stat2Type": "number",
+        "stat2Number": "800+",
+        "stat2Description": "Erfolgreich abgeschlossene Behördenvorgänge",
+        "stat2Icon": "&#xf080;",
+        "stat2Color": "#063AA8",
+        "stat2Highlight": "true",
+        
+        "stat3Active": "true",
+        "stat3Type": "number",
+        "stat3Number": "50+",
+        "stat3Description": "Mitarbeiterinnen und Mitarbeiter",
+        "stat3Icon": "&#xf0c0;",
+        "stat3Color": "#063AA8",
+        "stat3Highlight": "true",
+        
+        "stat4Active": "true",
+        "stat4Type": "label",
+        "stat4Label": "Zertifiziert",
+        "stat4Description": "Nach den Standards ISO 37301, ISO 27001 und ISO 27701",
+        "stat4Icon": "&#xf00c;",
+        "stat4Color": "#063AA8",
+        
+        "stat5Active": "false",
+        "stat6Active": "false",
+        
+        // === LAYOUT ===
+        "backgroundColor": "#F8F9FA",
+        "sectionSpacing": "6rem 0",
+        "maxWidth": "1200px"
+    }
+},
+{
+    "id": "kerberos-faq-interactive",
+    "name": "FAQ Accordion (Interactive)",
+    "category": "Content & Services",
+    "description": "Interaktives FAQ-Accordion - funktioniert auch im Editor!",
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
+        <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
+            <div style="text-align: center; margin-bottom: {{titleSpacing}};">
+                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+            </div>
+            <div class="kerberos-faq-accordion" data-module-id="{{moduleId}}">
+                {{faqItems}}
+            </div>
+        </div>
+    </section>`,
+    "properties": {
+        // === HEADER ===
+        "title": "Häufig gestellte Fragen",
+        "titleColor": "#063AA8",
+        "titleSpacing": "3rem",
+        "subtitle": "Finden Sie Antworten auf die wichtigsten Fragen",
+        "subtitleColor": "#6c757d",
+        
+        // === FAQ ITEMS 1-10 ===
+        "faq1Active": "true",
+        "faq1Question": "Was ist Geldwäscheprävention?",
+        "faq1Answer": "Geldwäscheprävention umfasst alle Maßnahmen zur Verhinderung, Aufdeckung und Meldung von Geldwäsche und Terrorismusfinanzierung gemäß dem Geldwäschegesetz (GwG).",
+        
+        "faq2Active": "true",
+        "faq2Question": "Wer benötigt einen Geldwäschebeauftragten?",
+        "faq2Answer": "Alle Verpflichteten nach dem GwG mit mehr als 3 Mitarbeitern müssen einen Geldwäschebeauftragten bestellen. Dies betrifft u.a. Immobilienmakler, Rechtsanwälte, Steuerberater und Finanzdienstleister.",
+        
+        "faq3Active": "true",
+        "faq3Question": "Wie oft müssen Mitarbeiterschulungen durchgeführt werden?",
+        "faq3Answer": "Das Geldwäschegesetz schreibt regelmäßige Schulungen vor. Wir empfehlen mindestens einmal jährlich eine Schulung durchzuführen, um alle Mitarbeiter auf dem aktuellen Stand zu halten.",
+        
+        "faq4Active": "false",
+        "faq5Active": "false",
+        "faq6Active": "false",
+        "faq7Active": "false",
+        "faq8Active": "false",
+        "faq9Active": "false",
+        "faq10Active": "false",
+        
+        // === STYLING ===
+        "backgroundColor": "#F8F9FA",
+        "sectionSpacing": "6rem 0",
+        "maxWidth": "900px",
+        "itemBackground": "#FFFFFF",
+        "itemBorder": "#E9ECEF",
+        "itemHoverBorder": "#063AA8",
+        "questionColor": "#212529",
+        "answerColor": "#495057",
+        "iconColor": "#063AA8",
+        "iconActiveColor": "#009CE6"
+    }
 }
         ];
