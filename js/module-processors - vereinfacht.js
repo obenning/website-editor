@@ -3989,7 +3989,7 @@ function processUniversalModule(module, html) {
             // HTML in separate Variablen aufteilen (Schritt 3)
             let iconElement = '';
             if (hasIcon) {
-                const iconStyleStart = '<div style="margin-bottom: ' + iconSpacing + ';">';
+                const iconStyleStart = '<div style="margin-bottom: ' + iconSpacing + '; display: block;">';
                 const iconContainerStart = '<div style="font-family: \'Font Awesome 5 Pro\'; font-size: ' + iconSize + '; color: ' + iconColor + '; display: flex; align-items: center; justify-content: center; width: ' + iconContainerSize + '; height: ' + iconContainerSize + '; background: ' + iconBackground + '; border-radius: ' + iconRadius + ';">';
                 const iconContainerEnd = '</div>';
                 const iconStyleEnd = '</div>';
