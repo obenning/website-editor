@@ -1992,11 +1992,6 @@
         function processKerberosTextButtonRichtext(module, html) {
             const props = module.properties;
 
-            // Secondary Button Properties hinzufügen
-            if (!props.secondaryButtonBg) props.secondaryButtonBg = 'transparent';
-            if (!props.secondaryButtonColor) props.secondaryButtonColor = '#063AA8';
-            if (!props.secondaryButtonBorder) props.secondaryButtonBorder = '2px solid #063AA8';
-
             let buttonSection = '';
 
             // === UNIVERSELLE BUTTON-STYLES ===
@@ -4957,34 +4952,9 @@
 
         // === ERWEITERTE FEATURES GRID PROCESSING ===
         function processFeaturesGrid(template, properties) {
-            let html = template.html;
-            
-            // Card Styling mit Type-Mappings
-            const cardRadiusMapping = getRadiusOptions();
-            const cardShadowMapping = getShadowOptions();
-            const cardPaddingMapping = getSpacingOptions('cardPadding');
-            
-            html = html.replace('{{cardRadiusType}}', cardRadiusMapping[properties.cardRadiusType] || properties.cardRadiusType);
-            html = html.replace('{{cardShadowType}}', cardShadowMapping[properties.cardShadowType] || properties.cardShadowType);
-            html = html.replace('{{cardPaddingType}}', cardPaddingMapping[properties.cardPaddingType] || properties.cardPaddingType);
-            
-            // Features Generation
-            let featureCards = '';
-            for (let i = 1; i <= 12; i++) {
-                if (properties[`feature${i}Active`] === 'true' && properties[`feature${i}Title`]) {
-                    featureCards += `
-                        <div class="kerberos-feature-card" style="background: ${properties.cardBackground}; border: 1px solid ${properties.cardBorder}; border-radius: ${cardRadiusMapping[properties.cardRadiusType]}; padding: ${cardPaddingMapping[properties.cardPaddingType]}; text-align: center;">
-                            <div class="feature-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 2.5rem; color: ${properties[`feature${i}Color`]}; margin-bottom: 1.5rem;">${properties[`feature${i}Icon`]}</div>
-                            <h3 style="color: ${properties[`feature${i}Color`]}; margin-bottom: 1rem;">${properties[`feature${i}Title`]}</h3>
-                            <p style="color: ${properties.textColor}; line-height: 1.6;">${properties[`feature${i}Description`]}</p>
-                        </div>
-                    `;
-                }
-            }
-            
-            html = html.replace('{{featureCards}}', featureCards);
-            
-            return html;
+            // Diese Funktion wird nicht mehr benötigt - processKerberosFeaturesGrid übernimmt
+            console.warn('⚠️ Alte processFeaturesGrid aufgerufen - verwende processKerberosFeaturesGrid');
+            return template.html;
         }
 
           // 6. UNIVERSELLE PROCESS-FUNKTION FÜR TYPE-MAPPINGS
@@ -7360,7 +7330,7 @@
                             left: 1rem; 
                             top: 50%; 
                             transform: translateY(-50%); 
-                            background: ${props.primaryColor || props.buttonBackground || '#063AA8'}; 
+                            background: ${props.primaryButtonBackground || '#063AA8'}; 
                             color: white; 
                             border: none; 
                             width: 50px; 
@@ -7384,7 +7354,7 @@
                             right: 1rem; 
                             top: 50%; 
                             transform: translateY(-50%); 
-                            background: ${props.primaryColor || props.buttonBackground || '#063AA8'}; 
+                            background: ${props.primaryButtonBackground || '#063AA8'}; 
                             color: white; 
                             border: none; 
                             width: 50px; 
