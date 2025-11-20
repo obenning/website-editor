@@ -7570,8 +7570,13 @@ function processKerberosFaqInteractive(module, html) {
     
     // === MEHRERE ERSETZUNGS-STRATEGIEN ===
     
-    // Strategie 1: Direkter Platzhalter
-    if (html.includes('{{faqItems}}')) {
+    // Strategie 1: HTML-Kommentar Platzhalter (sicher vor universeller Ersetzung)
+    if (html.includes('<!-- FAQ_ITEMS_PLACEHOLDER -->')) {
+        html = html.replace('<!-- FAQ_ITEMS_PLACEHOLDER -->', faqItems);
+        console.log('✅ FAQ Items via HTML-Kommentar eingefügt');
+    }
+    // Strategie 1b: Fallback für alten Platzhalter
+    else if (html.includes('{{faqItems}}')) {
         html = html.replace('{{faqItems}}', faqItems);
         console.log('✅ FAQ Items via Platzhalter eingefügt');
     }
