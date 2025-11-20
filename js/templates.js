@@ -2987,13 +2987,14 @@
     }
 }
 </style>`,
-                "properties": {
+                    "properties": 
+                    {
                     // === UNIVERSAL PROPERTIES ===
                     "sectionSpacing": "4rem 0",
                     "backgroundColor": "#FFFFFF",
                     
                     // === CARD STYLING ===
-                    "cardBackground": "white",
+                    "cardBackground": "#FFFFFF",
                     "cardRadius": "12px",
                     "cardShadow": "0 4px 20px rgba(6, 58, 168, 0.08)",
                     "cardBorderColor": "#e9ecef",
@@ -3013,12 +3014,13 @@
                     "linkColor": "#495057",
                     "linkHoverColor": "#063AA8",
                     
-                    // === CTA BUTTON ===
-                    "ctaBackground": "linear-gradient(135deg, #063AA8, #009CE6)",
-                    "ctaHoverBackground": "linear-gradient(135deg, #052a7a, #0088cc)",
-                    "ctaColor": "white",
-                    "ctaPadding": "0.75rem 1.25rem",
-                    "ctaRadius": "8px",
+                    // === CTA BUTTON (verwendet jetzt Primary Button Properties) ===
+                    "primaryButtonStyleType": "primary",
+                    "primaryButtonPaddingType": "medium",
+                    "primaryButtonRadiusType": "medium",
+                    "primaryButtonShadowType": "medium",
+                    "primaryButtonBackground": "#063AA8",
+                    "primaryButtonColor": "#FFFFFF",
                     
                     // === PERSON 1 (Jan Wagner) ===
                     "contact1Name": "Jan Wagner",
