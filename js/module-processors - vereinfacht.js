@@ -1631,345 +1631,240 @@
             return html;
         }
 
-        function processKerberosTestimonialsPro(module, html) {
-            const props = module.properties;
-            
-            if (!html || typeof html !== 'string') {
-                const template = MODULE_TEMPLATES.find(t => t.id === module.templateId);
-                html = template ? template.html : '<div>Template fehlt</div>';
+function processKerberosTestimonialsPro(module, html) {
+    const props = module.properties;
+    
+    // Stelle sicher, dass kerberosCarousel verfügbar ist
+    if (!window.kerberosCarousel) {
+        console.error('❌ kerberosCarousel nicht verfügbar');
+        return '<div style="padding: 2rem; background: #fee; color: #900;">Carousel-System nicht geladen</div>';
+    }
+    
+    // Template HTML abrufen falls nicht vorhanden
+    if (!html || typeof html !== 'string') {
+        const template = MODULE_TEMPLATES.find(t => t.id === module.templateId);
+        html = template ? template.html : '<div>Template fehlt</div>';
+    }
+    
+    const helpers = window.kerberosHelpers;
+    
+    if (!helpers) {
+        console.error('❌ kerberosHelpers nicht verfügbar');
+        return html;
+    }
+    
+    // Type-Mappings konvertieren mit Fallbacks
+    const containerPadding = props.containerPadding || '2rem 3rem';
+    const cardMobilePadding = props.cardMobilePadding || '1.5rem 2.5rem';
+    const slideSpacing = props.slideSpacing || '2rem';
+    const dotsSpacing = props.dotsSpacing || '2rem';
+    const cardRadius = props.cardRadius || '12px';
+    const containerRadius = props.containerRadius || '12px';
+    const cardShadow = props.cardShadow || '0 8px 24px rgba(6,58,168,0.25)';
+    const containerShadow = props.containerShadow || '0 8px 24px rgba(6,58,168,0.25)';
+    
+    const slides = [];
+    
+    // Testimonials generieren
+    for (let i = 1; i <= 15; i++) {
+        const quote = props['testimonial' + i + 'Text'];
+        const author = props['testimonial' + i + 'Author'];
+        const position = props['testimonial' + i + 'Position'];
+        const company = props['testimonial' + i + 'Company'];
+        const companyUrl = props['testimonial' + i + 'CompanyLink'];
+        const companyLogo = props['testimonial' + i + 'CompanyLogo'];
+        const rating = parseInt(props['testimonial' + i + 'Rating']) || 5;
+        const isActive = props['testimonial' + i + 'Active'] === 'true';
+        
+        if (quote && author && isActive) {
+            let stars = '';
+            for (let s = 0; s < rating; s++) {
+                stars += '★';
             }
             
-            const helpers = window.kerberosHelpers;
-            
-            const containerPadding = helpers.convertPadding(props.containerPaddingType) || '2rem 3rem';
-            const cardMobilePadding = helpers.convertPadding(props.cardMobilePaddingType) || '1.5rem 2.5rem';
-            const slideSpacing = helpers.convertSpacing(props.slideSpacingType) || '2rem';
-            const dotsSpacing = helpers.convertSpacing(props.dotsSpacingType) || '2rem';
-            const cardRadius = helpers.convertRadius(props.cardRadiusType) || '12px';
-            const containerRadius = helpers.convertRadius(props.containerRadiusType) || '12px';
-            const cardShadow = helpers.convertShadow(props.cardShadowType) || '0 8px 24px rgba(6,58,168,0.25)';
-            const containerShadow = helpers.convertShadow(props.containerShadowType) || '0 8px 24px rgba(6,58,168,0.25)';
-            
-            const slides = [];
-            
-            for (let i = 1; i <= 6; i++) {
-                const quote = props['testimonial' + i + 'Quote'] || props['testimonial' + i + 'Text'];
-                const author = props['testimonial' + i + 'Author'];
-                const position = props['testimonial' + i + 'Position'];
-                const company = props['testimonial' + i + 'Company'];
-                const companyUrl = props['testimonial' + i + 'CompanyUrl'];
-                const companyLogo = props['testimonial' + i + 'CompanyLogo'];
-                const rating = parseInt(props['testimonial' + i + 'Rating']) || 5;
-                const isActive = props['testimonial' + i + 'Active'] === 'true';
+            let companyHTML = '';
+            if (company) {
+                const logoHTML = companyLogo ? 
+                    `<img src="${companyLogo}" alt="${company} Logo" style="width: 80px; height: 40px; object-fit: contain; margin-right: 0.5rem;">` : '';
                 
-                if (quote && author && isActive) {
-                    let stars = '';
-                    for (let s = 0; s < rating; s++) {
-                        stars += '★';
-                    }
-                    
-                    let companyHTML = '';
-                    if (company) {
-                        const logoHTML = companyLogo ? 
-                            `<img src="${companyLogo}" alt="${company} Logo" style="width: 80px; height: 40px; object-fit: contain; margin-right: 0.5rem;">` : '';
-                        
-                        const companyLink = companyUrl ? 
-                            `<a href="${companyUrl}" target="_blank" rel="noopener" style="color: ${props.linkColor || '#063AA8'}; text-decoration: none;">${company}</a>` :
-                            `<span style="color: ${props.companyColor || '#6c757d'};">${company}</span>`;
-                        
-                        companyHTML = `
-                            <div style="display: flex; align-items: center; justify-content: center; margin-top: 0.5rem;">
-                                ${logoHTML}
-                                ${companyLink}
-                            </div>
-                        `;
-                    }
-                    
-                    const initial = author.charAt(0).toUpperCase();
-                    
-                    const slideContent = `
-                        <div style="background: ${props.cardBackground || '#FFFFFF'}; 
-                                border-radius: ${cardRadius}; 
-                                padding: ${props.cardPadding || '1.5rem 3rem'}; 
-                                text-align: center; 
-                                box-shadow: ${cardShadow}; 
-                                min-height: ${props.cardMinHeight || '400px'}; 
-                                display: flex; 
-                                flex-direction: column; 
-                                justify-content: space-between; 
-                                border: 1px solid ${props.cardBorder || 'rgba(6,58,168,0.08)'};
-                                position: relative;
-                                overflow: hidden;">
-                            
-                            <div style="position: absolute; 
-                                    top: 0; 
-                                    left: 0; 
-                                    right: 0; 
-                                    bottom: 0; 
-                                    height: 100%; 
-                                    background: linear-gradient(90deg, ${props.primaryColor || '#063AA8'}, ${props.secondaryColor || '#009CE6'}); 
-                                    opacity: ${props.gradientOpacity || '0.05'}; 
-                                    z-index: 0;">
-                            </div>
-                            
-                            <div style="position: relative; z-index: 1;">
-                                <div style="font-family: 'Font Awesome 5 Pro'; 
-                                        font-size: ${props.quoteIconSize || '2.5rem'}; 
-                                        color: ${props.quoteIconColor || '#063AA8'}; 
-                                        opacity: 0.3; 
-                                        margin-bottom: 1rem;">
-                                    ${props.quoteIcon || '&#xf10d;'}
-                                </div>
-                                
-                                <div style="color: ${props.ratingColor || '#ffc107'}; 
-                                        font-size: ${props.ratingSize || '1.5rem'}; 
-                                        margin-bottom: 1.5rem;">
-                                    ${stars}
-                                </div>
-                                
-                                <blockquote style="font-size: ${props.quoteSize || '1.1rem'}; 
-                                                color: ${props.quoteColor || '#333'}; 
-                                                font-style: italic; 
-                                                line-height: 1.7; 
-                                                margin: 0 0 auto 0;">
-                                    "${quote}"
-                                </blockquote>
-                            </div>
-                            
-                            <div style="position: relative; 
-                                    z-index: 1; 
-                                    display: flex; 
-                                    align-items: center; 
-                                    justify-content: center; 
-                                    gap: 1rem; 
-                                    margin-top: 2rem; 
-                                    padding-top: 2rem; 
-                                    border-top: 1px solid ${props.dividerColor || '#e5e7eb'};">
-                                
-                                <div style="width: 60px; 
-                                        height: 60px; 
-                                        border-radius: 50%; 
-                                        background: linear-gradient(135deg, ${props.primaryColor || '#063AA8'}, ${props.secondaryColor || '#009CE6'}); 
-                                        display: flex; 
-                                        align-items: center; 
-                                        justify-content: center; 
-                                        color: white; 
-                                        font-size: 1.75rem; 
-                                        font-weight: 700; 
-                                        flex-shrink: 0;">
-                                    ${initial}
-                                </div>
-                                
-                                <div style="text-align: left;">
-                                    <div style="font-weight: 700; 
-                                            color: ${props.authorColor || '#063AA8'}; 
-                                            font-size: ${props.authorSize || '1.1rem'}; 
-                                            margin-bottom: 0.25rem;">
-                                        ${author}
-                                    </div>
-                                    <div style="color: ${props.positionColor || '#6c757d'}; 
-                                            font-size: ${props.positionSize || '0.9rem'};">
-                                        ${position}
-                                    </div>
-                                    ${companyHTML}
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    
-                    slides.push(slideContent);
-                }
-            }
-            
-            if (slides.length === 0) {
-                slides.push(`
-                    <div style="text-align: center; 
-                            padding: 4rem 2rem; 
-                            color: #6c757d; 
-                            background: white; 
-                            border-radius: ${cardRadius};">
-                        <p style="font-size: 1.2rem; margin: 0 0 0.5rem 0;">Keine Testimonials konfiguriert</p>
-                        <p style="font-size: 0.9rem; margin: 0; opacity: 0.7;">Aktiviere Testimonials im Property Panel</p>
+                const companyLink = companyUrl ? 
+                    `<a href="${companyUrl}" target="_blank" rel="noopener" style="color: ${props.linkColor || '#063AA8'}; text-decoration: none;">${company}</a>` :
+                    `<span style="color: ${props.companyColor || '#6c757d'};">${company}</span>`;
+                
+                companyHTML = `
+                    <div style="display: flex; align-items: center; justify-content: center; margin-top: 0.5rem;">
+                        ${logoHTML}
+                        ${companyLink}
                     </div>
-                `);
+                `;
             }
             
-            const carousel = window.kerberosCarousel.create({
-                moduleId: module.id,
-                slides: slides,
-                options: {
-                    autoPlay: props.autoPlay === 'true',
-                    autoPlayInterval: parseInt(props.autoPlayInterval) || 5000,
-                    showNavigation: slides.length > 1 && props.showNavigation !== 'false',
-                    showDots: slides.length > 1 && props.showDots !== 'false',
-                    prevIcon: props.prevIcon || '&#xf060;',
-                    nextIcon: props.nextIcon || '&#xf061;',
-                    navButtonColor: props.navButtonBackground || '#063AA8',
-                    dotColor: props.dotColor || '#063AA8',
-                    transitionDuration: props.transitionDuration || '0.5s'
-                }
-            });
+            const initial = author.charAt(0).toUpperCase();
             
-            // ============================================================
-            // 🎯 HIER BEGINNT DER NEUE CODE - DIREKT NACH carousel.create()
-            // ============================================================
-            
-            // Modifiziere das Carousel JavaScript für Canvas-Kompatibilität
-            let modifiedCarouselJS = carousel.javascript;
-            
-            const customEventListeners = `
-            
-            // Mache updateCarousel für CustomEvents verfügbar
-            window['carouselUpdate_${module.id}'] = updateCarousel;
-            
-            // CustomEvent Listener für Canvas-Kompatibilität
-            document.addEventListener('carousel-prev-${module.id}', function() {
-                if (window['carouselUpdate_${module.id}']) {
-                    window['carouselUpdate_${module.id}'](currentSlide - 1);
-                }
-            });
-            
-            document.addEventListener('carousel-next-${module.id}', function() {
-                if (window['carouselUpdate_${module.id}']) {
-                    window['carouselUpdate_${module.id}'](currentSlide + 1);
-                }
-            });
-            
-            document.addEventListener('carousel-goto-${module.id}', function(e) {
-                if (window['carouselUpdate_${module.id}'] && e.detail && typeof e.detail.index !== 'undefined') {
-                    window['carouselUpdate_${module.id}'](e.detail.index);
-                }
-            });
-        `;
-            
-            // Füge nach updateCarousel(0); ein
-            modifiedCarouselJS = modifiedCarouselJS.replace(
-                /updateCarousel\(0\);/,
-                'updateCarousel(0);' + customEventListeners
-            );
-            
-            // ============================================================
-            // 🎯 HIER ENDET DER NEUE CODE
-            // ============================================================
-            
-            html = html.replace(
-                /<div class="kerberos-testimonials-pro-container">[\s\S]*?<\/div>\s*<button class="nav-button-pro nav-prev-pro"[\s\S]*?<\/button>\s*<button class="nav-button-pro nav-next-pro"[\s\S]*?<\/button>\s*<\/div>/,
-                carousel.html
-            );
-            
-            html = html.replace(
-                /<div style="text-align: center; color: #6c757d; padding: 1rem;">Testimonials können im Property Panel konfiguriert werden<\/div>/,
-                ''
-            );
-            
-            const canvasFixScript = `
-                <script>
-                (function() {
-                    setTimeout(function() {
-                        const prevBtn = document.querySelector('.kerberos-carousel-prev-${module.id}');
-                        const nextBtn = document.querySelector('.kerberos-carousel-next-${module.id}');
-                        const dots = document.querySelectorAll('.kerberos-carousel-dot-${module.id}');
+            const slideContent = `
+                <div style="background: ${props.cardBackground || '#FFFFFF'}; 
+                        border-radius: ${cardRadius}; 
+                        padding: ${props.cardPadding || '1.5rem 3rem'}; 
+                        text-align: center; 
+                        box-shadow: ${cardShadow}; 
+                        min-height: ${props.cardMinHeight || '400px'}; 
+                        display: flex; 
+                        flex-direction: column; 
+                        justify-content: space-between; 
+                        border: 1px solid ${props.cardBorder || 'rgba(6,58,168,0.08)'};
+                        position: relative;
+                        overflow: hidden;">
+                    
+                    <div style="position: absolute; 
+                            top: 0; 
+                            left: 0; 
+                            right: 0; 
+                            bottom: 0; 
+                            height: 100%; 
+                            background: linear-gradient(90deg, ${props.primaryColor || '#063AA8'}, ${props.secondaryColor || '#009CE6'}); 
+                            opacity: ${props.gradientOpacity || '0.05'}; 
+                            z-index: 0;">
+                    </div>
+                    
+                    <div style="position: relative; z-index: 1;">
+                        <div style="font-family: 'Font Awesome 5 Pro'; 
+                                font-size: ${props.quoteIconSize || '2.5rem'}; 
+                                color: ${props.quoteIconColor || '#063AA8'}; 
+                                opacity: 0.3; 
+                                margin-bottom: 1rem;">
+                            ${props.quoteIcon || '&#xf10d;'}
+                        </div>
                         
-                        if (prevBtn) {
-                            const newPrev = prevBtn.cloneNode(true);
-                            prevBtn.parentNode.replaceChild(newPrev, prevBtn);
-                            newPrev.addEventListener('click', function(e) {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                document.dispatchEvent(new CustomEvent('carousel-prev-${module.id}'));
-                            });
-                        }
+                        <div style="color: ${props.ratingColor || '#ffc107'}; 
+                                font-size: ${props.ratingSize || '1.5rem'}; 
+                                margin-bottom: 1.5rem;">
+                            ${stars}
+                        </div>
                         
-                        if (nextBtn) {
-                            const newNext = nextBtn.cloneNode(true);
-                            nextBtn.parentNode.replaceChild(newNext, nextBtn);
-                            newNext.addEventListener('click', function(e) {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                document.dispatchEvent(new CustomEvent('carousel-next-${module.id}'));
-                            });
-                        }
+                        <blockquote style="font-size: ${props.quoteSize || '1.1rem'}; 
+                                        color: ${props.quoteColor || '#333'}; 
+                                        font-style: italic; 
+                                        line-height: 1.7; 
+                                        margin: 0 0 auto 0;">
+                            "${quote}"
+                        </blockquote>
+                    </div>
+                    
+                    <div style="position: relative; 
+                            z-index: 1; 
+                            display: flex; 
+                            align-items: center; 
+                            justify-content: center; 
+                            gap: 1rem; 
+                            margin-top: 2rem; 
+                            padding-top: 2rem; 
+                            border-top: 1px solid ${props.dividerColor || '#e5e7eb'};">
                         
-                        dots.forEach(function(dot, index) {
-                            const newDot = dot.cloneNode(true);
-                            dot.parentNode.replaceChild(newDot, dot);
-                            newDot.addEventListener('click', function(e) {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                document.dispatchEvent(new CustomEvent('carousel-goto-${module.id}', { detail: { index: index } }));
-                            });
-                        });
-                    }, 100);
-                })();
-                </script>
+                        <div style="width: 60px; 
+                                height: 60px; 
+                                border-radius: 50%; 
+                                background: linear-gradient(135deg, ${props.primaryColor || '#063AA8'}, ${props.secondaryColor || '#009CE6'}); 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                color: white; 
+                                font-size: 1.75rem; 
+                                font-weight: 700; 
+                                flex-shrink: 0;">
+                            ${initial}
+                        </div>
+                        
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; 
+                                    color: ${props.authorColor || '#063AA8'}; 
+                                    font-size: ${props.authorSize || '1.1rem'}; 
+                                    margin-bottom: 0.25rem;">
+                                ${author}
+                            </div>
+                            <div style="color: ${props.positionColor || '#6c757d'}; 
+                                    font-size: ${props.positionSize || '0.9rem'};">
+                                ${position}
+                            </div>
+                            ${companyHTML}
+                        </div>
+                    </div>
+                </div>
             `;
             
-            const moduleCSS = window.kerberosCssHelper.addOnce(
-                'testimonials-pro-base-' + module.id,
-                `<style>
-                    .kerberos-carousel-container-${module.id} {
-                        background: ${props.containerBackground || '#FFFFFF'};
-                        border-radius: ${containerRadius};
-                        padding: ${containerPadding};
-                        box-shadow: ${containerShadow};
-                    }
-                    
-                    .kerberos-carousel-prev-${module.id},
-                    .kerberos-carousel-next-${module.id} {
-                        z-index: 999 !important;
-                        pointer-events: auto !important;
-                        position: absolute !important;
-                    }
-                    
-                    .kerberos-carousel-dot-${module.id} {
-                        pointer-events: auto !important;
-                        z-index: 100 !important;
-                    }
-                    
-                    @media (max-width: 768px) {
-                        .kerberos-carousel-container-${module.id} {
-                            padding: ${cardMobilePadding};
-                        }
-                        
-                        .kerberos-carousel-slide-${module.id} > div {
-                            min-height: ${props.cardMobileMinHeight || '300px'} !important;
-                            padding: ${cardMobilePadding} !important;
-                        }
-                        
-                        .kerberos-carousel-prev-${module.id},
-                        .kerberos-carousel-next-${module.id} {
-                            display: none !important;
-                        }
-                    }
-                    
-                    .kerberos-carousel-prev-${module.id}:hover,
-                    .kerberos-carousel-next-${module.id}:hover {
-                        background: ${props.navButtonHoverBackground || '#009CE6'} !important;
-                        transform: translateY(-50%) scale(1.1) !important;
-                    }
-                </style>`
-            );
-            
-            if (html.includes('{{carouselContent}}')) {
-                html = html.replace('{{carouselContent}}', carousel.html);
-            } else if (!html.includes(carousel.html)) {
-                html = html + carousel.html;
+            slides.push(slideContent);
+        }
+    }
+    
+    // Fallback wenn keine Slides
+    if (slides.length === 0) {
+        slides.push(`
+            <div style="text-align: center; 
+                    padding: 4rem 2rem; 
+                    color: #6c757d; 
+                    background: white; 
+                    border-radius: ${cardRadius};">
+                <p style="font-size: 1.2rem; margin: 0 0 0.5rem 0;">Keine Testimonials konfiguriert</p>
+                <p style="font-size: 0.9rem; margin: 0; opacity: 0.7;">Aktiviere Testimonials im Property Panel</p>
+            </div>
+        `);
+    }
+    
+    // Carousel erstellen
+    const carousel = window.kerberosCarousel.create({
+        moduleId: module.id,
+        slides: slides,
+        options: {
+            autoPlay: props.autoPlay === 'true',
+            autoPlayInterval: parseInt(props.autoPlayInterval) || 5000,
+            showNavigation: slides.length > 1 && props.showNavigation !== 'false',
+            showDots: slides.length > 1 && props.showDots !== 'false',
+            prevIcon: props.prevIcon || '&#xf060;',
+            nextIcon: props.nextIcon || '&#xf061;',
+            navButtonColor: props.navButtonBackground || '#063AA8',
+            dotColor: props.dotColor || '#063AA8',
+            transitionDuration: props.transitionDuration || '0.5s'
+        }
+    });
+    
+    // Carousel HTML in Template einfügen
+    if (html.includes('{{carouselContent}}')) {
+        html = html.replace('{{carouselContent}}', carousel.html);
+    } else if (html.includes('<div class="kerberos-testimonials-pro-container">')) {
+        html = html.replace(
+            /<div class="kerberos-testimonials-pro-container">[\s\S]*?<\/div>/,
+            carousel.html
+        );
+    } else {
+        html = html + carousel.html;
+    }
+    
+    // Module CSS
+    const moduleCSS = `
+        <style>
+            .kerberos-carousel-container-${module.id} {
+                background: ${props.containerBackground || '#FFFFFF'};
+                border-radius: ${containerRadius};
+                padding: ${containerPadding};
+                box-shadow: ${containerShadow};
             }
             
-            const counterText = slides.length > 0 ? `1 von ${slides.length}` : '0 von 0';
-            html = html.replace('{{counterText}}', counterText);
-            
-            // WICHTIG: Verwende modifiedCarouselJS statt carousel.javascript!
-            return moduleCSS + html + modifiedCarouselJS + canvasFixScript;
-        }
+            @media (max-width: 768px) {
+                .kerberos-carousel-container-${module.id} {
+                    padding: ${cardMobilePadding};
+                }
+                
+                .kerberos-carousel-slide-${module.id} > div {
+                    min-height: ${props.cardMobileMinHeight || '300px'} !important;
+                    padding: ${cardMobilePadding} !important;
+                }
+            }
+        </style>
+    `;
+    
+    console.log('✅ Testimonials Professional verarbeitet:', slides.length, 'Testimonials');
+    return moduleCSS + html + carousel.javascript;
+}
 
-        console.log('✅ processKerberosTestimonialsPro GEFIXT:');
-        console.log('   • Verwendet kerberosHelpers für Type-Mapping');
-        console.log('   • Verwendet kerberosCarousel für Carousel-Logik');
-        console.log('   • CSS-Deduplizierung mit kerberosCssHelper');
-        console.log('   • Vollständiges JavaScript wird generiert');
-
-        console.log('✅ processKerberosTestimonialsPro GEFIXT - mit Type-Mapping und JavaScript');
 
         function processKerberosTextButtonRichtext(module, html) {
             const props = module.properties;
@@ -3725,7 +3620,8 @@ function applyUniversalProcessing(module, html, props) {
     }
     
     // === UNIVERSELLE HOVER-CSS EINFÜGEN ===
-    // Neue Module nutzen das globale Button-System, keine separaten CSS-Blöcke mehr
+    // Entferne alle module-spezifischen Button-CSS-Blöcke
+    processedHtml = processedHtml.replace(/<style>[\s\S]*?\.kerberos-btn-[^{]+\{[\s\S]*?\}[\s\S]*?<\/style>/g, '');
     console.log('✅ Universelle Property-Verarbeitung abgeschlossen für:', module.id);
     
     return processedHtml;
@@ -7600,6 +7496,7 @@ function processKerberosAboutStats(module, html) {
     return html;
 }
 
+
 // FAQ Interactive Processor
 function processKerberosFaqInteractive(module, html) {
     const props = module.properties;
@@ -7618,7 +7515,7 @@ function processKerberosFaqInteractive(module, html) {
         const itemId = `faq-item-${module.id}-${i}`;
         
         faqItems += `
-            <div class="faq-item" data-faq-id="${itemId}" style="background: ${props.itemBackground}; border: 2px solid ${props.itemBorder}; border-radius: 12px; margin-bottom: 1rem; transition: all 0.3s ease; overflow: hidden;">
+            <div class="faq-item" data-faq-id="${itemId}" style="background: ${props.itemBackground || '#FFFFFF'}; border: 2px solid ${props.itemBorder || '#E9ECEF'}; border-radius: 12px; margin-bottom: 1rem; transition: all 0.3s ease; overflow: hidden;">
                 <div class="faq-question" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;" 
                      onclick="(function(id) {
                          const item = document.querySelector('[data-faq-id=\\'' + id + '\\']');
@@ -7630,24 +7527,34 @@ function processKerberosFaqInteractive(module, html) {
                              answer.style.maxHeight = '0';
                              icon.innerHTML = '&#xf107;';
                              icon.style.transform = 'rotate(0deg)';
-                             icon.style.color = '${props.iconColor}';
-                             item.style.borderColor = '${props.itemBorder}';
+                             icon.style.color = '${props.iconColor || '#063AA8'}';
+                             item.style.borderColor = '${props.itemBorder || '#E9ECEF'}';
                          } else {
                              answer.style.maxHeight = answer.scrollHeight + 'px';
                              icon.innerHTML = '&#xf106;';
                              icon.style.transform = 'rotate(180deg)';
-                             icon.style.color = '${props.iconActiveColor}';
-                             item.style.borderColor = '${props.itemHoverBorder}';
+                             icon.style.color = '${props.iconActiveColor || '#009CE6'}';
+                             item.style.borderColor = '${props.itemHoverBorder || '#063AA8'}';
                          }
-                     })('${itemId}')"
-                     onmouseover="if (!this.nextElementSibling.style.maxHeight || this.nextElementSibling.style.maxHeight === '0px') { this.closest('.faq-item').style.borderColor = '${props.itemHoverBorder}'; }"
-                     onmouseout="if (!this.nextElementSibling.style.maxHeight || this.nextElementSibling.style.maxHeight === '0px') { this.closest('.faq-item').style.borderColor = '${props.itemBorder}'; }">
-                    <h3 style="font-family: var(--heading-font-font-family); font-size: 1.1rem; font-weight: 600; color: ${props.questionColor}; margin: 0; flex: 1; padding-right: 1rem;">${question}</h3>
-                    <span class="faq-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 1.25rem; color: ${props.iconColor}; transition: all 0.3s ease; flex-shrink: 0;">&#xf107;</span>
+                     })('${itemId}'); event.stopPropagation(); event.preventDefault();"
+                     onmouseover="if (!this.nextElementSibling.style.maxHeight || this.nextElementSibling.style.maxHeight === '0px') { this.closest('.faq-item').style.borderColor = '${props.itemHoverBorder || '#063AA8'}'; }"
+                     onmouseout="if (!this.nextElementSibling.style.maxHeight || this.nextElementSibling.style.maxHeight === '0px') { this.closest('.faq-item').style.borderColor = '${props.itemBorder || '#E9ECEF'}'; }">
+                    <h3 style="font-family: var(--heading-font-font-family); font-size: 1.1rem; font-weight: 600; color: ${props.questionColor || '#212529'}; margin: 0; flex: 1; padding-right: 1rem;">${question}</h3>
+                    <span class="faq-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 1.25rem; color: ${props.iconColor || '#063AA8'}; transition: all 0.3s ease; flex-shrink: 0;">&#xf107;</span>
                 </div>
                 <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem;">
-                    <div style="font-family: var(--body-font-font-family); font-size: 1rem; line-height: 1.7; color: ${props.answerColor}; padding-bottom: 1.5rem;">${answer}</div>
+                    <div style="font-family: var(--body-font-font-family); font-size: 1rem; line-height: 1.7; color: ${props.answerColor || '#495057'}; padding-bottom: 1.5rem;">${answer}</div>
                 </div>
+            </div>
+        `;
+    }
+    
+    // Wenn keine Items, Fallback
+    if (!faqItems) {
+        faqItems = `
+            <div style="text-align: center; padding: 3rem; color: #6c757d; background: white; border-radius: 12px; border: 1px solid #E9ECEF;">
+                <p style="font-size: 1.1rem; margin: 0 0 0.5rem 0;">Keine FAQ-Items konfiguriert</p>
+                <p style="font-size: 0.9rem; margin: 0; opacity: 0.7;">Aktiviere FAQ-Items im Property Panel</p>
             </div>
         `;
     }
@@ -7655,6 +7562,7 @@ function processKerberosFaqInteractive(module, html) {
     // Template-Platzhalter ersetzen
     html = html.replace('{{faqItems}}', faqItems);
     
+    console.log('✅ FAQ Interactive verarbeitet');
     return html;
 }
 
