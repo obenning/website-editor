@@ -5345,6 +5345,16 @@
             const props = module.properties;
             let contactCards = '';
             
+            // === CTA BUTTON STYLES (Universal) ===
+            const ctaButtonStyles = window.getUniversalButtonStyles({
+                buttonStyleType: props.primaryButtonStyleType || 'primary',
+                buttonPaddingType: props.primaryButtonPaddingType || 'medium',
+                buttonRadiusType: props.primaryButtonRadiusType || 'medium',
+                buttonShadowType: props.primaryButtonShadowType || 'medium',
+                buttonBackground: props.primaryButtonBackground || '#063AA8',
+                buttonColor: props.primaryButtonColor || '#FFFFFF'
+            });
+            
             // Generiere Cards für bis zu 6 Kontakte
             for (let i = 1; i <= 6; i++) {
                 const name = props[`contact${i}Name`];
@@ -5394,10 +5404,10 @@
                 contactCards += `
                 </div>`;
                 
-                // CTA Button (wenn aktiviert und vorhanden)
+                // CTA Button (wenn aktiviert und vorhanden) - MIT UNIVERSAL BUTTON STYLES
                 if (showCta && ctaLink && ctaText) {
                     contactCards += `
-                <a href="${ctaLink}" target="_blank" class="contact-cta">
+                <a href="${ctaLink}" target="_blank" class="contact-cta" style="background: ${ctaButtonStyles.background}; color: ${ctaButtonStyles.color}; padding: ${ctaButtonStyles.padding}; border-radius: ${ctaButtonStyles.borderRadius}; box-shadow: ${ctaButtonStyles.boxShadow};">
                     ${ctaIcon ? `<span class="cta-icon">${ctaIcon}</span>` : ''}
                     ${ctaText}
                 </a>`;
