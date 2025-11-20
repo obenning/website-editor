@@ -5343,14 +5343,79 @@
         function processKerberosTeamContactCards(module, html) {
             console.log('👥 Processing Team Contact Cards:', module.id);
             const props = module.properties;
+            let contactCards = '';
             
-            // contactCards ist bereits als HTML-Block definiert, keine weitere Verarbeitung nötig
-            // Alle anderen Properties werden durch Universal Handlers ersetzt
+            // Generiere Cards für bis zu 6 Kontakte
+            for (let i = 1; i <= 6; i++) {
+                const name = props[`contact${i}Name`];
+                const position = props[`contact${i}Position`];
+                const image = props[`contact${i}Image`];
+                const email = props[`contact${i}Email`];
+                const phone = props[`contact${i}Phone`];
+                const ctaLink = props[`contact${i}CtaLink`];
+                const ctaText = props[`contact${i}CtaText`];
+                const ctaIcon = props[`contact${i}CtaIcon`];
+                const isActive = props[`contact${i}Active`] === 'true';
+                const showCta = props[`contact${i}ShowCta`] === 'true';
+                
+                // Nur aktive Kontakte mit Namen anzeigen
+                if (!isActive || !name) continue;
+                
+                contactCards += `
+        <div class="contact-card">
+            <div class="contact-image-container">
+                <img src="${image}?format=300w" 
+                     alt="${name}" 
+                     class="contact-image">
+            </div>
+            <div class="contact-info">
+                <h3 class="contact-name">${name}</h3>
+                <p class="contact-position">${position}</p>
+                <div class="contact-details">`;
+                
+                // Email (wenn vorhanden)
+                if (email) {
+                    contactCards += `
+                    <div class="contact-item">
+                        <span class="contact-icon">&#xf0e0;</span>
+                        <a href="mailto:${email}" class="contact-link">${email}</a>
+                    </div>`;
+                }
+                
+                // Phone (wenn vorhanden)
+                if (phone) {
+                    contactCards += `
+                    <div class="contact-item">
+                        <span class="contact-icon">&#xf095;</span>
+                        <a href="tel:${phone.replace(/\s/g, '')}" class="contact-link">${phone}</a>
+                    </div>`;
+                }
+                
+                contactCards += `
+                </div>`;
+                
+                // CTA Button (wenn aktiviert und vorhanden)
+                if (showCta && ctaLink && ctaText) {
+                    contactCards += `
+                <a href="${ctaLink}" target="_blank" class="contact-cta">
+                    ${ctaIcon ? `<span class="cta-icon">${ctaIcon}</span>` : ''}
+                    ${ctaText}
+                </a>`;
+                } else {
+                    // Spacer wenn kein CTA
+                    contactCards += `
+                <div class="contact-spacer"></div>`;
+                }
+                
+                contactCards += `
+            </div>
+        </div>`;
+            }
             
-            // KEIN Escaping - HTML direkt einfügen
-            html = html.replace(/\{\{contactCards\}\}/g, props.contactCards || '');
+            // Ersetze Platzhalter
+            html = html.replace(/\{\{contactCards\}\}/g, contactCards);
             
-            console.log('✅ processKerberosTeamContactCards - HTML eingefügt');
+            console.log('✅ processKerberosTeamContactCards - Cards generiert');
             return html;
         }
 
