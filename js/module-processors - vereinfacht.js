@@ -3990,7 +3990,7 @@ function processUniversalModule(module, html) {
             let iconElement = '';
             if (hasIcon) {
                 const iconStyleStart = '<div style="margin-bottom: ' + iconSpacing + ';">';
-                const iconContainerStart = '<div style="font-family: \'Font Awesome 5 Pro\'; font-size: ' + iconSize + '; color: ' + iconColor + '; display: inline-flex; align-items: center; justify-content: center; width: ' + iconContainerSize + '; height: ' + iconContainerSize + '; background: ' + iconBackground + '; border-radius: ' + iconRadius + ';">';
+                const iconContainerStart = '<div style="font-family: \'Font Awesome 5 Pro\'; font-size: ' + iconSize + '; color: ' + iconColor + '; display: flex; align-items: center; justify-content: center; width: ' + iconContainerSize + '; height: ' + iconContainerSize + '; background: ' + iconBackground + '; border-radius: ' + iconRadius + ';">';
                 const iconContainerEnd = '</div>';
                 const iconStyleEnd = '</div>';
                 iconElement = iconStyleStart + iconContainerStart + iconClass + iconContainerEnd + iconStyleEnd;
