@@ -4969,73 +4969,148 @@ function processUniversalModule(module, html) {
             return html;
         }
 
-        // Image-Text-Modern Process-Funktion - VOLLSTÄNDIG REPARIERT
-        function processKerberosImageTextModern(module, html) {
-            const props = module.properties;
+// Image-Text-Modern Process-Funktion - VOLLSTÄNDIG REPARIERT
+function processKerberosImageTextModern(module, html) {
+    const props = module.properties;
 
-            if (props.imageUrl) {
-                const responsiveImg = createResponsiveImage(
-                    props.imageUrl,
-                    props.imageAlt || 'Bild',
-                    '',
-                    '(max-width: 768px) 100vw, 50vw'
-                );
+    if (props.imageUrl) {
+        const responsiveImg = createResponsiveImage(
+            props.imageUrl,
+            props.imageAlt || 'Bild',
+            '',
+            '(max-width: 768px) 100vw, 50vw'
+        );
 
-                // Automatische Style-Generierung basierend auf Properties
-                const autoHeight = props.imageHeight || 'auto';
-                const autoObjectFit = props.imageObjectFit || 'cover';
-                const autoObjectPosition = props.imageObjectPosition || 'center';
-                const customCSS = props.imageCustomCSS || '';
+        // Automatische Style-Generierung basierend auf Properties
+        const autoHeight = props.imageHeight || 'auto';
+        const autoObjectFit = props.imageObjectFit || 'cover';
+        const autoObjectPosition = props.imageObjectPosition || 'center';
+        const customCSS = props.imageCustomCSS || '';
 
-                const finalStyle = `width: 100%; height: ${autoHeight}; object-fit: ${autoObjectFit}; object-position: ${autoObjectPosition}; display: block; margin: 0; line-height: 0; ${customCSS}`;
+        const finalStyle = `width: 100%; height: ${autoHeight}; object-fit: ${autoObjectFit}; object-position: ${autoObjectPosition}; display: block; margin: 0; line-height: 0; ${customCSS}`;
 
-                const finalImg = responsiveImg.replace(
-                    'style="width: 100%; height: auto; object-fit: cover;"',
-                    `style="${finalStyle}"`
-                );
+        const finalImg = responsiveImg.replace(
+            'style="width: 100%; height: auto; object-fit: cover;"',
+            `style="${finalStyle}"`
+        );
 
-                html = html.replace('{{responsiveImageElement}}', finalImg);
-            } else {
-                // Platzhalter für leeres Bild
-                html = html.replace('{{responsiveImageElement}}', '<div style="width: 100%; height: 300px; background: #f8f9fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6c757d; font-size: 1.2rem;">📸 Bild hinzufügen</div>');
+        html = html.replace('{{responsiveImageElement}}', finalImg);
+    } else {
+        // Platzhalter für leeres Bild
+        html = html.replace('{{responsiveImageElement}}', '<div style="width: 100%; height: 300px; background: #f8f9fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6c757d; font-size: 1.2rem;">📸 Bild hinzufügen</div>');
+    }
+
+    // === BUTTON-PLATZHALTER ERSETZEN ===
+    if (props.showButton === 'true' || props.primaryButtonText || props.buttonText) {
+        const buttonStyles = getUniversalButtonStyles({
+            buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'primary',
+            buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'medium',
+            buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
+            buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'medium',
+            buttonBackground: props.primaryButtonBackground || props.buttonBgColor || props.buttonBackground,
+            buttonColor: props.primaryButtonColor
+        });
+        
+        html = html.replace(/\{\{buttonText\}\}/g, props.primaryButtonText || props.buttonText || '');
+        html = html.replace(/\{\{primaryButtonText\}\}/g, props.primaryButtonText || props.buttonText || '');
+        html = html.replace(/\{\{buttonLink\}\}/g, props.primaryButtonLink || props.buttonLink || '#');
+        html = html.replace(/\{\{primaryButtonLink\}\}/g, props.primaryButtonLink || props.buttonLink || '#');
+        html = html.replace(/\{\{buttonBgColor\}\}/g, buttonStyles.background);
+        
+        html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
+        html = html.replace(/\{\{buttonTextColor\}\}/g, buttonStyles.color);
+        html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
+        html = html.replace(/\{\{primaryButtonColor\}\}/g, buttonStyles.color);
+        html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
+        html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
+        html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
+        html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
+        html = html.replace(/\{\{buttonShadow\}\}/g, buttonStyles.boxShadow);
+        html = html.replace(/\{\{primaryButtonShadow\}\}/g, buttonStyles.boxShadow);
+    }
+
+    return html;
+}
+
+// Standard-Layout mit Bild links/rechts und Text - MIT ICON-FIX
+function processKerberosImageText(module, html) {
+    const props = module.properties;
+    
+    // Validierung
+    if (!html) {
+        const template = MODULE_TEMPLATES.find(t => t.id === module.templateId);
+        html = template ? template.html : '<div>Template nicht gefunden</div>';
+    }
+    
+    // === ICON-ELEMENT GENERIEREN (FIX FÜR SQUARESPACE) ===
+    let iconElement = '';
+    if (props.iconClass) {
+        const iconColor = props.iconColor || '#063AA8';
+        const iconSize = props.iconSize || '2rem';
+        iconElement = '<div style="margin-bottom: 1rem;"><div style="font-family: \'Font Awesome 5 Pro\'; font-size: ' + iconSize + '; color: ' + iconColor + '; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: rgba(6,58,168,0.1); border-radius: 50%;">' + props.iconClass + '</div></div>';
+    }
+    
+    // === TEXT-ELEMENTE ===
+    const titleElement = '<h3 style="font-family: var(--heading-font-font-family); font-size: var(--heading-3-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ' + (props.titleColor || '#063AA8') + '; margin: 0 0 1rem 0;">' + (props.title || '') + '</h3>';
+    const textElement = '<p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ' + (props.textColor || '#6c757d') + '; margin: 0 0 2rem 0;">' + (props.text || '') + '</p>';
+    
+    // === BUTTON-ELEMENT ===
+    const buttonStyles = getUniversalButtonStyles({
+        buttonStyleType: props.buttonStyleType || 'primary',
+        buttonPaddingType: props.buttonPaddingType || 'medium',
+        buttonRadiusType: props.buttonRadiusType || 'medium',
+        buttonShadowType: props.buttonShadowType || 'medium',
+        buttonBackground: props.buttonBgColor || props.buttonBackground,
+        buttonColor: props.buttonTextColor || props.buttonColor
+    });
+    
+    const buttonElement = '<a href="' + (props.buttonLink || '#') + '" class="kerberos-btn kerberos-btn-' + module.id + '" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: ' + buttonStyles.background + '; color: ' + buttonStyles.color + '; padding: ' + buttonStyles.padding + '; border-radius: ' + buttonStyles.borderRadius + '; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: ' + buttonStyles.boxShadow + '; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">' + (props.buttonText || 'Mehr erfahren') + '</a>';
+    
+    const textContent = iconElement + titleElement + textElement + buttonElement;
+    
+    // === IMAGE-CONTENT ===
+    let imageContent = '';
+    if (props.imageUrl) {
+        const responsiveImg = createResponsiveImage(
+            props.imageUrl,
+            props.imageAlt || 'Bild',
+            '',
+            '(max-width: 768px) 100vw, 50vw'
+        );
+        imageContent = '<div><div style="position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(6,58,168,0.1)">' + responsiveImg + '</div></div>';
+    } else {
+        imageContent = '<div style="width: 100%; height: 300px; background: #f8f9fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6c757d;">📸 Bild hinzufügen</div>';
+    }
+    
+    // === LAYOUT ZUSAMMENBAUEN ===
+    const layoutType = props.layoutType || 'image-left';
+    const contentGap = props.contentGap || '4rem';
+    
+    let layoutContent = '';
+    if (layoutType === 'image-left') {
+        layoutContent = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: ' + contentGap + '; align-items: center;">' + imageContent + '<div>' + textContent + '</div></div>';
+    } else {
+        layoutContent = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: ' + contentGap + '; align-items: center;"><div>' + textContent + '</div>' + imageContent + '</div>';
+    }
+    
+    html = html.replace('{{layoutContent}}', layoutContent);
+    
+    // Responsive CSS
+    const responsiveCSS = `
+        <style>
+            @media (max-width: 768px) {
+                .kerberos-image-text-${module.id} {
+                    flex-direction: column !important;
+                }
+                .kerberos-image-text-${module.id} > div {
+                    width: 100% !important;
+                }
             }
-
-            // === BUTTON-PLATZHALTER ERSETZEN ===
-            if (props.showButton === 'true' || props.primaryButtonText || props.buttonText) {
-                const buttonStyles = getUniversalButtonStyles({
-                    buttonStyleType: props.primaryButtonStyleType || props.buttonStyleType || 'primary',
-                    buttonPaddingType: props.primaryButtonPaddingType || props.buttonPaddingType || 'medium',
-                    buttonRadiusType: props.primaryButtonRadiusType || props.buttonRadiusType || 'medium',
-                    buttonShadowType: props.primaryButtonShadowType || props.buttonShadowType || 'medium',
-                    buttonBackground: props.primaryButtonBackground || props.buttonBgColor || props.buttonBackground,
-                    buttonColor: props.primaryButtonColor
-                });
-                
-                html = html.replace(/\{\{buttonText\}\}/g, props.primaryButtonText || props.buttonText || '');
-                html = html.replace(/\{\{primaryButtonText\}\}/g, props.primaryButtonText || props.buttonText || '');
-                html = html.replace(/\{\{buttonLink\}\}/g, props.primaryButtonLink || props.buttonLink || '#');
-                html = html.replace(/\{\{primaryButtonLink\}\}/g, props.primaryButtonLink || props.buttonLink || '#');
-                html = html.replace(/\{\{buttonBgColor\}\}/g, buttonStyles.background);
-                
-                html = html.replace(/\{\{primaryButtonBackground\}\}/g, buttonStyles.background);
-                html = html.replace(/\{\{buttonTextColor\}\}/g, buttonStyles.color);
-                html = html.replace(/\{\{buttonColor\}\}/g, buttonStyles.color);
-                html = html.replace(/\{\{primaryButtonColor\}\}/g, buttonStyles.color);
-                html = html.replace(/\{\{buttonPadding\}\}/g, buttonStyles.padding);
-                html = html.replace(/\{\{primaryButtonPadding\}\}/g, buttonStyles.padding);
-                html = html.replace(/\{\{buttonRadius\}\}/g, buttonStyles.borderRadius);
-                html = html.replace(/\{\{primaryButtonRadius\}\}/g, buttonStyles.borderRadius);
-                html = html.replace(/\{\{buttonShadow\}\}/g, buttonStyles.boxShadow);
-                html = html.replace(/\{\{primaryButtonShadow\}\}/g, buttonStyles.boxShadow);
-            }
-
-            return html;
-        }
-
-        // Alias für Backward Compatibility
-        function processKerberosImageText(module, html) {
-            return processKerberosImageTextModern(module, html);
-        }
+        </style>
+    `;
+    
+    return responsiveCSS + html;
+}
 
         // === TEAM CONTACT CARDS PROCESSOR ===
         function processKerberosTeamContactCards(module, html) {
@@ -6886,33 +6961,6 @@ function processUniversalModule(module, html) {
             return html;
         }
 
-
-        // Standard-Layout mit Bild links/rechts und Text
-        function processKerberosImageText(module, html) {
-            const props = module.properties;
-            
-            // Validierung
-            if (!html) {
-                const template = MODULE_TEMPLATES.find(t => t.id === module.templateId);
-                html = template ? template.html : '<div>Template nicht gefunden</div>';
-            }
-            
-            // Responsive CSS
-            const responsiveCSS = `
-                <style>
-                    @media (max-width: 768px) {
-                        .kerberos-image-text-${module.id} {
-                            flex-direction: column !important;
-                        }
-                        .kerberos-image-text-${module.id} > div {
-                            width: 100% !important;
-                        }
-                    }
-                </style>
-            `;
-            
-            return responsiveCSS + html;
-        }
 
         // 2. MODERNE CALL-TO-ACTION
         // MODERNE CALL-TO-ACTION
