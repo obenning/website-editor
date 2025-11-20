@@ -2793,7 +2793,7 @@
                 },
                 "customized": true
             },
-            {
+{
                 "id": "kerberos-team-contact-cards",
                 "name": "Team Kontakt Cards",
                 "category": "Social Proof",
@@ -2988,99 +2988,107 @@
 }
 </style>`,
                 "properties": {
+                    // === UNIVERSAL PROPERTIES ===
                     "sectionSpacing": "4rem 0",
                     "backgroundColor": "#FFFFFF",
+                    
+                    // === CARD STYLING ===
                     "cardBackground": "white",
                     "cardRadius": "12px",
                     "cardShadow": "0 4px 20px rgba(6, 58, 168, 0.08)",
                     "cardBorderColor": "#e9ecef",
+                    
+                    // === IMAGE ===
                     "imageHeight": "200px",
+                    
+                    // === TEXT STYLING ===
                     "nameSize": "1.25rem",
                     "nameWeight": "700",
                     "nameColor": "#212529",
                     "positionSize": "0.95rem",
                     "positionColor": "#6c757d",
+                    
+                    // === ICONS & LINKS ===
                     "iconColor": "#009CE6",
                     "linkColor": "#495057",
                     "linkHoverColor": "#063AA8",
+                    
+                    // === CTA BUTTON ===
                     "ctaBackground": "linear-gradient(135deg, #063AA8, #009CE6)",
                     "ctaHoverBackground": "linear-gradient(135deg, #052a7a, #0088cc)",
                     "ctaColor": "white",
                     "ctaPadding": "0.75rem 1.25rem",
                     "ctaRadius": "8px",
-                    "contactCards": `<!-- Jan Wagner -->
-        <div class="contact-card">
-            <div class="contact-image-container">
-                <img src="https://images.squarespace-cdn.com/content/651eacf7cae17a228645a660/69b161ec-3041-464e-af7b-e42631b6762c/JWA-DIT2.jpg?format=300w" 
-                     alt="Jan Wagner" 
-                     class="contact-image">
-            </div>
-            <div class="contact-info">
-                <h3 class="contact-name">Jan Wagner</h3>
-                <p class="contact-position">Partnership Manager</p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <span class="contact-icon">&#xf0e0;</span>
-                        <a href="mailto:Jan.Wagner@kerberos-cms.com" class="contact-link">Jan.Wagner@kerberos-cms.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">&#xf095;</span>
-                        <a href="tel:+4922165078953" class="contact-link">+49 221 65078953</a>
-                    </div>
-                </div>
-                <a href="https://qrco.de/bfsMCR" target="_blank" class="contact-cta">
-                    <span class="cta-icon">&#xf073;</span>
-                    Termin buchen
-                </a>
-            </div>
-        </div>
-        <div class="contact-card">
-            <div class="contact-image-container">
-                <img src="https://images.squarespace-cdn.com/content/651eacf7cae17a228645a660/bc9fff4e-f8d4-4466-a0a1-a0420ffe2fe7/EBL-DIT.jpg?format=300w" 
-                     alt="Eva Blöchl" 
-                     class="contact-image">
-            </div>
-            <div class="contact-info">
-                <h3 class="contact-name">Eva Blöchl</h3>
-                <p class="contact-position">Senior Associate Compliance</p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <span class="contact-icon">&#xf0e0;</span>
-                        <a href="mailto:Eva.Bloechl@kerberos-cms.com" class="contact-link">Eva.Bloechl@kerberos-cms.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">&#xf095;</span>
-                        <a href="tel:+4922165088151" class="contact-link">+49 221 65088151</a>
-                    </div>
-                </div>
-                <div class="contact-spacer"></div>
-            </div>
-        </div>
-        <div class="contact-card">
-            <div class="contact-image-container">
-                <img src="https://images.squarespace-cdn.com/content/651eacf7cae17a228645a660/b04d53f7-2592-4626-9786-a3671fa5edf7/SKR-DIT.jpg?format=300w" 
-                     alt="Sebastian Krolczik" 
-                     class="contact-image">
-            </div>
-            <div class="contact-info">
-                <h3 class="contact-name">Sebastian Krolczik</h3>
-                <p class="contact-position">Senior Manager Partnerships</p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <span class="contact-icon">&#xf0e0;</span>
-                        <a href="mailto:sebastian.krolczik@kerberos-cms.com" class="contact-link">sebastian.krolczik@kerberos-cms.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">&#xf095;</span>
-                        <a href="tel:+4922165078861" class="contact-link">+49 221 65078861</a>
-                    </div>
-                </div>
-                <a href="https://qrco.de/beK5uZ" target="_blank" class="contact-cta">
-                    <span class="cta-icon">&#xf073;</span>
-                    Termin buchen
-                </a>
-            </div>
-        </div>`
+                    
+                    // === PERSON 1 (Jan Wagner) ===
+                    "contact1Name": "Jan Wagner",
+                    "contact1Position": "Partnership Manager",
+                    "contact1Image": "https://images.squarespace-cdn.com/content/651eacf7cae17a228645a660/69b161ec-3041-464e-af7b-e42631b6762c/JWA-DIT2.jpg",
+                    "contact1Email": "Jan.Wagner@kerberos-cms.com",
+                    "contact1Phone": "+49 221 65078953",
+                    "contact1CtaLink": "https://qrco.de/bfsMCR",
+                    "contact1CtaText": "Termin buchen",
+                    "contact1CtaIcon": "&#xf073;",
+                    "contact1Active": "true",
+                    "contact1ShowCta": "true",
+                    
+                    // === PERSON 2 (Eva Blöchl) ===
+                    "contact2Name": "Eva Blöchl",
+                    "contact2Position": "Senior Associate Compliance",
+                    "contact2Image": "https://images.squarespace-cdn.com/content/651eacf7cae17a228645a660/bc9fff4e-f8d4-4466-a0a1-a0420ffe2fe7/EBL-DIT.jpg",
+                    "contact2Email": "Eva.Bloechl@kerberos-cms.com",
+                    "contact2Phone": "+49 221 65088151",
+                    "contact2CtaLink": "",
+                    "contact2CtaText": "",
+                    "contact2CtaIcon": "",
+                    "contact2Active": "true",
+                    "contact2ShowCta": "false",
+                    
+                    // === PERSON 3 (Sebastian Krolczik) ===
+                    "contact3Name": "Sebastian Krolczik",
+                    "contact3Position": "Senior Manager Partnerships",
+                    "contact3Image": "https://images.squarespace-cdn.com/content/651eacf7cae17a228645a660/b04d53f7-2592-4626-9786-a3671fa5edf7/SKR-DIT.jpg",
+                    "contact3Email": "sebastian.krolczik@kerberos-cms.com",
+                    "contact3Phone": "+49 221 65078861",
+                    "contact3CtaLink": "https://qrco.de/beK5uZ",
+                    "contact3CtaText": "Termin buchen",
+                    "contact3CtaIcon": "&#xf073;",
+                    "contact3Active": "true",
+                    "contact3ShowCta": "true",
+                    
+                    // === PERSON 4-6 (Inaktiv) ===
+                    "contact4Name": "",
+                    "contact4Position": "",
+                    "contact4Image": "",
+                    "contact4Email": "",
+                    "contact4Phone": "",
+                    "contact4CtaLink": "",
+                    "contact4CtaText": "",
+                    "contact4CtaIcon": "",
+                    "contact4Active": "false",
+                    "contact4ShowCta": "false",
+                    
+                    "contact5Name": "",
+                    "contact5Position": "",
+                    "contact5Image": "",
+                    "contact5Email": "",
+                    "contact5Phone": "",
+                    "contact5CtaLink": "",
+                    "contact5CtaText": "",
+                    "contact5CtaIcon": "",
+                    "contact5Active": "false",
+                    "contact5ShowCta": "false",
+                    
+                    "contact6Name": "",
+                    "contact6Position": "",
+                    "contact6Image": "",
+                    "contact6Email": "",
+                    "contact6Phone": "",
+                    "contact6CtaLink": "",
+                    "contact6CtaText": "",
+                    "contact6CtaIcon": "",
+                    "contact6Active": "false",
+                    "contact6ShowCta": "false"
                 }
             }
             
