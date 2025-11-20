@@ -3525,88 +3525,8 @@
             return html.replace('{{layoutContent}}', layoutContent);
         }
 
-
 // ===================================================================
-// MODULE ROUTING MAP - Zentrale Verwaltung aller Processor-Funktionen
-// ===================================================================
-const MODULE_PROCESSORS = {
-    // === HERO MODULES ===
-    'kerberos-hero-advanced-richtext': processKerberosHeroAdvancedRichtext,
-    'kerberos-hero-advanced': processKerberosHeroAdvanced,
-    'kerberos-svg-hero': processKerberosSvgHero,
-    'kerberos-api-hero-with-text': processKerberosApiHeroWithText,
-    
-    // === FEATURE & COMPARISON MODULES ===
-    'kerberos-features-grid': processKerberosFeaturesGrid,
-    'kerberos-features-modern': processKerberosFeaturesModern,
-    'kerberos-feature-breaker': processKerberosFeatureBreaker,
-    'kerberos-feature-comparison-extended': processKerberosFeatureComparisonExtended,
-    'kerberos-feature-comparison-table': processKerberosFeatureComparisonTable,
-    
-    // === TIMELINE MODULES ===
-    'kerberos-process-timeline-fixed': processKerberosTimeline,
-    'kerberos-process-timeline': processKerberosTimeline,
-    
-    // === PRICING MODULES ===
-    'kerberos-pricing-interactive': processKerberosPricingInteractive,
-    'kerberos-pricing-responsive-extended': processKerberosPricingResponseExtended,
-    
-    // === DASHBOARD MODULES ===
-    'kerberos-compliance-dashboard': processKerberosComplianceDashboard,
-    'kerberos-dashboard-showcase': processKerberosDashboard,
-    
-    // === TESTIMONIALS MODULES ===
-    'kerberos-testimonials-carousel': processTestimonialsCarousel,
-    'kerberos-testimonials-carousel-extended': processKerberosTestimonialsCarouselExtended,
-    'kerberos-testimonials-pro': processKerberosTestimonialsPro,
-    
-    // === PRODUCT MODULES ===
-    'kerberos-product-showcase': processKerberosProductShowcase,
-    'kerberos-product-overview': processKerberosProductOverview,
-    'kerberos-product-fade-overview': processKerberosProductFadeOverview,
-    
-    // === SOLUTION MODULES ===
-    'kerberos-solution-triple-richtext': processKerberosTripleSolution,
-    'kerberos-solutions-overview': processKerberosSolutionsOverview,
-    
-    // === TEAM MODULES ===
-    'kerberos-team-gallery': processKerberosTeamGallery,
-    'kerberos-team-gallery-fixed': processKerberosTeamGalleryFixed,
-    'kerberos-team-contact-cards': processKerberosTeamContactCards,
-    'kerberos-company-presentation': processKerberosCompanyPresentation,
-    
-    // === STATS MODULES ===
-    'kerberos-stats': processStatsModule,
-    'kerberos-stats-with-hover': processKerberosStatsWithHover,
-    'kerberos-warning-facts': processKerberosWarningFacts,
-    
-    // === CONTENT & TEXT MODULES ===
-    'kerberos-text-button-richtext': processKerberosTextButtonRichtext,
-    'kerberos-text-button-richtext-fixed': processKerberosTextButtonRichtext,
-    'kerberos-image-text': processKerberosImageText,
-    'kerberos-image-text-modern': processKerberosImageTextModern,
-    'kerberos-cta-modern': processKerberosCtaModern,
-    
-    // === INTEGRATIONS & GRID MODULES ===
-    'kerberos-integrations-grid': processKerberosIntegrationsGrid,
-    'kerberos-integrations-grid-fixed': processKerberosIntegrationsGridModern,
-    'kerberos-integrations-grid-modern': processKerberosIntegrationsGridModern,
-    
-    // === API & TECHNOLOGY MODULES ===
-    'kerberos-api-endpoints': processKerberosApiEndpoints,
-    'kerberos-api-documentation': processKerberosApiDocumentation,
-    
-    // === FAQ & NEWSLETTER MODULES ===
-    'kerberos-faq-accordion': processKerberosFaqAccordion,
-    'kerberos-newsletter-modern': processKerberosNewsletterModern,
-    
-    // === OTHER MODULES ===
-    'kerberos-guide-flow': processKerberosGuideFlow,
-    'kerberos-benefits': processKerberosBenefits
-};
-
-// ===================================================================
-// HELPER FUNCTIONS
+// HELPER FUNCTIONS - MÜSSEN VOR MODULE_PROCESSORS DEFINIERT WERDEN
 // ===================================================================
 
 /**
@@ -3860,6 +3780,85 @@ function finalValidation(html, module) {
     
     return html;
 }
+
+// ===================================================================
+// MODULE ROUTING MAP - JETZT NACH DEN HELPER FUNCTIONS
+// ===================================================================
+const MODULE_PROCESSORS = {
+    // === HERO MODULES ===
+    'kerberos-hero-advanced-richtext': processKerberosHeroAdvancedRichtext,
+    'kerberos-hero-advanced': processKerberosHeroAdvanced,
+    'kerberos-svg-hero': processKerberosSvgHero,
+    'kerberos-api-hero-with-text': processKerberosApiHeroWithText,
+    
+    // === FEATURE & COMPARISON MODULES ===
+    'kerberos-features-grid': processKerberosFeaturesGrid,
+    'kerberos-features-modern': processKerberosFeaturesModern,
+    'kerberos-feature-breaker': processKerberosFeatureBreaker,
+    'kerberos-feature-comparison-extended': processKerberosFeatureComparisonExtended,
+    'kerberos-feature-comparison-table': processKerberosFeatureComparisonTable,
+    
+    // === TIMELINE MODULES ===
+    'kerberos-process-timeline-fixed': processKerberosTimeline,
+    'kerberos-process-timeline': processKerberosTimeline,
+    
+    // === PRICING MODULES ===
+    'kerberos-pricing-interactive': processKerberosPricingInteractive,
+    'kerberos-pricing-responsive-extended': processKerberosPricingResponseExtended,
+    
+    // === DASHBOARD MODULES ===
+    'kerberos-compliance-dashboard': processKerberosComplianceDashboard,
+    'kerberos-dashboard-showcase': processKerberosDashboard,
+    
+    // === TESTIMONIALS MODULES ===
+    'kerberos-testimonials-carousel': processTestimonialsCarousel,
+    'kerberos-testimonials-carousel-extended': processKerberosTestimonialsCarouselExtended,
+    'kerberos-testimonials-pro': processKerberosTestimonialsPro,
+    
+    // === PRODUCT MODULES ===
+    'kerberos-product-showcase': processKerberosProductShowcase,
+    'kerberos-product-overview': processKerberosProductOverview,
+    'kerberos-product-fade-overview': processKerberosProductFadeOverview,
+    
+    // === SOLUTION MODULES ===
+    'kerberos-solution-triple-richtext': processKerberosTripleSolution,
+    'kerberos-solutions-overview': processKerberosSolutionsOverview,
+    
+    // === TEAM MODULES ===
+    'kerberos-team-gallery': processKerberosTeamGallery,
+    'kerberos-team-gallery-fixed': processKerberosTeamGalleryFixed,
+    'kerberos-team-contact-cards': processKerberosTeamContactCards,
+    'kerberos-company-presentation': processKerberosCompanyPresentation,
+    
+    // === STATS MODULES ===
+    'kerberos-stats': processStatsModule,
+    'kerberos-stats-with-hover': processKerberosStatsWithHover,
+    'kerberos-warning-facts': processKerberosWarningFacts,
+    
+    // === CONTENT & TEXT MODULES ===
+    'kerberos-text-button-richtext': processKerberosTextButtonRichtext,
+    'kerberos-text-button-richtext-fixed': processKerberosTextButtonRichtext,
+    'kerberos-image-text': processKerberosImageText,
+    'kerberos-image-text-modern': processKerberosImageTextModern,
+    'kerberos-cta-modern': processKerberosCtaModern,
+    
+    // === INTEGRATIONS & GRID MODULES ===
+    'kerberos-integrations-grid': processKerberosIntegrationsGrid,
+    'kerberos-integrations-grid-fixed': processKerberosIntegrationsGridModern,
+    'kerberos-integrations-grid-modern': processKerberosIntegrationsGridModern,
+    
+    // === API & TECHNOLOGY MODULES ===
+    'kerberos-api-endpoints': processKerberosApiEndpoints,
+    'kerberos-api-documentation': processKerberosApiDocumentation,
+    
+    // === FAQ & NEWSLETTER MODULES ===
+    'kerberos-faq-accordion': processKerberosFaqAccordion,
+    'kerberos-newsletter-modern': processKerberosNewsletterModern,
+    
+    // === OTHER MODULES ===
+    'kerberos-guide-flow': processKerberosGuideFlow,
+    'kerberos-benefits': processKerberosBenefits
+};
 
 // ===================================================================
 // HAUPTFUNKTION - processUniversalModule (REFACTORED)
