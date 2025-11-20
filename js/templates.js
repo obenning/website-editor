@@ -1804,7 +1804,7 @@
                             </div>
                             <div style="order: {{textOrder}}; padding: {{contentPaddingType}};">
                                 <div style="margin-bottom: {{iconSpacing}}; display: {{showIcon}};">
-                                    <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: inline-flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
+                                    <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
                                 </div>
                                 <div style="margin-bottom: {{titleSpacing}};">
                                     <h3 style="font-family: var(--heading-font-font-family); font-size: {{titleSizeType}}; font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0;">{{title}}</h3>
@@ -2602,7 +2602,7 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; text-align: {{textAlignmentType}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidthType}}; margin: 0 auto; padding: 0 2rem;">
             <div style="margin-bottom: {{iconSpacing}}; display: {{showIcon}};">
-                <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: inline-flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
+                <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
             </div>
             <div style="margin-bottom: {{titleSpacing}};">
                 <div style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}};">{{titleContent}}</div>
