@@ -6226,6 +6226,19 @@
                 if (term === '') {
                     // Wenn Suchfeld leer ist, ursprünglichen Zustand wiederherstellen
                     restoreCategoryState();
+                    
+                    // KRITISCH: Alle Module wieder anzeigen
+                    document.querySelectorAll('.module-template').forEach(el => {
+                        el.style.display = 'block';
+                    });
+                    
+                    // No-results Meldung entfernen falls vorhanden
+                    const noResultsMsg = document.querySelector('.no-search-results');
+                    if (noResultsMsg) {
+                        noResultsMsg.remove();
+                    }
+                    
+                    console.log('🔍 Search cleared - all modules visible');
                     return;
                 }
 
