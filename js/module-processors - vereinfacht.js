@@ -3525,575 +3525,413 @@
             return html.replace('{{layoutContent}}', layoutContent);
         }
 
-        // ===== VOLLSTÄNDIG KORRIGIERTE processUniversalModule FUNKTION =====
-        // Ersetze die gesamte processUniversalModule() Funktion mit diesem Code
 
-        function processUniversalModule(module, html) {
-            console.log('🔍 Template-ID:', module.templateId, 'für Modul:', module.name);
+// ===================================================================
+// MODULE ROUTING MAP - Zentrale Verwaltung aller Processor-Funktionen
+// ===================================================================
+const MODULE_PROCESSORS = {
+    // === HERO MODULES ===
+    'kerberos-hero-advanced-richtext': processKerberosHeroAdvancedRichtext,
+    'kerberos-hero-advanced': processKerberosHeroAdvanced,
+    'kerberos-svg-hero': processKerberosSvgHero,
+    'kerberos-api-hero-with-text': processKerberosApiHeroWithText,
+    
+    // === FEATURE & COMPARISON MODULES ===
+    'kerberos-features-grid': processKerberosFeaturesGrid,
+    'kerberos-features-modern': processKerberosFeaturesModern,
+    'kerberos-feature-breaker': processKerberosFeatureBreaker,
+    'kerberos-feature-comparison-extended': processKerberosFeatureComparisonExtended,
+    'kerberos-feature-comparison-table': processKerberosFeatureComparisonTable,
+    
+    // === TIMELINE MODULES ===
+    'kerberos-process-timeline-fixed': processKerberosTimeline,
+    'kerberos-process-timeline': processKerberosTimeline,
+    
+    // === PRICING MODULES ===
+    'kerberos-pricing-interactive': processKerberosPricingInteractive,
+    'kerberos-pricing-responsive-extended': processKerberosPricingResponseExtended,
+    
+    // === DASHBOARD MODULES ===
+    'kerberos-compliance-dashboard': processKerberosComplianceDashboard,
+    'kerberos-dashboard-showcase': processKerberosDashboard,
+    
+    // === TESTIMONIALS MODULES ===
+    'kerberos-testimonials-carousel': processTestimonialsCarousel,
+    'kerberos-testimonials-carousel-extended': processKerberosTestimonialsCarouselExtended,
+    'kerberos-testimonials-pro': processKerberosTestimonialsPro,
+    
+    // === PRODUCT MODULES ===
+    'kerberos-product-showcase': processKerberosProductShowcase,
+    'kerberos-product-overview': processKerberosProductOverview,
+    'kerberos-product-fade-overview': processKerberosProductFadeOverview,
+    
+    // === SOLUTION MODULES ===
+    'kerberos-solution-triple-richtext': processKerberosTripleSolution,
+    'kerberos-solutions-overview': processKerberosSolutionsOverview,
+    
+    // === TEAM MODULES ===
+    'kerberos-team-gallery': processKerberosTeamGallery,
+    'kerberos-team-gallery-fixed': processKerberosTeamGalleryFixed,
+    'kerberos-team-contact-cards': processKerberosTeamContactCards,
+    'kerberos-company-presentation': processKerberosCompanyPresentation,
+    
+    // === STATS MODULES ===
+    'kerberos-stats': processStatsModule,
+    'kerberos-stats-with-hover': processKerberosStatsWithHover,
+    'kerberos-warning-facts': processKerberosWarningFacts,
+    
+    // === CONTENT & TEXT MODULES ===
+    'kerberos-text-button-richtext': processKerberosTextButtonRichtext,
+    'kerberos-text-button-richtext-fixed': processKerberosTextButtonRichtext,
+    'kerberos-image-text': processKerberosImageText,
+    'kerberos-image-text-modern': processKerberosImageTextModern,
+    'kerberos-cta-modern': processKerberosCtaModern,
+    
+    // === INTEGRATIONS & GRID MODULES ===
+    'kerberos-integrations-grid': processKerberosIntegrationsGrid,
+    'kerberos-integrations-grid-fixed': processKerberosIntegrationsGridModern,
+    'kerberos-integrations-grid-modern': processKerberosIntegrationsGridModern,
+    
+    // === API & TECHNOLOGY MODULES ===
+    'kerberos-api-endpoints': processKerberosApiEndpoints,
+    'kerberos-api-documentation': processKerberosApiDocumentation,
+    
+    // === FAQ & NEWSLETTER MODULES ===
+    'kerberos-faq-accordion': processKerberosFaqAccordion,
+    'kerberos-newsletter-modern': processKerberosNewsletterModern,
+    
+    // === OTHER MODULES ===
+    'kerberos-guide-flow': processKerberosGuideFlow,
+    'kerberos-benefits': processKerberosBenefits
+};
 
-            // === NEUE PIPELINE: Universelle Properties + Type-Mappings ===
-            if (window.processUniversalProperties) {
-                module.properties = window.processUniversalProperties(module.properties);
-                console.log('✅ Universelle Properties verarbeitet');
-            }
-            
-            if (window.resolveTypeMappings) {
-                module.properties = window.resolveTypeMappings(module);
-                console.log('✅ Type-Mappings resolved');
-            }
-            
-            // Rekursions-Schutz
-            if (module._processing) {
-                console.warn('⚠️ Rekursion erkannt für Modul:', module.name);
-                return html || '<div>Rekursionsfehler verhindert</div>';
-            }
-            
-            module._processing = true;
-            
-            try {
-                // Basis-Validierung
-                if (!module || typeof module !== 'object') {
-                    console.error('❌ Ungültiges Modul-Objekt');
-                    return '<div style="color: red;">Ungültiges Modul</div>';
-                }
-                
-                if (!module.properties) {
-                    module.properties = {};
-                    console.warn('⚠️ Properties ergänzt für:', module.name);
-                }
-                
-                // HTML-Quelle bestimmen
-                let processedHtml = html;
-                if (!processedHtml || typeof processedHtml !== 'string' || processedHtml.trim() === '') {
-                    const template = MODULE_TEMPLATES.find(t => t && t.id === module.templateId);
-                    if (template && template.html) {
-                        processedHtml = template.html;
-                        console.log('✅ HTML aus Template wiederhergestellt für:', module.name);
-                    } else {
-                        console.error('❌ Template nicht gefunden:', module.templateId);
-                        return `<div style="padding: 2rem; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;">
-                            ❌ Template nicht gefunden: ${module.templateId}<br>
-                            <small>Modul: ${module.name}</small>
-                        </div>`;
-                    }
-                }
-                
-                const props = module.properties;
-                
-                // ===== 1. SPEZIFISCHE MODUL-VERARBEITUNG (VOLLSTÄNDIGE LISTE) =====
-                console.log('🔧 Starte spezifische Verarbeitung für:', module.templateId);
-                
-                // === HERO MODULE ===
-                if (module.templateId === 'kerberos-hero-advanced-richtext') {
-                    if (typeof processKerberosHeroAdvancedRichtext === 'function') {
-                        processedHtml = processKerberosHeroAdvancedRichtext(module, processedHtml);
-                        console.log('✅ processKerberosHeroAdvancedRichtext ausgeführt');
-                    }
-                } 
-                else if (module.templateId === 'kerberos-hero-advanced') {
-                    if (typeof processKerberosHeroAdvanced === 'function') {
-                        processedHtml = processKerberosHeroAdvanced(module, processedHtml);
-                        console.log('✅ processKerberosHeroAdvanced ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-svg-hero') {
-                    if (typeof processKerberosSvgHero === 'function') {
-                        processedHtml = processKerberosSvgHero(module, processedHtml);
-                        console.log('✅ processKerberosSvgHero ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-api-hero-with-text') {
-                    if (typeof processKerberosApiHeroWithText === 'function') {
-                        processedHtml = processKerberosApiHeroWithText(module, processedHtml);
-                        console.log('✅ processKerberosApiHeroWithText ausgeführt');
-                    }
-                }
-                
-                // === GUIDE & INTERACTIVE MODULE ===
-                else if (module.templateId === 'kerberos-guide-flow') {
-                    if (typeof processKerberosGuideFlow === 'function') {
-                        processedHtml = processKerberosGuideFlow(module, processedHtml);
-                        console.log('✅ processKerberosGuideFlow ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-pricing-interactive') {
-                    if (typeof processKerberosPricingInteractive === 'function') {
-                        processedHtml = processKerberosPricingInteractive(module, processedHtml);
-                        console.log('✅ processKerberosPricingInteractive ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-pricing-responsive-extended') {
-                    if (typeof processKerberosPricingResponseExtended === 'function') {
-                        processedHtml = processKerberosPricingResponseExtended(module, processedHtml);
-                        console.log('✅ processKerberosPricingResponseExtended ausgeführt');
-                    }
-                }
-                
-                // === SOLUTION & PROCESS MODULE ===
-                else if (module.templateId === 'kerberos-solution-triple-richtext') {
-                    if (typeof processKerberosTripleSolution === 'function') {
-                        processedHtml = processKerberosTripleSolution(module, processedHtml);
-                        console.log('✅ processKerberosTripleSolution ausgeführt');
-                    }
-                    // SPEZIELLE BEHANDLUNG: Challenge-Solution Auto-Hide
-                    if (typeof processChallengeSolutionAutoHide === 'function') {
-                        processedHtml = processChallengeSolutionAutoHide(module, processedHtml);
-                        console.log('✅ processChallengeSolutionAutoHide ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-solutions-overview') {
-                    if (typeof processKerberosSolutionsOverview === 'function') {
-                        processedHtml = processKerberosSolutionsOverview(module, processedHtml);
-                        console.log('✅ processKerberosSolutionsOverview ausgeführt');
-                    }
-                }
-                
-                // === PRODUCT MODULE ===
-                else if (module.templateId === 'kerberos-product-showcase') {
-                    if (typeof processKerberosProductShowcase === 'function') {
-                        processedHtml = processKerberosProductShowcase(module, processedHtml);
-                        console.log('✅ processKerberosProductShowcase ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-product-overview') {
-                    if (typeof processKerberosProductOverview === 'function') {
-                        processedHtml = processKerberosProductOverview(module, processedHtml);
-                        console.log('✅ processKerberosProductOverview ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-product-fade-overview') {
-                    if (typeof processKerberosProductFadeOverview === 'function') {
-                        processedHtml = processKerberosProductFadeOverview(module, processedHtml);
-                        console.log('✅ processKerberosProductFadeOverview ausgeführt');
-                    }
-                }
-                
-                // === FEATURE & COMPARISON MODULE ===
-                else if (module.templateId === 'kerberos-feature-breaker') {
-                    if (typeof processKerberosFeatureBreaker === 'function') {
-                        processedHtml = processKerberosFeatureBreaker(module, processedHtml);
-                        console.log('✅ processKerberosFeatureBreaker ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-feature-comparison-extended') {
-                    if (typeof processKerberosFeatureComparisonExtended === 'function') {
-                        processedHtml = processKerberosFeatureComparisonExtended(module, processedHtml);
-                        console.log('✅ processKerberosFeatureComparisonExtended ausgeführt');
-                    }
-                }
+// ===================================================================
+// HELPER FUNCTIONS
+// ===================================================================
 
-                // === TIMELINE MODULE ===
-                else if (module.templateId === 'kerberos-process-timeline-fixed' || module.templateId === 'kerberos-process-timeline') {
-                    if (typeof processKerberosTimeline === 'function') {
-                        processedHtml = processKerberosTimeline(module, processedHtml);
-                        console.log('✅ processKerberosTimeline ausgeführt');
-                    }
-                }
-                
-                // === FAQ & CONTENT MODULE ===
-                else if (module.templateId === 'kerberos-faq-accordion') {
-                    if (typeof processKerberosFaqAccordion === 'function') {
-                        processedHtml = processKerberosFaqAccordion(module, processedHtml);
-                        console.log('✅ processKerberosFaqAccordion ausgeführt');
-                    }
-                    // FALLBACK: Verwende allgemeine FAQ Funktion
-                    else if (typeof processKerberosFAQ === 'function') {
-                        processedHtml = processKerberosFAQ(module, processedHtml);
-                        console.log('✅ processKerberosFAQ ausgeführt (Fallback)');
-                    }
-                }
-                else if (module.templateId === 'kerberos-newsletter-modern') {
-                    if (typeof processKerberosNewsletterModern === 'function') {
-                        processedHtml = processKerberosNewsletterModern(module, processedHtml);
-                        console.log('✅ processKerberosNewsletterModern ausgeführt');
-                    }
-                }
-                
-                // === STATS & NUMBERS MODULE ===
-                else if (module.templateId === 'kerberos-stats') {
-                    if (typeof processStatsModule === 'function') {
-                        processedHtml = processStatsModule(module, processedHtml);
-                        console.log('✅ processStatsModule ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-stats-with-hover') {
-                    if (typeof processKerberosStatsWithHover === 'function') {
-                        processedHtml = processKerberosStatsWithHover(module, processedHtml);
-                        console.log('✅ processKerberosStatsWithHover ausgeführt');
-                    }
-                    // FALLBACK: Verwende allgemeine Stats Funktion
-                    else if (typeof processKerberosStats === 'function') {
-                        processedHtml = processKerberosStats(module, processedHtml);
-                        console.log('✅ processKerberosStats ausgeführt (Fallback für stats-with-hover)');
-                    }
-                }
-                else if (module.templateId === 'kerberos-warning-facts') {
-                    if (typeof processKerberosWarningFacts === 'function') {
-                        processedHtml = processKerberosWarningFacts(module, processedHtml);
-                        console.log('✅ processKerberosWarningFacts ausgeführt');
-                    }
-                }
-                
-                // === TEAM & ABOUT MODULE ===
-                else if (module.templateId === 'kerberos-team-gallery') {
-                    if (typeof processKerberosTeamGallery === 'function') {
-                        processedHtml = processKerberosTeamGallery(module, processedHtml);
-                        console.log('✅ processKerberosTeamGallery ausgeführt');
-                    }
-                    // FALLBACK: Verwende allgemeine Team Gallery Funktion
-                    else if (typeof processTeamGalleryModule === 'function') {
-                        processedHtml = processTeamGalleryModule(module, processedHtml);
-                        console.log('✅ processTeamGalleryModule ausgeführt (Fallback)');
-                    }
-                }
-                else if (module.templateId === 'kerberos-team-gallery-fixed') {
-                    if (typeof processKerberosTeamGalleryFixed === 'function') {
-                        processedHtml = processKerberosTeamGalleryFixed(module, processedHtml);
-                        console.log('✅ processKerberosTeamGalleryFixed ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-testimonials-carousel') {
-                    if (typeof processTestimonialsCarousel === 'function') {
-                        processedHtml = processTestimonialsCarousel(module, processedHtml);
-                        console.log('✅ processTestimonialsCarousel ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-testimonials-carousel-extended') {
-                    if (typeof processKerberosTestimonialsCarouselExtended === 'function') {
-                        processedHtml = processKerberosTestimonialsCarouselExtended(module, processedHtml);
-                        console.log('✅ processKerberosTestimonialsCarouselExtended ausgeführt');
-                    }
-                    // FALLBACK: Verwende Standard Testimonials Carousel 
-                    else if (typeof processTestimonialsCarousel === 'function') {
-                        processedHtml = processTestimonialsCarousel(module, processedHtml);
-                        console.log('✅ processTestimonialsCarousel ausgeführt (Fallback)');
-                    }
-                }
-                else if (module.templateId === 'kerberos-testimonials-pro') {
-                    if (typeof processKerberosTestimonialsPro === 'function') {
-                        processedHtml = processKerberosTestimonialsPro(module, processedHtml);
-                        console.log('✅ processKerberosTestimonialsPro ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-company-presentation') {
-                    if (typeof processKerberosCompanyPresentation === 'function') {
-                        processedHtml = processKerberosCompanyPresentation(module, processedHtml);
-                        console.log('✅ processKerberosCompanyPresentation ausgeführt');
-                    }
-                }
-                
-                // === DASHBOARD & SHOWCASE MODULE ===
-                else if (module.templateId === 'kerberos-dashboard-showcase') {
-                    if (typeof processKerberosDashboard === 'function') {
-                        processedHtml = processKerberosDashboard(module, processedHtml);
-                        console.log('✅ processKerberosDashboard ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-compliance-dashboard') {
-                    if (typeof processKerberosComplianceDashboard === 'function') {
-                        processedHtml = processKerberosComplianceDashboard(module, processedHtml);
-                        console.log('✅ processKerberosComplianceDashboard ausgeführt');
-                    }
-                }
-                
-                // === BENEFITS & CTA MODULE ===
-                else if (module.templateId === 'kerberos-benefits') {
-                    if (typeof processKerberosBenefits === 'function') {
-                        processedHtml = processKerberosBenefits(module, processedHtml);
-                        console.log('✅ processKerberosBenefits ausgeführt');
-                    }
-                }
-               
-                // === TEAM CONTACT CARDS ===
-                else if (module.templateId === 'kerberos-team-contact-cards') {
-                    if (typeof processKerberosTeamContactCards === 'function') {
-                        processedHtml = processKerberosTeamContactCards(module, processedHtml);
-                        console.log('✅ processKerberosTeamContactCards ausgeführt');
-                    }
-                }
-
-                // === TECHNOLOGY & API MODULE ===
-                else if (module.templateId === 'kerberos-api-endpoints') {
-                    if (typeof processKerberosApiEndpoints === 'function') {
-                        processedHtml = processKerberosApiEndpoints(module, processedHtml);
-                        console.log('✅ processKerberosApiEndpoints ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-api-documentation') {
-                    if (typeof processKerberosApiDocumentation === 'function') {
-                        processedHtml = processKerberosApiDocumentation(module, processedHtml);
-                        console.log('✅ processKerberosApiDocumentation ausgeführt');
-                    }
-                }
-                
-                // === GRID & FEATURES MODULE ===
-                else if (module.templateId === 'kerberos-integrations-grid-fixed' || module.templateId === 'kerberos-integrations-grid-modern') {
-                    if (typeof processKerberosIntegrationsGridModern === 'function') {
-                        processedHtml = processKerberosIntegrationsGridModern(module, processedHtml);
-                        console.log('✅ processKerberosIntegrationsGridModern ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-integrations-grid') {
-                    if (typeof processKerberosIntegrationsGrid === 'function') {
-                        processedHtml = processKerberosIntegrationsGrid(module, processedHtml);
-                        console.log('✅ processKerberosIntegrationsGrid ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-features-grid') {
-                    if (typeof processKerberosFeaturesGrid === 'function') {
-                        processedHtml = processKerberosFeaturesGrid(module, processedHtml);
-                        console.log('✅ processKerberosFeaturesGrid ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-features-modern') {
-                    if (typeof processKerberosFeaturesModern === 'function') {
-                        processedHtml = processKerberosFeaturesModern(module, processedHtml);
-                        console.log('✅ processKerberosFeaturesModern ausgeführt');
-                    }
-                }
-                
-                // === TEXT & CONTENT MODULE ===
-                else if (module.templateId === 'kerberos-text-button-richtext') {
-                    if (typeof processKerberosTextButtonRichtext === 'function') {
-                        processedHtml = processKerberosTextButtonRichtext(module, processedHtml);
-                        console.log('✅ processKerberosTextButtonRichtext ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-image-text-modern') {
-                    if (typeof processKerberosImageTextModern === 'function') {
-                        processedHtml = processKerberosImageTextModern(module, processedHtml);
-                        console.log('✅ processKerberosImageTextModern ausgeführt');
-                    }
-                }
-                
-                // === IMPORTIERTE MODULE ===
-                else if (module.name && module.name.includes('Importiert')) {
-                    if (typeof processImportedKerberosModule === 'function') {
-                        processedHtml = processImportedKerberosModule(module, processedHtml);
-                        console.log('✅ processImportedKerberosModule ausgeführt');
-                    }
-                }
-
-                else if (module.templateId === 'kerberos-image-text') {
-                    if (typeof processKerberosImageText === 'function') {
-                        processedHtml = processKerberosImageText(module, processedHtml);
-                        console.log('✅ processKerberosImageText ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-cta-modern') {
-                    if (typeof processKerberosCtaModern === 'function') {
-                        processedHtml = processKerberosCtaModern(module, processedHtml);
-                        console.log('✅ processKerberosCtaModern ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-testimonials-carousel') {
-                    if (typeof processKerberosTestimonialsCarousel === 'function') {
-                        processedHtml = processKerberosTestimonialsCarousel(module, processedHtml);
-                        console.log('✅ processKerberosTestimonialsCarousel ausgeführt');
-                    }
-                }
-                else if (module.templateId === 'kerberos-solution-triple-richtext') {
-                    if (typeof processKerberosTripleSolution === 'function') {
-                        processedHtml = processKerberosTripleSolution(module, processedHtml);
-                        console.log('✅ processKerberosTripleSolution ausgeführt (via Alias)');
-                    }
-                }
-                
-                // === FALLBACK FÜR UNBEKANNTE TEMPLATES ===
-                else {
-                    console.log('ℹ️ Kein spezifischer Processor für:', module.templateId);
-                }
-                
-                // ===== 2. UNIVERSELLE LAYOUT-VERARBEITUNG =====
-                if (processedHtml.includes('{{layoutContent}}')) {
-                    if (typeof processUniversalLayout === 'function') {
-                        processedHtml = processUniversalLayout(module, processedHtml);
-                        console.log('✅ processUniversalLayout ausgeführt');
-                    }
-                }
-
-                // ===== 3. UNIVERSELLE VERARBEITUNGSSTUFEN =====
-                // Legacy Image Optimization
-                if (processedHtml.includes('<img src="{{imageUrl}}"') && !processedHtml.includes('{{responsiveImageElement}}')) {
-                    if (typeof processLegacyImageOptimization === 'function') {
-                        processedHtml = processLegacyImageOptimization(module, processedHtml);
-                        console.log('✅ processLegacyImageOptimization ausgeführt');
-                    }
-                }
-                
-                // ===== 4. TYPE-MAPPINGS VERARBEITUNG (KRITISCH FÜR BUTTONS!) =====
-                try {
-                    if (typeof processUniversalTypeMappings === 'function') {
-                        processedHtml = processUniversalTypeMappings(processedHtml, props);
-                        console.log('✅ processUniversalTypeMappings ausgeführt');
-                    
-                        // ===== SPEZIELLE CTA-MODERN BUTTON-KORREKTUR =====
-                        if (module.templateId === 'kerberos-cta-modern') {
-                            // Primary Button
-                            if (props.primaryButtonStyleType) {
-                                const primaryStyles = getUniversalButtonStyles({
-                                    buttonStyleType: props.primaryButtonStyleType,
-                                    buttonPaddingType: props.primaryButtonPaddingType,
-                                    buttonRadiusType: props.primaryButtonRadiusType,
-                                    buttonShadowType: props.primaryButtonShadowType
-                                    // ✅ Keine expliziten Farben - lass den Style-Type entscheiden!
-                                });
-                                processedHtml = processedHtml.replace(/\{\{primaryButtonBackground\}\}/g, primaryStyles.background);
-                                processedHtml = processedHtml.replace(/\{\{primaryButtonTextColor\}\}/g, primaryStyles.color);
-                            }
-                            
-                            // Secondary Button
-                            if (props.secondaryButtonStyleType) {
-                                const secondaryStyles = getUniversalButtonStyles({
-                                    buttonStyleType: props.secondaryButtonStyleType,
-                                    buttonPaddingType: props.secondaryButtonPaddingType,
-                                    buttonRadiusType: props.secondaryButtonRadiusType,
-                                    buttonShadowType: props.secondaryButtonShadowType,
-                                    buttonBackground: props.secondaryButtonBackground,
-                                    buttonColor: props.secondaryButtonTextColor
-                                });
-                                processedHtml = processedHtml.replace(/\{\{secondaryButtonBackground\}\}/g, secondaryStyles.background);
-                                processedHtml = processedHtml.replace(/\{\{secondaryButtonTextColor\}\}/g, secondaryStyles.color);
-                            }
-                            console.log('✅ CTA-Modern Button-Styles korrigiert');
-                        }
-                    } else if (typeof processTypeMappingsFallback === 'function') {
-                        console.log('⚠️ processUniversalTypeMappings nicht gefunden - verwende Fallback');
-                        processedHtml = processTypeMappingsFallback(processedHtml, props);
-                        console.log('✅ processTypeMappingsFallback ausgeführt');
-                    } else {
-                        console.error('❌ Beide Type-Mapping-Funktionen fehlen!');
-                    }
-                } catch (error) {
-                    console.error('❌ Fehler bei Type-Mappings:', error);
-                    // Weitermachen ohne Type-Mappings
-                }
-
-                // ===== 5. UNIVERSELLE BILD-OPTIMIERUNG =====
-                if (typeof universalImageOptimization === 'function') {
-                    processedHtml = universalImageOptimization(module, processedHtml);
-                    console.log('✅ universalImageOptimization ausgeführt');
-                }
-                
-                if (typeof enhanceExistingImages === 'function') {
-                    processedHtml = enhanceExistingImages(processedHtml);
-                    console.log('✅ enhanceExistingImages ausgeführt');
-                }
-                
-                if (typeof processUniversalImageProperties === 'function') {
-                    processedHtml = processUniversalImageProperties(module, processedHtml);
-                    console.log('✅ processUniversalImageProperties ausgeführt');
-                }
-                
-                // ===== 6. MODULE-ID ERSETZUNG =====
-                if (module.templateId !== 'kerberos-guide-flow') { // Guide-Flow macht es selbst
-                    processedHtml = processedHtml.replace(/\{\{moduleId\}\}/g, module.id);
-                    processedHtml = processedHtml.replace(/\{\{templateId\}\}/g, module.templateId);
-                }
-                
-                // ===== 7. STANDARD PROPERTY-ERSETZUNG =====
-                // Spezielle Platzhalter für Module-spezifische Verarbeitung ausschließen
-                const excludedPlaceholders = [
-                    'solutionBoxes', 'challengeBoxes', 'requirementBoxes',
-                    'testimonialSlides', 'featureRows', 'planBoxes', 
-                    'statsBoxes', 'statsContent', 'galleryItems', 'teamMembers'
-                ];
-
-                Object.keys(props).forEach(key => {
-                    // Überspringe spezielle Platzhalter
-                    if (excludedPlaceholders.includes(key)) {
-                        console.log('🔄 Platzhalter übersprungen für spezifische Verarbeitung:', key);
-                        return;
-                    }
-                    
-                    const value = props[key] || '';
-                    const placeholder = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
-                    const safeValue = String(value)
-                        .replace(/'/g, "&#39;")
-                        .replace(/"/g, "&quot;");
-                    processedHtml = processedHtml.replace(placeholder, safeValue);
-                });
-                
-                // ===== 8. BUTTON-KLASSEN FÜR HOVER-EFFEKTE =====
-                processedHtml = processedHtml.replace(
-                    /(<a[^>]*style="[^"]*background:[^"]*"[^>]*>)/g,
-                    (match) => {
-                        if (match.includes('kerberos-btn') || match.includes('display: inline-flex') ||
-                            match.includes('padding:') || match.includes('border-radius:')) {
-                            return match.replace('<a', `<a class="kerberos-btn kerberos-btn-${module.id}"`);
-                        }
-                        return match;
-                    }
-                );
-                
-                // ===== 9. HOVER-EFFEKTE EINBETTEN =====
-                try {
-                    if (typeof embedHoverEffectsCSS === 'function') {
-                        processedHtml = embedHoverEffectsCSS(module, processedHtml);
-                        console.log('✅ embedHoverEffectsCSS ausgeführt');
-                    } else {
-                        console.warn('⚠️ embedHoverEffectsCSS Funktion nicht gefunden');
-                    }
-                } catch (error) {
-                    console.error('❌ Fehler bei Hover-Effekten:', error);
-                    // Weitermachen ohne Hover-Effekte
-                }
-
-                // ===== 10. UNIVERSELLE TEMPLATE-PLATZHALTER ERSETZUNG =====
-                processedHtml = processUniversalPlaceholders(processedHtml, props);
-                console.log('✅ Universelle Platzhalter ersetzt');
-                
-                // ===== 10.5. ERWEITERTE PROPERTY-ERSETZUNG (ALLE ÜBRIGEN) =====
-                // Ersetze ALLE Properties aus module.properties, die noch nicht ersetzt wurden
-                Object.entries(props).forEach(([key, value]) => {
-                    const placeholder = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
-                    
-                    // Nur ersetzen wenn Platzhalter noch vorhanden ist
-                    if (processedHtml.includes(`{{${key}}}`)) {
-                        const safeValue = value !== null && value !== undefined ? 
-                            String(value).replace(/'/g, "&#39;").replace(/"/g, "&quot;") : '';
-                        processedHtml = processedHtml.replace(placeholder, safeValue);
-                    }
-                });
-                console.log('✅ Erweiterte Property-Ersetzung abgeschlossen');
-
-                // ===== 11. LINK-TARGET PROCESSING =====
-                if (props.linkTarget && props.linkTarget !== 'same-tab') {
-                    processedHtml = processedHtml.replace(/<a\s+([^>]*?)href="([^"]*?)"([^>]*?)/g, 
-                        `<a $1href="$2" target="_blank" rel="noopener noreferrer"$3`);
-                }
-                
-                // ===== 11.5. UNIVERSELLE HOVER-CSS EINFÜGEN =====
-                const hoverCSS = generateUniversalHoverCSS(module);
-                if (hoverCSS) {
-                    // CSS am Anfang der Section einfügen
-                    processedHtml = processedHtml.replace('<section', hoverCSS + '\n<section');
-                    console.log('✅ Universelle Hover-CSS eingefügt für:', module.id);
-                }
-
-                // ===== 12. FINAL VALIDATION =====
-                // Prüfung auf übrige Platzhalter
-                const remainingPlaceholders = processedHtml.match(/\{\{[^}]+\}\}/g);
-                if (remainingPlaceholders && remainingPlaceholders.length > 0) {
-                    console.warn('⚠️ Übrige Platzhalter gefunden:', remainingPlaceholders);
-                    // Entferne übrige Platzhalter
-                    processedHtml = processedHtml.replace(/\{\{[^}]*\}\}/g, '');
-                }
-                
-                console.log('✅ processUniversalModule erfolgreich für:', module.name);
-                return processedHtml;
-                
-            } catch (error) {
-                console.error('❌ Fehler in processUniversalModule:', error);
-                return `<div style="padding: 2rem; background: #fee; color: #900;">
-                    Verarbeitungsfehler: ${error.message}
-                    <br><small>Modul: ${module.name}</small>
-                </div>`;
-            } finally {
-                // Rekursions-Schutz zurücksetzen
-                delete module._processing;
-            }
+/**
+ * Holt das HTML für ein Modul (aus dem übergebenen HTML oder Template)
+ */
+function getModuleHtml(module, html) {
+    let processedHtml = html;
+    
+    if (!processedHtml || typeof processedHtml !== 'string' || processedHtml.trim() === '') {
+        const template = MODULE_TEMPLATES.find(t => t && t.id === module.templateId);
+        
+        if (template && template.html) {
+            processedHtml = template.html;
+            console.log('✅ HTML aus Template wiederhergestellt für:', module.name);
+        } else {
+            console.error('❌ Template nicht gefunden:', module.templateId);
+            return `<div style="padding: 2rem; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;">
+                ❌ Template nicht gefunden: ${module.templateId}<br>
+                <small>Modul: ${module.name}</small>
+            </div>`;
         }
+    }
+    
+    return processedHtml;
+}
+
+/**
+ * Ruft die spezifische Processor-Funktion für ein Modul auf
+ */
+function processSpecificModule(module, html) {
+    const processor = MODULE_PROCESSORS[module.templateId];
+    
+    if (processor && typeof processor === 'function') {
+        console.log('✅ Processor gefunden für:', module.templateId);
+        return processor(module, html);
+    }
+    
+    // Spezialfall: Importierte Module
+    if (module.name && module.name.includes('Importiert')) {
+        if (typeof processImportedKerberosModule === 'function') {
+            console.log('✅ processImportedKerberosModule ausgeführt');
+            return processImportedKerberosModule(module, html);
+        }
+    }
+    
+    // Spezialfall: Challenge-Solution Auto-Hide
+    if (module.templateId === 'kerberos-solution-triple-richtext' && typeof processChallengeSolutionAutoHide === 'function') {
+        html = processChallengeSolutionAutoHide(module, html);
+        console.log('✅ processChallengeSolutionAutoHide ausgeführt');
+    }
+    
+    console.log('ℹ️ Kein spezifischer Processor für:', module.templateId);
+    return html;
+}
+
+/**
+ * Wendet alle universellen Verarbeitungsschritte an
+ */
+function applyUniversalProcessing(module, html, props) {
+    let processedHtml = html;
+    
+    // === LAYOUT PROCESSING ===
+    if (processedHtml.includes('{{layoutContent}}') && typeof processUniversalLayout === 'function') {
+        processedHtml = processUniversalLayout(module, processedHtml);
+        console.log('✅ processUniversalLayout ausgeführt');
+    }
+    
+    // === LEGACY IMAGE OPTIMIZATION ===
+    if (processedHtml.includes('<img src="{{imageUrl}}"') && !processedHtml.includes('{{responsiveImageElement}}')) {
+        if (typeof processLegacyImageOptimization === 'function') {
+            processedHtml = processLegacyImageOptimization(module, processedHtml);
+            console.log('✅ processLegacyImageOptimization ausgeführt');
+        }
+    }
+    
+    // === TYPE-MAPPINGS PROCESSING ===
+    try {
+        if (typeof processUniversalTypeMappings === 'function') {
+            processedHtml = processUniversalTypeMappings(processedHtml, props);
+            console.log('✅ processUniversalTypeMappings ausgeführt');
+            
+            // Spezielle CTA-Modern Button-Korrektur
+            if (module.templateId === 'kerberos-cta-modern') {
+                processedHtml = applyCTAModernButtonFix(module, processedHtml, props);
+            }
+        } else if (typeof processTypeMappingsFallback === 'function') {
+            console.log('⚠️ processUniversalTypeMappings nicht gefunden - verwende Fallback');
+            processedHtml = processTypeMappingsFallback(processedHtml, props);
+            console.log('✅ processTypeMappingsFallback ausgeführt');
+        } else {
+            console.error('❌ Beide Type-Mapping-Funktionen fehlen!');
+        }
+    } catch (error) {
+        console.error('❌ Fehler bei Type-Mappings:', error);
+    }
+    
+    // === IMAGE OPTIMIZATION ===
+    if (typeof universalImageOptimization === 'function') {
+        processedHtml = universalImageOptimization(module, processedHtml);
+        console.log('✅ universalImageOptimization ausgeführt');
+    }
+    
+    if (typeof enhanceExistingImages === 'function') {
+        processedHtml = enhanceExistingImages(processedHtml);
+        console.log('✅ enhanceExistingImages ausgeführt');
+    }
+    
+    if (typeof processUniversalImageProperties === 'function') {
+        processedHtml = processUniversalImageProperties(module, processedHtml);
+        console.log('✅ processUniversalImageProperties ausgeführt');
+    }
+    
+    // === MODULE-ID ERSETZUNG ===
+    if (module.templateId !== 'kerberos-guide-flow') {
+        processedHtml = processedHtml.replace(/\{\{moduleId\}\}/g, module.id);
+        processedHtml = processedHtml.replace(/\{\{templateId\}\}/g, module.templateId);
+    }
+    
+    // === STANDARD PROPERTY-ERSETZUNG ===
+    const excludedPlaceholders = [
+        'solutionBoxes', 'challengeBoxes', 'requirementBoxes',
+        'testimonialSlides', 'featureRows', 'planBoxes', 
+        'statsBoxes', 'statsContent', 'galleryItems', 'teamMembers',
+        'featureCards', 'mobileFeatureCards', 'dashboardCards',
+        'chartBars', 'activityItems', 'timelineSteps', 'endpointCards',
+        'svgElement', 'overlayElements', 'buttonSection', 'layoutContent'
+    ];
+    
+    Object.keys(props).forEach(key => {
+        if (excludedPlaceholders.includes(key)) {
+            return;
+        }
+        
+        const value = props[key] || '';
+        const placeholder = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
+        const safeValue = String(value)
+            .replace(/'/g, "&#39;")
+            .replace(/"/g, "&quot;");
+        processedHtml = processedHtml.replace(placeholder, safeValue);
+    });
+    
+    // === BUTTON-KLASSEN FÜR HOVER-EFFEKTE ===
+    processedHtml = addButtonClasses(module, processedHtml);
+    
+    // === HOVER-EFFEKTE EINBETTEN ===
+    try {
+        if (typeof embedHoverEffectsCSS === 'function') {
+            processedHtml = embedHoverEffectsCSS(module, processedHtml);
+            console.log('✅ embedHoverEffectsCSS ausgeführt');
+        }
+    } catch (error) {
+        console.error('❌ Fehler bei Hover-Effekten:', error);
+    }
+    
+    // === UNIVERSELLE TEMPLATE-PLATZHALTER ERSETZUNG ===
+    processedHtml = processUniversalPlaceholders(processedHtml, props);
+    console.log('✅ Universelle Platzhalter ersetzt');
+    
+    // === ERWEITERTE PROPERTY-ERSETZUNG (ALLE ÜBRIGEN) ===
+    Object.entries(props).forEach(([key, value]) => {
+        const placeholder = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
+        
+        if (processedHtml.includes(`{{${key}}}`)) {
+            const safeValue = value !== null && value !== undefined ? 
+                String(value).replace(/'/g, "&#39;").replace(/"/g, "&quot;") : '';
+            processedHtml = processedHtml.replace(placeholder, safeValue);
+        }
+    });
+    console.log('✅ Erweiterte Property-Ersetzung abgeschlossen');
+    
+    // === LINK-TARGET PROCESSING ===
+    if (props.linkTarget && props.linkTarget !== 'same-tab') {
+        processedHtml = processedHtml.replace(/<a\s+([^>]*?)href="([^"]*?)"([^>]*?)/g, 
+            `<a $1href="$2" target="_blank" rel="noopener noreferrer"$3`);
+    }
+    
+    // === UNIVERSELLE HOVER-CSS EINFÜGEN ===
+    const hoverCSS = generateUniversalHoverCSS(module);
+    if (hoverCSS) {
+        processedHtml = processedHtml.replace('<section', hoverCSS + '\n<section');
+        console.log('✅ Universelle Hover-CSS eingefügt für:', module.id);
+    }
+    
+    return processedHtml;
+}
+
+/**
+ * Fügt Button-Klassen für Hover-Effekte hinzu
+ */
+function addButtonClasses(module, html) {
+    return html.replace(
+        /(<a[^>]*style="[^"]*background:[^"]*"[^>]*>)/g,
+        (match) => {
+            if (match.includes('kerberos-btn') || match.includes('display: inline-flex') ||
+                match.includes('padding:') || match.includes('border-radius:')) {
+                if (!match.includes('class="')) {
+                    return match.replace('<a', `<a class="kerberos-btn kerberos-btn-${module.id}"`);
+                } else if (!match.includes('kerberos-btn')) {
+                    return match.replace('class="', `class="kerberos-btn kerberos-btn-${module.id} `);
+                }
+            }
+            return match;
+        }
+    );
+}
+
+/**
+ * Spezielle Button-Korrektur für CTA-Modern Module
+ */
+function applyCTAModernButtonFix(module, html, props) {
+    // Primary Button
+    if (props.primaryButtonStyleType && typeof getUniversalButtonStyles === 'function') {
+        const primaryStyles = getUniversalButtonStyles({
+            buttonStyleType: props.primaryButtonStyleType,
+            buttonPaddingType: props.primaryButtonPaddingType,
+            buttonRadiusType: props.primaryButtonRadiusType,
+            buttonShadowType: props.primaryButtonShadowType
+        });
+        html = html.replace(/\{\{primaryButtonBackground\}\}/g, primaryStyles.background);
+        html = html.replace(/\{\{primaryButtonTextColor\}\}/g, primaryStyles.color);
+    }
+    
+    // Secondary Button
+    if (props.secondaryButtonStyleType && typeof getUniversalButtonStyles === 'function') {
+        const secondaryStyles = getUniversalButtonStyles({
+            buttonStyleType: props.secondaryButtonStyleType,
+            buttonPaddingType: props.secondaryButtonPaddingType,
+            buttonRadiusType: props.secondaryButtonRadiusType,
+            buttonShadowType: props.secondaryButtonShadowType,
+            buttonBackground: props.secondaryButtonBackground,
+            buttonColor: props.secondaryButtonTextColor
+        });
+        html = html.replace(/\{\{secondaryButtonBackground\}\}/g, secondaryStyles.background);
+        html = html.replace(/\{\{secondaryButtonTextColor\}\}/g, secondaryStyles.color);
+    }
+    
+    console.log('✅ CTA-Modern Button-Styles korrigiert');
+    return html;
+}
+
+/**
+ * Finale Validierung und Cleanup
+ */
+function finalValidation(html, module) {
+    const remainingPlaceholders = html.match(/\{\{[^}]+\}\}/g);
+    
+    if (remainingPlaceholders && remainingPlaceholders.length > 0) {
+        console.warn('⚠️ Übrige Platzhalter gefunden:', remainingPlaceholders);
+        html = html.replace(/\{\{[^}]*\}\}/g, '');
+    }
+    
+    return html;
+}
+
+// ===================================================================
+// HAUPTFUNKTION - processUniversalModule (REFACTORED)
+// ===================================================================
+
+/**
+ * Universelle Modul-Verarbeitungsfunktion
+ * Verarbeitet alle Kerberos-Module durch eine standardisierte Pipeline
+ */
+function processUniversalModule(module, html) {
+    console.log('🔍 Template-ID:', module.templateId, 'für Modul:', module.name);
+
+    // === PIPELINE STUFE 1: Properties Processing ===
+    if (window.processUniversalProperties) {
+        module.properties = window.processUniversalProperties(module.properties);
+        console.log('✅ Universelle Properties verarbeitet');
+    }
+    
+    if (window.resolveTypeMappings) {
+        module.properties = window.resolveTypeMappings(module);
+        console.log('✅ Type-Mappings resolved');
+    }
+    
+    // === REKURSIONS-SCHUTZ ===
+    if (module._processing) {
+        console.warn('⚠️ Rekursion erkannt für Modul:', module.name);
+        return html || '<div>Rekursionsfehler verhindert</div>';
+    }
+    
+    module._processing = true;
+    
+    try {
+        // === BASIS-VALIDIERUNG ===
+        if (!module || typeof module !== 'object') {
+            console.error('❌ Ungültiges Modul-Objekt');
+            return '<div style="color: red;">Ungültiges Modul</div>';
+        }
+        
+        if (!module.properties) {
+            module.properties = {};
+            console.warn('⚠️ Properties ergänzt für:', module.name);
+        }
+        
+        // === PIPELINE STUFE 2: HTML-Quelle bestimmen ===
+        let processedHtml = getModuleHtml(module, html);
+        if (processedHtml.includes('❌')) return processedHtml; // Error-Fall
+        
+        const props = module.properties;
+        
+        // === PIPELINE STUFE 3: Spezifische Modul-Verarbeitung ===
+        processedHtml = processSpecificModule(module, processedHtml);
+        
+        // === PIPELINE STUFE 4: Universelle Verarbeitung ===
+        processedHtml = applyUniversalProcessing(module, processedHtml, props);
+        
+        // === PIPELINE STUFE 5: Finale Validierung ===
+        processedHtml = finalValidation(processedHtml, module);
+        
+        console.log('✅ processUniversalModule erfolgreich für:', module.name);
+        return processedHtml;
+        
+    } catch (error) {
+        console.error('❌ Fehler in processUniversalModule:', error);
+        return `<div style="padding: 2rem; background: #fee; color: #900;">
+            Verarbeitungsfehler: ${error.message}
+            <br><small>Modul: ${module.name}</small>
+        </div>`;
+    } finally {
+        // Rekursions-Schutz zurücksetzen
+        delete module._processing;
+    }
+}
 
 
         // UNIVERSELLE TEMPLATE-PLATZHALTER VERARBEITUNG (KORRIGIERT)
@@ -6364,6 +6202,58 @@
             html = html.replace(/{{templateId}}/g, moduleId);
 
             return animationCSS + html + jsContent;
+        }
+
+
+        function processKerberosFeatureComparisonTable(module, html) {
+            const props = module.properties;
+            let featureRows = '';
+            let mobileFeatureCards = '';
+
+            // Feature-Rows für Desktop generieren
+            for (let i = 1; i <= 10; i++) {
+                const featureName = props[`feature${i}Name`];
+                const column2 = props[`feature${i}Column2`];
+                const column3 = props[`feature${i}Column3`];
+                const column4 = props[`feature${i}Column4`];
+                const isActive = props[`feature${i}Active`] === 'true';
+
+                if (featureName && column2 && column3 && column4 && isActive) {
+                    const rowBg = i % 2 === 0 ? props.alternateRowBackground : 'transparent';
+
+                    featureRows += `<div style="display: grid; grid-template-columns: ${props.gridColumns}; gap: ${props.columnGap}; padding: ${props.rowPadding}; background: ${rowBg}; border-bottom: 1px solid ${props.rowBorderColor};">` +
+                        `<div style="color: ${props.rowTextColor}; font-weight: 600;">${featureName}</div>` +
+                        `<div style="text-align: center; color: ${props.rowTextColor};">${column2}</div>` +
+                        `<div style="text-align: center; color: ${props.rowTextColor};">${column3}</div>` +
+                        `<div style="text-align: center; color: ${props.rowTextColor};">${column4}</div>` +
+                        `</div>`;
+
+                    // Mobile Feature Cards
+                    mobileFeatureCards += `<div style="background: ${props.mobileCardBackground}; border: 1px solid ${props.mobileCardBorder}; border-radius: ${props.mobileCardRadius}; padding: ${props.mobileCardPadding}; margin-bottom: ${props.mobileCardGap};">` +
+                        `<h4 style="color: ${props.rowTextColor}; margin: 0 0 1rem 0; font-size: 1.1rem;">${featureName}</h4>` +
+                        `<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: ${props.mobileCardGap};">` +
+                        `<div style="text-align: center;">` +
+                        `<div style="color: ${props.headerBackground}; margin-bottom: 0.5rem; font-size: 0.9rem;">${props.column2Header}</div>` +
+                        `<div style="color: ${props.rowTextColor}; font-size: 0.9rem;">${column2}</div>` +
+                        `</div>` +
+                        `<div style="text-align: center;">` +
+                        `<div style="color: ${props.headerBackground}; margin-bottom: 0.5rem; font-size: 0.9rem;">${props.column3Header}</div>` +
+                        `<div style="color: ${props.rowTextColor}; font-size: 0.9rem;">${column3}</div>` +
+                        `</div>` +
+                        `<div style="text-align: center;">` +
+                        `<div style="color: ${props.headerBackground}; margin-bottom: 0.5rem; font-size: 0.9rem;">${props.column4Header}</div>` +
+                        `<div style="color: ${props.rowTextColor}; font-size: 0.9rem;">${column4}</div>` +
+                        `</div>` +
+                        `</div>` +
+                        `</div>`;
+                }
+            }
+
+            // Template-Platzhalter ersetzen
+            html = html.replace('{{featureRows}}', featureRows);
+            html = html.replace('{{mobileFeatureCards}}', mobileFeatureCards);
+
+            return html;
         }
 
         function processKerberosSolutionsOverview(module, html) {
