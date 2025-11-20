@@ -2789,8 +2789,299 @@
                     "feature12Description": "",
                     "feature12Icon": "",
                     "feature12Color": "#20C997",
-                    "feature12Active": "false"
+"feature12Active": "false"
                 },
                 "customized": true
             },
+            {
+                "id": "kerberos-team-contact-cards",
+                "name": "Team Kontakt Cards",
+                "category": "Social Proof",
+                "description": "Responsive Ansprechpartner-Karten mit Bildern, Kontaktdaten und CTAs",
+                "html": `<!-- Kerberos Ansprechpartner Modul -->
+<div class="kerberos-contact-module kerberos-module-{{moduleId}}">
+    <div class="contact-grid">
+        {{contactCards}}
+    </div>
+</div>
+
+<style>
+.kerberos-module-{{moduleId}} .kerberos-contact-module {
+    font-family: 'Inter', sans-serif;
+    max-width: 100%;
+    margin: 0;
+    padding: {{sectionSpacing}};
+    background: {{backgroundColor}};
+}
+
+.kerberos-module-{{moduleId}} .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.kerberos-module-{{moduleId}} .contact-card {
+    background: {{cardBackground}};
+    border-radius: {{cardRadius}};
+    box-shadow: {{cardShadow}};
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid {{cardBorderColor}};
+    height: fit-content;
+}
+
+@media (hover: hover) {
+    .kerberos-module-{{moduleId}} .contact-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(6, 58, 168, 0.15);
+    }
+    
+    .kerberos-module-{{moduleId}} .contact-card:hover .contact-image {
+        transform: scale(1.05);
+    }
+}
+
+.kerberos-module-{{moduleId}} .contact-image-container {
+    position: relative;
+    height: {{imageHeight}};
+    overflow: hidden;
+    width: 100%;
+}
+
+.kerberos-module-{{moduleId}} .contact-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.kerberos-module-{{moduleId}} .contact-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+}
+
+.kerberos-module-{{moduleId}} .contact-name {
+    font-size: {{nameSize}};
+    font-weight: {{nameWeight}};
+    color: {{nameColor}};
+    margin: 0 0 0.25rem 0;
+    line-height: 1.3;
+}
+
+.kerberos-module-{{moduleId}} .contact-position {
+    font-size: {{positionSize}};
+    color: {{positionColor}};
+    margin: 0 0 1.25rem 0;
+    font-weight: 500;
+}
+
+.kerberos-module-{{moduleId}} .contact-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.kerberos-module-{{moduleId}} .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.25rem 0;
+}
+
+.kerberos-module-{{moduleId}} .contact-icon {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 300;
+    width: 16px;
+    text-align: center;
+    flex-shrink: 0;
+    color: {{iconColor}};
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.kerberos-module-{{moduleId}} .contact-link {
+    text-decoration: none;
+    color: {{linkColor}};
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    word-break: break-all;
+    line-height: 1.4;
+}
+
+.kerberos-module-{{moduleId}} .contact-link:hover {
+    color: {{linkHoverColor}};
+}
+
+.kerberos-module-{{moduleId}} .contact-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: {{ctaBackground}};
+    color: {{ctaColor}};
+    text-decoration: none;
+    padding: {{ctaPadding}};
+    border-radius: {{ctaRadius}};
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    text-align: center;
+}
+
+.kerberos-module-{{moduleId}} .cta-icon {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 300;
+    font-size: 0.9rem;
+}
+
+.kerberos-module-{{moduleId}} .contact-cta:hover {
+    background: {{ctaHoverBackground}};
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(6, 58, 168, 0.3);
+    color: {{ctaColor}};
+}
+
+.kerberos-module-{{moduleId}} .contact-spacer {
+    height: 52px;
+}
+
+/* Mobile Design */
+@media (max-width: 768px) {
+    .kerberos-module-{{moduleId}} .contact-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 1rem;
+        padding: 0 1rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        scroll-behavior: smooth;
+    }
+    
+    .kerberos-module-{{moduleId}} .contact-grid::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .kerberos-module-{{moduleId}} .contact-card {
+        flex: 0 0 280px;
+        width: 280px;
+        scroll-snap-align: start;
+    }
+    
+    .kerberos-module-{{moduleId}} .contact-image-container {
+        height: 180px;
+    }
+    
+    .kerberos-module-{{moduleId}} .contact-info {
+        min-height: 180px;
+        padding: 1.25rem;
+    }
+}
+</style>`,
+                "properties": {
+                    "sectionSpacing": "4rem 0",
+                    "backgroundColor": "#FFFFFF",
+                    "cardBackground": "white",
+                    "cardRadius": "12px",
+                    "cardShadow": "0 4px 20px rgba(6, 58, 168, 0.08)",
+                    "cardBorderColor": "#e9ecef",
+                    "imageHeight": "200px",
+                    "nameSize": "1.25rem",
+                    "nameWeight": "700",
+                    "nameColor": "#212529",
+                    "positionSize": "0.95rem",
+                    "positionColor": "#6c757d",
+                    "iconColor": "#009CE6",
+                    "linkColor": "#495057",
+                    "linkHoverColor": "#063AA8",
+                    "ctaBackground": "linear-gradient(135deg, #063AA8, #009CE6)",
+                    "ctaHoverBackground": "linear-gradient(135deg, #052a7a, #0088cc)",
+                    "ctaColor": "white",
+                    "ctaPadding": "0.75rem 1.25rem",
+                    "ctaRadius": "8px",
+                    "contactCards": `<!-- Jan Wagner -->
+        <div class="contact-card">
+            <div class="contact-image-container">
+                <img src="https://images.squarespace-cdn.com/content/651eacf7cae17a228645a660/69b161ec-3041-464e-af7b-e42631b6762c/JWA-DIT2.jpg?format=300w" 
+                     alt="Jan Wagner" 
+                     class="contact-image">
+            </div>
+            <div class="contact-info">
+                <h3 class="contact-name">Jan Wagner</h3>
+                <p class="contact-position">Partnership Manager</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <span class="contact-icon">&#xf0e0;</span>
+                        <a href="mailto:Jan.Wagner@kerberos-cms.com" class="contact-link">Jan.Wagner@kerberos-cms.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">&#xf095;</span>
+                        <a href="tel:+4922165078953" class="contact-link">+49 221 65078953</a>
+                    </div>
+                </div>
+                <a href="https://qrco.de/bfsMCR" target="_blank" class="contact-cta">
+                    <span class="cta-icon">&#xf073;</span>
+                    Termin buchen
+                </a>
+            </div>
+        </div>
+        <div class="contact-card">
+            <div class="contact-image-container">
+                <img src="https://images.squarespace-cdn.com/content/651eacf7cae17a228645a660/bc9fff4e-f8d4-4466-a0a1-a0420ffe2fe7/EBL-DIT.jpg?format=300w" 
+                     alt="Eva Blöchl" 
+                     class="contact-image">
+            </div>
+            <div class="contact-info">
+                <h3 class="contact-name">Eva Blöchl</h3>
+                <p class="contact-position">Senior Associate Compliance</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <span class="contact-icon">&#xf0e0;</span>
+                        <a href="mailto:Eva.Bloechl@kerberos-cms.com" class="contact-link">Eva.Bloechl@kerberos-cms.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">&#xf095;</span>
+                        <a href="tel:+4922165088151" class="contact-link">+49 221 65088151</a>
+                    </div>
+                </div>
+                <div class="contact-spacer"></div>
+            </div>
+        </div>
+        <div class="contact-card">
+            <div class="contact-image-container">
+                <img src="https://images.squarespace-cdn.com/content/651eacf7cae17a228645a660/b04d53f7-2592-4626-9786-a3671fa5edf7/SKR-DIT.jpg?format=300w" 
+                     alt="Sebastian Krolczik" 
+                     class="contact-image">
+            </div>
+            <div class="contact-info">
+                <h3 class="contact-name">Sebastian Krolczik</h3>
+                <p class="contact-position">Senior Manager Partnerships</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <span class="contact-icon">&#xf0e0;</span>
+                        <a href="mailto:sebastian.krolczik@kerberos-cms.com" class="contact-link">sebastian.krolczik@kerberos-cms.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">&#xf095;</span>
+                        <a href="tel:+4922165078861" class="contact-link">+49 221 65078861</a>
+                    </div>
+                </div>
+                <a href="https://qrco.de/beK5uZ" target="_blank" class="contact-cta">
+                    <span class="cta-icon">&#xf073;</span>
+                    Termin buchen
+                </a>
+            </div>
+        </div>`
+                }
+            }
+            
         ];
