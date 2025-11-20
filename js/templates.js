@@ -3092,7 +3092,7 @@
                     "contact6Active": "false",
                     "contact6ShowCta": "false"
                 }
-            }
+            },
             {
     "id": "kerberos-pricing-interactive",
     "name": "Pricing Interactive (3 Plans)",
