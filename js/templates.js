@@ -3613,7 +3613,7 @@
                     </div>
                     <h2 style="font-family: var(--heading-font-font-family); font-size: {{heroTitleSize}}; font-weight: var(--heading-font-font-weight); color: {{heroTitleColor}}; margin-bottom: 1.5rem; line-height: 1.2;">{{heroTitle}}</h2>
                     <p style="font-family: var(--body-font-font-family); font-size: {{heroTextSize}}; line-height: 1.7; color: {{heroTextColor}}; margin-bottom: 2rem;">{{heroDescription}}</p>
-                    <a href="{{heroButtonLink}}" style="display: inline-flex; align-items: center; gap: 0.75rem; background: {{heroButtonBackground}}; color: {{heroButtonColor}}; text-decoration: none; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; box-shadow: {{heroButtonShadow}};">
+                    <a href="{{heroButtonLink}}" class="kerberos-btn kerberos-btn-{{moduleId}}" style="display: inline-flex; align-items: center; gap: 0.75rem; background: {{heroButtonBackground}}; color: {{heroButtonColor}}; text-decoration: none; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; box-shadow: {{heroButtonShadow}};">
                         <span style="font-family: 'Font Awesome 5 Pro';">{{heroButtonIcon}}</span>
                         {{heroButtonText}}
                     </a>
