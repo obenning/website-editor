@@ -3263,5 +3263,151 @@
         "feature2Plan2": "Priority Email",
         "feature2Plan3": "24/7 Phone"
     }
+},
+
+{
+    "id": "kerberos-feature-comparison-table",
+    "name": "Feature Comparison Table",
+    "category": "Pricing & Plans",
+    "description": "Reine Feature-Vergleichstabelle ohne Pricing Cards - perfekt für Produkt-/Service-Vergleiche",
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
+        <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
+            <div style="text-align: center; margin-bottom: {{titleSpacing}};">
+                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+            </div>
+            
+            <!-- Desktop Table -->
+            <div class="feature-comparison-desktop" style="background: {{tableBackground}}; border-radius: {{tableRadius}}; box-shadow: {{tableShadow}}; overflow: hidden;">
+                <div style="display: grid; grid-template-columns: {{gridColumns}}; gap: {{columnGap}}; padding: {{headerPadding}}; background: {{headerBackground}}; color: {{headerTextColor}}; font-weight: 700;">
+                    <div>{{column1Header}}</div>
+                    <div style="text-align: center;">{{column2Header}}</div>
+                    <div style="text-align: center;">{{column3Header}}</div>
+                    <div style="text-align: center;">{{column4Header}}</div>
+                </div>
+                {{featureRows}}
+            </div>
+            
+            <!-- Mobile Cards -->
+            <div class="feature-comparison-mobile" style="display: none;">
+                {{mobileFeatureCards}}
+            </div>
+        </div>
+        
+        <style>
+            @media (max-width: {{mobileBreakpoint}}) {
+                .feature-comparison-desktop {
+                    display: none !important;
+                }
+                .feature-comparison-mobile {
+                    display: block !important;
+                }
+            }
+        </style>
+    </section>`,
+    "properties": {
+        // === HEADER ===
+        "title": "Feature-Vergleich",
+        "titleColor": "#063AA8",
+        "titleSpacing": "3rem",
+        "subtitle": "Finden Sie die perfekte Lösung für Ihre Anforderungen",
+        "subtitleColor": "#6c757d",
+
+        // === LAYOUT ===
+        "backgroundColor": "#F8F9FA",
+        "sectionSpacing": "6rem 0",
+        "maxWidth": "1200px",
+
+        // === TABLE STYLING ===
+        "tableBackground": "#FFFFFF",
+        "tableRadius": "12px",
+        "tableShadow": "0 4px 20px rgba(0,0,0,0.1)",
+        "gridColumns": "1fr 1fr 1fr 1fr",
+        "columnGap": "1rem",
+
+        // === HEADER ROW ===
+        "column1Header": "Feature",
+        "column2Header": "Starter",
+        "column3Header": "Professional",
+        "column4Header": "Enterprise",
+        "headerBackground": "#063AA8",
+        "headerTextColor": "#FFFFFF",
+        "headerPadding": "1.5rem",
+
+        // === ROW STYLING ===
+        "rowPadding": "1rem",
+        "rowTextColor": "#212529",
+        "rowBorderColor": "#DEE2E6",
+        "alternateRowBackground": "#F8F9FA",
+
+        // === MOBILE ===
+        "mobileBreakpoint": "968px",
+        "mobileCardBackground": "#FFFFFF",
+        "mobileCardBorder": "#DEE2E6",
+        "mobileCardRadius": "8px",
+        "mobileCardPadding": "1.5rem",
+        "mobileCardGap": "1rem",
+
+        // === FEATURES 1-10 ===
+        "feature1Active": "true",
+        "feature1Name": "API Zugriffe",
+        "feature1Column2": "1.000/Monat",
+        "feature1Column3": "10.000/Monat",
+        "feature1Column4": "Unbegrenzt",
+
+        "feature2Active": "true",
+        "feature2Name": "Support",
+        "feature2Column2": "Email",
+        "feature2Column3": "Priority Email",
+        "feature2Column4": "24/7 Phone",
+
+        "feature3Active": "true",
+        "feature3Name": "Team-Mitglieder",
+        "feature3Column2": "5",
+        "feature3Column3": "25",
+        "feature3Column4": "Unbegrenzt",
+
+        "feature4Active": "true",
+        "feature4Name": "Speicherplatz",
+        "feature4Column2": "10 GB",
+        "feature4Column3": "100 GB",
+        "feature4Column4": "1 TB",
+
+        "feature5Active": "true",
+        "feature5Name": "Custom Branding",
+        "feature5Column2": "❌",
+        "feature5Column3": "✅",
+        "feature5Column4": "✅",
+
+        "feature6Active": "false",
+        "feature6Name": "",
+        "feature6Column2": "",
+        "feature6Column3": "",
+        "feature6Column4": "",
+
+        "feature7Active": "false",
+        "feature7Name": "",
+        "feature7Column2": "",
+        "feature7Column3": "",
+        "feature7Column4": "",
+
+        "feature8Active": "false",
+        "feature8Name": "",
+        "feature8Column2": "",
+        "feature8Column3": "",
+        "feature8Column4": "",
+
+        "feature9Active": "false",
+        "feature9Name": "",
+        "feature9Column2": "",
+        "feature9Column3": "",
+        "feature9Column4": "",
+
+        "feature10Active": "false",
+        "feature10Name": "",
+        "feature10Column2": "",
+        "feature10Column3": "",
+        "feature10Column4": ""
+    }
 }
         ];
