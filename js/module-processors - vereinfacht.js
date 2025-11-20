@@ -5066,7 +5066,7 @@ function processKerberosImageText(module, html) {
     if (props.iconClass) {
         const iconColor = props.iconColor || '#063AA8';
         const iconSize = props.iconSize || '2rem';
-        iconElement = '<div style="margin-bottom: 1rem;"><div style="font-family: \'Font Awesome 5 Pro\'; font-size: ' + iconSize + '; color: ' + iconColor + '; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: rgba(6,58,168,0.1); border-radius: 50%;">' + props.iconClass + '</div></div>';
+        iconElement = '<div style="margin-bottom: 1rem; display: block;"><div style="font-family: \'Font Awesome 5 Pro\'; font-size: ' + iconSize + '; color: ' + iconColor + '; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: rgba(6,58,168,0.1); border-radius: 50%;">' + props.iconClass + '</div></div>';
     }
     
     // === TEXT-ELEMENTE ===
