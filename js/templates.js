@@ -3724,7 +3724,7 @@
                 <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             <div class="kerberos-faq-accordion" data-module-id="{{moduleId}}">
-                {{faqItems}}
+                <!-- FAQ_ITEMS_PLACEHOLDER -->
             </div>
         </div>
     </section>`,
