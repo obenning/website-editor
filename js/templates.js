@@ -673,169 +673,186 @@
                 "customized": true
             },
 
-            {
-                "id": "kerberos-api-hero-with-text",
-                "name": "API Hero mit Text", 
-                "category": "Hero & Headers",
-                "description": "API-Hero mit SVG-Grafik und erweiterten Textfeldern",
-                "html": `<section style="background: {{backgroundColor}}; padding: {{sectionSpacing}}; text-align: center; margin-bottom: 0; position: relative;" class="kerberos-module-{{moduleId}}">
-                    {{overlayElements}}
-                    <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-                        {{svgElement}}
-                        <h1 style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0;">{{title}}</h1>
-                        <div style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 800px; margin: 0 auto {{subtitleSpacing}} auto;">{{subtitle}}</div>
-                        <div style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}}; max-width: 900px; margin: 0 auto {{textSpacing}} auto;">{{text}}</div>
-                        <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: {{primaryButtonShadow}}; transition: all 0.3s ease;">
-                            {{primaryButtonText}}
-                            <span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span>
-                        </a>
+{
+    "id": "kerberos-api-hero-with-text",
+    "name": "API Hero mit Text", 
+    "category": "Hero & Headers",
+    "description": "API-Hero mit SVG-Grafik und erweiterten Textfeldern",
+    "html": `<section style="background: {{backgroundColor}}; padding: {{sectionSpacing}}; text-align: center; margin-bottom: 0; position: relative;" class="kerberos-module-{{moduleId}}">
+        {{overlayElements}}
+        <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            {{svgElement}}
+            <h1 style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0;">{{title}}</h1>
+            <div style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 800px; margin: 0 auto {{subtitleSpacing}} auto;">{{subtitle}}</div>
+            <div style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}}; max-width: 900px; margin: 0 auto {{textSpacing}} auto;">{{text}}</div>
+            <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: {{primaryButtonShadow}}; transition: all 0.3s ease;">
+                {{primaryButtonText}}
+                <span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span>
+            </a>
+        </div>
+    </section>`,
+    "properties": {
+        // === SVG PROPERTIES ===
+        "svgUrl": "https://www.svgrepo.com/show/530440/api.svg",
+        "svgAlt": "API Integration Icon",
+        "svgSizeType": "medium",
+        "svgSpacing": "2rem",
+        "svgObjectFit": "contain",
+        "svgObjectPosition": "center", 
+        "svgCustomCSS": "margin: 0; display: block;",
+        
+        // === CONTENT ===
+        "title": "KYC/AML-API: Automatische GwG-Standardprüfung",
+        "titleColor": "#FFFFFF",
+        "titleSpacing": "1.5rem",
+        "subtitle": "Reduzieren Sie Ihren Compliance-Aufwand durch automatisierte Prüfprozesse. Sparen Sie 15-30 Minuten pro Prüfung.",
+        "subtitleColor": "#FFFFFF",
+        "subtitleSpacing": "1rem",
+        "text": "Entwicklerfreundliche RESTful-API für automatisierte Compliance-Prüfungen. Echtzeitzugriff auf Sanktionen, PEPs und Hochrisikoländer.",
+        "textColor": "#FFFFFF",
+        "textSpacing": "2rem",
+
+        // === PRIMARY BUTTON ===
+        "primaryButtonText": "API jetzt testen",
+        "primaryButtonLink": "/unternehmen/kontakt",
+        "primaryButtonStyleType": "outline",
+        "primaryButtonPaddingType": "large",
+        "primaryButtonRadiusType": "medium",
+        "primaryButtonShadowType": "none",
+        "primaryButtonIcon": "&#xf061;",
+        "primaryButtonBackground": "transparent",
+        "primaryButtonColor": "#FFFFFF",
+        "primaryButtonPadding": "1rem 2rem",
+        "primaryButtonRadius": "8px",
+        "primaryButtonShadow": "none",
+
+        // === BACKGROUND (MIT GRADIENT SYSTEM) ===
+        "backgroundColor": "linear-gradient(135deg, #063AA8, #009CE6)",
+        "backgroundImage": "",
+        "backgroundType": "gradient",
+        "backgroundGradientType": "kerberos-primary",
+        
+        // === OVERLAY SYSTEM ===
+        "overlayActive": "false",
+        "overlayColor": "#000000",
+        "overlayOpacityType": "medium",
+        "blueOverlayActive": "true",
+        "blueOverlayColor": "#063AA8", 
+        "blueOverlayOpacityType": "light",
+        
+        "sectionSpacing": "6rem 0"
+    },
+    "customized": true
+},
+
+{
+    "id": "kerberos-compliance-dashboard",
+    "name": "Compliance Dashboard (Interaktiv)",
+    "category": "Technology & Tools",
+    "description": "Interaktives Dashboard mit Echtzeit-Compliance-Daten, Statistiken und Aktivitätsfeeds",
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
+            <div style="text-align: center; margin-bottom: {{titleSpacing}};">
+                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+            </div>
+            <div style="background: {{cardBackground}}; border-radius: {{cardRadiusType}}; padding: {{cardPaddingType}}; box-shadow: {{cardShadowType}}; border: 1px solid {{cardBorder}}; position: relative; overflow: hidden;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: {{headerSpacing}}; padding-bottom: 1rem; border-bottom: 1px solid {{cardBorder}};">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{primaryColor}};">{{dashboardIcon}}</div>
+                        <h3 style="font-family: var(--heading-font-font-family); color: {{primaryColor}}; margin: 0; font-size: {{headingSizeType}};">{{dashboardTitle}}</h3>
                     </div>
-                </section>`,
-                "properties": {
-                    // === SVG PROPERTIES (KORRIGIERT) ===
-                    "svgUrl": "https://www.svgrepo.com/show/530440/api.svg",
-                    "svgAlt": "API Integration Icon",
-                    "svgSizeType": "medium",
-                    "svgSpacing": "2rem",
-                    "svgObjectFit": "contain",
-                    "svgObjectPosition": "center", 
-                    "svgCustomCSS": "margin: 0; display: block;",
-                    
-                    // === CONTENT ===
-                    "title": "KYC/AML-API: Automatische GwG-Standardprüfung",
-                    "titleColor": "#FFFFFF",
-                    "titleSpacing": "1.5rem",
-                    "subtitle": "Reduzieren Sie Ihren Compliance-Aufwand durch automatisierte Prüfprozesse. Sparen Sie 15-30 Minuten pro Prüfung.",
-                    "subtitleColor": "#FFFFFF",
-                    "subtitleSpacing": "1rem",
-                    "text": "Entwicklerfreundliche RESTful-API für automatisierte Compliance-Prüfungen. Echtzeitzugriff auf Sanktionen, PEPs und Hochrisikoländer.",
-                    "textColor": "#FFFFFF",
-                    "textSpacing": "2rem",
-
-                    // === PRIMARY BUTTON ===
-                    "primaryButtonText": "API jetzt testen",
-                    "primaryButtonLink": "/unternehmen/kontakt",
-                    "primaryButtonStyleType": "outline",
-                    "primaryButtonIcon": "&#xf061;",
-
-                    // === BACKGROUND (MIT GRADIENT SYSTEM) ===
-                    "backgroundColor": "linear-gradient(135deg, #063AA8, #009CE6)",
-                    "backgroundImage": "",
-                    "backgroundType": "gradient",
-                    "backgroundGradientType": "kerberos-primary",
-                    
-                    // === OVERLAY SYSTEM ===
-                    "overlayActive": "false",
-                    "overlayColor": "#000000",
-                    "overlayOpacityType": "medium",
-                    "blueOverlayActive": "true",
-                    "blueOverlayColor": "#063AA8", 
-                    "blueOverlayOpacityType": "light",
-                    
-                    "sectionSpacing": "6rem 0"
-                },
-                "customized": true
-            },
-
-            {
-                "id": "kerberos-compliance-dashboard",
-                "name": "Compliance Dashboard (Interaktiv)",
-                "category": "Technology & Tools",
-                "description": "Interaktives Dashboard mit Echtzeit-Compliance-Daten, Statistiken und Aktivitätsfeeds",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
-                    <div style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
-                        <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
-                        </div>
-                        <div style="background: {{cardBackground}}; border-radius: {{cardRadiusType}}; padding: {{cardPaddingType}}; box-shadow: {{cardShadowType}}; border: 1px solid {{cardBorder}}; position: relative; overflow: hidden;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: {{headerSpacing}}; padding-bottom: 1rem; border-bottom: 1px solid {{cardBorder}};">
-                                <div style="display: flex; align-items: center; gap: 1rem;">
-                                    <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{primaryColor}};">{{dashboardIcon}}</div>
-                                    <h3 style="font-family: var(--heading-font-font-family); color: {{primaryColor}}; margin: 0; font-size: {{headingSizeType}};">{{dashboardTitle}}</h3>
-                                </div>
-                                <div style="background: {{statusColor}}; color: white; padding: {{statusPaddingType}}; border-radius: {{statusRadiusType}}; font-size: {{statusTextSizeType}}; font-weight: 600;">{{statusText}}</div>
-                            </div>
-                            {{dashboardCards}}
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: {{contentGap}}; margin-top: {{bottomSpacing}};">
-                                <div style="background: white; border-radius: {{cardRadiusType}}; padding: {{cardPaddingType}}; border: 1px solid {{cardBorder}};">
-                                    <h4 style="font-family: var(--heading-font-font-family); color: {{textColor}}; margin: 0 0 1rem 0; font-size: {{subHeadingSizeType}};">{{chartTitle}}</h4>
-                                    <div style="height: {{chartHeightType}}; background: linear-gradient(45deg, {{primaryColor}}20, {{secondaryColor}}20); border-radius: {{chartRadiusType}}; position: relative; overflow: hidden;">
-                                        {{chartBars}}
-                                    </div>
-                                </div>
-                                <div style="background: white; border-radius: {{cardRadiusType}}; padding: {{cardPaddingType}}; border: 1px solid {{cardBorder}};">
-                                    <h4 style="font-family: var(--heading-font-font-family); color: {{textColor}}; margin: 0 0 1rem 0; font-size: {{subHeadingSizeType}};">{{activityTitle}}</h4>
-                                    <div>
-                                        {{activityItems}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="text-align: center; margin-top: {{ctaSpacing}}; padding-top: {{ctaSpacing}}; border-top: 1px solid {{cardBorder}};">
-                                <a href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">{{primaryButtonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span></a>
-                            </div>
+                    <div style="background: {{statusColor}}; color: white; padding: {{statusPaddingType}}; border-radius: {{statusRadiusType}}; font-size: {{statusTextSizeType}}; font-weight: 600;">{{statusText}}</div>
+                </div>
+                {{dashboardCards}}
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: {{contentGap}}; margin-top: {{bottomSpacing}};">
+                    <div style="background: white; border-radius: {{cardRadiusType}}; padding: {{cardPaddingType}}; border: 1px solid {{cardBorder}};">
+                        <h4 style="font-family: var(--heading-font-font-family); color: {{textColor}}; margin: 0 0 1rem 0; font-size: {{subHeadingSizeType}};">{{chartTitle}}</h4>
+                        <div style="height: {{chartHeightType}}; background: linear-gradient(45deg, {{primaryColor}}20, {{secondaryColor}}20); border-radius: {{chartRadiusType}}; position: relative; overflow: hidden;">
+                            {{chartBars}}
                         </div>
                     </div>
-                </section>`,
-                "properties": {
-                    // === HEADER ===
-                    "title": "Kerberos Compliance Dashboard",
-                    "titleColor": "#063AA8",
-                    "titleSpacing": "3rem",
-                    "subtitle": "Behalten Sie den Überblick über alle Compliance-Aktivitäten in Echtzeit",
-                    "subtitleColor": "#6c757d",
+                    <div style="background: white; border-radius: {{cardRadiusType}}; padding: {{cardPaddingType}}; border: 1px solid {{cardBorder}};">
+                        <h4 style="font-family: var(--heading-font-font-family); color: {{textColor}}; margin: 0 0 1rem 0; font-size: {{subHeadingSizeType}};">{{activityTitle}}</h4>
+                        <div>
+                            {{activityItems}}
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: {{ctaSpacing}}; padding-top: {{ctaSpacing}}; border-top: 1px solid {{cardBorder}};">
+                    <a href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">{{primaryButtonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span></a>
+                </div>
+            </div>
+        </div>
+    </section>`,
+    "properties": {
+        // === HEADER ===
+        "title": "Kerberos Compliance Dashboard",
+        "titleColor": "#063AA8",
+        "titleSpacing": "3rem",
+        "subtitle": "Behalten Sie den Überblick über alle Compliance-Aktivitäten in Echtzeit",
+        "subtitleColor": "#6c757d",
 
-                    // === LAYOUT ===
-                    "backgroundColor": "#F8F9FA",
-                    "sectionSpacing": "6rem 0",
-                    "contentGap": "2rem",
-                    "headerSpacing": "2rem",
-                    "bottomSpacing": "2rem",
-                    "ctaSpacing": "2rem",
+        // === LAYOUT ===
+        "backgroundColor": "#F8F9FA",
+        "sectionSpacing": "6rem 0",
+        "contentGap": "2rem",
+        "headerSpacing": "2rem",
+        "bottomSpacing": "2rem",
+        "ctaSpacing": "2rem",
 
-                    // === CARD STYLING ===
-                    "cardBackground": "#FFFFFF",
-                    "cardBorder": "#DEE2E6",
-                    "cardRadiusType": "medium",
-                    "cardPaddingType": "large",
-                    "cardShadowType": "strong",
+        // === CARD STYLING ===
+        "cardBackground": "#FFFFFF",
+        "cardBorder": "#DEE2E6",
+        "cardRadiusType": "medium",
+        "cardPaddingType": "large",
+        "cardShadowType": "strong",
 
-                    // === FARBEN ===
-                    "primaryColor": "#063AA8",
-                    "secondaryColor": "#009CE6",
-                    "accentColor": "#B265E9",
-                    "textColor": "#212529",
+        // === FARBEN ===
+        "primaryColor": "#063AA8",
+        "secondaryColor": "#009CE6",
+        "accentColor": "#B265E9",
+        "textColor": "#212529",
 
-                    // === DASHBOARD HEADER ===
-                    "dashboardIcon": "&#xf0e4;",
-                    "dashboardTitle": "Compliance Control Center",
-                    "statusText": "Aktiv",
-                    "statusColor": "#28A745",
-                    "statusPaddingType": "small",
-                    "statusRadiusType": "pill",
-                    "statusTextSizeType": "small",
+        // === DASHBOARD HEADER ===
+        "dashboardIcon": "&#xf0e4;",
+        "dashboardTitle": "Compliance Control Center",
+        "statusText": "Aktiv",
+        "statusColor": "#28A745",
+        "statusPaddingType": "small",
+        "statusRadiusType": "pill",
+        "statusTextSizeType": "small",
 
-                    // === GRÖSSEN ===
-                    "iconSizeType": "medium",
-                    "headingSizeType": "medium",
-                    "subHeadingSizeType": "small",
+        // === GRÖSSEN ===
+        "iconSizeType": "medium",
+        "headingSizeType": "medium",
+        "subHeadingSizeType": "small",
 
-                    // === CHART & ACTIVITY ===
-                    "chartTitle": "Monatliche Trends",
-                    "chartHeightType": "medium",
-                    "chartRadiusType": "small",
-                    "activityTitle": "Letzte Aktivitäten",
-                    "activity1": "KYC-Prüfung abgeschlossen",
-                    "activity2": "Risikobewertung aktualisiert",
-                    "activity3": "Compliance-Bericht generiert",
+        // === CHART & ACTIVITY ===
+        "chartTitle": "Monatliche Trends",
+        "chartHeightType": "medium",
+        "chartRadiusType": "small",
+        "activityTitle": "Letzte Aktivitäten",
+        "activity1": "KYC-Prüfung abgeschlossen",
+        "activity2": "Risikobewertung aktualisiert",
+        "activity3": "Compliance-Bericht generiert",
 
-                    // === PRIMARY BUTTON ===
-                    "primaryButtonText": "Live-Demo anfordern",
-                    "primaryButtonLink": "#demo",
-                    "primaryButtonIcon": "&#xf04b;",
-                },
-                "customized": true
-            },
+        // === PRIMARY BUTTON ===
+        "primaryButtonText": "Live-Demo anfordern",
+        "primaryButtonLink": "#demo",
+        "primaryButtonStyleType": "primary",
+        "primaryButtonPaddingType": "large",
+        "primaryButtonRadiusType": "medium",
+        "primaryButtonShadowType": "strong",
+        "primaryButtonIcon": "&#xf04b;",
+        "primaryButtonBackground": "#063AA8",
+        "primaryButtonColor": "#FFFFFF",
+        "primaryButtonPadding": "0.75rem 1.5rem",
+        "primaryButtonRadius": "8px",
+        "primaryButtonShadow": "0 4px 12px rgba(6,58,168,0.2)"
+    },
+    "customized": true
+},
 
             {
                 "id": "kerberos-api-endpoints",
@@ -2153,116 +2170,126 @@
                 }
             },
 
-            {
-                "id": "kerberos-process-timeline-fixed",
-                "name": "Process Timeline (Responsive)",
-                "category": "Content & Services",
-                "description": "Prozess-Timeline mit perfekter Responsivität und modernen Hover-Effekten",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
-                    <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
-                        <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
-                        </div>
-                        <div style="position: relative; max-width: 800px; margin: 0 auto;">
-                            <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: {{timelineWidthType}}; background: linear-gradient(to bottom, {{timelineStartColor}}, {{timelineEndColor}}); transform: translateX(-50%); border-radius: {{timelineRadiusType}}; z-index: 1;"></div>
-                            {{timelineSteps}}
-                        </div>
-                        <div style="text-align: center; margin-top: {{ctaSpacing}}; padding-top: {{ctaSpacing}}; border-top: 1px solid rgba(0,0,0,0.05);">
-                            <a href="{{ctaLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{ctaBackground}}; color: {{ctaColor}}; padding: {{ctaPadding}}; border-radius: {{ctaRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{ctaShadow}};">
-                                {{ctaText}}
-                                <span style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span>
-                            </a>
-                        </div>
-                    </div>
-                </section>`,
-                "properties": {
-                    // === HEADER ===
-                    "title": "So funktioniert Kerberos",
-                    "titleColor": "#063AA8",
-                    "subtitle": "In 4 einfachen Schritten zur vollständigen Compliance-Lösung",
-                    "subtitleColor": "#6c757d",
-                    "titleSpacing": "3rem",
+{
+    "id": "kerberos-process-timeline-fixed",
+    "name": "Process Timeline (Responsive)",
+    "category": "Content & Services",
+    "description": "Prozess-Timeline mit perfekter Responsivität und modernen Hover-Effekten",
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
+        <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
+            <div style="text-align: center; margin-bottom: {{titleSpacing}};">
+                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
+            </div>
+            <div style="position: relative; max-width: 800px; margin: 0 auto;">
+                <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: {{timelineWidthType}}; background: linear-gradient(to bottom, {{timelineStartColor}}, {{timelineEndColor}}); transform: translateX(-50%); border-radius: {{timelineRadiusType}}; z-index: 1;"></div>
+                {{timelineSteps}}
+            </div>
+            <div style="text-align: center; margin-top: {{ctaSpacing}}; padding-top: {{ctaSpacing}}; border-top: 1px solid rgba(0,0,0,0.05);">
+                <a href="{{ctaLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">
+                    {{ctaText}}
+                    <span style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span>
+                </a>
+            </div>
+        </div>
+    </section>`,
+    "properties": {
+        // === HEADER ===
+        "title": "So funktioniert Kerberos",
+        "titleColor": "#063AA8",
+        "subtitle": "In 4 einfachen Schritten zur vollständigen Compliance-Lösung",
+        "subtitleColor": "#6c757d",
+        "titleSpacing": "3rem",
 
-                    // === LAYOUT ===
-                    "backgroundColor": "#F8F9FA",
-                    "sectionSpacing": "6rem 0",
+        // === LAYOUT ===
+        "backgroundColor": "#F8F9FA",
+        "sectionSpacing": "6rem 0",
 
-                    // === TIMELINE STYLING ===
-                    "timelineStartColor": "#063AA8",
-                    "timelineEndColor": "#009CE6",
-                    "timelineWidthType": "thin",
-                    "timelineRadiusType": "small",
-                    "timelineSpacingType": "compact",
-                    "cardBackground": "#FFFFFF",
-                    "cardBorder": "#E5E7EB",
-                    "textColor": "#212529",
+        // === TIMELINE STYLING ===
+        "timelineStartColor": "#063AA8",
+        "timelineEndColor": "#009CE6",
+        "timelineWidthType": "thin",
+        "timelineRadiusType": "small",
+        "timelineSpacingType": "compact",
+        "cardBackground": "#FFFFFF",
+        "cardBorder": "#E5E7EB",
+        "textColor": "#212529",
 
-                    // === STEPS ===
-                    "step1Title": "Anmeldung & Setup",
-                    "step1Description": "Registrieren Sie sich und richten Sie Ihr Unternehmensprofil in wenigen Minuten ein.",
-                    "step1Icon": "&#xf007;",
-                    "step1Color": "#063AA8",
-                    "step1Number": "1",
-                    "step1Active": "true",
+        // === STEPS ===
+        "step1Title": "Anmeldung & Setup",
+        "step1Description": "Registrieren Sie sich und richten Sie Ihr Unternehmensprofil in wenigen Minuten ein.",
+        "step1Icon": "&#xf007;",
+        "step1Color": "#063AA8",
+        "step1Number": "1",
+        "step1Active": "true",
 
-                    "step2Title": "Konfiguration",
-                    "step2Description": "Passen Sie die Compliance-Module an Ihre Branche und Anforderungen an.",
-                    "step2Icon": "&#xf013;",
-                    "step2Color": "#009CE6",
-                    "step2Number": "2",
-                    "step2Active": "true",
+        "step2Title": "Konfiguration",
+        "step2Description": "Passen Sie die Compliance-Module an Ihre Branche und Anforderungen an.",
+        "step2Icon": "&#xf013;",
+        "step2Color": "#009CE6",
+        "step2Number": "2",
+        "step2Active": "true",
 
-                    "step3Title": "Team-Integration",
-                    "step3Description": "Laden Sie Ihr Team ein und vergeben Sie die entsprechenden Rollen und Berechtigungen.",
-                    "step3Icon": "&#xf0c0;",
-                    "step3Color": "#B265E9",
-                    "step3Number": "3",
-                    "step3Active": "true",
+        "step3Title": "Team-Integration",
+        "step3Description": "Laden Sie Ihr Team ein und vergeben Sie die entsprechenden Rollen und Berechtigungen.",
+        "step3Icon": "&#xf0c0;",
+        "step3Color": "#B265E9",
+        "step3Number": "3",
+        "step3Active": "true",
 
-                    "step4Title": "Go-Live & Support",
-                    "step4Description": "Starten Sie mit der vollständigen Compliance-Lösung und profitieren Sie von unserem 24/7 Support.",
-                    "step4Icon": "&#xf135;",
-                    "step4Color": "#EF8646",
-                    "step4Number": "4",
-                    "step4Active": "true",
+        "step4Title": "Go-Live & Support",
+        "step4Description": "Starten Sie mit der vollständigen Compliance-Lösung und profitieren Sie von unserem 24/7 Support.",
+        "step4Icon": "&#xf135;",
+        "step4Color": "#EF8646",
+        "step4Number": "4",
+        "step4Active": "true",
 
-                    // === WEITERE STEPS (INACTIVE) ===
-                    "step5Title": "",
-                    "step5Description": "",
-                    "step5Icon": "",
-                    "step5Color": "#28A745",
-                    "step5Number": "5",
-                    "step5Active": "false",
+        "step5Title": "",
+        "step5Description": "",
+        "step5Icon": "",
+        "step5Color": "#28A745",
+        "step5Number": "5",
+        "step5Active": "false",
 
-                    "step6Title": "",
-                    "step6Description": "",
-                    "step6Icon": "",
-                    "step6Color": "#DC3545",
-                    "step6Number": "6",
-                    "step6Active": "false",
+        "step6Title": "",
+        "step6Description": "",
+        "step6Icon": "",
+        "step6Color": "#DC3545",
+        "step6Number": "6",
+        "step6Active": "false",
 
-                    "step7Title": "",
-                    "step7Description": "",
-                    "step7Icon": "",
-                    "step7Color": "#6C757D",
-                    "step7Number": "7",
-                    "step7Active": "false",
+        "step7Title": "",
+        "step7Description": "",
+        "step7Icon": "",
+        "step7Color": "#6C757D",
+        "step7Number": "7",
+        "step7Active": "false",
 
-                    "step8Title": "",
-                    "step8Description": "",
-                    "step8Icon": "",
-                    "step8Color": "#FFC107",
-                    "step8Number": "8",
-                    "step8Active": "false",
+        "step8Title": "",
+        "step8Description": "",
+        "step8Icon": "",
+        "step8Color": "#FFC107",
+        "step8Number": "8",
+        "step8Active": "false",
 
-                    // === CTA ===
-                    "ctaText": "Jetzt starten",
-                    "ctaLink": "/signup",
-                    "ctaIcon": "&#xf061;",
-                    "ctaSpacing": "4rem",
-                }
-            },
+        // === CTA BUTTON ===
+        "ctaText": "Jetzt starten",
+        "ctaLink": "/signup",
+        "ctaIcon": "&#xf061;",
+        "ctaSpacing": "4rem",
+        
+        // === PRIMARY BUTTON PROPERTIES (für Processor) ===
+        "primaryButtonStyleType": "primary",
+        "primaryButtonPaddingType": "large",
+        "primaryButtonRadiusType": "medium",
+        "primaryButtonShadowType": "strong",
+        "primaryButtonBackground": "#063AA8",
+        "primaryButtonColor": "#FFFFFF",
+        "primaryButtonPadding": "1rem 2rem",
+        "primaryButtonRadius": "8px",
+        "primaryButtonShadow": "0 4px 12px rgba(6,58,168,0.2)"
+    }
+},
 
             {
                 "id": "kerberos-process-timeline",
@@ -2567,68 +2594,86 @@
                 }
             },
 
-            {
-                "id": "kerberos-text-button-richtext-fixed",
-                "name": "Text-Button-Modul (Secondary Button konfigurierbar)",
-                "category": "Content & Images",
-                "description": "Text-Modul mit konfigurierbarem zweiten Button und Rich-Text-Editor",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; text-align: {{textAlignmentType}};" class="kerberos-module-{{templateId}}">
-                    <div style="max-width: {{maxWidthType}}; margin: 0 auto; padding: 0 2rem;">
-                        <div style="margin-bottom: {{iconSpacing}}; display: {{showIcon}};">
-                            <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: inline-flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
-                        </div>
-                        <div style="margin-bottom: {{titleSpacing}};">
-                            <div style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}};">{{titleContent}}</div>
-                        </div>
-                        <div style="margin-bottom: {{textSpacing}};">
-                            <div style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}};">{{textContent}}</div>
-                        </div>
-                        {{buttonSection}}
-                    </div>
-                </section>`,
-                "properties": {
-                    // === CONTENT ===
-                    "titleContent": "Professionelle Compliance-Beratung",
-                    "titleColor": "#063AA8",
-                    "titleSpacing": "2rem",
-                    "textContent": "Unsere Experten unterstützen Sie bei der Implementierung und Optimierung Ihrer Compliance-Prozesse. Von der Erstberatung bis zur vollständigen Implementierung stehen wir Ihnen zur Seite.",
-                    "textColor": "#6c757d",
-                    "textSpacing": "2rem",
+{
+    "id": "kerberos-text-button-richtext-fixed",
+    "name": "Text-Button-Modul (Secondary Button konfigurierbar)",
+    "category": "Content & Images",
+    "description": "Text-Modul mit konfigurierbarem zweiten Button und Rich-Text-Editor",
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; text-align: {{textAlignmentType}};" class="kerberos-module-{{templateId}}">
+        <div style="max-width: {{maxWidthType}}; margin: 0 auto; padding: 0 2rem;">
+            <div style="margin-bottom: {{iconSpacing}}; display: {{showIcon}};">
+                <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: inline-flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
+            </div>
+            <div style="margin-bottom: {{titleSpacing}};">
+                <div style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}};">{{titleContent}}</div>
+            </div>
+            <div style="margin-bottom: {{textSpacing}};">
+                <div style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}};">{{textContent}}</div>
+            </div>
+            {{buttonSection}}
+        </div>
+    </section>`,
+    "properties": {
+        // === CONTENT ===
+        "titleContent": "Professionelle Compliance-Beratung",
+        "titleColor": "#063AA8",
+        "titleSpacing": "2rem",
+        "textContent": "Unsere Experten unterstützen Sie bei der Implementierung und Optimierung Ihrer Compliance-Prozesse. Von der Erstberatung bis zur vollständigen Implementierung stehen wir Ihnen zur Seite.",
+        "textColor": "#6c757d",
+        "textSpacing": "2rem",
 
-                    // === PRIMARY BUTTON ===
-                    "primaryButtonText": "Beratung anfragen",
-                    "primaryButtonLink": "#kontakt",
-                    "primaryButtonIcon": "&#xf061;",
+        // === PRIMARY BUTTON ===
+        "primaryButtonText": "Beratung anfragen",
+        "primaryButtonLink": "#kontakt",
+        "primaryButtonStyleType": "primary",
+        "primaryButtonPaddingType": "medium",
+        "primaryButtonRadiusType": "medium",
+        "primaryButtonShadowType": "medium",
+        "primaryButtonIcon": "&#xf061;",
+        "primaryButtonBackground": "#063AA8",
+        "primaryButtonColor": "#FFFFFF",
+        "primaryButtonPadding": "0.75rem 1.5rem",
+        "primaryButtonRadius": "8px",
+        "primaryButtonShadow": "0 4px 12px rgba(6,58,168,0.2)",
 
-                    // === SECONDARY BUTTON ===
-                    "secondaryButtonText": "Mehr erfahren",
-                    "secondaryButtonLink": "#info",
-                    "secondaryButtonBorderType": "2px solid #063AA8",
-                    "secondaryButtonIcon": "&#xf05a;",
-                    "showSecondaryButton": "true",
+        // === SECONDARY BUTTON ===
+        "secondaryButtonText": "Mehr erfahren",
+        "secondaryButtonLink": "#info",
+        "secondaryButtonStyleType": "outline",
+        "secondaryButtonPaddingType": "medium",
+        "secondaryButtonRadiusType": "medium",
+        "secondaryButtonShadowType": "none",
+        "secondaryButtonBorder": "2px solid #063AA8",
+        "secondaryButtonIcon": "&#xf05a;",
+        "secondaryButtonBackground": "transparent",
+        "secondaryButtonColor": "#063AA8",
+        "secondaryButtonPadding": "0.75rem 1.5rem",
+        "secondaryButtonRadius": "8px",
+        "secondaryButtonShadow": "none",
+        "showSecondaryButton": "true",
 
-                    // === BUTTON LAYOUT ===
-                    "buttonGapType": "medium",
-                    "buttonJustifyType": "center",
+        // === BUTTON LAYOUT ===
+        "buttonGap": "1rem",
+        "buttonJustify": "center",
 
-                    // === ICON ===
-                    "iconClass": "&#xf0c0;",
-                    "iconColor": "#063AA8",
-                    "iconSpacing": "1.5rem",
-                    "iconBackground": "rgba(6,58,168,0.1)",
-                    "iconRadiusType": "circle",
-                    "iconContainerSizeType": "large",
-                    "iconSizeType": "large",
-                    "showIcon": "true",
+        // === ICON ===
+        "iconClass": "&#xf0c0;",
+        "iconColor": "#063AA8",
+        "iconSpacing": "1.5rem",
+        "iconBackground": "rgba(6,58,168,0.1)",
+        "iconRadiusType": "circle",
+        "iconContainerSizeType": "large",
+        "iconSizeType": "large",
+        "showIcon": "true",
 
-                    // === LAYOUT ===
-                    "backgroundColor": "#FFFFFF",
-                    "textAlignmentType": "center",
-                    "maxWidthType": "medium",
-                    "sectionSpacing": "6rem 0",
-                    "buttonSpacing": "0"
-                }
-            },
+        // === LAYOUT ===
+        "backgroundColor": "#FFFFFF",
+        "textAlignmentType": "center",
+        "maxWidthType": "medium",
+        "sectionSpacing": "6rem 0",
+        "buttonSpacing": "0"
+    }
+},
 
 {
     "id": "kerberos-features-grid",
