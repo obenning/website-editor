@@ -3526,7 +3526,7 @@
         }
 
 // ===================================================================
-// HELPER FUNCTIONS - MÜSSEN VOR MODULE_PROCESSORS DEFINIERT WERDEN
+// HELPER FUNCTIONS
 // ===================================================================
 
 /**
@@ -3554,31 +3554,70 @@ function getModuleHtml(module, html) {
 }
 
 /**
- * Ruft die spezifische Processor-Funktion für ein Modul auf
+ * Fügt Button-Klassen für Hover-Effekte hinzu
  */
-function processSpecificModule(module, html) {
-    const processor = MODULE_PROCESSORS[module.templateId];
-    
-    if (processor && typeof processor === 'function') {
-        console.log('✅ Processor gefunden für:', module.templateId);
-        return processor(module, html);
-    }
-    
-    // Spezialfall: Importierte Module
-    if (module.name && module.name.includes('Importiert')) {
-        if (typeof processImportedKerberosModule === 'function') {
-            console.log('✅ processImportedKerberosModule ausgeführt');
-            return processImportedKerberosModule(module, html);
+function addButtonClasses(module, html) {
+    return html.replace(
+        /(<a[^>]*style="[^"]*background:[^"]*"[^>]*>)/g,
+        (match) => {
+            if (match.includes('kerberos-btn') || match.includes('display: inline-flex') ||
+                match.includes('padding:') || match.includes('border-radius:')) {
+                if (!match.includes('class="')) {
+                    return match.replace('<a', `<a class="kerberos-btn kerberos-btn-${module.id}"`);
+                } else if (!match.includes('kerberos-btn')) {
+                    return match.replace('class="', `class="kerberos-btn kerberos-btn-${module.id} `);
+                }
+            }
+            return match;
         }
+    );
+}
+
+/**
+ * Spezielle Button-Korrektur für CTA-Modern Module
+ */
+function applyCTAModernButtonFix(module, html, props) {
+    // Primary Button
+    if (props.primaryButtonStyleType && typeof getUniversalButtonStyles === 'function') {
+        const primaryStyles = getUniversalButtonStyles({
+            buttonStyleType: props.primaryButtonStyleType,
+            buttonPaddingType: props.primaryButtonPaddingType,
+            buttonRadiusType: props.primaryButtonRadiusType,
+            buttonShadowType: props.primaryButtonShadowType
+        });
+        html = html.replace(/\{\{primaryButtonBackground\}\}/g, primaryStyles.background);
+        html = html.replace(/\{\{primaryButtonTextColor\}\}/g, primaryStyles.color);
     }
     
-    // Spezialfall: Challenge-Solution Auto-Hide
-    if (module.templateId === 'kerberos-solution-triple-richtext' && typeof processChallengeSolutionAutoHide === 'function') {
-        html = processChallengeSolutionAutoHide(module, html);
-        console.log('✅ processChallengeSolutionAutoHide ausgeführt');
+    // Secondary Button
+    if (props.secondaryButtonStyleType && typeof getUniversalButtonStyles === 'function') {
+        const secondaryStyles = getUniversalButtonStyles({
+            buttonStyleType: props.secondaryButtonStyleType,
+            buttonPaddingType: props.secondaryButtonPaddingType,
+            buttonRadiusType: props.secondaryButtonRadiusType,
+            buttonShadowType: props.secondaryButtonShadowType,
+            buttonBackground: props.secondaryButtonBackground,
+            buttonColor: props.secondaryButtonTextColor
+        });
+        html = html.replace(/\{\{secondaryButtonBackground\}\}/g, secondaryStyles.background);
+        html = html.replace(/\{\{secondaryButtonTextColor\}\}/g, secondaryStyles.color);
     }
     
-    console.log('ℹ️ Kein spezifischer Processor für:', module.templateId);
+    console.log('✅ CTA-Modern Button-Styles korrigiert');
+    return html;
+}
+
+/**
+ * Finale Validierung und Cleanup
+ */
+function finalValidation(html, module) {
+    const remainingPlaceholders = html.match(/\{\{[^}]+\}\}/g);
+    
+    if (remainingPlaceholders && remainingPlaceholders.length > 0) {
+        console.warn('⚠️ Übrige Platzhalter gefunden:', remainingPlaceholders);
+        html = html.replace(/\{\{[^}]*\}\}/g, '');
+    }
+    
     return html;
 }
 
@@ -3713,152 +3752,114 @@ function applyUniversalProcessing(module, html, props) {
     return processedHtml;
 }
 
-/**
- * Fügt Button-Klassen für Hover-Effekte hinzu
- */
-function addButtonClasses(module, html) {
-    return html.replace(
-        /(<a[^>]*style="[^"]*background:[^"]*"[^>]*>)/g,
-        (match) => {
-            if (match.includes('kerberos-btn') || match.includes('display: inline-flex') ||
-                match.includes('padding:') || match.includes('border-radius:')) {
-                if (!match.includes('class="')) {
-                    return match.replace('<a', `<a class="kerberos-btn kerberos-btn-${module.id}"`);
-                } else if (!match.includes('kerberos-btn')) {
-                    return match.replace('class="', `class="kerberos-btn kerberos-btn-${module.id} `);
-                }
-            }
-            return match;
-        }
-    );
-}
-
-/**
- * Spezielle Button-Korrektur für CTA-Modern Module
- */
-function applyCTAModernButtonFix(module, html, props) {
-    // Primary Button
-    if (props.primaryButtonStyleType && typeof getUniversalButtonStyles === 'function') {
-        const primaryStyles = getUniversalButtonStyles({
-            buttonStyleType: props.primaryButtonStyleType,
-            buttonPaddingType: props.primaryButtonPaddingType,
-            buttonRadiusType: props.primaryButtonRadiusType,
-            buttonShadowType: props.primaryButtonShadowType
-        });
-        html = html.replace(/\{\{primaryButtonBackground\}\}/g, primaryStyles.background);
-        html = html.replace(/\{\{primaryButtonTextColor\}\}/g, primaryStyles.color);
-    }
-    
-    // Secondary Button
-    if (props.secondaryButtonStyleType && typeof getUniversalButtonStyles === 'function') {
-        const secondaryStyles = getUniversalButtonStyles({
-            buttonStyleType: props.secondaryButtonStyleType,
-            buttonPaddingType: props.secondaryButtonPaddingType,
-            buttonRadiusType: props.secondaryButtonRadiusType,
-            buttonShadowType: props.secondaryButtonShadowType,
-            buttonBackground: props.secondaryButtonBackground,
-            buttonColor: props.secondaryButtonTextColor
-        });
-        html = html.replace(/\{\{secondaryButtonBackground\}\}/g, secondaryStyles.background);
-        html = html.replace(/\{\{secondaryButtonTextColor\}\}/g, secondaryStyles.color);
-    }
-    
-    console.log('✅ CTA-Modern Button-Styles korrigiert');
-    return html;
-}
-
-/**
- * Finale Validierung und Cleanup
- */
-function finalValidation(html, module) {
-    const remainingPlaceholders = html.match(/\{\{[^}]+\}\}/g);
-    
-    if (remainingPlaceholders && remainingPlaceholders.length > 0) {
-        console.warn('⚠️ Übrige Platzhalter gefunden:', remainingPlaceholders);
-        html = html.replace(/\{\{[^}]*\}\}/g, '');
-    }
-    
-    return html;
-}
-
 // ===================================================================
-// MODULE ROUTING MAP - JETZT NACH DEN HELPER FUNCTIONS
+// MODULE ROUTING MAP - Definiere ALLE Processor-Zuweisungen
 // ===================================================================
 const MODULE_PROCESSORS = {
     // === HERO MODULES ===
-    'kerberos-hero-advanced-richtext': processKerberosHeroAdvancedRichtext,
-    'kerberos-hero-advanced': processKerberosHeroAdvanced,
-    'kerberos-svg-hero': processKerberosSvgHero,
-    'kerberos-api-hero-with-text': processKerberosApiHeroWithText,
+    'kerberos-hero-advanced-richtext': 'processKerberosHeroAdvancedRichtext',
+    'kerberos-hero-advanced': 'processKerberosHeroAdvanced',
+    'kerberos-svg-hero': 'processKerberosSvgHero',
+    'kerberos-api-hero-with-text': 'processKerberosApiHeroWithText',
     
     // === FEATURE & COMPARISON MODULES ===
-    'kerberos-features-grid': processKerberosFeaturesGrid,
-    'kerberos-features-modern': processKerberosFeaturesModern,
-    'kerberos-feature-breaker': processKerberosFeatureBreaker,
-    'kerberos-feature-comparison-extended': processKerberosFeatureComparisonExtended,
-    'kerberos-feature-comparison-table': processKerberosFeatureComparisonTable,
+    'kerberos-features-grid': 'processKerberosFeaturesGrid',
+    'kerberos-features-modern': 'processKerberosFeaturesModern',
+    'kerberos-feature-breaker': 'processKerberosFeatureBreaker',
+    'kerberos-feature-comparison-extended': 'processKerberosFeatureComparisonExtended',
+    'kerberos-feature-comparison-table': 'processKerberosFeatureComparisonTable',
     
     // === TIMELINE MODULES ===
-    'kerberos-process-timeline-fixed': processKerberosTimeline,
-    'kerberos-process-timeline': processKerberosTimeline,
+    'kerberos-process-timeline-fixed': 'processKerberosTimeline',
+    'kerberos-process-timeline': 'processKerberosTimeline',
     
     // === PRICING MODULES ===
-    'kerberos-pricing-interactive': processKerberosPricingInteractive,
-    'kerberos-pricing-responsive-extended': processKerberosPricingResponseExtended,
+    'kerberos-pricing-interactive': 'processKerberosPricingInteractive',
+    'kerberos-pricing-responsive-extended': 'processKerberosPricingResponseExtended',
     
     // === DASHBOARD MODULES ===
-    'kerberos-compliance-dashboard': processKerberosComplianceDashboard,
-    'kerberos-dashboard-showcase': processKerberosDashboard,
+    'kerberos-compliance-dashboard': 'processKerberosComplianceDashboard',
+    'kerberos-dashboard-showcase': 'processKerberosDashboard',
     
     // === TESTIMONIALS MODULES ===
-    'kerberos-testimonials-carousel': processTestimonialsCarousel,
-    'kerberos-testimonials-carousel-extended': processKerberosTestimonialsCarouselExtended,
-    'kerberos-testimonials-pro': processKerberosTestimonialsPro,
+    'kerberos-testimonials-carousel': 'processTestimonialsCarousel',
+    'kerberos-testimonials-carousel-extended': 'processKerberosTestimonialsCarouselExtended',
+    'kerberos-testimonials-pro': 'processKerberosTestimonialsPro',
     
     // === PRODUCT MODULES ===
-    'kerberos-product-showcase': processKerberosProductShowcase,
-    'kerberos-product-overview': processKerberosProductOverview,
-    'kerberos-product-fade-overview': processKerberosProductFadeOverview,
+    'kerberos-product-showcase': 'processKerberosProductShowcase',
+    'kerberos-product-overview': 'processKerberosProductOverview',
+    'kerberos-product-fade-overview': 'processKerberosProductFadeOverview',
     
     // === SOLUTION MODULES ===
-    'kerberos-solution-triple-richtext': processKerberosTripleSolution,
-    'kerberos-solutions-overview': processKerberosSolutionsOverview,
+    'kerberos-solution-triple-richtext': 'processKerberosTripleSolution',
+    'kerberos-solutions-overview': 'processKerberosSolutionsOverview',
     
     // === TEAM MODULES ===
-    'kerberos-team-gallery': processKerberosTeamGallery,
-    'kerberos-team-gallery-fixed': processKerberosTeamGalleryFixed,
-    'kerberos-team-contact-cards': processKerberosTeamContactCards,
-    'kerberos-company-presentation': processKerberosCompanyPresentation,
+    'kerberos-team-gallery': 'processKerberosTeamGallery',
+    'kerberos-team-gallery-fixed': 'processKerberosTeamGalleryFixed',
+    'kerberos-team-contact-cards': 'processKerberosTeamContactCards',
+    'kerberos-company-presentation': 'processKerberosCompanyPresentation',
     
     // === STATS MODULES ===
-    'kerberos-stats': processStatsModule,
-    'kerberos-stats-with-hover': processKerberosStatsWithHover,
-    'kerberos-warning-facts': processKerberosWarningFacts,
+    'kerberos-stats': 'processStatsModule',
+    'kerberos-stats-with-hover': 'processKerberosStatsWithHover',
+    'kerberos-warning-facts': 'processKerberosWarningFacts',
     
     // === CONTENT & TEXT MODULES ===
-    'kerberos-text-button-richtext': processKerberosTextButtonRichtext,
-    'kerberos-text-button-richtext-fixed': processKerberosTextButtonRichtext,
-    'kerberos-image-text': processKerberosImageText,
-    'kerberos-image-text-modern': processKerberosImageTextModern,
-    'kerberos-cta-modern': processKerberosCtaModern,
+    'kerberos-text-button-richtext': 'processKerberosTextButtonRichtext',
+    'kerberos-text-button-richtext-fixed': 'processKerberosTextButtonRichtext',
+    'kerberos-image-text': 'processKerberosImageText',
+    'kerberos-image-text-modern': 'processKerberosImageTextModern',
+    'kerberos-cta-modern': 'processKerberosCtaModern',
     
     // === INTEGRATIONS & GRID MODULES ===
-    'kerberos-integrations-grid': processKerberosIntegrationsGrid,
-    'kerberos-integrations-grid-fixed': processKerberosIntegrationsGridModern,
-    'kerberos-integrations-grid-modern': processKerberosIntegrationsGridModern,
+    'kerberos-integrations-grid': 'processKerberosIntegrationsGrid',
+    'kerberos-integrations-grid-fixed': 'processKerberosIntegrationsGridModern',
+    'kerberos-integrations-grid-modern': 'processKerberosIntegrationsGridModern',
     
     // === API & TECHNOLOGY MODULES ===
-    'kerberos-api-endpoints': processKerberosApiEndpoints,
-    'kerberos-api-documentation': processKerberosApiDocumentation,
+    'kerberos-api-endpoints': 'processKerberosApiEndpoints',
+    'kerberos-api-documentation': 'processKerberosApiDocumentation',
     
     // === FAQ & NEWSLETTER MODULES ===
-    'kerberos-faq-accordion': processKerberosFaqAccordion,
-    'kerberos-newsletter-modern': processKerberosNewsletterModern,
+    'kerberos-faq-accordion': 'processKerberosFaqAccordion',
+    'kerberos-newsletter-modern': 'processKerberosNewsletterModern',
     
     // === OTHER MODULES ===
-    'kerberos-guide-flow': processKerberosGuideFlow,
-    'kerberos-benefits': processKerberosBenefits
+    'kerberos-guide-flow': 'processKerberosGuideFlow',
+    'kerberos-benefits': 'processKerberosBenefits'
 };
+
+/**
+ * Ruft die spezifische Processor-Funktion für ein Modul auf
+ * WICHTIG: Verwendet String-Namen statt direkter Funktionsreferenzen
+ */
+function processSpecificModule(module, html) {
+    const processorName = MODULE_PROCESSORS[module.templateId];
+    
+    if (processorName && typeof window[processorName] === 'function') {
+        console.log('✅ Processor gefunden für:', module.templateId);
+        return window[processorName](module, html);
+    }
+    
+    // Spezialfall: Importierte Module
+    if (module.name && module.name.includes('Importiert')) {
+        if (typeof processImportedKerberosModule === 'function') {
+            console.log('✅ processImportedKerberosModule ausgeführt');
+            return processImportedKerberosModule(module, html);
+        }
+    }
+    
+    // Spezialfall: Challenge-Solution Auto-Hide
+    if (module.templateId === 'kerberos-solution-triple-richtext' && typeof processChallengeSolutionAutoHide === 'function') {
+        html = processChallengeSolutionAutoHide(module, html);
+        console.log('✅ processChallengeSolutionAutoHide ausgeführt');
+    }
+    
+    console.log('ℹ️ Kein spezifischer Processor für:', module.templateId);
+    return html;
+}
 
 // ===================================================================
 // HAUPTFUNKTION - processUniversalModule (REFACTORED)
