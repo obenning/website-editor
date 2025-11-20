@@ -37,41 +37,6 @@
                 'pill': '999px',
                 'circle': '50%'
             },
-            
-            shadowMap: {
-                'none': 'none',
-                'light': '0 2px 8px rgba(6,58,168,0.1)',
-                'medium': '0 4px 12px rgba(6,58,168,0.2)',
-                'strong': '0 8px 24px rgba(6,58,168,0.3)',
-                'extra-strong': '0 12px 32px rgba(6,58,168,0.4)'
-            },
-            
-            opacityMap: {
-                'none': '0',
-                'light': '0.2',
-                'medium': '0.4',
-                'strong': '0.6',
-                'heavy': '0.8',
-                'full': '1'
-            },
-            
-            // === CONVERTER-FUNKTIONEN ===
-            convertSpacing(value) {
-                return this.spacingMap[value] || value || '0';
-            },
-            
-            convertPadding(value) {
-                return this.paddingMap[value] || value || '0';
-            },
-            
-            convertRadius(value) {
-                return this.radiusMap[value] || value || '0';
-            },
-            
-            convertShadow(value) {
-                return this.shadowMap[value] || value || 'none';
-            },
-            
             convertOpacity(value) {
                 return this.opacityMap[value] || value || '0';
             },
@@ -7367,7 +7332,7 @@ function processUniversalModule(module, html) {
             return responsiveCSS + html + carouselJS;
         }
 
-    function processKerberosServicesOverview(module, html) {
+function processKerberosServicesOverview(module, html) {
     const props = module.properties;
     let serviceBlocks = '';
     let solutionsGrid = '';
@@ -7387,36 +7352,38 @@ function processUniversalModule(module, html) {
         if (!title || !description) continue;
         
         const isImageRight = layout === 'image-right';
-        const gridDirection = isImageRight ? 'direction: rtl;' : '';
-        const contentDirection = 'direction: ltr;';
         
-        serviceBlocks += `
-            <div style="background: ${props.cardBackground}; border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(6,58,168,0.08); border: 1px solid ${props.cardBorder}; transition: all 0.3s ease;">
-                <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; ${gridDirection}" class="service-columns">
-                    ${isImageRight ? `
-                        <div style="${contentDirection}">
-                            <img src="${image}" alt="${title}" style="width: 100%; height: auto; max-height: 350px; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;" />
+        // Responsive Grid-Template mit korrekter Spalten-Reihenfolge
+        const gridTemplate = isImageRight ? 
+            `<style>@media (min-width: 768px) { .service-grid-${i} { grid-template-columns: 2fr 1fr !important; } }</style>` :
+            `<style>@media (min-width: 768px) { .service-grid-${i} { grid-template-columns: 1fr 2fr !important; } }</style>`;
+        
+        serviceBlocks += gridTemplate + `
+            <div style="background: ${props.cardBackground}; border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(6,58,168,0.08); border: 1px solid ${props.cardBorder}; transition: all 0.3s ease;" 
+                 onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='${props.cardHoverShadow}'" 
+                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(6,58,168,0.08)'">
+                <div class="service-grid-${i}" style="display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center;">
+                    ${!isImageRight ? `
+                        <div>
+                            <img src="${image}" alt="${title}" style="width: 100%; height: auto; max-height: 350px; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;" 
+                                 onmouseover="this.style.transform='scale(1.02)'" 
+                                 onmouseout="this.style.transform='scale(1)'" />
                         </div>
                     ` : ''}
-                    <div style="${contentDirection}">
+                    <div>
                         <h2 style="font-family: var(--heading-font-font-family); font-size: 1.75rem; font-weight: 700; color: ${props.titleColor}; margin-bottom: 1.25rem; line-height: 1.2; position: relative;">${title}</h2>
                         <div style="color: ${props.textColor}; margin-bottom: 1.5rem; font-size: 1rem;">${description}</div>
-                        <a href="${buttonLink}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: ${props.buttonBackground}; color: ${props.buttonColor}; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(6,58,168,0.2);">${buttonText}</a>
+                        <a href="${buttonLink}" class="kerberos-btn kerberos-btn-${module.id}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: ${props.buttonBackground}; color: ${props.buttonColor}; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(6,58,168,0.2);">${buttonText}</a>
                     </div>
-                    ${!isImageRight ? `
-                        <div style="${contentDirection}">
-                            <img src="${image}" alt="${title}" style="width: 100%; height: auto; max-height: 350px; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;" />
+                    ${isImageRight ? `
+                        <div>
+                            <img src="${image}" alt="${title}" style="width: 100%; height: auto; max-height: 350px; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease;" 
+                                 onmouseover="this.style.transform='scale(1.02)'" 
+                                 onmouseout="this.style.transform='scale(1)'" />
                         </div>
                     ` : ''}
                 </div>
             </div>
-            <style>
-                @media (min-width: 768px) {
-                    .service-columns {
-                        grid-template-columns: 1fr 1fr !important;
-                    }
-                }
-            </style>
         `;
     }
     
@@ -7435,13 +7402,17 @@ function processUniversalModule(module, html) {
             if (!title || !description) continue;
             
             solutionCards += `
-                <div style="background: white; border-radius: 10px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(6,58,168,0.06); transition: all 0.3s ease; display: flex; flex-direction: column; border: 1px solid ${props.cardBorder}; position: relative; overflow: hidden;">
+                <div style="background: white; border-radius: 10px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(6,58,168,0.06); transition: all 0.3s ease; display: flex; flex-direction: column; border: 1px solid ${props.cardBorder}; position: relative; overflow: hidden; cursor: default;"
+                     onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 30px rgba(6,58,168,0.12)'" 
+                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(6,58,168,0.06)'">
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(135deg, #063AA8, #009CE6);"></div>
                     <h3 style="font-size: 1.1rem; font-weight: 700; color: ${props.titleColor}; margin-bottom: 0.75rem;">${title}</h3>
                     <p style="font-size: 0.9rem; line-height: 1.5; color: ${props.textColor}; margin-bottom: 1rem; flex-grow: 1;">${description}</p>
-                    <a href="${link}" style="color: ${props.titleColor}; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;">
+                    <a href="${link}" style="color: ${props.titleColor}; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;"
+                       onmouseover="this.style.color='#009CE6'; this.style.transform='translateX(4px)'" 
+                       onmouseout="this.style.color='${props.titleColor}'; this.style.transform='translateX(0)'">
                         Mehr erfahren
-                        <span>→</span>
+                        <span style="transition: transform 0.3s ease;">→</span>
                     </a>
                 </div>
             `;
@@ -7574,7 +7545,9 @@ function processKerberosAboutStats(module, html) {
         }
         
         statsCards += `
-            <div style="background: ${cardBackground}; border-radius: 12px; padding: 2rem; display: flex; align-items: flex-start; gap: 1.5rem; transition: all 0.3s ease; border: 1px solid ${cardBorder}; position: relative; overflow: hidden;">
+            <div style="background: ${cardBackground}; border-radius: 12px; padding: 2rem; display: flex; align-items: flex-start; gap: 1.5rem; transition: all 0.3s ease; border: 1px solid ${cardBorder}; position: relative; overflow: hidden; cursor: default;"
+                onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='${isHighlight ? '0 12px 32px rgba(0,156,230,0.2)' : '0 12px 32px rgba(6,58,168,0.15)'}'; this.style.background='white'"
+                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.background='${cardBackground}'">
                 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: ${borderGradient};"></div>
                 <div style="width: 60px; height: 60px; background: linear-gradient(135deg, ${color}, #009CE6); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 12px rgba(6,58,168,0.2);">
                     <span style="font-family: 'Font Awesome 5 Pro'; font-size: 1.5rem; color: white;">${icon}</span>
@@ -7632,7 +7605,26 @@ function processKerberosFaqInteractive(module, html) {
         
         faqItems += `
             <div class="faq-item" data-faq-id="${itemId}" style="background: ${props.itemBackground}; border: 2px solid ${props.itemBorder}; border-radius: 12px; margin-bottom: 1rem; transition: all 0.3s ease; overflow: hidden;">
-                <div class="faq-question" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;" onclick="window.toggleFaqItem('${itemId}')">
+                <div class="faq-question" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;" onclick="(function(itemId) {
+    const item = document.querySelector('[data-faq-id=\\'' + itemId + '\\']');
+    if (!item) return;
+    const answer = item.querySelector('.faq-answer');
+    const icon = item.querySelector('.faq-icon');
+    const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+    if (isOpen) {
+        answer.style.maxHeight = '0';
+        icon.innerHTML = '&#xf107;';
+        icon.style.transform = 'rotate(0deg)';
+        icon.style.color = '${props.iconColor}';
+        item.style.borderColor = '${props.itemBorder}';
+    } else {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        icon.innerHTML = '&#xf106;';
+        icon.style.transform = 'rotate(180deg)';
+        icon.style.color = '${props.iconActiveColor}';
+        item.style.borderColor = '${props.itemHoverBorder}';
+    }
+})('${itemId}')">
                     <h3 style="font-family: var(--heading-font-font-family); font-size: 1.1rem; font-weight: 600; color: ${props.questionColor}; margin: 0; flex: 1; padding-right: 1rem;">${question}</h3>
                     <span class="faq-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 1.25rem; color: ${props.iconColor}; transition: all 0.3s ease; flex-shrink: 0;">&#xf107;</span>
                 </div>
@@ -7643,75 +7635,59 @@ function processKerberosFaqInteractive(module, html) {
         `;
     }
     
-    // JavaScript für Accordion-Funktionalität
-    const accordionJS = `
-        <script>
-            (function() {
-                // Globale Toggle-Funktion
-                window.toggleFaqItem = function(itemId) {
-                    const item = document.querySelector('[data-faq-id="' + itemId + '"]');
-                    if (!item) return;
-                    
-                    const answer = item.querySelector('.faq-answer');
-                    const icon = item.querySelector('.faq-icon');
-                    const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
-                    
-                    if (isOpen) {
-                        // Schließen
-                        answer.style.maxHeight = '0';
-                        answer.style.paddingTop = '0';
-                        answer.style.paddingBottom = '0';
-                        icon.innerHTML = '&#xf107;'; // Down Arrow
-                        icon.style.transform = 'rotate(0deg)';
-                        icon.style.color = '${props.iconColor}';
-                        item.style.borderColor = '${props.itemBorder}';
-                    } else {
-                        // Öffnen
-                        answer.style.maxHeight = answer.scrollHeight + 'px';
-                        answer.style.paddingTop = '0';
-                        answer.style.paddingBottom = '0';
-                        icon.innerHTML = '&#xf106;'; // Up Arrow
-                        icon.style.transform = 'rotate(180deg)';
-                        icon.style.color = '${props.iconActiveColor}';
-                        item.style.borderColor = '${props.itemHoverBorder}';
-                    }
-                };
-                
-                // Event-Listener für alle FAQ-Items im Modul
-                const moduleId = '${module.id}';
-                const faqContainer = document.querySelector('[data-module-id="' + moduleId + '"] .kerberos-faq-accordion');
-                
-                if (faqContainer) {
-                    const questions = faqContainer.querySelectorAll('.faq-question');
-                    questions.forEach(function(question) {
-                        question.addEventListener('mouseenter', function() {
-                            const item = this.closest('.faq-item');
-                            const answer = item.querySelector('.faq-answer');
-                            const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
-                            
-                            if (!isOpen) {
-                                item.style.borderColor = '${props.itemHoverBorder}';
-                            }
-                        });
-                        
-                        question.addEventListener('mouseleave', function() {
-                            const item = this.closest('.faq-item');
-                            const answer = item.querySelector('.faq-answer');
-                            const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
-                            
-                            if (!isOpen) {
-                                item.style.borderColor = '${props.itemBorder}';
-                            }
-                        });
-                    });
-                }
-            })();
-        </script>
-    `;
+  function processKerberosFaqInteractive(module, html) {
+    const props = module.properties;
+    let faqItems = '';
+    
+    // === FAQ ITEMS GENERIEREN ===
+    for (let i = 1; i <= 10; i++) {
+        const isActive = props[`faq${i}Active`] === 'true';
+        if (!isActive) continue;
+        
+        const question = props[`faq${i}Question`];
+        const answer = props[`faq${i}Answer`];
+        
+        if (!question || !answer) continue;
+        
+        const itemId = `faq-item-${module.id}-${i}`;
+        
+        faqItems += `
+            <div class="faq-item" data-faq-id="${itemId}" style="background: ${props.itemBackground}; border: 2px solid ${props.itemBorder}; border-radius: 12px; margin-bottom: 1rem; transition: all 0.3s ease; overflow: hidden;">
+                <div class="faq-question" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;" 
+                     onclick="(function(id) {
+                         const item = document.querySelector('[data-faq-id=\\'' + id + '\\']');
+                         if (!item) return;
+                         const answer = item.querySelector('.faq-answer');
+                         const icon = item.querySelector('.faq-icon');
+                         const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+                         if (isOpen) {
+                             answer.style.maxHeight = '0';
+                             icon.innerHTML = '&#xf107;';
+                             icon.style.transform = 'rotate(0deg)';
+                             icon.style.color = '${props.iconColor}';
+                             item.style.borderColor = '${props.itemBorder}';
+                         } else {
+                             answer.style.maxHeight = answer.scrollHeight + 'px';
+                             icon.innerHTML = '&#xf106;';
+                             icon.style.transform = 'rotate(180deg)';
+                             icon.style.color = '${props.iconActiveColor}';
+                             item.style.borderColor = '${props.itemHoverBorder}';
+                         }
+                     })('${itemId}')"
+                     onmouseover="if (!this.nextElementSibling.style.maxHeight || this.nextElementSibling.style.maxHeight === '0px') { this.closest('.faq-item').style.borderColor = '${props.itemHoverBorder}'; }"
+                     onmouseout="if (!this.nextElementSibling.style.maxHeight || this.nextElementSibling.style.maxHeight === '0px') { this.closest('.faq-item').style.borderColor = '${props.itemBorder}'; }">
+                    <h3 style="font-family: var(--heading-font-font-family); font-size: 1.1rem; font-weight: 600; color: ${props.questionColor}; margin: 0; flex: 1; padding-right: 1rem;">${question}</h3>
+                    <span class="faq-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 1.25rem; color: ${props.iconColor}; transition: all 0.3s ease; flex-shrink: 0;">&#xf107;</span>
+                </div>
+                <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem;">
+                    <div style="font-family: var(--body-font-font-family); font-size: 1rem; line-height: 1.7; color: ${props.answerColor}; padding-bottom: 1.5rem;">${answer}</div>
+                </div>
+            </div>
+        `;
+    }
     
     // Template-Platzhalter ersetzen
     html = html.replace('{{faqItems}}', faqItems);
-    html = html + accordionJS;
     
     return html;
 }
