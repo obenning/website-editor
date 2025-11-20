@@ -3566,9 +3566,24 @@
         "testimonial3Quote": "Seit der Zusammenarbeit mit der Firma Kerberos haben wir ein gutes Gefühl beim Thema Geldwäschegesetz. Großartige und engagierte Mitarbeiter, innovatives Unternehmen, einfache Handhabung der App – wer sich für Kerberos entscheidet, entscheidet sich richtig!",
         "testimonial3Image": "https://images.squarespace-cdn.com/content/v1/651eacf7cae17a228645a660/2f3ce909-45ed-4d96-8f45-72816eb81d0e/Hödl.jpg",
         
+        // === TESTIMONIALS 4-6 VOLLSTÄNDIG ===
         "testimonial4Active": "false",
+        "testimonial4Name": "",
+        "testimonial4Position": "",
+        "testimonial4Quote": "",
+        "testimonial4Image": "",
+
         "testimonial5Active": "false",
+        "testimonial5Name": "",
+        "testimonial5Position": "",
+        "testimonial5Quote": "",
+        "testimonial5Image": "",
+
         "testimonial6Active": "false",
+        "testimonial6Name": "",
+        "testimonial6Position": "",
+        "testimonial6Quote": "",
+        "testimonial6Image": "",
         
         // === STYLING ===
         "cardBackground": "#FFFFFF",
