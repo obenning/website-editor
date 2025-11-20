@@ -3809,6 +3809,14 @@
                     }
                 }
                
+                // === TEAM CONTACT CARDS ===
+                else if (module.templateId === 'kerberos-team-contact-cards') {
+                    if (typeof processKerberosTeamContactCards === 'function') {
+                        processedHtml = processKerberosTeamContactCards(module, processedHtml);
+                        console.log('✅ processKerberosTeamContactCards ausgeführt');
+                    }
+                }
+
                 // === TECHNOLOGY & API MODULE ===
                 else if (module.templateId === 'kerberos-api-endpoints') {
                     if (typeof processKerberosApiEndpoints === 'function') {
@@ -5329,6 +5337,21 @@
         // Alias für Backward Compatibility
         function processKerberosImageText(module, html) {
             return processKerberosImageTextModern(module, html);
+        }
+
+        // === TEAM CONTACT CARDS PROCESSOR ===
+        function processKerberosTeamContactCards(module, html) {
+            console.log('👥 Processing Team Contact Cards:', module.id);
+            const props = module.properties;
+            
+            // contactCards ist bereits als HTML-Block definiert, keine weitere Verarbeitung nötig
+            // Alle anderen Properties werden durch Universal Handlers ersetzt
+            
+            // KEIN Escaping - HTML direkt einfügen
+            html = html.replace(/\{\{contactCards\}\}/g, props.contactCards || '');
+            
+            console.log('✅ processKerberosTeamContactCards - HTML eingefügt');
+            return html;
         }
 
         function processKerberosGuideFlow(module, html) {
