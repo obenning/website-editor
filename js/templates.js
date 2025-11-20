@@ -1803,7 +1803,7 @@
                                 </div>
                             </div>
                             <div style="order: {{textOrder}}; padding: {{contentPaddingType}};">
-                                <div style="margin-bottom: {{iconSpacing}};">
+                                <div style="margin-bottom: {{iconSpacing}}; display: block;">
                                     <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
                                 </div>
                                 <div style="margin-bottom: {{titleSpacing}};">
