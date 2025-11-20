@@ -3602,8 +3602,16 @@ function applyUniversalProcessing(module, html, props) {
     processedHtml = processUniversalPlaceholders(processedHtml, props);
     console.log('✅ Universelle Platzhalter ersetzt');
     
+    // === GESCHÜTZTE PLATZHALTER - NICHT ÜBERSCHREIBEN ===
+    const protectedPlaceholders = ['faqItems', 'testimonialCards', 'carouselContent', 'statsCards', 'serviceBlocks', 'solutionsGrid'];
+
     // === ERWEITERTE PROPERTY-ERSETZUNG (ALLE ÜBRIGEN) ===
     Object.entries(props).forEach(([key, value]) => {
+        // Überspringe geschützte Platzhalter
+        if (protectedPlaceholders.includes(key)) {
+            return;
+        }
+        
         const placeholder = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
         
         if (processedHtml.includes(`{{${key}}}`)) {
