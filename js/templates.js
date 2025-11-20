@@ -1803,8 +1803,8 @@
                                 </div>
                             </div>
                             <div style="order: {{textOrder}}; padding: {{contentPaddingType}};">
-                                <div style="margin-bottom: {{iconSpacing}}; display: block;">
-                                color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
+                                <div style="margin-bottom: {{iconSpacing}};">
+                                    <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
                                 </div>
                                 <div style="margin-bottom: {{titleSpacing}};">
                                     <h3 style="font-family: var(--heading-font-font-family); font-size: {{titleSizeType}}; font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0;">{{title}}</h3>
@@ -1812,7 +1812,7 @@
                                 <div style="margin-bottom: {{textSpacing}};">
                                     <p style="font-family: var(--body-font-font-family); font-size: {{textSizeType}}; line-height: var(--body-font-line-height); color: {{textColor}}; margin: 0;">{{text}}</p>
                                 </div>
-                                <div style="margin-top: {{primaryButtonSpacing}}; display: {{showPrimaryButton}};">
+                                <div style="margin-top: {{primaryButtonSpacing}};">
                                     <a href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; border: {{primaryButtonBorderType}}; box-shadow: {{primaryButtonShadow}};">
                                         {{primaryButtonText}}
                                         <span style="font-family: 'Font Awesome 5 Pro'; display: {{showPrimaryButtonIcon}};">{{primaryButtonIcon}}</span>
