@@ -772,7 +772,7 @@
                                 </div>
                             </div>
                             <div style="text-align: center; margin-top: {{ctaSpacing}}; padding-top: {{ctaSpacing}}; border-top: 1px solid {{cardBorder}};">
-                                <a href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryColor}}; color: white; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">{{primaryButtonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span></a>
+                                <a href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">{{primaryButtonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span></a>
                             </div>
                         </div>
                     </div>
@@ -3093,5 +3093,117 @@
                     "contact6ShowCta": "false"
                 }
             }
+            {
+    "id": "kerberos-pricing-interactive",
+    "name": "Pricing Interactive (3 Plans)",
+    "category": "Pricing & Plans",
+    "description": "Interaktive Pricing-Tabelle mit bis zu 3 Plänen und Feature-Vergleich",
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <div style="text-align: center; margin-bottom: {{titleSpacing}};">
+                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+            </div>
             
+            <!-- Pricing Plans Grid -->
+            <div class="pricing-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 4rem;">
+                {{pricingPlans}}
+            </div>
+            
+            <!-- Feature Comparison Table (Desktop) -->
+            <div class="feature-comparison-desktop" style="background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; padding: 1.5rem; background: {{primaryColor}}; color: white; font-weight: 700;">
+                    <div>Feature</div>
+                    <div style="text-align: center;">{{plan1Name}}</div>
+                    <div style="text-align: center;">{{plan2Name}}</div>
+                    <div style="text-align: center;">{{plan3Name}}</div>
+                </div>
+                {{featureRows}}
+            </div>
+            
+            <!-- Feature Comparison (Mobile) -->
+            <div class="feature-comparison-mobile" style="display: none;">
+                {{mobileFeatureCards}}
+            </div>
+        </div>
+        
+        <style>
+            @media (max-width: 968px) {
+                .pricing-grid {
+                    grid-template-columns: 1fr !important;
+                }
+                .feature-comparison-desktop {
+                    display: none !important;
+                }
+                .feature-comparison-mobile {
+                    display: block !important;
+                }
+            }
+        </style>
+    </section>`,
+    "properties": {
+        "title": "Wählen Sie Ihren Plan",
+        "titleColor": "#063AA8",
+        "titleSpacing": "3rem",
+        "subtitle": "Transparente Preise für jede Unternehmensgröße",
+        "subtitleColor": "#6c757d",
+        "backgroundColor": "#F8F9FA",
+        "sectionSpacing": "6rem 0",
+        
+        "primaryColor": "#063AA8",
+        "cardBackground": "#FFFFFF",
+        "cardBorder": "#DEE2E6",
+        "textColor": "#212529",
+        "subtitleColor": "#6c757d",
+        "tableTextColor": "#212529",
+        "tableBorderColor": "#DEE2E6",
+        "tableRowBackground": "#F8F9FA",
+        
+        "popularBadge": "Beliebt",
+        "popularBadgeColor": "#063AA8",
+        "badgeTextColor": "#FFFFFF",
+        
+        "plan1Active": "true",
+        "plan1Name": "Starter",
+        "plan1Price": "€299",
+        "plan1Period": "Monat",
+        "plan1Description": "Perfekt für kleine Unternehmen",
+        "plan1ButtonText": "Jetzt starten",
+        "plan1ButtonLink": "#",
+        "plan1Color": "#063AA8",
+        "plan1Popular": "false",
+        
+        "plan2Active": "true",
+        "plan2Name": "Professional",
+        "plan2Price": "€699",
+        "plan2Period": "Monat",
+        "plan2Description": "Für wachsende Unternehmen",
+        "plan2ButtonText": "Jetzt buchen",
+        "plan2ButtonLink": "#",
+        "plan2Color": "#063AA8",
+        "plan2Popular": "true",
+        
+        "plan3Active": "true",
+        "plan3Name": "Enterprise",
+        "plan3Price": "€1.499",
+        "plan3Period": "Monat",
+        "plan3Description": "Für große Organisationen",
+        "plan3ButtonText": "Kontakt",
+        "plan3ButtonLink": "#",
+        "plan3Color": "#063AA8",
+        "plan3Popular": "false",
+        
+        "feature1Active": "true",
+        "feature1Name": "API Zugriffe",
+        "feature1Plan1": "1.000/Monat",
+        "feature1Plan2": "10.000/Monat",
+        "feature1Plan3": "Unbegrenzt",
+        
+        "feature2Active": "true",
+        "feature2Name": "Support",
+        "feature2Plan1": "Email",
+        "feature2Plan2": "Priority Email",
+        "feature2Plan3": "24/7 Phone"
+    }
+}
         ];
