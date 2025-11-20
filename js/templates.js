@@ -2630,169 +2630,182 @@
                 }
             },
 
-            {
-                "id": "kerberos-features-grid",
-                "name": "Features Grid mit Hover",
-                "category": "Content & Services",
-                "description": "Interaktives Features-Grid mit CSS-Hover-Animationen und Icons",
-                "html": `<style>
-                    .kerberos-features-module {
-                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-                    }
-                    .kerberos-feature-card {
-                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-                        box-shadow: {{cardShadowType}} !important;
-                    }
-                    .kerberos-feature-card:hover {
-                        transform: {{cardHoverTransformType}} !important;
-                        box-shadow: {{cardHoverShadowType}} !important;
-                    }
-                    .kerberos-feature-card:hover .feature-icon {
-                        transform: {{iconHoverTransformType}} !important;
-                    }
-                    .kerberos-feature-card:hover .feature-overlay {
-                        opacity: {{overlayHoverOpacityType}} !important;
-                    }
-                    .kerberos-btn-features:hover {
-                        background: {{primaryButtonHoverBg}} !important;
-                        color: {{primaryButtonHoverColor}} !important;
-                        transform: {{buttonHoverTransformType}} !important;
-                        box-shadow: {{buttonHoverShadowType}} !important;
-                    }
-                    @media (max-width: 768px) {
-                        .kerberos-feature-card {
-                            transform: none !important;
-                            transition: none !important;
-                        }
-                    }
-                </style>
-                <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-features-module">
-                    <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-                        <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
-                        </div>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax({{cardMinWidth}}, 1fr)); gap: {{cardGap}};">
-                            {{featureCards}}
-                        </div>
-                        <div style="text-align: center; margin-top: {{ctaSpacing}};">
-                            <a class="kerberos-btn-features" href="{{ctaLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{ctaBackground}}; color: {{ctaColor}}; padding: {{ctaPadding}}; border-radius: {{ctaRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{ctaShadow}};">{{ctaText}}<span style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span></a>
-                        </div>
-                    </div>
-                </section>`,
-                "properties": {
-                    // === HEADER ===
-                    "title": "Warum Kerberos wählen?",
-                    "titleColor": "#063AA8",
-                    "titleSpacing": "3rem",
-                    "subtitle": "Alles was Sie für eine vollständige Compliance-Lösung benötigen",
-                    "subtitleColor": "#6c757d",
+{
+    "id": "kerberos-features-grid",
+    "name": "Features Grid mit Hover",
+    "category": "Content & Services",
+    "description": "Interaktives Features-Grid mit CSS-Hover-Animationen und Icons",
+    "html": `<style>
+        .kerberos-features-module {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        .kerberos-feature-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            box-shadow: {{cardShadowType}} !important;
+        }
+        .kerberos-feature-card:hover {
+            transform: {{cardHoverTransformType}} !important;
+            box-shadow: {{cardHoverShadowType}} !important;
+        }
+        .kerberos-feature-card:hover .feature-icon {
+            transform: {{iconHoverTransformType}} !important;
+        }
+        .kerberos-feature-card:hover .feature-overlay {
+            opacity: {{overlayHoverOpacityType}} !important;
+        }
+        .kerberos-btn-features:hover {
+            background: {{buttonHoverBg}} !important;
+            color: {{buttonHoverColor}} !important;
+            transform: {{buttonHoverTransform}} !important;
+            box-shadow: {{buttonHoverShadow}} !important;
+        }
+        @media (max-width: 768px) {
+            .kerberos-feature-card {
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+    <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-features-module">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <div style="text-align: center; margin-bottom: {{titleSpacing}};">
+                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax({{cardMinWidth}}, 1fr)); gap: {{cardGap}};">
+                {{featureCards}}
+            </div>
+            <div style="text-align: center; margin-top: {{ctaSpacing}};">
+                <a class="kerberos-btn-features" href="{{ctaLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{ctaBackground}}; color: {{ctaColor}}; padding: {{ctaPadding}}; border-radius: {{ctaRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{ctaShadow}};">{{ctaText}}<span style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span></a>
+            </div>
+        </div>
+    </section>`,
+    "properties": {
+        // === HEADER ===
+        "title": "Warum Kerberos wählen?",
+        "titleColor": "#063AA8",
+        "titleSpacing": "3rem",
+        "subtitle": "Alles was Sie für eine vollständige Compliance-Lösung benötigen",
+        "subtitleColor": "#6c757d",
 
-                    // === LAYOUT ===
-                    "backgroundColor": "#FFFFFF",
-                    "cardGap": "2rem",
-                    "cardMinWidthType": "medium",
-                    "sectionSpacing": "6rem 0",
+        // === LAYOUT ===
+        "backgroundColor": "#FFFFFF",
+        "cardGap": "2rem",
+        "cardMinWidth": "280px",
+        "sectionSpacing": "6rem 0",
 
-                    // === CARD STYLING ===
-                    "cardBackground": "#FFFFFF",
-                    "cardBorder": "#DEE2E6",
-                    "cardRadiusType": "medium",
-                    "cardPaddingType": "large",
-                    "cardShadowType": "light",
-                    "cardHoverShadowType": "strong",
-                    "cardHoverTransformType": "translateY(-8px)",
+        // === CARD STYLING ===
+        "cardBackground": "#FFFFFF",
+        "cardBorder": "#DEE2E6",
+        "cardRadiusType": "medium",
+        "cardPaddingType": "large",
+        "cardShadowType": "light",
+        "cardHoverShadowType": "strong",
+        "cardHoverTransformType": "translateY(-8px)",
 
-                    // === HOVER EFFECTS ===
-                    "iconHoverTransformType": "scale(1.1) rotate(5deg)",
-                    "overlayHoverOpacityType": "1",
+        // === HOVER EFFECTS ===
+        "iconHoverTransformType": "scale(1.1) rotate(5deg)",
+        "overlayHoverOpacityType": "1",
+        "buttonHoverBg": "rgba(6,58,168,0.8)",
+        "buttonHoverColor": "#FFFFFF",
+        "buttonHoverTransform": "translateY(-2px)",
+        "buttonHoverShadow": "0 8px 24px rgba(6,58,168,0.25)",
 
-                    // === TEXT FARBEN ===
-                    "textColor": "#212529",
+        // === TEXT FARBEN ===
+        "textColor": "#212529",
 
-                    // === CTA ===
-                    "ctaText": "Alle Features entdecken",
-                    "ctaLink": "#features",
-                    "ctaIcon": "&#xf061;",
-                    "ctaSpacing": "3rem",
+        // === CTA BUTTON (werden vom Processor überschrieben) ===
+        "ctaText": "Alle Features entdecken",
+        "ctaLink": "#features",
+        "ctaIcon": "&#xf061;",
+        "ctaSpacing": "3rem",
+        "ctaBackground": "#063AA8",
+        "ctaColor": "#FFFFFF",
+        "ctaPadding": "0.75rem 1.5rem",
+        "ctaRadius": "8px",
+        "ctaShadow": "0 4px 12px rgba(6,58,168,0.2)",
 
-                    // === BUTTON HOVER ===
+        // === PRIMARY BUTTON STYLE SYSTEM (für getUniversalButtonStyles) ===
+        "primaryButtonStyleType": "secondary",
+        "primaryButtonPaddingType": "large",
+        "primaryButtonRadiusType": "medium",
+        "primaryButtonShadowType": "strong",
 
-                    // === FEATURES 1-12 ===
-                    "feature1Title": "Automatisierte KYC",
-                    "feature1Description": "Vollautomatische Kundenidentifikation und -überprüfung in Sekunden statt Stunden.",
-                    "feature1Icon": "&#xf2c2;",
-                    "feature1Color": "#063AA8",
-                    "feature1Active": "true",
+        // === FEATURES 1-12 ===
+        "feature1Title": "Automatisierte KYC",
+        "feature1Description": "Vollautomatische Kundenidentifikation und -überprüfung in Sekunden statt Stunden.",
+        "feature1Icon": "&#xf2c2;",
+        "feature1Color": "#063AA8",
+        "feature1Active": "true",
 
-                    "feature2Title": "Risikobewertung",
-                    "feature2Description": "KI-gestützte Risikoanalyse für präzise Compliance-Entscheidungen.",
-                    "feature2Icon": "&#xf132;",
-                    "feature2Color": "#009CE6",
-                    "feature2Active": "true",
+        "feature2Title": "Risikobewertung",
+        "feature2Description": "KI-gestützte Risikoanalyse für präzise Compliance-Entscheidungen.",
+        "feature2Icon": "&#xf132;",
+        "feature2Color": "#009CE6",
+        "feature2Active": "true",
 
-                    "feature3Title": "Echtzeit-Monitoring",
-                    "feature3Description": "Kontinuierliche Überwachung aller Transaktionen und Aktivitäten.",
-                    "feature3Icon": "&#xf06e;",
-                    "feature3Color": "#B265E9",
-                    "feature3Active": "true",
+        "feature3Title": "Echtzeit-Monitoring",
+        "feature3Description": "Kontinuierliche Überwachung aller Transaktionen und Aktivitäten.",
+        "feature3Icon": "&#xf06e;",
+        "feature3Color": "#B265E9",
+        "feature3Active": "true",
 
-                    "feature4Title": "Automatische Meldungen",
-                    "feature4Description": "Verdachtsmeldungen werden automatisch erstellt und an die FIU übermittelt.",
-                    "feature4Icon": "&#xf0e0;",
-                    "feature4Color": "#EF8646",
-                    "feature4Active": "true",
+        "feature4Title": "Automatische Meldungen",
+        "feature4Description": "Verdachtsmeldungen werden automatisch erstellt und an die FIU übermittelt.",
+        "feature4Icon": "&#xf0e0;",
+        "feature4Color": "#EF8646",
+        "feature4Active": "true",
 
-                    "feature5Title": "DSGVO-konform",
-                    "feature5Description": "Höchste Datenschutzstandards und vollständige DSGVO-Compliance.",
-                    "feature5Icon": "&#xf3ed;",
-                    "feature5Color": "#28A745",
-                    "feature5Active": "true",
+        "feature5Title": "DSGVO-konform",
+        "feature5Description": "Höchste Datenschutzstandards und vollständige DSGVO-Compliance.",
+        "feature5Icon": "&#xf3ed;",
+        "feature5Color": "#28A745",
+        "feature5Active": "true",
 
-                    "feature6Title": "24/7 Support",
-                    "feature6Description": "Rund-um-die-Uhr Betreuung durch unsere Compliance-Experten.",
-                    "feature6Icon": "&#xf590;",
-                    "feature6Color": "#DC3545",
-                    "feature6Active": "true",
+        "feature6Title": "24/7 Support",
+        "feature6Description": "Rund-um-die-Uhr Betreuung durch unsere Compliance-Experten.",
+        "feature6Icon": "&#xf590;",
+        "feature6Color": "#DC3545",
+        "feature6Active": "true",
 
-                    "feature7Title": "",
-                    "feature7Description": "",
-                    "feature7Icon": "",
-                    "feature7Color": "#6C757D",
-                    "feature7Active": "false",
+        "feature7Title": "",
+        "feature7Description": "",
+        "feature7Icon": "",
+        "feature7Color": "#6C757D",
+        "feature7Active": "false",
 
-                    "feature8Title": "",
-                    "feature8Description": "",
-                    "feature8Icon": "",
-                    "feature8Color": "#FFC107",
-                    "feature8Active": "false",
+        "feature8Title": "",
+        "feature8Description": "",
+        "feature8Icon": "",
+        "feature8Color": "#FFC107",
+        "feature8Active": "false",
 
-                    "feature9Title": "",
-                    "feature9Description": "",
-                    "feature9Icon": "",
-                    "feature9Color": "#17A2B8",
-                    "feature9Active": "false",
+        "feature9Title": "",
+        "feature9Description": "",
+        "feature9Icon": "",
+        "feature9Color": "#17A2B8",
+        "feature9Active": "false",
 
-                    "feature10Title": "",
-                    "feature10Description": "",
-                    "feature10Icon": "",
-                    "feature10Color": "#6F42C1",
-                    "feature10Active": "false",
+        "feature10Title": "",
+        "feature10Description": "",
+        "feature10Icon": "",
+        "feature10Color": "#6F42C1",
+        "feature10Active": "false",
 
-                    "feature11Title": "",
-                    "feature11Description": "",
-                    "feature11Icon": "",
-                    "feature11Color": "#E83E8C",
-                    "feature11Active": "false",
+        "feature11Title": "",
+        "feature11Description": "",
+        "feature11Icon": "",
+        "feature11Color": "#E83E8C",
+        "feature11Active": "false",
 
-                    "feature12Title": "",
-                    "feature12Description": "",
-                    "feature12Icon": "",
-                    "feature12Color": "#20C997",
-"feature12Active": "false"
-                },
-                "customized": true
-            },
+        "feature12Title": "",
+        "feature12Description": "",
+        "feature12Icon": "",
+        "feature12Color": "#20C997",
+        "feature12Active": "false"
+    },
+    "customized": true
+},
 {
                 "id": "kerberos-team-contact-cards",
                 "name": "Team Kontakt Cards",
