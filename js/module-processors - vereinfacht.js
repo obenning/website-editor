@@ -27,6 +27,23 @@
                 'large': '1.5rem 3rem',
                 'extra-large': '2rem 4rem'
             },
+
+            // === CONVERTER-FUNKTIONEN ===
+            convertSpacing(value) {
+                return this.spacingMap[value] || value || '0';
+            },
+
+            convertPadding(value) {
+                return this.paddingMap[value] || value || '0';
+            },
+
+            convertRadius(value) {
+                return this.radiusMap[value] || value || '0';
+            },
+
+            convertShadow(value) {
+                return this.shadowMap[value] || value || 'none';
+            },
             
             radiusMap: {
                 'none': '0',
@@ -3708,11 +3725,8 @@ function applyUniversalProcessing(module, html, props) {
     }
     
     // === UNIVERSELLE HOVER-CSS EINFÜGEN ===
-    const hoverCSS = generateUniversalHoverCSS(module);
-    if (hoverCSS) {
-        processedHtml = processedHtml.replace('<section', hoverCSS + '\n<section');
-        console.log('✅ Universelle Hover-CSS eingefügt für:', module.id);
-    }
+    // Neue Module nutzen das globale Button-System, keine separaten CSS-Blöcke mehr
+    console.log('✅ Universelle Property-Verarbeitung abgeschlossen für:', module.id);
     
     return processedHtml;
 }
@@ -7508,6 +7522,7 @@ function processKerberosTestimonialsHorizontal(module, html) {
     return html;
 }
 
+// About Stats Processor
 function processKerberosAboutStats(module, html) {
     const props = module.properties;
     let statsCards = '';
@@ -7563,15 +7578,15 @@ function processKerberosAboutStats(module, html) {
     const responsiveCSS = `
         <style>
             @media (min-width: 768px) {
-                .kerberos-module-{{templateId}} .hero-grid {
+                .kerberos-module-${module.id} .hero-grid {
                     grid-template-columns: 2fr 1fr !important;
                 }
             }
             @media (max-width: 767px) {
-                .kerberos-module-{{templateId}} .hero-grid {
+                .kerberos-module-${module.id} .hero-grid {
                     grid-template-columns: 1fr !important;
                 }
-                .kerberos-module-{{templateId}} .hero-grid > div:last-child {
+                .kerberos-module-${module.id} .hero-grid > div:last-child {
                     order: -1;
                 }
             }
@@ -7580,63 +7595,13 @@ function processKerberosAboutStats(module, html) {
     
     // Template-Platzhalter ersetzen
     html = html.replace('{{statsCards}}', statsCards);
-    html = html.replace('{{heroGridColumns}}', '1fr');
-    html = html.replace('class="kerberos-module-{{templateId}}"', 'class="kerberos-module-{{templateId}}"><div class="hero-grid"');
-    html = html.replace('</div>\n            </div>', '</div></div>\n            </div>');
     html = responsiveCSS + html;
     
     return html;
 }
 
+// FAQ Interactive Processor
 function processKerberosFaqInteractive(module, html) {
-    const props = module.properties;
-    let faqItems = '';
-    
-    // === FAQ ITEMS GENERIEREN ===
-    for (let i = 1; i <= 10; i++) {
-        const isActive = props[`faq${i}Active`] === 'true';
-        if (!isActive) continue;
-        
-        const question = props[`faq${i}Question`];
-        const answer = props[`faq${i}Answer`];
-        
-        if (!question || !answer) continue;
-        
-        const itemId = `faq-item-${module.id}-${i}`;
-        
-        faqItems += `
-            <div class="faq-item" data-faq-id="${itemId}" style="background: ${props.itemBackground}; border: 2px solid ${props.itemBorder}; border-radius: 12px; margin-bottom: 1rem; transition: all 0.3s ease; overflow: hidden;">
-                <div class="faq-question" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;" onclick="(function(itemId) {
-    const item = document.querySelector('[data-faq-id=\\'' + itemId + '\\']');
-    if (!item) return;
-    const answer = item.querySelector('.faq-answer');
-    const icon = item.querySelector('.faq-icon');
-    const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
-    if (isOpen) {
-        answer.style.maxHeight = '0';
-        icon.innerHTML = '&#xf107;';
-        icon.style.transform = 'rotate(0deg)';
-        icon.style.color = '${props.iconColor}';
-        item.style.borderColor = '${props.itemBorder}';
-    } else {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-        icon.innerHTML = '&#xf106;';
-        icon.style.transform = 'rotate(180deg)';
-        icon.style.color = '${props.iconActiveColor}';
-        item.style.borderColor = '${props.itemHoverBorder}';
-    }
-})('${itemId}')">
-                    <h3 style="font-family: var(--heading-font-font-family); font-size: 1.1rem; font-weight: 600; color: ${props.questionColor}; margin: 0; flex: 1; padding-right: 1rem;">${question}</h3>
-                    <span class="faq-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 1.25rem; color: ${props.iconColor}; transition: all 0.3s ease; flex-shrink: 0;">&#xf107;</span>
-                </div>
-                <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 1.5rem;">
-                    <div style="font-family: var(--body-font-font-family); font-size: 1rem; line-height: 1.7; color: ${props.answerColor}; padding-bottom: 1.5rem;">${answer}</div>
-                </div>
-            </div>
-        `;
-    }
-}  
-  function processKerberosFaqInteractive(module, html) {
     const props = module.properties;
     let faqItems = '';
     
