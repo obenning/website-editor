@@ -7498,9 +7498,12 @@ function processKerberosAboutStats(module, html) {
 
 
 // FAQ Interactive Processor
+// FAQ Interactive Processor
 function processKerberosFaqInteractive(module, html) {
     const props = module.properties;
     let faqItems = '';
+    
+    console.log('❓ Processing FAQ Interactive:', module.id);
     
     // === FAQ ITEMS GENERIEREN ===
     for (let i = 1; i <= 10; i++) {
@@ -7517,7 +7520,8 @@ function processKerberosFaqInteractive(module, html) {
         faqItems += `
             <div class="faq-item" data-faq-id="${itemId}" style="background: ${props.itemBackground || '#FFFFFF'}; border: 2px solid ${props.itemBorder || '#E9ECEF'}; border-radius: 12px; margin-bottom: 1rem; transition: all 0.3s ease; overflow: hidden;">
                 <div class="faq-question" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;" 
-                     onclick="(function(id) {
+                     onclick="(function(id, e) {
+                         if (e) { e.stopPropagation(); e.preventDefault(); }
                          const item = document.querySelector('[data-faq-id=\\'' + id + '\\']');
                          if (!item) return;
                          const answer = item.querySelector('.faq-answer');
@@ -7536,14 +7540,14 @@ function processKerberosFaqInteractive(module, html) {
                              icon.style.color = '${props.iconActiveColor || '#009CE6'}';
                              item.style.borderColor = '${props.itemHoverBorder || '#063AA8'}';
                          }
-                     })('${itemId}'); event.stopPropagation(); event.preventDefault();"
+                     })('${itemId}', event)"
                      onmouseover="if (!this.nextElementSibling.style.maxHeight || this.nextElementSibling.style.maxHeight === '0px') { this.closest('.faq-item').style.borderColor = '${props.itemHoverBorder || '#063AA8'}'; }"
                      onmouseout="if (!this.nextElementSibling.style.maxHeight || this.nextElementSibling.style.maxHeight === '0px') { this.closest('.faq-item').style.borderColor = '${props.itemBorder || '#E9ECEF'}'; }">
-                    <h3 style="font-family: var(--heading-font-font-family); font-size: 1.1rem; font-weight: 600; color: ${props.questionColor || '#212529'}; margin: 0; flex: 1; padding-right: 1rem;">${question}</h3>
-                    <span class="faq-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 1.25rem; color: ${props.iconColor || '#063AA8'}; transition: all 0.3s ease; flex-shrink: 0;">&#xf107;</span>
+                    <h3 style="font-family: var(--heading-font-font-family); font-size: 1.1rem; font-weight: 600; color: ${props.questionColor || '#212529'}; margin: 0; flex: 1; padding-right: 1rem; pointer-events: none;">${question}</h3>
+                    <span class="faq-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 1.25rem; color: ${props.iconColor || '#063AA8'}; transition: all 0.3s ease; flex-shrink: 0; pointer-events: none;">&#xf107;</span>
                 </div>
                 <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem;">
-                    <div style="font-family: var(--body-font-font-family); font-size: 1rem; line-height: 1.7; color: ${props.answerColor || '#495057'}; padding-bottom: 1.5rem;">${answer}</div>
+                    <div style="font-family: var(--body-font-font-family); font-size: 1rem; line-height: 1.7; color: ${props.answerColor || '#495057'}; padding-bottom: 1.5rem; pointer-events: none;">${answer}</div>
                 </div>
             </div>
         `;
@@ -7559,10 +7563,25 @@ function processKerberosFaqInteractive(module, html) {
         `;
     }
     
-    // Template-Platzhalter ersetzen
-    html = html.replace('{{faqItems}}', faqItems);
+    // Container für FAQ-Accordion erstellen
+    const faqContainer = `
+        <div class="kerberos-faq-accordion" data-module-id="${module.id}">
+            ${faqItems}
+        </div>
+    `;
     
-    console.log('✅ FAQ Interactive verarbeitet');
+    // Template-Platzhalter ersetzen
+    if (html.includes('{{faqItems}}')) {
+        html = html.replace('{{faqItems}}', faqItems);
+    } else if (html.includes('<div class="kerberos-faq-accordion"')) {
+        // Ersetze existierenden FAQ-Container
+        html = html.replace(/<div class="kerberos-faq-accordion"[^>]*>[\s\S]*?<\/div>/, faqContainer);
+    } else {
+        // Füge FAQ-Container vor dem schließenden Section-Tag ein
+        html = html.replace('</div>\n    </section>', faqContainer + '\n        </div>\n    </section>');
+    }
+    
+    console.log('✅ FAQ Interactive verarbeitet - Items:', faqItems ? 'vorhanden' : 'keine');
     return html;
 }
 
