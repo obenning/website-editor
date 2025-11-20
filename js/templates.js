@@ -3723,8 +3723,10 @@
                 <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
                 <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
-            <div class="kerberos-faq-accordion" data-module-id="{{moduleId}}">
-                <!-- FAQ_ITEMS_PLACEHOLDER -->
+            <div class="kerberos-faq-accordion" data-module-id="{{module
+
+            Id}}">
+                {{faqItems}}
             </div>
         </div>
     </section>`,
