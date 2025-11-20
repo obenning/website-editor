@@ -7502,6 +7502,7 @@ function processKerberosAboutStats(module, html) {
 function processKerberosFaqInteractive(module, html) {
     const props = module.properties;
     let faqItems = '';
+    let itemCount = 0;
     
     console.log('❓ Processing FAQ Interactive:', module.id);
     
@@ -7515,6 +7516,7 @@ function processKerberosFaqInteractive(module, html) {
         
         if (!question || !answer) continue;
         
+        itemCount++;
         const itemId = `faq-item-${module.id}-${i}`;
         
         faqItems += `
@@ -7563,25 +7565,49 @@ function processKerberosFaqInteractive(module, html) {
         `;
     }
     
-    // Container für FAQ-Accordion erstellen
-    const faqContainer = `
-        <div class="kerberos-faq-accordion" data-module-id="${module.id}">
-            ${faqItems}
-        </div>
-    `;
+    console.log('✅ FAQ Items generiert:', itemCount, 'Items');
     
-    // Template-Platzhalter ersetzen
+    // === MEHRERE ERSETZUNGS-STRATEGIEN ===
+    
+    // Strategie 1: Direkter Platzhalter
     if (html.includes('{{faqItems}}')) {
         html = html.replace('{{faqItems}}', faqItems);
-    } else if (html.includes('<div class="kerberos-faq-accordion"')) {
-        // Ersetze existierenden FAQ-Container
-        html = html.replace(/<div class="kerberos-faq-accordion"[^>]*>[\s\S]*?<\/div>/, faqContainer);
-    } else {
-        // Füge FAQ-Container vor dem schließenden Section-Tag ein
+        console.log('✅ FAQ Items via Platzhalter eingefügt');
+    }
+    // Strategie 2: Existierender Container
+    else if (html.includes('<div class="kerberos-faq-accordion"')) {
+        const containerRegex = /<div class="kerberos-faq-accordion"[^>]*>[\s\S]*?<\/div>/;
+        const newContainer = `<div class="kerberos-faq-accordion" data-module-id="${module.id}">${faqItems}</div>`;
+        html = html.replace(containerRegex, newContainer);
+        console.log('✅ FAQ Items in existierenden Container eingefügt');
+    }
+    // Strategie 3: Vor schließendem </div></section>
+    else if (html.includes('</div>\n    </section>')) {
+        const faqContainer = `
+            <div class="kerberos-faq-accordion" data-module-id="${module.id}">
+                ${faqItems}
+            </div>
+        `;
         html = html.replace('</div>\n    </section>', faqContainer + '\n        </div>\n    </section>');
+        console.log('✅ FAQ Container vor </section> eingefügt');
+    }
+    // Strategie 4: Fallback - nach dem Title-Block
+    else {
+        const titleEndRegex = /<\/div>\s*<\/div>\s*<\/section>/;
+        if (titleEndRegex.test(html)) {
+            const faqContainer = `
+            <div class="kerberos-faq-accordion" data-module-id="${module.id}">
+                ${faqItems}
+            </div>
+            `;
+            html = html.replace(titleEndRegex, `</div>\n            ${faqContainer}\n        </div>\n    </section>`);
+            console.log('✅ FAQ Container via Fallback eingefügt');
+        } else {
+            console.error('❌ Konnte FAQ Items nicht einfügen - keine passende Stelle gefunden');
+            console.log('HTML:', html.substring(0, 500));
+        }
     }
     
-    console.log('✅ FAQ Interactive verarbeitet - Items:', faqItems ? 'vorhanden' : 'keine');
     return html;
 }
 
