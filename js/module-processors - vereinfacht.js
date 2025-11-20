@@ -5000,6 +5000,25 @@ function processKerberosImageTextModern(module, html) {
         html = html.replace('{{responsiveImageElement}}', '<div style="width: 100%; height: 300px; background: #f8f9fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6c757d; font-size: 1.2rem;">📸 Bild hinzufügen</div>');
     }
 
+    // === ICON TYPE-MAPPINGS ===
+    const iconSizeMap = {
+        'small': '1.5rem',
+        'medium': '2rem',
+        'large': '2.5rem',
+        'extra-large': '3rem'
+    };
+
+    const iconContainerSizeMap = {
+        'small': '50px',
+        'medium': '60px',
+        'large': '70px',
+        'extra-large': '80px'
+    };
+
+    // Type-Platzhalter ersetzen
+    html = html.replace(/\{\{iconSizeType\}\}/g, iconSizeMap[props.iconSizeType] || '2rem');
+    html = html.replace(/\{\{iconContainerSizeType\}\}/g, iconContainerSizeMap[props.iconContainerSizeType] || '60px');
+
     // === BUTTON-PLATZHALTER ERSETZEN ===
     if (props.showButton === 'true' || props.primaryButtonText || props.buttonText) {
         const buttonStyles = getUniversalButtonStyles({
