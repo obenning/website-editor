@@ -6338,9 +6338,13 @@ function processUniversalModule(module, html) {
                     const description = props['product' + i + 'Description'] || 'Beschreibung';
                     const image = props['product' + i + 'Image'] || 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop';
                     const link = props['product' + i + 'Link'] || '#';
+                    const badge = props['product' + i + 'Badge'];
 
+                    // Extrahiere nur Text für ALT (ohne HTML-Tags)
+                    const altText = title.replace(/<[^>]*>/g, '').trim() || 'Produkt ' + i;
+                    
                     // Responsive Image verwenden
-                    const responsiveImage = createResponsiveImage(image, title, '', '(max-width: 768px) 100vw, 50vw');
+                    const responsiveImage = createResponsiveImage(image, altText, '', '(max-width: 768px) 100vw, 50vw');
                     const optimizedImage = responsiveImage.replace(/style="[^"]*"/, 'style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s ease, filter 0.4s ease;"');
 
                     // WICHTIG: Ersetze {{imageUrl}} Platzhalter mit tatsächlicher URL
