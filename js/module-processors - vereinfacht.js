@@ -6338,11 +6338,14 @@ function processUniversalModule(module, html) {
                     const link = props['product' + i + 'Link'] || '#';
 
                     // Responsive Image verwenden
-                    const responsiveImage = createResponsiveImage('{{imageUrl}}', title, '', '(max-width: 768px) 100vw, 50vw');
+                    const responsiveImage = createResponsiveImage(image, title, '', '(max-width: 768px) 100vw, 50vw');
                     const optimizedImage = responsiveImage.replace(/style="[^"]*"/, 'style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s ease, filter 0.4s ease;"');
 
+                    // WICHTIG: Ersetze {{imageUrl}} Platzhalter mit tatsächlicher URL
+                    const finalImage = optimizedImage.replace(/\{\{imageUrl\}\}/g, image);
+
                     productCards += '<a class="solutions-card-' + module.id + '" href="' + link + '">' +
-                        optimizedImage +
+                        finalImage +
                         '<div style="padding: 1rem;">' +
                         '<h4 class="solutions-title-' + module.id + '">' + title + '</h4>' +
                         '<p class="solutions-desc-' + module.id + '">' + description + '</p>' +
