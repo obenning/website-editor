@@ -4945,11 +4945,18 @@ function processUniversalModule(module, html) {
                         const escapedUrl = propValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                         
                         try {
-                            const styleRegex = new RegExp(`(<img[^>]*src="${escapedUrl}"[^>]*?)style="[^"]*"([^>]*>)`, 'g');
-                            html = html.replace(styleRegex, `$1style="${imgStyle}"$2`);
+                            // Prüfe ob Bild bereits ein style-Attribut hat
+                            const hasStyle = new RegExp(`<img[^>]*src="${escapedUrl}"[^>]*style="[^"]*"`).test(html);
                             
-                            const noStyleRegex = new RegExp(`(<img[^>]*src="${escapedUrl}"[^>]*?)(?!.*style=)([^>]*>)`, 'g');
-                            html = html.replace(noStyleRegex, `$1 style="${imgStyle}"$2`);
+                            if (hasStyle) {
+                                // Ersetze bestehendes style
+                                const styleRegex = new RegExp(`(<img[^>]*src="${escapedUrl}"[^>]*?)style="[^"]*"([^>]*>)`, 'g');
+                                html = html.replace(styleRegex, `$1style="${imgStyle}"$2`);
+                            } else {
+                                // Füge neues style hinzu (nur wenn keins existiert)
+                                const noStyleRegex = new RegExp(`(<img[^>]*src="${escapedUrl}"[^>]*?)([^>]*>)`, 'g');
+                                html = html.replace(noStyleRegex, `$1 style="${imgStyle}"$2`);
+                            }
                         } catch (regexError) {
                             console.warn('Regex error für URL:', propValue, regexError);
                         }
