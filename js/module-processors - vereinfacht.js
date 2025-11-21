@@ -4998,6 +4998,15 @@ function processUniversalModule(module, html) {
         function processKerberosImageTextModern(module, html) {
             const props = module.properties;
 
+            // RichText-Wrapper entfernen und Alignment extrahieren
+            if (props.title && props.title.includes('<div style=')) {
+                const alignMatch = props.title.match(/text-align:\s*(left|center|right)/);
+                if (alignMatch) {
+                    props.titleAlignment = alignMatch[1];
+                }
+                props.title = props.title.replace(/<div[^>]*>/g, '').replace(/<\/div>/g, '');
+            }
+
             // Title Alignment verarbeiten
             const titleAlignment = props.titleAlignment || 'left';
             html = html.replace(/{{titleAlignment}}/g, titleAlignment);
@@ -5083,6 +5092,17 @@ function processUniversalModule(module, html) {
         // Standard-Layout mit Bild links/rechts und Text - MIT ICON-FIX
         function processKerberosImageText(module, html) {
             const props = module.properties;
+
+            // RichText-Wrapper entfernen und Alignment extrahieren
+            if (props.title && props.title.includes('<div style=')) {
+                // Extrahiere text-align aus dem div
+                const alignMatch = props.title.match(/text-align:\s*(left|center|right)/);
+                if (alignMatch) {
+                    props.titleAlignment = alignMatch[1];
+                }
+                // Entferne das umschließende div und behalte nur den Text
+                props.title = props.title.replace(/<div[^>]*>/g, '').replace(/<\/div>/g, '');
+            }
             
             // Validierung
             if (!html) {
