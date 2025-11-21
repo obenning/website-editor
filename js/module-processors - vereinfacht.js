@@ -5120,8 +5120,8 @@ function processUniversalModule(module, html) {
             
             // === TEXT-ELEMENTE ===
             const titleAlignment = props.titleAlignment || 'left';
-const titleElement = '<h3 style="font-family: var(--heading-font-font-family); font-size: var(--heading-3-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ' + (props.titleColor || '#063AA8') + '; margin: 0 0 1rem 0; text-align: ' + titleAlignment + ';">' + (props.title || '') + '</h3>';
-            const textElement = '<p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ' + (props.textColor || '#6c757d') + '; margin: 0 0 2rem 0;">' + (props.text || '') + '</p>';
+const titleElement = '<h3 style="font-size: 2rem; font-weight: 700; line-height: 1.2; color: ' + (props.titleColor || '#063AA8') + '; text-align: ' + titleAlignment + ' !important; display: block !important; margin: 0 0 1rem 0 !important;">' + (props.title || '') + '</h3>';
+            const textElement = '<p style="font-size: 1rem; line-height: 1.6; color: ' + (props.textColor || '#6c757d') + '; margin: 0 0 2rem 0 !important;">' + (props.text || '') + '</p>';
             
             // === BUTTON-ELEMENT ===
             const buttonStyles = getUniversalButtonStyles({
@@ -5133,7 +5133,7 @@ const titleElement = '<h3 style="font-family: var(--heading-font-font-family); f
                 buttonColor: props.buttonTextColor || props.buttonColor
             });
             
-            const buttonElement = '<a href="' + (props.buttonLink || '#') + '" class="kerberos-btn kerberos-btn-' + module.id + '" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: ' + buttonStyles.background + '; color: ' + buttonStyles.color + '; padding: ' + buttonStyles.padding + '; border-radius: ' + buttonStyles.borderRadius + '; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: ' + buttonStyles.boxShadow + '; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">' + (props.buttonText || 'Mehr erfahren') + '</a>';
+            const buttonElement = '<a href="' + (props.buttonLink || '#') + '" class="kerberos-btn kerberos-btn-' + module.id + '" style="font-weight: 600; background: ' + buttonStyles.background + '; color: ' + buttonStyles.color + '; padding: ' + buttonStyles.padding + '; border-radius: ' + buttonStyles.borderRadius + '; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: ' + buttonStyles.boxShadow + '; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer;">' + (props.buttonText || 'Mehr erfahren') + '</a>';
             
             const textContent = iconElement + titleElement + textElement + buttonElement;
             
