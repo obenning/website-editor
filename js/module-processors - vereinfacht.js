@@ -5119,7 +5119,8 @@ function processUniversalModule(module, html) {
             }
             
             // === TEXT-ELEMENTE ===
-            const titleElement = '<h3 style="font-family: var(--heading-font-font-family); font-size: var(--heading-3-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ' + (props.titleColor || '#063AA8') + '; margin: 0 0 1rem 0;">' + (props.title || '') + '</h3>';
+            const titleAlignment = props.titleAlignment || 'left';
+const titleElement = '<h3 style="font-family: var(--heading-font-font-family); font-size: var(--heading-3-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ' + (props.titleColor || '#063AA8') + '; margin: 0 0 1rem 0; text-align: ' + titleAlignment + ';">' + (props.title || '') + '</h3>';
             const textElement = '<p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ' + (props.textColor || '#6c757d') + '; margin: 0 0 2rem 0;">' + (props.text || '') + '</p>';
             
             // === BUTTON-ELEMENT ===
