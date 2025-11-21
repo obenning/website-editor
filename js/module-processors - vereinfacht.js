@@ -5019,7 +5019,7 @@ function processUniversalModule(module, html) {
             html = html.replace(/{{titleAlignment}}/g, titleAlignment);
 
             // === TITLE CONTENT GENERIEREN (RichText oder Plain) ===
-            let titleContent = props.title || '';
+            let titleContent = props.titleContent || props.title || '';
             const titleColor = props.titleColor || '#063AA8';
             
             // Prüfe ob title bereits ein Heading-Tag enthält (vom RichText-Editor)
@@ -5034,7 +5034,7 @@ function processUniversalModule(module, html) {
                 );
             }
             html = html.replace(/\{\{titleContent\}\}/g, titleContent);
-            
+
             if (props.imageUrl) {
                 const responsiveImg = createResponsiveImage(
                     props.imageUrl,
