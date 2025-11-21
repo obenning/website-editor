@@ -1460,7 +1460,7 @@
             if (props.title) {
                 const titleAlign = props.titleAlignment || 'center';
                 headerContent += `<div style="text-align: ${titleAlign}; margin-bottom: 3rem;">
-                    <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ${props.titleColor || '#063AA8'}; margin: 0 0 1rem 0; text-align: ${titleAlign};">${props.title}</h2>`;
+                    ${props.title}`;
 
                 if (props.showSubtitle === 'true' && props.subtitle) {
                     headerContent += `<p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ${props.subtitleColor || '#6c757d'}; max-width: 800px; margin: 0 auto;">${props.subtitle}</p>`;
@@ -6413,8 +6413,8 @@ function processUniversalModule(module, html) {
                         (badge ? '<div style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #063AA8, #009CE6); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; z-index: 2;">' + badge + '</div>' : '') +
                         '<img src="' + image + '" alt="' + title + '" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s ease;">' +
                         '<div style="padding: 1.5rem;">' +
-                        '<h3 style="font-family: var(--heading-font-font-family); color: #212529; margin: 0 0 0.75rem 0; font-size: 1.25rem; font-weight: 600;">' + title + '</h3>' +
-                        '<p style="font-family: var(--body-font-font-family); color: #6c757d; margin: 0 0 1rem 0; font-size: 0.9rem; line-height: 1.5;">' + description + '</p>' +
+                        '<h3 style="font-family: var(--heading-font-font-family); color: #212529; margin: 0 0 0.75rem 0; font-size: 1.25rem; font-weight: 600; text-align: ' + (props.cardTitleAlignment || 'center') + ';">' + title + '</h3>' +
+                        '<p style="font-family: var(--body-font-font-family); color: #6c757d; margin: 0 0 1rem 0; font-size: 0.9rem; line-height: 1.5; text-align: ' + (props.cardDescriptionAlignment || 'center') + ';">' + description + '</p>' +
                         (price ? '<div style="font-weight: 600; color: #063AA8; font-size: 1.1rem;">' + price + '</div>' : '') +
                         '</div>' +
                         '</a>';
