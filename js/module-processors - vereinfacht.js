@@ -2635,7 +2635,7 @@ function processKerberosTestimonialsPro(module, html) {
                     // SCHRITT 2: HTML-Elemente in separate Variablen aufteilen
                     const cardStart = '<div class="screenshot-card" style="background: ' + cardBackground + '; border: 1px solid ' + cardBorder + '; border-radius: 8px; overflow: hidden; transition: all 0.3s ease; cursor: default;">';
                     const responsiveImage = createResponsiveImage('{{imageUrl}}', cardTitle, '', '(max-width: 768px) 100vw, 33vw');
-                    const imageElement = responsiveImage.replace('style="width: 100%; height: auto; object-fit: cover;"', 'style="width: 100%; height: 200px; object-fit: cover;"');
+                    const imageElement = responsiveImage.replace(/style="[^"]*"/, 'style="width: 100%; height: 200px; object-fit: cover;"');
                     const contentStart = '<div style="padding: 1rem;">';
                     const titleElement = '<h4 style="font-family: var(--heading-font-font-family); color: ' + textColor + '; margin: 0 0 0.5rem 0; font-size: 1.1rem;">' + cardTitle + '</h4>';
                     const descriptionElement = '<p style="font-family: var(--body-font-font-family); color: ' + subtitleColor + '; margin: 0; font-size: 0.9rem;">' + cardDescription + '</p>';
@@ -3255,7 +3255,7 @@ function processKerberosTestimonialsPro(module, html) {
                     // HTML-Elemente für Product Card
                     const cardStart = '<a href="' + safeProductLink + '" class="product-card-' + module.id + '" style="background: #FFFFFF; border: 1px solid ' + cardBorderColor + '; border-radius: 8px; overflow: hidden; transition: all 0.3s ease; text-decoration: none; display: block; cursor: pointer;">';
                     const responsiveImage = createResponsiveImage('{{imageUrl}}', safeProductTitle, '', '(max-width: 768px) 100vw, 50vw');
-                    const imageElement = responsiveImage.replace('style="width: 100%; height: auto; object-fit: cover;"', 'style="width: 100%; height: 200px; object-fit: cover;"');
+                    const imageElement = responsiveImage.replace(/style="[^"]*"/, 'style="width: 100%; height: 200px; object-fit: cover;"');
                     const contentStart = '<div style="padding: 1rem;">';
                     const titleElement = '<h4 style="font-family: var(--heading-font-font-family); color: ' + cardTitleColor + '; margin: 0 0 0.5rem 0; font-size: 1.1rem;">' + safeProductTitle + '</h4>';
                     const descriptionElement = '<p style="font-family: var(--body-font-font-family); color: ' + cardDescriptionColor + '; margin: 0; font-size: 0.9rem;">' + safeProductDescription + '</p>';
@@ -4873,7 +4873,7 @@ function processUniversalModule(module, html) {
 
                     // Original Styles beibehalten
                     const optimizedImg = responsiveImg.replace(
-                        'style="width: 100%; height: auto; object-fit: cover;"',
+                        /style="[^"]*"/,
                         originalStyle ? `style="${originalStyle}"` : 'style="width: 100%; height: auto; object-fit: cover;"'
                     );
 
@@ -4990,7 +4990,7 @@ function processUniversalModule(module, html) {
                 const finalStyle = `width: 100%; height: ${autoHeight}; object-fit: ${autoObjectFit}; object-position: ${autoObjectPosition}; display: block; margin: 0; line-height: 0; ${customCSS}`;
 
                 const finalImg = responsiveImg.replace(
-                    'style="width: 100%; height: auto; object-fit: cover;"',
+                    /style="[^"]*"/,
                     `style="${finalStyle}"`
                 );
 
@@ -6323,8 +6323,8 @@ function processUniversalModule(module, html) {
                     const link = props['product' + i + 'Link'] || '#';
 
                     // Responsive Image verwenden
-                    const responsiveImage = createResponsiveImage(image, title, '', '(max-width: 768px) 100vw, 50vw');
-                    const optimizedImage = responsiveImage.replace('style="width: 100%; height: auto; object-fit: cover;"', 'style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s ease, filter 0.4s ease;"');
+                    const responsiveImage = createResponsiveImage('{{imageUrl}}', title, '', '(max-width: 768px) 100vw, 50vw');
+                    const optimizedImage = responsiveImage.replace(/style="[^"]*"/, 'style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s ease, filter 0.4s ease;"');
 
                     productCards += '<a class="solutions-card-' + module.id + '" href="' + link + '">' +
                         optimizedImage +
