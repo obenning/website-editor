@@ -3694,7 +3694,6 @@ const MODULE_PROCESSORS = {
     // === CONTENT & TEXT MODULES ===
     'kerberos-text-button-richtext': 'processKerberosTextButtonRichtext',
     'kerberos-text-button-richtext-fixed': 'processKerberosTextButtonRichtext',
-    'kerberos-image-text': 'processKerberosImageText',
     'kerberos-image-text-modern': 'processKerberosImageTextModern',
     'kerberos-cta-modern': 'processKerberosCtaModern',
     
@@ -5007,6 +5006,14 @@ function processUniversalModule(module, html) {
                 props.title = props.title.replace(/<div[^>]*>/g, '').replace(/<\/div>/g, '');
             }
 
+            // === LAYOUT TYPE VERARBEITEN (Bild links/rechts) ===
+            const layoutType = props.layoutType || 'image-left';
+            const imageOrder = layoutType === 'image-right' ? '2' : '1';
+            const textOrder = layoutType === 'image-right' ? '1' : '2';
+            html = html.replace(/\{\{imageOrder\}\}/g, imageOrder);
+            html = html.replace(/\{\{textOrder\}\}/g, textOrder);
+            html = html.replace(/\{\{moduleId\}\}/g, module.id);
+
             // Title Alignment verarbeiten
             const titleAlignment = props.titleAlignment || 'left';
             html = html.replace(/{{titleAlignment}}/g, titleAlignment);
@@ -5089,97 +5096,6 @@ function processUniversalModule(module, html) {
             return html;
         }
 
-        // Standard-Layout mit Bild links/rechts und Text - MIT ICON-FIX
-        function processKerberosImageText(module, html) {
-            const props = module.properties;
-
-            // RichText-Wrapper entfernen und Alignment extrahieren
-            if (props.title && props.title.includes('<div style=')) {
-                // Extrahiere text-align aus dem div
-                const alignMatch = props.title.match(/text-align:\s*(left|center|right)/);
-                if (alignMatch) {
-                    props.titleAlignment = alignMatch[1];
-                }
-                // Entferne das umschließende div und behalte nur den Text
-                props.title = props.title.replace(/<div[^>]*>/g, '').replace(/<\/div>/g, '');
-            }
-            
-            // Validierung
-            if (!html) {
-                const template = MODULE_TEMPLATES.find(t => t.id === module.templateId);
-                html = template ? template.html : '<div>Template nicht gefunden</div>';
-            }
-            
-            // === ICON-ELEMENT GENERIEREN (FIX FÜR SQUARESPACE) ===
-            let iconElement = '';
-            if (props.iconClass) {
-                const iconColor = props.iconColor || '#063AA8';
-                const iconSize = props.iconSize || '2rem';
-                iconElement = '<div style="margin-bottom: 1rem; display: block;"><div style="font-family: \'Font Awesome 5 Pro\'; font-size: ' + iconSize + '; color: ' + iconColor + '; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: rgba(6,58,168,0.1); border-radius: 50%;">' + props.iconClass + '</div></div>';
-            }
-            
-            // === TEXT-ELEMENTE ===
-            const titleAlignment = props.titleAlignment || 'left';
-const titleElement = '<h3 style="font-size: 2rem; font-weight: 700; line-height: 1.2; color: ' + (props.titleColor || '#063AA8') + '; text-align: ' + titleAlignment + ' !important; display: block !important; margin: 0 0 1rem 0 !important;">' + (props.title || '') + '</h3>';
-            const textElement = '<p style="font-size: 1rem; line-height: 1.6; color: ' + (props.textColor || '#6c757d') + '; margin: 0 0 2rem 0 !important;">' + (props.text || '') + '</p>';
-            
-            // === BUTTON-ELEMENT ===
-            const buttonStyles = getUniversalButtonStyles({
-                buttonStyleType: props.buttonStyleType || 'primary',
-                buttonPaddingType: props.buttonPaddingType || 'medium',
-                buttonRadiusType: props.buttonRadiusType || 'medium',
-                buttonShadowType: props.buttonShadowType || 'medium',
-                buttonBackground: props.buttonBgColor || props.buttonBackground,
-                buttonColor: props.buttonTextColor || props.buttonColor
-            });
-            
-            const buttonElement = '<a href="' + (props.buttonLink || '#') + '" class="kerberos-btn kerberos-btn-' + module.id + '" style="font-weight: 600; background: ' + buttonStyles.background + '; color: ' + buttonStyles.color + '; padding: ' + buttonStyles.padding + '; border-radius: ' + buttonStyles.borderRadius + '; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: ' + buttonStyles.boxShadow + '; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer;">' + (props.buttonText || 'Mehr erfahren') + '</a>';
-            
-            const textContent = iconElement + titleElement + textElement + buttonElement;
-            
-            // === IMAGE-CONTENT ===
-            let imageContent = '';
-            if (props.imageUrl) {
-                const responsiveImg = createResponsiveImage(
-                    props.imageUrl,
-                    props.imageAlt || 'Bild',
-                    '',
-                    '(max-width: 768px) 100vw, 50vw'
-                );
-                imageContent = '<div><div style="position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(6,58,168,0.1)">' + responsiveImg + '</div></div>';
-            } else {
-                imageContent = '<div style="width: 100%; height: 300px; background: #f8f9fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #6c757d;">📸 Bild hinzufügen</div>';
-            }
-            
-            // === LAYOUT ZUSAMMENBAUEN ===
-            const layoutType = props.layoutType || 'image-left';
-            const contentGap = props.contentGap || '4rem';
-            
-            let layoutContent = '';
-            if (layoutType === 'image-left') {
-                layoutContent = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: ' + contentGap + '; align-items: center;">' + imageContent + '<div>' + textContent + '</div></div>';
-            } else {
-                layoutContent = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: ' + contentGap + '; align-items: center;"><div>' + textContent + '</div>' + imageContent + '</div>';
-            }
-            
-            html = html.replace('{{layoutContent}}', layoutContent);
-            
-            // Responsive CSS
-            const responsiveCSS = `
-                <style>
-                    @media (max-width: 768px) {
-                        .kerberos-image-text-${module.id} {
-                            flex-direction: column !important;
-                        }
-                        .kerberos-image-text-${module.id} > div {
-                            width: 100% !important;
-                        }
-                    }
-                </style>
-            `;
-            
-            return responsiveCSS + html;
-        }
 
         // === TEAM CONTACT CARDS PROCESSOR ===
         function processKerberosTeamContactCards(module, html) {
