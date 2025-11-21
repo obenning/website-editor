@@ -6383,43 +6383,57 @@ function processUniversalModule(module, html) {
                 if (props[`product${i}Active`] === 'true') {
                     console.log(`📦 Produkt ${i}:`, {
                         title: props[`product${i}Title`],
-                        desc: props[`product${i}Description`]?.substring(0, 30) + '...',
-                        active: props[`product${i}Active`]
+                        description: props[`product${i}Description`],
+                        image: props[`product${i}Image`],
+                        link: props[`product${i}Link`]
                     });
                 }
             }
 
-            // Header Content
+            // Header Content (mit optionaler Subtitle)
             let headerContent = '';
             if (props.title) {
-                headerContent = '<div style="text-align: center; margin-bottom: 4rem;">' +
-                    '<h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ' + props.titleColor + '; margin: 0 0 1rem 0;">' + props.title + '</h2>';
+                const titleAlign = props.titleAlignment || 'center';
+                headerContent += `<div style="margin-bottom: 3rem;">`;
+                
+                // RichText-Content direkt verwenden (enthält bereits Styling)
+                headerContent += props.title;
 
                 if (props.showSubtitle === 'true' && props.subtitle) {
-                    headerContent += '<p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ' + props.subtitleColor + '; max-width: 700px; margin: 0 auto;">' + props.subtitle + '</p>';
+                    headerContent += props.subtitle;
                 }
 
-                headerContent += '</div>';
+                headerContent += `</div>`;
             }
 
-            // Product Cards generieren
+            // === PRODUCT CARDS ===
             let productCards = '';
-            for (let i = 1; i <= 9; i++) {
-                if (props['product' + i + 'Active'] === 'true') {
-                    const title = props['product' + i + 'Title'] || 'Produkt ' + i;
-                    const description = props['product' + i + 'Description'] || 'Beschreibung';
-                    const image = props['product' + i + 'Image'] || 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop';
-                    const link = props['product' + i + 'Link'] || '#';
-                    const price = props['product' + i + 'Price'] || '';
-                    const badge = props['product' + i + 'Badge'] || '';
+            for (let i = 1; i <= 12; i++) {
+                if (props[`product${i}Active`] === 'true') {
+                    const title = props[`product${i}Title`] || `Produkt ${i}`;
+                    const description = props[`product${i}Description`] || 'Beschreibung';
+                    const image = props[`product${i}Image`] || 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop';
+                    const link = props[`product${i}Link`] || '#';
+                    const badge = props[`product${i}Badge`];
 
-                    productCards += '<a class="showcase-card-' + module.id + '" href="' + link + '" style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 8px; overflow: hidden; text-decoration: none; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s ease; position: relative;">' +
+                    // Extrahiere Text ohne HTML-Tags für ALT-Attribut
+                    const altText = title.replace(/<[^>]*>/g, '').trim() || `Produkt ${i}`;
+                    
+                    // Alignments aus Properties
+                    const titleAlign = props.cardTitleAlignment || 'center';
+                    const descAlign = props.cardDescriptionAlignment || 'center';
+
+                    // Responsive Image verwenden
+                    const responsiveImage = createResponsiveImage(image, altText, '', '(max-width: 768px) 100vw, 50vw');
+                    const optimizedImage = responsiveImage.replace(/style="[^"]*"/, 'style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s ease;"');
+
+                    productCards += '<a class="kerberos-btn kerberos-btn-' + module.id + ' showcase-card-' + module.id + '" href="' + link + '" style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 8px; overflow: hidden; text-decoration: none; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s ease; position: relative;">' +
                         (badge ? '<div style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #063AA8, #009CE6); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; z-index: 2;">' + badge + '</div>' : '') +
-                        '<img src="' + image + '" alt="' + title + '" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s ease;">' +
+                        optimizedImage +
                         '<div style="padding: 1.5rem;">' +
-                        '<h3 style="font-family: var(--heading-font-font-family); color: #212529; margin: 0 0 0.75rem 0; font-size: 1.25rem; font-weight: 600; text-align: ' + (props.cardTitleAlignment || 'center') + ';">' + title + '</h3>' +
-                        '<p style="font-family: var(--body-font-font-family); color: #6c757d; margin: 0 0 1rem 0; font-size: 0.9rem; line-height: 1.5; text-align: ' + (props.cardDescriptionAlignment || 'center') + ';">' + description + '</p>' +
-                        (price ? '<div style="font-weight: 600; color: #063AA8; font-size: 1.1rem;">' + price + '</div>' : '') +
+                        '<div style="text-align: ' + titleAlign + '; font-family: var(--heading-font-font-family); color: #212529; margin: 0 0 0.75rem 0; font-size: 1.25rem; font-weight: 600;">' + title + '</div>' +
+                        '<div style="text-align: ' + descAlign + '; font-family: var(--body-font-font-family); color: #6c757d; margin: 0 0 1rem 0; font-size: 0.9rem; line-height: 1.5;">' + description + '</div>' +
+                        (props[`product${i}Price`] ? '<div style="font-weight: 600; color: #063AA8; font-size: 1.1rem;">' + props[`product${i}Price`] + '</div>' : '') +
                         '</div>' +
                         '</a>';
                 }
