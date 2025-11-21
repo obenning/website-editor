@@ -1374,6 +1374,10 @@
                 <div class="richtext-editor-container" style="border: 1px solid var(--kerberos-border); border-radius: 4px; overflow: hidden;">
                     <!-- Toolbar -->
                     <div class="richtext-toolbar" style="background: #f8f9fa; border-bottom: 1px solid var(--kerberos-border); padding: 0.5rem; display: flex; gap: 0.25rem; flex-wrap: wrap;">
+                        <button type="button" class="rt-btn rt-align-left" data-command="justifyLeft" style="padding: 0.25rem 0.5rem; border: 1px solid #dee2e6; background: white; border-radius: 3px; cursor: pointer;" title="Linksbündig">⬅️</button>
+                        <button type="button" class="rt-btn rt-align-center" data-command="justifyCenter" style="padding: 0.25rem 0.5rem; border: 1px solid #dee2e6; background: white; border-radius: 3px; cursor: pointer;" title="Zentriert">↔️</button>
+                        <button type="button" class="rt-btn rt-align-right" data-command="justifyRight" style="padding: 0.25rem 0.5rem; border: 1px solid #dee2e6; background: white; border-radius: 3px; cursor: pointer;" title="Rechtsbündig">➡️</button>
+                        <div style="width: 1px; background: #dee2e6; margin: 0 0.25rem;"></div>
                         <button type="button" class="rt-btn rt-bold" data-command="bold" style="padding: 0.25rem 0.5rem; border: 1px solid #dee2e6; background: white; border-radius: 3px; cursor: pointer; font-weight: bold;" title="Fett">B</button>
                         <button type="button" class="rt-btn rt-italic" data-command="italic" style="padding: 0.25rem 0.5rem; border: 1px solid #dee2e6; background: white; border-radius: 3px; cursor: pointer; font-style: italic;" title="Kursiv">I</button>
                         <button type="button" class="rt-btn rt-underline" data-command="underline" style="padding: 0.25rem 0.5rem; border: 1px solid #dee2e6; background: white; border-radius: 3px; cursor: pointer; text-decoration: underline;" title="Unterstrichen">U</button>
