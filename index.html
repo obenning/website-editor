@@ -3507,7 +3507,26 @@
                 if (e.target.classList.contains('rt-btn')) {
                     e.preventDefault();
                     const command = e.target.dataset.command;
-
+                    // Alignment-Commands verarbeiten
+                    if (['justifyLeft', 'justifyCenter', 'justifyRight'].includes(command)) {
+                        document.execCommand(command, false, null);
+                        
+                        // Aktualisiere titleAlignment Property
+                        const alignmentMap = {
+                            'justifyLeft': 'left',
+                            'justifyCenter': 'center',
+                            'justifyRight': 'right'
+                        };
+                        
+                        if (selectedModule && propertyKey === 'title') {
+                            selectedModule.properties.titleAlignment = alignmentMap[command];
+                            renderCanvas();
+                        }
+                        
+                        editor.focus();
+                        updateToolbarState();
+                        return;
+                    }
                     if (command === 'createLink') {
                         // Enhanced Link Dialog
                         const url = prompt('Link-URL eingeben:', 'https://');
@@ -3671,6 +3690,20 @@
                     const olBtn = toolbar.querySelector('.rt-ol');
                     if (olBtn) olBtn.style.background = '#e3f2fd';
                 }
+                // Alignment-States prüfen
+                if (document.queryCommandState('justifyLeft')) {
+                    const alignLeft = toolbar.querySelector('.rt-align-left');
+                    if (alignLeft) alignLeft.style.background = '#e3f2fd';
+                }
+                if (document.queryCommandState('justifyCenter')) {
+                    const alignCenter = toolbar.querySelector('.rt-align-center');
+                    if (alignCenter) alignCenter.style.background = '#e3f2fd';
+                }
+                if (document.queryCommandState('justifyRight')) {
+                    const alignRight = toolbar.querySelector('.rt-align-right');
+                    if (alignRight) alignRight.style.background = '#e3f2fd';
+                }
+           
             };
 
             editor.addEventListener('keyup', updateToolbarState);
