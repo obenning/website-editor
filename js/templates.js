@@ -1781,7 +1781,7 @@
                 </section>`,
                 "properties": {
                     // === CONTENT ===
-                    "title": "Professionelle Compliance-Lösungen",
+                    "titleContent": "Professionelle Compliance-Lösungen",
                     "titleAlignment": "left",
                     "titleColor": "#063AA8",
                     "titleSizeType": "large",
