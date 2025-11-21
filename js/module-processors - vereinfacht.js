@@ -3630,7 +3630,6 @@ function applyUniversalProcessing(module, html, props) {
     
     // === UNIVERSELLE HOVER-CSS EINFÜGEN ===
     // Entferne alle module-spezifischen Button-CSS-Blöcke
-    processedHtml = processedHtml.replace(/<style>[\s\S]*?\.kerberos-btn-[^{]+\{[\s\S]*?\}[\s\S]*?<\/style>/g, '');
     console.log('✅ Universelle Property-Verarbeitung abgeschlossen für:', module.id);
     
     return processedHtml;
@@ -3826,9 +3825,18 @@ function processUniversalModule(module, html) {
 
         // UNIVERSELLE TEMPLATE-PLATZHALTER VERARBEITUNG (KORRIGIERT)
         function processUniversalPlaceholders(html, properties) {
-            // Standard Properties ersetzen (NUR wenn sie noch nicht ersetzt wurden)
+            // NUR SPEZIELLE PLATZHALTER ersetzen - nicht alle Properties!
+            // Standard Properties wurden bereits von den spezifischen Prozessoren verarbeitet
+            
+            // Überspringe diese Properties - sie wurden bereits verarbeitet
+            const alreadyProcessed = [
+                'title', 'subtitle', 'titleColor', 'subtitleColor',
+                'showSubtitle', 'titleAlignment', 'headerContent',
+                'productCards', 'showcaseContent', 'solutionsContent'
+            ];
+            
             Object.keys(properties).forEach(key => {
-                if (!key.endsWith('Type')) { // Type-Properties bereits verarbeitet
+                if (!key.endsWith('Type') && !alreadyProcessed.includes(key)) {
                     const placeholder = `{{${key}}}`;
                     if (html.includes(placeholder)) {
                         const regex = new RegExp(placeholder.replace(/[{}]/g, '\\$&'), 'g');
