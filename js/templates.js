@@ -1763,8 +1763,8 @@
                                 <div style="margin-bottom: {{iconSpacing}}; display: block;">
                                     <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
                                 </div>
-                                <div style="margin-bottom: {{titleSpacing}};">
-                                    <h3 style="font-size: {{titleSizeType}}; font-weight: 700; line-height: 1.2; color: {{titleColor}}; text-align: {{titleAlignment}} !important; display: block !important; margin: 0 !important;">{{title}}</h3>
+                                <div class="kerberos-title-wrapper" style="margin-bottom: {{titleSpacing}}; color: {{titleColor}}; text-align: {{titleAlignment}} !important;">
+                                    {{titleContent}}
                                 </div>
                                 <div style="margin-bottom: {{textSpacing}};">
                                     <p style="font-size: {{textSizeType}}; line-height: 1.6; color: {{textColor}}; margin: 0 !important;">{{text}}</p>
