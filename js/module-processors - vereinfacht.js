@@ -4998,6 +4998,10 @@ function processUniversalModule(module, html) {
         function processKerberosImageTextModern(module, html) {
             const props = module.properties;
 
+            // Title Alignment verarbeiten
+            const titleAlignment = props.titleAlignment || 'left';
+            html = html.replace(/{{titleAlignment}}/g, titleAlignment);
+
             if (props.imageUrl) {
                 const responsiveImg = createResponsiveImage(
                     props.imageUrl,
@@ -6439,9 +6443,9 @@ function processUniversalModule(module, html) {
                         (badge ? '<div style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #063AA8, #009CE6); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; z-index: 2;">' + badge + '</div>' : '') +
                         optimizedImage +
                         '<div style="padding: 1.5rem;">' +
-                        '<div style="text-align: ' + titleAlign + '; font-family: var(--heading-font-font-family); color: #212529; margin: 0 0 0.75rem 0; font-size: 1.25rem; font-weight: 600;">' + title + '</div>' +
-                        '<div style="text-align: ' + descAlign + '; font-family: var(--body-font-font-family); color: #6c757d; margin: 0 0 1rem 0; font-size: 0.9rem; line-height: 1.5;">' + description + '</div>' +
-                        (props[`product${i}Price`] ? '<div style="font-weight: 600; color: #063AA8; font-size: 1.1rem;">' + props[`product${i}Price`] + '</div>' : '') +
+                        '<div class="showcase-title-' + module.id + '" style="font-family: var(--heading-font-font-family); color: #212529; margin: 0 0 0.75rem 0; font-size: 1.25rem; font-weight: 600;">' + title + '</div>' +
+                        '<div class="showcase-desc-' + module.id + '" style="font-family: var(--body-font-font-family); color: #6c757d; margin: 0 0 1rem 0; font-size: 0.9rem; line-height: 1.5;">' + description + '</div>' +
+                        (props[`product${i}Price`] ? '<div class="showcase-price-' + module.id + '" style="font-weight: 600; color: #063AA8; font-size: 1.1rem;">' + props[`product${i}Price`] + '</div>' : '') +
                         '</div>' +
                         '</a>';
                 }
@@ -6449,12 +6453,58 @@ function processUniversalModule(module, html) {
 
             // CSS für Hover-Effekte
             const responsiveCSS = '<style>' +
-                '.product-card-' + module.id + ':hover h4, ' +
-                '.product-card-' + module.id + ':hover p, ' +
-                '.product-card-' + module.id + ':hover span, ' +
-                '.product-card-' + module.id + ':hover div { ' +
-                'color: ' + (props.hoverTextColor || 'white') + ' !important; ' +
-                '}' +
+                '.showcase-card-' + module.id + ' { ' +
+                'background: #FFFFFF; ' +
+                'border: 1px solid #E5E7EB; ' +
+                'border-radius: 8px; ' +
+                'overflow: hidden; ' +
+                'text-decoration: none; ' +
+                'display: block; ' +
+                'box-shadow: 0 2px 8px rgba(0,0,0,0.1); ' +
+                'cursor: pointer; ' +
+                'transition: all 0.4s ease; ' +
+                'position: relative; ' +
+                '} ' +
+                '.showcase-card-' + module.id + ':hover { ' +
+                'background: #063AA8 !important; ' +
+                'transform: translateY(-8px) !important; ' +
+                'box-shadow: 0 12px 32px rgba(6,58,168,0.3) !important; ' +
+                '} ' +
+                '.showcase-title-' + module.id + ' { ' +
+                'font-family: var(--heading-font-font-family); ' +
+                'color: #212529; ' +
+                'margin: 0 0 0.75rem 0; ' +
+                'font-size: 1.25rem; ' +
+                'font-weight: 600; ' +
+                'transition: color 0.4s ease; ' +
+                '} ' +
+                '.showcase-desc-' + module.id + ' { ' +
+                'font-family: var(--body-font-font-family); ' +
+                'color: #6c757d; ' +
+                'margin: 0 0 1rem 0; ' +
+                'font-size: 0.9rem; ' +
+                'line-height: 1.5; ' +
+                'transition: color 0.4s ease; ' +
+                '} ' +
+                '.showcase-price-' + module.id + ' { ' +
+                'font-weight: 600; ' +
+                'color: #063AA8; ' +
+                'font-size: 1.1rem; ' +
+                'transition: color 0.4s ease; ' +
+                '} ' +
+                '.showcase-card-' + module.id + ':hover .showcase-title-' + module.id + ' { ' +
+                'color: #FFFFFF !important; ' +
+                '} ' +
+                '.showcase-card-' + module.id + ':hover .showcase-desc-' + module.id + ' { ' +
+                'color: rgba(255,255,255,0.9) !important; ' +
+                '} ' +
+                '.showcase-card-' + module.id + ':hover .showcase-price-' + module.id + ' { ' +
+                'color: #FFFFFF !important; ' +
+                '} ' +
+                '.showcase-card-' + module.id + ':hover img { ' +
+                'transform: scale(1.05) !important; ' +
+                'filter: brightness(1.1) !important; ' +
+                '} ' +
                 '</style>';
 
             // Grid-Container
