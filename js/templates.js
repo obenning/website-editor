@@ -1808,13 +1808,13 @@
                                     <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
                                 </div>
                                 <div style="margin-bottom: {{titleSpacing}};">
-                                    <h3 style="font-family: var(--heading-font-font-family); font-size: {{titleSizeType}}; font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0; text-align: {{titleAlignment}};">{{title}}</h3>
+                                    <h3 style="font-size: {{titleSizeType}}; font-weight: 700; line-height: 1.2; color: {{titleColor}}; text-align: {{titleAlignment}} !important; display: block !important; margin: 0 !important;">{{title}}</h3>
                                 </div>
                                 <div style="margin-bottom: {{textSpacing}};">
-                                    <p style="font-family: var(--body-font-font-family); font-size: {{textSizeType}}; line-height: var(--body-font-line-height); color: {{textColor}}; margin: 0;">{{text}}</p>
+                                    <p style="font-size: {{textSizeType}}; line-height: 1.6; color: {{textColor}}; margin: 0 !important;">{{text}}</p>
                                 </div>
                                 <div style="margin-top: {{primaryButtonSpacing}};">
-                                    <a href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; border: {{primaryButtonBorderType}}; box-shadow: {{primaryButtonShadow}};">
+                                    <a href="{{primaryButtonLink}}" style="font-weight: 600; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; border: {{primaryButtonBorderType}}; box-shadow: {{primaryButtonShadow}}; cursor: pointer;">
                                         {{primaryButtonText}}
                                         <span style="font-family: 'Font Awesome 5 Pro'; display: {{showPrimaryButtonIcon}};">{{primaryButtonIcon}}</span>
                                     </a>
