@@ -1747,50 +1747,6 @@
             },
 
             {
-                "id": "kerberos-image-text",
-                "name": "Bild-Text Kombination",
-                "category": "Content & Images",
-                "description": "Kombination aus Bild und Text mit Icon und Button",
-                "html": `<section style="background: {{backgroundColor}}; padding: {{sectionSpacing}};">
-                    <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-                        {{layoutContent}}
-                    </div>
-                </section>`,
-                "properties": {
-                    // === CONTENT ===
-                    "title": "Professionelle Compliance-Lösungen",
-                    "titleColor": "#063AA8",
-                    "titleAlignment": "left",
-                    "text": "Wir unterstützen Sie bei der Umsetzung aller Compliance-Anforderungen. Von der Erstberatung bis zur vollständigen Implementierung stehen wir Ihnen zur Seite.",
-                    "textColor": "#6c757d",
-
-                    // === PRIMARY BUTTON ===
-                   // === PRIMARY BUTTON ===
-                   "buttonText": "Mehr erfahren",
-                   "buttonLink": "#",
-                   "buttonStyleType": "primary",
-
-                    // === IMAGE ===
-                    "imageUrl": "https://images.squarespace-cdn.com/content/651eacf7cae17a228645a660/384fcd3a-8979-4ff0-a714-da53b56331a7/KYC-Pr%C3%BCfbericht+-+Max+Mustermann+-+API.jpg",
-                    "imageAlt": "Compliance Beratung",
-                    "imageHeightType": "auto",
-                    "imageObjectFitType": "cover",
-                    "imageObjectPositionType": "center",
-                    "imageCustomCSS": "",
-
-                    // === ICON ===
-                    "iconClass": "&#xf132;",
-                    "iconColor": "#063AA8",
-
-                    // === LAYOUT ===
-                    "backgroundColor": "#FFFFFF",
-                    "layoutType": "image-left",
-                    "sectionSpacing": "6rem 0",
-                    "contentGap": "4rem"
-                }
-            },
-
-            {
                 "id": "kerberos-image-text-modern",
                 "name": "Modernes Bild-Text Layout",
                 "category": "Content & Images",
@@ -1814,7 +1770,7 @@
                                     <p style="font-size: {{textSizeType}}; line-height: 1.6; color: {{textColor}}; margin: 0 !important;">{{text}}</p>
                                 </div>
                                 <div style="margin-top: {{primaryButtonSpacing}};">
-                                    <a href="{{primaryButtonLink}}" style="font-weight: 600; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; border: {{primaryButtonBorderType}}; box-shadow: {{primaryButtonShadow}}; cursor: pointer;">
+                                    <a href="{{primaryButtonLink}}" class="kerberos-btn kerberos-btn-{{moduleId}}" style="font-weight: 600; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none !important; display: inline-flex !important; align-items: center; gap: 0.5rem; border: {{primaryButtonBorderType}}; box-shadow: {{primaryButtonShadow}}; cursor: pointer !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;">
                                         {{primaryButtonText}}
                                         <span style="font-family: 'Font Awesome 5 Pro'; display: {{showPrimaryButtonIcon}};">{{primaryButtonIcon}}</span>
                                     </a>
@@ -1866,8 +1822,7 @@
 
                     // === LAYOUT ===
                     "backgroundColor": "#FFFFFF",
-                    "imageOrder": "1",
-                    "textOrder": "2",
+                    "layoutType": "image-left",
                     "sectionSpacing": "6rem 0",
                     "contentGap": "4rem",
                     "contentPaddingType": "none",
