@@ -5018,6 +5018,23 @@ function processUniversalModule(module, html) {
             const titleAlignment = props.titleAlignment || 'left';
             html = html.replace(/{{titleAlignment}}/g, titleAlignment);
 
+            // === TITLE CONTENT GENERIEREN (RichText oder Plain) ===
+            let titleContent = props.title || '';
+            const titleColor = props.titleColor || '#063AA8';
+            
+            // Prüfe ob title bereits ein Heading-Tag enthält (vom RichText-Editor)
+            if (!titleContent.match(/<h[1-5][^>]*>/i)) {
+                // Kein Heading-Tag vorhanden → Standard h3 generieren
+                titleContent = `<h3 style="font-size: var(--heading-3-size) !important; font-weight: 700; line-height: 1.2; color: ${titleColor} !important; text-align: ${titleAlignment} !important; display: block !important; margin: 0 !important;">${titleContent}</h3>`;
+            } else {
+                // Heading-Tag vorhanden → Styles injizieren
+                titleContent = titleContent.replace(
+                    /<(h[1-5])([^>]*)>/gi,
+                    `<$1$2 style="font-weight: 700; line-height: 1.2; color: ${titleColor} !important; text-align: ${titleAlignment} !important; display: block !important; margin: 0 !important;">`
+                );
+            }
+            html = html.replace(/\{\{titleContent\}\}/g, titleContent);
+            
             if (props.imageUrl) {
                 const responsiveImg = createResponsiveImage(
                     props.imageUrl,
