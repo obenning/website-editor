@@ -3698,11 +3698,12 @@
             selectedModule.properties[key] = htmlValue;
 
             // === SOFORTIGE CANVAS-SYNC ===
+            // === SOFORTIGE CANVAS-SYNC ===
             const canvasElement = document.querySelector(`[data-module-id="${selectedModule.id}"]`);
-            if (canvasElement && selectedModule.templateId === 'kerberos-hero-advanced-richtext') {
+            if (canvasElement && (selectedModule.templateId === 'kerberos-hero-advanced-richtext' || selectedModule.templateId === 'kerberos-image-text-modern')) {
                 
                 if (key === 'titleContent') {
-                    const canvasTitle = canvasElement.querySelector('.title-wrapper h1, .title-wrapper h2, .title-wrapper h3, .title-wrapper h4, .title-wrapper h5, .title-wrapper h6, .title-wrapper p');
+                    const canvasTitle = canvasElement.querySelector('.title-wrapper h1, .title-wrapper h2, .title-wrapper h3, .title-wrapper h4, .title-wrapper h5, .title-wrapper h6, .title-wrapper p, .kerberos-title-wrapper h1, .kerberos-title-wrapper h2, .kerberos-title-wrapper h3, .kerberos-title-wrapper h4, .kerberos-title-wrapper h5, .kerberos-title-wrapper h6, .kerberos-title-wrapper p');
                     if (canvasTitle) {
                         canvasTitle.innerHTML = htmlValue;
                         // Farbe aus Properties forcieren
