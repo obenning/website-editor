@@ -2856,13 +2856,7 @@
             modal.innerHTML = `
                 <div style="background: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto;">
                     <h3 style="margin: 0 0 1rem 0; color: var(--kerberos-primary);">🎨 Bild-Editor</h3>
-                    
-                    <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 6px; padding: 1rem; margin-bottom: 1.5rem;">
-                        <h4 style="color: #856404; margin: 0 0 0.5rem 0; font-size: 0.9rem;">💡 Häufige Probleme lösen</h4>
-                        <button onclick="fixWhiteStripes('${property}')" class="btn btn-warning" style="width: 100%; margin-bottom: 0.5rem;">🔧 Weiße Striche entfernen</button>
-                        <button onclick="resetImageCSS('${property}')" class="btn btn-secondary" style="width: 100%; margin-bottom: 0.5rem;">🔄 CSS zurücksetzen</button>
-                    </div>
-                    
+                                       
                     <div style="background: #d1ecf1; border: 1px solid #bee5eb; border-radius: 6px; padding: 1rem; margin-bottom: 1.5rem;">
                         <h4 style="color: #0c5460; margin: 0 0 1rem 0; font-size: 0.9rem;">🌐 Alle Bilder gleichzeitig</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.5rem;">
@@ -3006,35 +3000,20 @@
             console.log(`🎨 Direct Style Update: ${updatedCount} Bilder aktualisiert`);
         }
 
-        // Alle Bilder im Modul auf gleiche Höhe setzen
         function setAllImagesHeight(height) {
-            if (!selectedModule) return;
+            if (!selectedModule) {
+                showNotification('⚠️ Kein Modul ausgewählt', 'warning');
+                return;
+            }
             
-            // 1. Setze globale Properties
+            // Setze globale Property
             selectedModule.properties.globalImageHeight = height;
-            selectedModule.properties.globalImageObjectFit = 'cover';
-            selectedModule.properties.globalImageObjectPosition = 'center';
+            selectedModule.properties.globalImageObjectFit = selectedModule.properties.globalImageObjectFit || 'cover';
+            selectedModule.properties.globalImageObjectPosition = selectedModule.properties.globalImageObjectPosition || 'center';
             
-            // 2. Setze für alle einzelnen Produkte
-            for (let i = 1; i <= 12; i++) {
-                selectedModule.properties[`product${i}ImageHeight`] = height;
-                selectedModule.properties[`product${i}ImageObjectFit`] = 'cover';
-                selectedModule.properties[`product${i}ImageObjectPosition`] = 'center';
-            }
-            
-            // 3. Aktualisiere die Anzeige
-            const canvas = document.getElementById('canvas');
-            if (canvas) {
-                canvas.innerHTML = processModuleHTML(selectedModule);
-                
-                // 4. DIREKTE MANIPULATION aller img-Tags
-                setTimeout(() => {
-                    applyDirectImageStyles(canvas);
-                }, 100);
-            }
-            
+            renderCanvas();
             renderPropertyPanel();
-            showNotification(`🎨 Alle Bilder auf Höhe "${height}" gesetzt`);
+            showNotification(`📏 Alle Bilder auf ${height} gesetzt`);
         }
 
         // Alle Bilder auf gleichen Object-Fit setzen
@@ -6128,7 +6107,7 @@
                         newStyle = newStyle.replace(/object-position:\s*[^;]+;?/g, '');
                         
                         // Füge neue Eigenschaften hinzu
-                        newStyle += `; height: ${globalHeight}; object-fit: ${globalObjectFit}; object-position: ${globalObjectPosition}; display: block; margin: 0; line-height: 0; ${globalCustomCSS}`;
+                        newStyle += ` height: ${globalHeight}; object-fit: ${globalObjectFit}; object-position: ${globalObjectPosition}; display: block; margin: 0; line-height: 0; ${globalCustomCSS}`;
                         
                         // Bereinige doppelte Semikolons
                         newStyle = newStyle.replace(/;+/g, ';').replace(/^;|;$/g, '');
