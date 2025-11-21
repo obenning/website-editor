@@ -3806,6 +3806,14 @@ function processUniversalModule(module, html) {
         // === PIPELINE STUFE 4: Universelle Verarbeitung ===
         processedHtml = applyUniversalProcessing(module, processedHtml, props);
         
+        // === PIPELINE STUFE 4.5: Bild-Editor Globale Einstellungen ===
+        if (props.globalImageHeight || props.globalImageObjectFit) {
+            if (typeof postProcessAllImages === 'function') {
+                processedHtml = postProcessAllImages(module, processedHtml);
+                console.log('🖼️ Globale Bildeinstellungen angewendet für:', module.name);
+            }
+        }
+
         // === PIPELINE STUFE 5: Finale Validierung ===
         processedHtml = finalValidation(processedHtml, module);
         
