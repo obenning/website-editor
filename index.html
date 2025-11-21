@@ -6093,7 +6093,7 @@
             
             try {
                 // Finde alle img-Tags und aktualisiere ihre Styles
-                const imgRegex = /<img([^>]*?)style="([^"]*?)"([^>]*?)>/g;
+                const imgRegex = /<img([^>]*?)style="([^"]*?)"([^>]*?)>/gs;
                 
                 html = html.replace(imgRegex, (match, beforeStyle, currentStyle, afterStyle) => {
                     // Prüfe ob das Bild bereits die richtigen Properties hat
@@ -6101,6 +6101,9 @@
                         // Erstelle neuen Style mit globalen Properties
                         let newStyle = currentStyle;
                         
+                        // 🔧 BUGFIX: Repariere kaputtes "line-  height:" zurück zu normalem Style
+                        newStyle = newStyle.replace(/line-\s*height:/g, 'height:');
+
                         // Entferne alte Eigenschaften
                         newStyle = newStyle.replace(/height:\s*[^;]+;?/g, '');
                         newStyle = newStyle.replace(/object-fit:\s*[^;]+;?/g, '');
