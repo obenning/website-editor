@@ -1455,11 +1455,12 @@
         function processKerberosProductOverview(module, html) {
             const props = module.properties;
 
-            // === HEADER CONTENT ===
+            // Header Content (mit optionaler Subtitle)
             let headerContent = '';
             if (props.title) {
-                headerContent += `<div style="text-align: center; margin-bottom: 3rem;">
-                    <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ${props.titleColor || '#063AA8'}; margin: 0 0 1rem 0;">${props.title}</h2>`;
+                const titleAlign = props.titleAlignment || 'center';
+                headerContent += `<div style="text-align: ${titleAlign}; margin-bottom: 3rem;">
+                    <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ${props.titleColor || '#063AA8'}; margin: 0 0 1rem 0; text-align: ${titleAlign};">${props.title}</h2>`;
 
                 if (props.showSubtitle === 'true' && props.subtitle) {
                     headerContent += `<p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ${props.subtitleColor || '#6c757d'}; max-width: 800px; margin: 0 auto;">${props.subtitle}</p>`;
@@ -3226,8 +3227,9 @@ function processKerberosTestimonialsPro(module, html) {
             const safeSubtitle = props.subtitle || '';
 
             // Header Content (mit optionaler Subtitle)
-            const headerStart = '<div style="text-align: center; margin-bottom: 3rem;">';
-            const titleElement = '<h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ' + titleColor + '; margin: 0 0 1rem 0;">' + safeTitle + '</h2>';
+            const titleAlign = props.titleAlignment || 'center';
+            const headerStart = '<div style="text-align: ' + titleAlign + '; margin-bottom: 3rem;">';
+            const titleElement = '<h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ' + titleColor + '; margin: 0 0 1rem 0; text-align: ' + titleAlign + ';">' + safeTitle + '</h2>';
 
             let headerContent = headerStart + titleElement;
 
@@ -6466,6 +6468,7 @@ function processUniversalModule(module, html) {
             // === HEADER CONTENT ===
             let headerContent = '';
             if (props.title) {
+                const titleAlign = props.titleAlignment || 'center';
                 let titleTemplate = '<h2 data-style="TITLE_STYLES">' + props.title + '</h2>';
 
                 const titleStyles = [
@@ -6474,7 +6477,8 @@ function processUniversalModule(module, html) {
                     'font-weight: var(--heading-font-font-weight)',
                     'line-height: var(--heading-font-line-height)',
                     'color: ' + props.titleColor,
-                    'margin: 0 0 1rem 0'
+                    'margin: 0 0 1rem 0',
+                    'text-align: ' + titleAlign
                 ].join('; ');
 
                 titleTemplate = titleTemplate.replace('data-style="TITLE_STYLES"', 'style="' + titleStyles + '"');
