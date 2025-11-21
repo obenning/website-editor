@@ -1808,7 +1808,7 @@
                                     <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
                                 </div>
                                 <div style="margin-bottom: {{titleSpacing}};">
-                                    <h3 style="font-family: var(--heading-font-font-family); font-size: {{titleSizeType}}; font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0;">{{title}}</h3>
+                                    <h3 style="font-family: var(--heading-font-font-family); font-size: {{titleSizeType}}; font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0; text-align: {{titleAlignment}};">{{title}}</h3>
                                 </div>
                                 <div style="margin-bottom: {{textSpacing}};">
                                     <p style="font-family: var(--body-font-font-family); font-size: {{textSizeType}}; line-height: var(--body-font-line-height); color: {{textColor}}; margin: 0;">{{text}}</p>
