@@ -23,7 +23,6 @@
                         groupName: 'section',
                         prefix: 'section',
                         group: 'section',
-                        only: ['backgroundColor', 'spacing'],
                         overrides: {
                             backgroundColor: { label: 'Hintergrundfarbe' },
                             spacing: { label: 'Abstand oben/unten' }
@@ -34,7 +33,6 @@
                         groupName: 'heading',
                         prefix: 'title',
                         group: 'title',
-                        only: ['content', 'color', 'spacing'],
                         overrides: {
                             content: { label: 'Titel-Text' },
                             color: { label: 'Titel-Farbe' },
@@ -46,7 +44,6 @@
                         groupName: 'subtitle',
                         prefix: 'subtitle',
                         group: 'subtitle',
-                        only: ['content', 'color', 'sizeType'],
                         overrides: {
                             content: { label: 'Untertitel-Text' },
                             color: { label: 'Untertitel-Farbe' },
@@ -58,7 +55,6 @@
                         groupName: 'iconSimple',
                         prefix: 'icon',
                         group: 'icon',
-                        only: ['class', 'color', 'sizeType'],
                         overrides: {
                             class: { label: 'Icon auswählen' },
                             color: { label: 'Icon-Farbe' },
@@ -70,7 +66,6 @@
                         groupName: 'button',
                         prefix: 'primaryButton',
                         group: 'button',
-                        only: ['text', 'link', 'background', 'textColor', 'paddingType', 'radiusType'],
                         overrides: {
                             text: { label: 'Button-Text' },
                             link: { label: 'Button-Link (URL)' },
@@ -127,17 +122,15 @@
                         groupName: 'section',
                         prefix: 'section',
                         group: 'section',
-                        only: ['backgroundColor', 'spacing'],
                         overrides: {
-                            backgroundColor: { label: 'Hintergrundfarbe' },
-                            spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                            backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                            spacing: { label: 'Abstand oben/unten' }
                         }
                     },
                     title: {
                         groupName: 'heading',
                         prefix: 'title',
                         group: 'title',
-                        only: ['content', 'color'],
                         overrides: {
                             content: { label: 'Haupttitel', propertyName: 'title' },
                             color: { label: 'Titel-Farbe', propertyName: 'titleColor' }
@@ -147,7 +140,6 @@
                         groupName: 'subtitle',
                         prefix: 'subtitle',
                         group: 'subtitle',
-                        only: ['content', 'color'],
                         overrides: {
                             content: { label: 'Untertitel', propertyName: 'subtitle' },
                             color: { label: 'Untertitel-Farbe', propertyName: 'subtitleColor' }
@@ -257,29 +249,47 @@
             {
                 "id": "kerberos-benefits",
                 "name": "Benefits mit Icons",
-                "category": "Content & Services", 
+                "category": "Content & Services",
                 "description": "Flexible Benefits-Darstellung mit Icons und variablen Grid-Layouts",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                content: { label: 'Titel-Text' },
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe', propertyName: 'subtitleColor' }
+            }
+        },
+        primaryButton: {
+            groupName: 'button',
+            prefix: 'primaryButton',
+            group: 'button',
+            overrides: {
+                text: { label: 'Button-Text' },
+                link: { label: 'Button-Link' },
+                background: { label: 'Button-Hintergrund' },
+                color: { label: 'Button-Textfarbe' }
             }
         }
     },
@@ -539,27 +549,55 @@
                 "name": "Hero mit Bild & Icon",
                 "category": "Hero & Headers",
                 "description": "Hero-Bereich mit anpassbarem Bild und Icon",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                content: { label: 'Titel-Text' },
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel' },
+                color: { label: 'Untertitel-Farbe' }
+            }
+        },
+        icon: {
+            groupName: 'iconSimple',
+            prefix: 'icon',
+            group: 'icon',
+            overrides: {
+                class: { label: 'Icon auswählen' },
+                color: { label: 'Icon-Farbe' },
+                sizeType: { label: 'Icon-Größe' }
+            }
+        },
+        primaryButton: {
+            groupName: 'button',
+            prefix: 'primaryButton',
+            group: 'button',
+            overrides: {
+                text: { label: 'Button-Text' },
+                link: { label: 'Button-Link' },
+                background: { label: 'Button-Hintergrund' },
+                color: { label: 'Button-Textfarbe' }
             }
         }
     },
@@ -669,27 +707,34 @@
                 "name": "Challenge-Requirement-Solution",
                 "category": "Content & Services",
                 "description": "Ein Lösungsmodul mit drei Kästchen im Kerberos Design - Auto-Hide für leere Felder",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text', propertyName: 'title' },
+                content: { label: 'Titel-Text', propertyName: 'mainTitleRichtext' },
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitleRichtext' },
+                color: { label: 'Untertitel-Farbe', propertyName: 'subtitleColor' }
             }
         }
     },
@@ -808,27 +853,43 @@
                 "name": "Hero mit SVG-Grafik",
                 "category": "Hero & Headers",
                 "description": "Hero-Bereich mit optimierten SVG-Grafiken und Call-to-Action",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
+            }
+        },
+        text: {
+            groupName: 'text',
+            prefix: 'text',
+            group: 'text',
+            overrides: {
+                content: { label: 'Text-Inhalt', propertyName: 'text' },
+                color: { label: 'Text-Farbe' }
             }
         }
     },
@@ -924,30 +985,57 @@
 
 {
     "id": "kerberos-api-hero-with-text",
-    "name": "API Hero mit Text", 
+    "name": "API Hero mit Text",
     "category": "Hero & Headers",
     "description": "API-Hero mit SVG-Grafik und erweiterten Textfeldern",
-    
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' },
+                spacing: { label: 'Abstand unter Untertitel' }
+            }
+        },
+        text: {
+            groupName: 'text',
+            prefix: 'text',
+            group: 'text',
+            overrides: {
+                content: { label: 'Text-Inhalt', propertyName: 'text' },
+                color: { label: 'Text-Farbe' }
+            }
+        },
+        primaryButton: {
+            groupName: 'button',
+            prefix: 'primaryButton',
+            group: 'button',
+            overrides: {
+                text: { label: 'Button-Text' },
+                link: { label: 'Button-Link' },
+                icon: { label: 'Button-Icon' }
             }
         }
     },
@@ -1024,27 +1112,44 @@
     "name": "Compliance Dashboard (Interaktiv)",
     "category": "Technology & Tools",
     "description": "Interaktives Dashboard mit Echtzeit-Compliance-Daten, Statistiken und Aktivitätsfeeds",
-    
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
+            }
+        },
+        primaryButton: {
+            groupName: 'button',
+            prefix: 'primaryButton',
+            group: 'button',
+            overrides: {
+                text: { label: 'Button-Text' },
+                link: { label: 'Button-Link' },
+                icon: { label: 'Button-Icon' }
             }
         }
     },
@@ -1158,27 +1263,34 @@
                 "name": "API Endpoints Übersicht",
                 "category": "Technology & Tools",
                 "description": "Zeigt API-Endpoints in einer übersichtlichen Grid-Struktur mit optionalen Methods/Status",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
             }
         }
     },
@@ -1287,27 +1399,34 @@
                 "name": "Product Showcase",
                 "category": "Content & Services",
                 "description": "Responsive Produkt-Showcase mit modernen Hover-Effekten",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
             }
         }
     },
@@ -1423,27 +1542,34 @@
                 "name": "Kerberos Lösungsübersicht",
                 "category": "Content & Services",
                 "description": "Editierbare Produkt-/Lösungsübersicht mit Hover-Effekten",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
             }
         }
     },
@@ -1551,27 +1677,43 @@
                 "name": "Company Presentation",
                 "category": "Team & About",
                 "description": "Unternehmensvorstellung mit Haupttext, Button und Statistiken im Grid-Layout",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        text: {
+            groupName: 'text',
+            prefix: 'text',
+            group: 'text',
+            overrides: {
+                content: { label: 'Beschreibung', propertyName: 'description' },
+                color: { label: 'Text-Farbe' }
+            }
+        },
+        primaryButton: {
+            groupName: 'button',
+            prefix: 'primaryButton',
+            group: 'button',
+            overrides: {
+                text: { label: 'Button-Text' },
+                link: { label: 'Button-Link' }
             }
         }
     },
@@ -1651,27 +1793,34 @@
                 "name": "Testimonials Professional",
                 "category": "Content & Images",
                 "description": "Professionelles Testimonial-Modul mit Logos und Links für bis zu 15 Kundenbewertungen",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
             }
         }
     },
@@ -1990,27 +2139,34 @@
                 "name": "Team Galerie",
                 "category": "Team & About",
                 "description": "Mitarbeiter-Galerie mit Bildern und Fallback-Avatars",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
             }
         }
     },
@@ -2089,27 +2245,25 @@
                 "name": "Statistiken mit Icons",
                 "category": "Statistics & Numbers",
                 "description": "Zahlen und Fakten mit anpassbaren Icons und Abständen",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
             }
         }
     },
@@ -2225,27 +2379,53 @@
                 "name": "Modernes Bild-Text Layout",
                 "category": "Content & Images",
                 "description": "Vollständig responsives Bild-Text Layout mit modernen Design-Elementen",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                content: { label: 'Titel-Text' },
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        text: {
+            groupName: 'text',
+            prefix: 'text',
+            group: 'text',
+            overrides: {
+                content: { label: 'Text-Inhalt', propertyName: 'text' },
+                color: { label: 'Text-Farbe' }
+            }
+        },
+        icon: {
+            groupName: 'iconSimple',
+            prefix: 'icon',
+            group: 'icon',
+            overrides: {
+                class: { label: 'Icon auswählen' },
+                color: { label: 'Icon-Farbe' }
+            }
+        },
+        primaryButton: {
+            groupName: 'button',
+            prefix: 'primaryButton',
+            group: 'button',
+            overrides: {
+                text: { label: 'Button-Text' },
+                link: { label: 'Button-Link' },
+                icon: { label: 'Button-Icon' }
             }
         }
     },
@@ -2334,27 +2514,63 @@
                 "name": "Moderne Call-to-Action",
                 "category": "Contact & CTA",
                 "description": "Moderne CTA-Sektion mit Gradient-Hintergrund und animierten Elementen",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        text: {
+            groupName: 'text',
+            prefix: 'text',
+            group: 'text',
+            overrides: {
+                content: { label: 'Text-Inhalt', propertyName: 'text' },
+                color: { label: 'Text-Farbe' }
+            }
+        },
+        icon: {
+            groupName: 'iconSimple',
+            prefix: 'icon',
+            group: 'icon',
+            overrides: {
+                class: { label: 'Icon auswählen' },
+                color: { label: 'Icon-Farbe' }
+            }
+        },
+        primaryButton: {
+            groupName: 'button',
+            prefix: 'primaryButton',
+            group: 'button',
+            overrides: {
+                text: { label: 'Button-Text' },
+                link: { label: 'Button-Link' },
+                icon: { label: 'Button-Icon' }
+            }
+        },
+        secondaryButton: {
+            groupName: 'buttonSecondary',
+            prefix: 'secondaryButton',
+            group: 'button',
+            overrides: {
+                text: { label: 'Zweiter Button-Text' },
+                link: { label: 'Zweiter Button-Link' },
+                icon: { label: 'Zweiter Button-Icon' }
             }
         }
     },
@@ -2433,29 +2649,65 @@
             {
                 "id": "kerberos-feature-breaker",
                 "name": "Feature Breaker",
-                "category": "Content & Services", 
+                "category": "Content & Services",
                 "description": "Auffälliges Breaker-Modul für besondere Ankündigungen - ALLE PROPERTIES FUNKTIONIEREN",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundGradient' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
+            }
+        },
+        text: {
+            groupName: 'text',
+            prefix: 'text',
+            group: 'text',
+            overrides: {
+                content: { label: 'Beschreibung', propertyName: 'description' },
+                color: { label: 'Text-Farbe', propertyName: 'descriptionColor' }
+            }
+        },
+        primaryButton: {
+            groupName: 'button',
+            prefix: 'primaryButton',
+            group: 'button',
+            overrides: {
+                text: { label: 'Button-Text' },
+                link: { label: 'Button-Link' },
+                icon: { label: 'Button-Icon' }
+            }
+        },
+        secondaryButton: {
+            groupName: 'buttonSecondary',
+            prefix: 'secondaryButton',
+            group: 'button',
+            overrides: {
+                text: { label: 'Zweiter Button-Text' },
+                link: { label: 'Zweiter Button-Link' },
+                icon: { label: 'Zweiter Button-Icon' }
             }
         }
     },
@@ -2520,27 +2772,34 @@
                 "name": "Testimonials Carousel",
                 "category": "Team & About",
                 "description": "Kundenbewertungen mit automatischem Carousel - JAVASCRIPT REPARIERT",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
             }
         }
     },
@@ -2706,27 +2965,34 @@
     "name": "Process Timeline (Responsive)",
     "category": "Content & Services",
     "description": "Prozess-Timeline mit perfekter Responsivität und modernen Hover-Effekten",
-    
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
             }
         }
     },
@@ -2852,27 +3118,34 @@
                 "name": "Process Timeline (Standard)",
                 "category": "Content & Services",
                 "description": "Standard Prozess-Timeline mit editierbaren Schritten",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
             }
         }
     },
@@ -2954,27 +3227,34 @@
                 "name": "Statistiken mit Icons (Hover-Effekte)",
                 "category": "Content & Services",
                 "description": "Statistik-Darstellung mit animierten Hover-Effekten und Icons",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
             }
         }
     },
@@ -3065,27 +3345,34 @@
                 "name": "Integrations Grid (Filter funktionsfähig)",
                 "category": "Content & Services",
                 "description": "Integration-Grid mit funktionierender Filter-Funktion für Squarespace",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
             }
         }
     },
@@ -3230,27 +3517,63 @@
     "name": "Text-Button-Modul (Secondary Button konfigurierbar)",
     "category": "Content & Images",
     "description": "Text-Modul mit konfigurierbarem zweiten Button und Rich-Text-Editor",
-    
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                content: { label: 'Titel-Text' },
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        text: {
+            groupName: 'text',
+            prefix: 'text',
+            group: 'text',
+            overrides: {
+                content: { label: 'Text-Inhalt', propertyName: 'textContent' },
+                color: { label: 'Text-Farbe' }
+            }
+        },
+        icon: {
+            groupName: 'iconSimple',
+            prefix: 'icon',
+            group: 'icon',
+            overrides: {
+                class: { label: 'Icon auswählen' },
+                color: { label: 'Icon-Farbe' }
+            }
+        },
+        primaryButton: {
+            groupName: 'button',
+            prefix: 'primaryButton',
+            group: 'button',
+            overrides: {
+                text: { label: 'Button-Text' },
+                link: { label: 'Button-Link' },
+                icon: { label: 'Button-Icon' }
+            }
+        },
+        secondaryButton: {
+            groupName: 'buttonSecondary',
+            prefix: 'secondaryButton',
+            group: 'button',
+            overrides: {
+                text: { label: 'Zweiter Button-Text' },
+                link: { label: 'Zweiter Button-Link' },
+                icon: { label: 'Zweiter Button-Icon' }
             }
         }
     },
@@ -3336,27 +3659,34 @@
     "name": "Features Grid mit Hover",
     "category": "Content & Services",
     "description": "Interaktives Features-Grid mit CSS-Hover-Animationen und Icons",
-    
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
             }
         }
     },
@@ -3537,27 +3867,15 @@
                 "name": "Team Kontakt Cards",
                 "category": "Social Proof",
                 "description": "Responsive Ansprechpartner-Karten mit Bildern, Kontaktdaten und CTAs",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
-            }
-        },
-        title: {
-            groupName: 'heading',
-            prefix: 'title',
-            group: 'title',
-            only: ['content', 'color', 'spacing'],
-            overrides: {
-                content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         }
     },
@@ -3862,27 +4180,34 @@
     "name": "Pricing Interactive (3 Plans)",
     "category": "Pricing & Plans",
     "description": "Interaktive Pricing-Tabelle mit bis zu 3 Plänen und Feature-Vergleich",
-    
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
             }
         }
     },
@@ -4001,27 +4326,34 @@
     "name": "Feature Comparison Table",
     "category": "Pricing & Plans",
     "description": "Reine Feature-Vergleichstabelle ohne Pricing Cards - perfekt für Produkt-/Service-Vergleiche",
-    
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            overrides: {
+                content: { label: 'Untertitel', propertyName: 'subtitle' },
+                color: { label: 'Untertitel-Farbe' }
             }
         }
     },
@@ -4171,27 +4503,15 @@
     "name": "Services Overview (Two Column)",
     "category": "Content & Services",
     "description": "Services-Übersicht mit abwechselnden Bild/Text-Spalten und Solutions-Grid",
-    
+
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
-            }
-        },
-        title: {
-            groupName: 'heading',
-            prefix: 'title',
-            group: 'title',
-            only: ['content', 'color', 'spacing'],
-            overrides: {
-                content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
+                spacing: { label: 'Abstand oben/unten' }
             }
         }
     },
@@ -4300,21 +4620,19 @@
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
                 backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                content: { label: 'Titel-Text' },
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
             }
         }
     },
@@ -4414,21 +4732,19 @@
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
                 backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                content: { label: 'Titel-Text' },
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
             }
         }
     },
@@ -4554,21 +4870,19 @@
             groupName: 'section',
             prefix: 'section',
             group: 'section',
-            only: ['backgroundColor', 'spacing'],
             overrides: {
                 backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                spacing: { label: 'Abstand oben/unten' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
-            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+                content: { label: 'Titel-Text' },
+                color: { label: 'Titel-Farbe' },
+                spacing: { label: 'Abstand unter Titel' }
             }
         }
     },
