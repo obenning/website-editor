@@ -122,6 +122,38 @@
                 "category": "Interactive & Media",
                 "description": "Moderner, responsiver Guide-Flow mit automatischer Slideshow und Hotspot-Interaktion.",
                 "html": "<section style=\"padding: {{sectionSpacing}}; background: {{backgroundColor}}; margin: 0;\" class=\"kerberos-guide-{{templateId}}\"><div style=\"max-width: 100%; margin: 0 auto; padding: 0;\">{{content}}</div></section>",
+                "propertySchema": {
+                    section: {
+                        groupName: 'section',
+                        prefix: 'section',
+                        group: 'section',
+                        only: ['backgroundColor', 'spacing'],
+                        overrides: {
+                            backgroundColor: { label: 'Hintergrundfarbe' },
+                            spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+                        }
+                    },
+                    title: {
+                        groupName: 'heading',
+                        prefix: 'title',
+                        group: 'title',
+                        only: ['content', 'color'],
+                        overrides: {
+                            content: { label: 'Haupttitel', propertyName: 'title' },
+                            color: { label: 'Titel-Farbe', propertyName: 'titleColor' }
+                        }
+                    },
+                    subtitle: {
+                        groupName: 'subtitle',
+                        prefix: 'subtitle',
+                        group: 'subtitle',
+                        only: ['content', 'color'],
+                        overrides: {
+                            content: { label: 'Untertitel', propertyName: 'subtitle' },
+                            color: { label: 'Untertitel-Farbe', propertyName: 'subtitleColor' }
+                        }
+                    }
+                },
                 "properties": {
                     // === HAUPTINHALTE ===
                     "title": "Produkttour",
@@ -227,7 +259,32 @@
                 "name": "Benefits mit Icons",
                 "category": "Content & Services", 
                 "description": "Flexible Benefits-Darstellung mit Icons und variablen Grid-Layouts",
-                "html": `<style>
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<style>
                     /* Benefits Module Universelle Hover-Effekte */
                     .kerberos-module-{{templateId}} .kerberos-benefit-card {
                         transition: all 0.3s ease !important;
@@ -482,7 +539,32 @@
                 "name": "Hero mit Bild & Icon",
                 "category": "Hero & Headers",
                 "description": "Hero-Bereich mit anpassbarem Bild und Icon",
-                "html": `<section style="{{responsiveBackground}}; color: white; padding: {{sectionSpacing}}; text-align: center; margin-bottom: 0; position: relative;" class="kerberos-module-{{moduleId}}">
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<section style="{{responsiveBackground}}; color: white; padding: {{sectionSpacing}}; text-align: center; margin-bottom: 0; position: relative;" class="kerberos-module-{{moduleId}}">
                     {{overlayElements}}
                     <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         {{iconElement}}
@@ -587,7 +669,32 @@
                 "name": "Challenge-Requirement-Solution",
                 "category": "Content & Services",
                 "description": "Ein Lösungsmodul mit drei Kästchen im Kerberos Design - Auto-Hide für leere Felder",
-                "html": `<style>
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<style>
                     .kerberos-module-{{templateId}} .solution-box {
                         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                         cursor: default;
@@ -701,7 +808,32 @@
                 "name": "Hero mit SVG-Grafik",
                 "category": "Hero & Headers",
                 "description": "Hero-Bereich mit optimierten SVG-Grafiken und Call-to-Action",
-                "html": `<section style="{{responsiveBackground}}; padding: {{sectionSpacing}}; text-align: center; margin-bottom: 0; position: relative;" class="kerberos-module-{{moduleId}}">
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<section style="{{responsiveBackground}}; padding: {{sectionSpacing}}; text-align: center; margin-bottom: 0; position: relative;" class="kerberos-module-{{moduleId}}">
                     {{overlayElements}}
                     <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         {{svgElement}}
@@ -795,6 +927,31 @@
     "name": "API Hero mit Text", 
     "category": "Hero & Headers",
     "description": "API-Hero mit SVG-Grafik und erweiterten Textfeldern",
+    
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
     "html": `<section style="background: {{backgroundColor}}; padding: {{sectionSpacing}}; text-align: center; margin-bottom: 0; position: relative;" class="kerberos-module-{{moduleId}}">
         {{overlayElements}}
         <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
@@ -867,6 +1024,31 @@
     "name": "Compliance Dashboard (Interaktiv)",
     "category": "Technology & Tools",
     "description": "Interaktives Dashboard mit Echtzeit-Compliance-Daten, Statistiken und Aktivitätsfeeds",
+    
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
@@ -976,7 +1158,32 @@
                 "name": "API Endpoints Übersicht",
                 "category": "Technology & Tools",
                 "description": "Zeigt API-Endpoints in einer übersichtlichen Grid-Struktur mit optionalen Methods/Status",
-                "html": `<style>
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<style>
                     .kerberos-btn-{{templateId}} {
                         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
                         cursor: pointer !important;
@@ -1080,7 +1287,32 @@
                 "name": "Product Showcase",
                 "category": "Content & Services",
                 "description": "Responsive Produkt-Showcase mit modernen Hover-Effekten",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         {{showcaseContent}}
                     </div>
@@ -1191,7 +1423,32 @@
                 "name": "Kerberos Lösungsübersicht",
                 "category": "Content & Services",
                 "description": "Editierbare Produkt-/Lösungsübersicht mit Hover-Effekten",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
                         {{solutionsContent}}
                     </div>
@@ -1294,7 +1551,32 @@
                 "name": "Company Presentation",
                 "category": "Team & About",
                 "description": "Unternehmensvorstellung mit Haupttext, Button und Statistiken im Grid-Layout",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; position: relative;" class="kerberos-company-presentation">
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; position: relative;" class="kerberos-company-presentation">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="display: grid; grid-template-columns: 1fr; gap: {{contentGap}}; align-items: center;">
                             <div style="display: grid; grid-template-columns: 1fr 400px; gap: {{mainContentGap}}; align-items: center; margin-bottom: {{sectionSpacing}};">
@@ -1369,7 +1651,32 @@
                 "name": "Testimonials Professional",
                 "category": "Content & Images",
                 "description": "Professionelles Testimonial-Modul mit Logos und Links für bis zu 15 Kundenbewertungen",
-                "html": `<style>
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<style>
                     .kerberos-testimonials-pro-container {
                         max-width: 100%;
                         overflow: hidden;
@@ -1683,7 +1990,32 @@
                 "name": "Team Galerie",
                 "category": "Team & About",
                 "description": "Mitarbeiter-Galerie mit Bildern und Fallback-Avatars",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};">
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
                             <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
@@ -1757,7 +2089,32 @@
                 "name": "Statistiken mit Icons",
                 "category": "Statistics & Numbers",
                 "description": "Zahlen und Fakten mit anpassbaren Icons und Abständen",
-                "html": `<style>
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<style>
                     .kerberos-module-{{templateId}} .kerberos-stat-card {
                         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
                         cursor: pointer !important;
@@ -1868,7 +2225,32 @@
                 "name": "Modernes Bild-Text Layout",
                 "category": "Content & Images",
                 "description": "Vollständig responsives Bild-Text Layout mit modernen Design-Elementen",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};">
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: {{contentGap}}; align-items: center; min-height: {{minHeightType}};">
                             <div style="order: {{imageOrder}};">
@@ -1952,7 +2334,32 @@
                 "name": "Moderne Call-to-Action",
                 "category": "Contact & CTA",
                 "description": "Moderne CTA-Sektion mit Gradient-Hintergrund und animierten Elementen",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; position: relative; overflow: hidden;">
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; position: relative; overflow: hidden;">
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: {{backgroundPattern}}; opacity: {{backgroundOpacityType}};"></div>
                     <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem; text-align: center; position: relative; z-index: 2;">
                         <div style="margin-bottom: {{iconSpacing}}; display: {{showIcon}};">
@@ -2028,7 +2435,32 @@
                 "name": "Feature Breaker",
                 "category": "Content & Services", 
                 "description": "Auffälliges Breaker-Modul für besondere Ankündigungen - ALLE PROPERTIES FUNKTIONIEREN",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundGradient}}; position: relative; overflow: hidden;" class="kerberos-module-{{templateId}}">
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundGradient}}; position: relative; overflow: hidden;" class="kerberos-module-{{templateId}}">
                     <div class="breaker-animated-bg" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: {{backgroundOpacityType}}; background: {{backgroundPatternType}}; z-index: 1;"></div>
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2;">
                         {{breakerContent}}
@@ -2088,7 +2520,32 @@
                 "name": "Testimonials Carousel",
                 "category": "Team & About",
                 "description": "Kundenbewertungen mit automatischem Carousel - JAVASCRIPT REPARIERT",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; overflow: hidden;" class="kerberos-module-{{templateId}}">
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; overflow: hidden;" class="kerberos-module-{{templateId}}">
                     <div style="max-width: {{maxWidthType}}; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
                             <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
@@ -2249,6 +2706,31 @@
     "name": "Process Timeline (Responsive)",
     "category": "Content & Services",
     "description": "Prozess-Timeline mit perfekter Responsivität und modernen Hover-Effekten",
+    
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
@@ -2370,7 +2852,32 @@
                 "name": "Process Timeline (Standard)",
                 "category": "Content & Services",
                 "description": "Standard Prozess-Timeline mit editierbaren Schritten",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
                             <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
@@ -2447,7 +2954,32 @@
                 "name": "Statistiken mit Icons (Hover-Effekte)",
                 "category": "Content & Services",
                 "description": "Statistik-Darstellung mit animierten Hover-Effekten und Icons",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
                             <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
@@ -2533,7 +3065,32 @@
                 "name": "Integrations Grid (Filter funktionsfähig)",
                 "category": "Content & Services",
                 "description": "Integration-Grid mit funktionierender Filter-Funktion für Squarespace",
-                "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
                             <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
@@ -2673,6 +3230,31 @@
     "name": "Text-Button-Modul (Secondary Button konfigurierbar)",
     "category": "Content & Images",
     "description": "Text-Modul mit konfigurierbarem zweiten Button und Rich-Text-Editor",
+    
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; text-align: {{textAlignmentType}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidthType}}; margin: 0 auto; padding: 0 2rem;">
             <div style="margin-bottom: {{iconSpacing}}; display: {{showIcon}};">
@@ -2754,6 +3336,31 @@
     "name": "Features Grid mit Hover",
     "category": "Content & Services",
     "description": "Interaktives Features-Grid mit CSS-Hover-Animationen und Icons",
+    
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
     "html": `<style>
         .kerberos-features-module {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -2930,7 +3537,32 @@
                 "name": "Team Kontakt Cards",
                 "category": "Social Proof",
                 "description": "Responsive Ansprechpartner-Karten mit Bildern, Kontaktdaten und CTAs",
-                "html": `<!-- Kerberos Ansprechpartner Modul -->
+                
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
+    "html": `<!-- Kerberos Ansprechpartner Modul -->
 <div class="kerberos-contact-module kerberos-module-{{moduleId}}">
     <div class="contact-grid">
         {{contactCards}}
@@ -3230,6 +3862,31 @@
     "name": "Pricing Interactive (3 Plans)",
     "category": "Pricing & Plans",
     "description": "Interaktive Pricing-Tabelle mit bis zu 3 Plänen und Feature-Vergleich",
+    
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
@@ -3344,6 +4001,31 @@
     "name": "Feature Comparison Table",
     "category": "Pricing & Plans",
     "description": "Reine Feature-Vergleichstabelle ohne Pricing Cards - perfekt für Produkt-/Service-Vergleiche",
+    
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
@@ -3489,6 +4171,31 @@
     "name": "Services Overview (Two Column)",
     "category": "Content & Services",
     "description": "Services-Übersicht mit abwechselnden Bild/Text-Spalten und Solutions-Grid",
+    
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
             {{serviceBlocks}}
@@ -3587,6 +4294,31 @@
     "name": "Testimonials Horizontal Scroll",
     "category": "Team & About",
     "description": "Horizontales Testimonials-Carousel mit Scroll-Funktion und Quote-Icons",
+    
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
@@ -3676,6 +4408,31 @@
     "name": "About Section mit Stats Grid",
     "category": "Team & About",
     "description": "Hero-Section mit Logo + Stats-Grid mit Zahlen und Icons",
+    
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
             <!-- Hero Section -->
@@ -3791,6 +4548,31 @@
     "name": "FAQ Accordion (Interactive)",
     "category": "Content & Services",
     "description": "Interaktives FAQ-Accordion - funktioniert auch im Editor!",
+    
+    "propertySchema": {
+        section: {
+            groupName: 'section',
+            prefix: 'section',
+            group: 'section',
+            only: ['backgroundColor', 'spacing'],
+            overrides: {
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        }
+    },
+
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
