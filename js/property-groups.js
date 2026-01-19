@@ -430,10 +430,13 @@ const PROPERTY_GROUPS = {
  *
  * @param {string} groupName - Name der Property-Gruppe (z.B. 'button')
  * @param {string} prefix - Präfix für die Property-Keys (z.B. 'primaryButton')
- * @param {object} overrides - Optionale Überschreibungen für einzelne Properties
+ * @param {object} options - Optionen
+ * @param {object} options.overrides - Überschreibungen für einzelne Properties
+ * @param {array} options.only - Nur diese Properties aus der Gruppe nehmen
+ * @param {array} options.exclude - Diese Properties ausschließen
  * @returns {object} - Property-Schema-Objekt
  */
-function createPropertyGroup(groupName, prefix, overrides = {}) {
+function createPropertyGroup(groupName, prefix, options = {}) {
     const group = PROPERTY_GROUPS[groupName];
 
     if (!group) {
@@ -441,9 +444,16 @@ function createPropertyGroup(groupName, prefix, overrides = {}) {
         return {};
     }
 
+    const { overrides = {}, only = null, exclude = [] } = options;
     const properties = {};
 
     for (const [propKey, propDef] of Object.entries(group)) {
+        // Überspringe, wenn "only" angegeben und propKey nicht darin
+        if (only && !only.includes(propKey)) continue;
+
+        // Überspringe, wenn in "exclude" Liste
+        if (exclude.includes(propKey)) continue;
+
         const fullKey = prefix + propKey.charAt(0).toUpperCase() + propKey.slice(1);
 
         properties[fullKey] = {
