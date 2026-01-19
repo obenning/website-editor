@@ -42,12 +42,19 @@ function initInlineEditor() {
  * Richtet Event-Listener für das Inline-Editing ein
  */
 function setupInlineEditorListeners() {
-    const canvas = document.getElementById('freshCanvas');
+    // Versuche verschiedene Canvas-IDs
+    const canvas = document.getElementById('canvas') ||
+                   document.getElementById('freshCanvas') ||
+                   document.querySelector('.canvas');
 
     if (!canvas) {
-        console.warn('⚠️ Canvas nicht gefunden');
+        console.warn('⚠️ Canvas nicht gefunden - warte auf DOM...');
+        // Versuche es nach einer kurzen Verzögerung erneut
+        setTimeout(setupInlineEditorListeners, 500);
         return;
     }
+
+    console.log('✅ Canvas gefunden:', canvas.id || canvas.className);
 
     // Delegierte Event-Listener auf Canvas-Ebene
     canvas.addEventListener('dblclick', handleDoubleClick, true);
@@ -193,10 +200,18 @@ function disableInlineEditing() {
  * Behandelt Single-Click-Events für Color-Picker
  */
 function handleSingleClick(e) {
-    // Color-Picker für farbige Elemente
+    // Ignoriere Clicks auf Control-Buttons und Toolbar
+    if (e.target.closest('.control-btn') ||
+        e.target.closest('.inline-editor-toolbar') ||
+        e.target.closest('.color-picker-popover') ||
+        e.target.closest('.inline-editor-modal')) {
+        return; // Lasse normale Handler durchlaufen
+    }
+
+    // Color-Picker für farbige Elemente (nur mit Shift+Click)
     const colorElement = e.target.closest('[data-editable-color]');
 
-    if (colorElement && !e.target.closest('.inline-editor-toolbar')) {
+    if (colorElement && e.shiftKey) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -213,10 +228,10 @@ function handleSingleClick(e) {
         return;
     }
 
-    // Icon-Picker für Icons
+    // Icon-Picker für Icons (nur mit Shift+Click)
     const iconElement = e.target.closest('[data-editable-icon]');
 
-    if (iconElement) {
+    if (iconElement && e.shiftKey) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -493,30 +508,95 @@ function injectInlineEditorStyles() {
         <style id="inline-editor-styles">
             /* Inline-Editing aktiv */
             .inline-editing-active {
-                outline: 2px solid #063AA8 !important;
-                outline-offset: 2px;
-                background: rgba(6, 58, 168, 0.05) !important;
+                outline: 3px solid #063AA8 !important;
+                outline-offset: 3px;
+                background: rgba(6, 58, 168, 0.08) !important;
                 cursor: text !important;
+                position: relative;
+                z-index: 100;
             }
 
-            /* Editierbare Elemente Hover */
-            [data-editable-text]:hover:not(.inline-editing-active),
-            [data-editable-color]:hover,
-            [data-editable-icon]:hover {
-                outline: 2px dashed #009CE6;
+            /* Editierbare Elemente Hover - subtiler */
+            [data-editable-text]:hover:not(.inline-editing-active) {
+                outline: 1px dashed rgba(0, 156, 230, 0.4);
                 outline-offset: 2px;
-                cursor: pointer;
+                background: rgba(0, 156, 230, 0.02);
+                cursor: text;
+                transition: all 0.2s ease;
+            }
+
+            [data-editable-color]:hover {
+                box-shadow: 0 0 0 2px rgba(0, 156, 230, 0.3);
+                transition: box-shadow 0.2s ease;
+            }
+
+            [data-editable-icon]:hover {
+                transform: scale(1.1);
+                transition: transform 0.2s ease;
             }
 
             /* Toolbar Buttons */
+            .inline-editor-toolbar {
+                display: flex;
+                gap: 0.25rem;
+                animation: fadeIn 0.2s ease;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-5px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
             .inline-editor-toolbar button:hover {
                 opacity: 0.9;
                 transform: scale(1.05);
+                transition: all 0.15s ease;
             }
 
             /* Verhindere Auswahl während Editing */
             .inline-editing-active * {
                 user-select: text !important;
+            }
+
+            /* Tooltip für Tastatur-Shortcuts */
+            [data-editable-text]::after,
+            [data-editable-color]::after,
+            [data-editable-icon]::after {
+                content: attr(data-edit-hint);
+                position: absolute;
+                bottom: 100%;
+                left: 0;
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 0.25rem 0.5rem;
+                border-radius: 4px;
+                font-size: 0.75rem;
+                white-space: nowrap;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.2s ease;
+                z-index: 1000;
+            }
+
+            [data-editable-text]:hover::after {
+                content: "Doppelklick zum Bearbeiten";
+                opacity: 1;
+            }
+
+            [data-editable-color]:hover::after {
+                content: "Shift+Klick für Farbauswahl";
+                opacity: 1;
+            }
+
+            [data-editable-icon]:hover::after {
+                content: "Shift+Klick zum Icon ändern";
+                opacity: 1;
             }
         </style>
     `;
