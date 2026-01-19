@@ -44,6 +44,9 @@
             for (const [schemaKey, schemaDef] of Object.entries(schema)) {
                 const groupName = schemaDef.group || 'general';
                 const prefix = schemaDef.prefix || '';
+                const only = schemaDef.only || null;
+                const exclude = schemaDef.exclude || [];
+                const overrides = schemaDef.overrides || {};
 
                 if (!groupedProperties[groupName]) {
                     groupedProperties[groupName] = [];
@@ -55,21 +58,23 @@
 
                     // Expandiere alle Properties der Gruppe mit dem Prefix
                     for (const [propKey, propDef] of Object.entries(propertyGroup)) {
+                        // Filtere basierend auf "only" und "exclude"
+                        if (only && !only.includes(propKey)) continue;
+                        if (exclude.includes(propKey)) continue;
+
                         const fullKey = prefix + propKey.charAt(0).toUpperCase() + propKey.slice(1);
                         const value = module.properties[fullKey] !== undefined ? module.properties[fullKey] : propDef.default;
 
-                        // Filtere basierend auf der group-Eigenschaft innerhalb der Property-Definition
-                        // Wenn keine spezifische group in propDef, nutze die übergeordnete group
-                        const propGroup = propDef.group || groupName;
+                        // Wende overrides an (z.B. für bessere Labels)
+                        const finalPropDef = {
+                            ...propDef,
+                            ...(overrides[propKey] || {})
+                        };
 
-                        if (!groupedProperties[propGroup]) {
-                            groupedProperties[propGroup] = [];
-                        }
-
-                        groupedProperties[propGroup].push({
+                        groupedProperties[groupName].push({
                             key: fullKey,
                             value: value,
-                            definition: propDef,
+                            definition: finalPropDef,
                             parentKey: schemaKey
                         });
                     }
@@ -87,16 +92,26 @@
 
             // Render Accordions für jede Gruppe
             const groupTitles = {
+                // Legacy
                 content: '📝 Inhalte',
                 style: '🎨 Styling',
                 layout: '📐 Layout',
                 hover: '🖱️ Hover-Effekte',
                 visibility: '👁️ Sichtbarkeit',
-                general: '⚙️ Allgemein'
+                general: '⚙️ Allgemein',
+                // Neue Element-basierte Titel
+                section: '🎨 Section (Hintergrund & Abstände)',
+                title: '📝 Titel',
+                subtitle: '📋 Untertitel',
+                icon: '⭐ Icon',
+                button: '🔘 Call-to-Action Button',
+                image: '🖼️ Bild',
+                card: '📦 Karte',
+                text: '📝 Text'
             };
 
-            // Sortiere Gruppen in sinnvoller Reihenfolge
-            const groupOrder = ['content', 'style', 'layout', 'hover', 'visibility', 'general'];
+            // Sortiere Gruppen in sinnvoller Reihenfolge (Element-basiert)
+            const groupOrder = ['section', 'title', 'subtitle', 'icon', 'button', 'image', 'card', 'text', 'content', 'style', 'layout', 'hover', 'visibility', 'general'];
             const sortedGroups = Object.keys(groupedProperties).sort((a, b) => {
                 const aIndex = groupOrder.indexOf(a);
                 const bIndex = groupOrder.indexOf(b);

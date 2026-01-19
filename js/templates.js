@@ -18,35 +18,67 @@
                     </div>
                 </section>`,
                 "propertySchema": {
-                    // Section
+                    // Section Background & Spacing
                     section: {
                         groupName: 'section',
                         prefix: 'section',
-                        group: 'layout'
+                        group: 'section',
+                        only: ['backgroundColor', 'spacing'],
+                        overrides: {
+                            backgroundColor: { label: 'Hintergrundfarbe' },
+                            spacing: { label: 'Abstand oben/unten' }
+                        }
                     },
-                    // Title
+                    // Titel
                     title: {
                         groupName: 'heading',
                         prefix: 'title',
-                        group: 'content'
+                        group: 'title',
+                        only: ['content', 'color', 'spacing'],
+                        overrides: {
+                            content: { label: 'Titel-Text' },
+                            color: { label: 'Titel-Farbe' },
+                            spacing: { label: 'Abstand unter Titel' }
+                        }
                     },
-                    // Subtitle
+                    // Untertitel
                     subtitle: {
                         groupName: 'subtitle',
                         prefix: 'subtitle',
-                        group: 'content'
+                        group: 'subtitle',
+                        only: ['content', 'color', 'sizeType'],
+                        overrides: {
+                            content: { label: 'Untertitel-Text' },
+                            color: { label: 'Untertitel-Farbe' },
+                            sizeType: { label: 'Schriftgröße' }
+                        }
                     },
-                    // Icon
+                    // Icon (optional)
                     icon: {
                         groupName: 'iconSimple',
                         prefix: 'icon',
-                        group: 'content'
+                        group: 'icon',
+                        only: ['class', 'color', 'sizeType'],
+                        overrides: {
+                            class: { label: 'Icon auswählen' },
+                            color: { label: 'Icon-Farbe' },
+                            sizeType: { label: 'Icon-Größe' }
+                        }
                     },
-                    // Primary Button
+                    // Call-to-Action Button
                     primaryButton: {
                         groupName: 'button',
                         prefix: 'primaryButton',
-                        group: 'content'
+                        group: 'button',
+                        only: ['text', 'link', 'background', 'textColor', 'paddingType', 'radiusType'],
+                        overrides: {
+                            text: { label: 'Button-Text' },
+                            link: { label: 'Button-Link (URL)' },
+                            background: { label: 'Button-Hintergrund' },
+                            textColor: { label: 'Button-Textfarbe' },
+                            paddingType: { label: 'Button-Größe (Padding)' },
+                            radiusType: { label: 'Button-Ecken-Rundung' }
+                        }
                     }
                 },
                 "properties": {
