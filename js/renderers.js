@@ -112,7 +112,7 @@
                     // Versuche den Typ intelligent zu erraten
                     let type = 'text';
                     if (typeof propValue === 'boolean' || propValue === 'true' || propValue === 'false') {
-                        type = 'checkbox';
+                        type = 'boolean';
                     } else if (propKey.toLowerCase().includes('color') || propKey.toLowerCase().includes('background')) {
                         type = 'color';
                     } else if (propKey.toLowerCase().includes('content') || propKey.toLowerCase().includes('text') || propKey.toLowerCase().includes('description')) {
