@@ -9,7 +9,7 @@
                 "description": "Modernes Hero-Modul mit dem neuen Unified Property Panel System",
                 "html": `<section style="background: {{sectionBackgroundColor}}; padding: {{sectionSpacing}}; text-align: center; position: relative;" class="kerberos-module-{{moduleId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-                        <div style="font-size: {{iconSizeType}}; color: {{iconColor}}; margin-bottom: 1rem;">{{iconClass}}</div>
+                        <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; margin-bottom: 1rem;">{{iconClass}}</div>
                         <div style="color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</div>
                         <p style="color: {{subtitleColor}}; margin-bottom: 2rem; font-size: {{subtitleSizeType}};">{{subtitleContent}}</p>
                         <a href="{{primaryButtonLink}}" style="background: {{primaryButtonBackground}}; color: {{primaryButtonTextColor}}; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; text-decoration: none; display: inline-block; transition: all 0.3s ease; box-shadow: {{primaryButtonShadowType}};">

@@ -2097,17 +2097,53 @@
         }
 
 
-        function toggleAccordion(header) {
-            const content = header.nextElementSibling;
-            const icon = header.querySelector('.accordion-icon');
-            const isOpen = content.style.maxHeight !== '0px' && content.style.maxHeight !== '';
+        /**
+         * Toggle Accordion - Unterstützt beide Aufrufvarianten
+         * @param {string|HTMLElement} target - Accordion ID (String) oder DOM-Element
+         */
+        function toggleAccordion(target) {
+            let content, icon;
 
-            if (isOpen) {
-                content.style.maxHeight = '0px';
-                icon.textContent = '+';
+            // Prüfe ob target ein String (ID) oder DOM-Element ist
+            if (typeof target === 'string') {
+                // Neue Unified System Variante: ID als String
+                content = document.getElementById(target);
+                icon = document.getElementById(target + '-icon');
+
+                if (!content) {
+                    console.warn('Accordion content nicht gefunden:', target);
+                    return;
+                }
+
+                // Toggle display für neues System
+                const isVisible = content.style.display !== 'none';
+                if (isVisible) {
+                    content.style.display = 'none';
+                    if (icon) icon.textContent = '▼';
+                } else {
+                    content.style.display = 'block';
+                    if (icon) icon.textContent = '▲';
+                }
             } else {
-                content.style.maxHeight = content.scrollHeight + 'px';
-                icon.textContent = '−';
+                // Legacy Variante: DOM-Element (header)
+                const header = target;
+                content = header.nextElementSibling;
+                icon = header.querySelector('.accordion-icon');
+
+                if (!content) {
+                    console.warn('Accordion content nicht gefunden');
+                    return;
+                }
+
+                // Toggle maxHeight für altes System
+                const isOpen = content.style.maxHeight !== '0px' && content.style.maxHeight !== '';
+                if (isOpen) {
+                    content.style.maxHeight = '0px';
+                    if (icon) icon.textContent = '+';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    if (icon) icon.textContent = '−';
+                }
             }
         }
 
