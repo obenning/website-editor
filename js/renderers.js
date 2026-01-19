@@ -1,3 +1,148 @@
+        // =====================================================
+        // UNIFIED PROPERTY PANEL SYSTEM
+        // =====================================================
+
+        /**
+         * Rendert ein Property-Feld basierend auf dem neuen Unified Schema
+         *
+         * @param {string} key - Property-Key
+         * @param {any} value - Aktueller Wert
+         * @param {object} propDef - Property-Definition aus dem Schema
+         * @returns {string} - HTML für das Feld
+         */
+        function renderPropertyFieldUnified(key, value, propDef) {
+            const type = propDef.type || 'text';
+            const label = propDef.label || key;
+            const config = propDef.config || {};
+
+            return renderPropertyByType(key, value, type, label, config);
+        }
+
+        /**
+         * Rendert das Property Panel für ein Modul mit propertySchema
+         *
+         * @param {object} module - Das zu bearbeitende Modul
+         * @returns {string} - HTML für das Property Panel
+         */
+        function renderUnifiedPropertyPanel(module) {
+            console.log('🎨 Rendering Unified Property Panel für:', module.name);
+
+            const template = MODULE_TEMPLATES.find(t => t.id === module.templateId);
+
+            if (!template || !template.propertySchema) {
+                console.warn('⚠️ Kein propertySchema gefunden für Template:', module.templateId);
+                return null; // Fallback zu altem System
+            }
+
+            let html = '';
+
+            // Gruppiere Properties nach ihrer "group" Eigenschaft
+            const groupedProperties = {};
+            const schema = template.propertySchema;
+
+            // Sammle alle Properties und gruppiere sie
+            for (const [schemaKey, schemaDef] of Object.entries(schema)) {
+                const groupName = schemaDef.group || 'general';
+                const prefix = schemaDef.prefix || '';
+
+                if (!groupedProperties[groupName]) {
+                    groupedProperties[groupName] = [];
+                }
+
+                // Wenn es eine Property-Gruppe referenziert (z.B. 'button', 'heading')
+                if (schemaDef.groupName && PROPERTY_GROUPS[schemaDef.groupName]) {
+                    const propertyGroup = PROPERTY_GROUPS[schemaDef.groupName];
+
+                    // Expandiere alle Properties der Gruppe mit dem Prefix
+                    for (const [propKey, propDef] of Object.entries(propertyGroup)) {
+                        const fullKey = prefix + propKey.charAt(0).toUpperCase() + propKey.slice(1);
+                        const value = module.properties[fullKey] !== undefined ? module.properties[fullKey] : propDef.default;
+
+                        // Filtere basierend auf der group-Eigenschaft innerhalb der Property-Definition
+                        // Wenn keine spezifische group in propDef, nutze die übergeordnete group
+                        const propGroup = propDef.group || groupName;
+
+                        if (!groupedProperties[propGroup]) {
+                            groupedProperties[propGroup] = [];
+                        }
+
+                        groupedProperties[propGroup].push({
+                            key: fullKey,
+                            value: value,
+                            definition: propDef,
+                            parentKey: schemaKey
+                        });
+                    }
+                } else {
+                    // Einzelne Property ohne Gruppen-Referenz
+                    const value = module.properties[schemaKey] !== undefined ? module.properties[schemaKey] : schemaDef.default;
+                    groupedProperties[groupName].push({
+                        key: schemaKey,
+                        value: value,
+                        definition: schemaDef,
+                        parentKey: schemaKey
+                    });
+                }
+            }
+
+            // Render Accordions für jede Gruppe
+            const groupTitles = {
+                content: '📝 Inhalte',
+                style: '🎨 Styling',
+                layout: '📐 Layout',
+                hover: '🖱️ Hover-Effekte',
+                visibility: '👁️ Sichtbarkeit',
+                general: '⚙️ Allgemein'
+            };
+
+            // Sortiere Gruppen in sinnvoller Reihenfolge
+            const groupOrder = ['content', 'style', 'layout', 'hover', 'visibility', 'general'];
+            const sortedGroups = Object.keys(groupedProperties).sort((a, b) => {
+                const aIndex = groupOrder.indexOf(a);
+                const bIndex = groupOrder.indexOf(b);
+                if (aIndex === -1) return 1;
+                if (bIndex === -1) return -1;
+                return aIndex - bIndex;
+            });
+
+            for (const groupName of sortedGroups) {
+                const properties = groupedProperties[groupName];
+                if (!properties || properties.length === 0) continue;
+
+                const groupTitle = groupTitles[groupName] || groupName.charAt(0).toUpperCase() + groupName.slice(1);
+                const accordionId = `accordion-${groupName}`;
+
+                html += `
+                    <div class="accordion-item" style="margin-bottom: 1rem;">
+                        <button class="accordion-button" onclick="toggleAccordion('${accordionId}')"
+                                style="width: 100%; padding: 0.75rem; background: linear-gradient(135deg, #063AA8, #009CE6);
+                                color: white; border: none; border-radius: 6px; cursor: pointer; text-align: left;
+                                font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                            ${groupTitle}
+                            <span id="${accordionId}-icon" style="font-size: 0.8rem;">▼</span>
+                        </button>
+                        <div id="${accordionId}" class="accordion-content" style="display: none; padding: 1rem;
+                             background: white; border: 1px solid #dee2e6; border-top: none; border-radius: 0 0 6px 6px;
+                             margin-top: -6px;">
+                `;
+
+                // Render alle Properties dieser Gruppe
+                for (const prop of properties) {
+                    html += renderPropertyFieldUnified(prop.key, prop.value, prop.definition);
+                }
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            }
+
+            return html;
+        }
+
+        /**
+         * Erweiterte renderPropertyPanel Funktion mit Unified System Support
+         */
         function renderPropertyPanel() {
             const panel = document.getElementById('propertyPanel');
             
@@ -153,6 +298,52 @@
                 panel.innerHTML = errorTemplate;
                 return;
             }
+
+            // === UNIFIED PROPERTY PANEL CHECK ===
+            // Prüfe, ob das Template das neue propertySchema-System nutzt
+            if (template.propertySchema) {
+                console.log('✨ Using Unified Property Panel System');
+
+                const unifiedPropertiesHTML = renderUnifiedPropertyPanel(selectedModule);
+
+                if (unifiedPropertiesHTML) {
+                    // Haupttemplate mit CSS-freier Struktur
+                    let html = `
+                        <h4 data-style="HEADER_STYLES">
+                            ${template.name}
+                            <span style="background: #28a745; color: white; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.65rem; margin-left: 0.5rem;">UNIFIED</span>
+                        </h4>
+                        <p data-style="DESCRIPTION_STYLES">${template.description}</p>
+                    `;
+
+                    // CSS-Stile separat definieren
+                    const headerStyles = [
+                        'color: var(--kerberos-primary)',
+                        'margin-bottom: 1rem',
+                        'font-size: 1rem'
+                    ].join('; ');
+
+                    const descriptionStyles = [
+                        'font-size: 0.8rem',
+                        'color: #6c757d',
+                        'margin-bottom: 1.5rem'
+                    ].join('; ');
+
+                    // Replace CSS
+                    html = html.replace('data-style="HEADER_STYLES"', 'style="' + headerStyles + '"');
+                    html = html.replace('data-style="DESCRIPTION_STYLES"', 'style="' + descriptionStyles + '"');
+
+                    // Füge unified properties hinzu
+                    html += unifiedPropertiesHTML;
+
+                    // Render final HTML
+                    panel.innerHTML = controlsTemplate + html;
+                    return;
+                }
+            }
+
+            // === LEGACY SYSTEM (Fallback) ===
+            console.log('📦 Using Legacy Property Panel System');
 
             // Haupttemplate mit CSS-freier Struktur
             let html = `
