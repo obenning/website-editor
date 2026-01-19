@@ -1,4 +1,89 @@
         const MODULE_TEMPLATES = [
+            // =====================================================
+            // UNIFIED PROPERTY PANEL - PROOF OF CONCEPT
+            // =====================================================
+            {
+                "id": "kerberos-hero-unified",
+                "name": "🎨 Hero Section (Unified)",
+                "category": "Hero & Headers",
+                "description": "Modernes Hero-Modul mit dem neuen Unified Property Panel System",
+                "html": `<section style="background: {{sectionBackgroundColor}}; padding: {{sectionSpacing}}; text-align: center; position: relative;" class="kerberos-module-{{moduleId}}">
+                    <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+                        <div style="font-size: {{iconSizeType}}; color: {{iconColor}}; margin-bottom: 1rem;">{{iconClass}}</div>
+                        <div style="color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</div>
+                        <p style="color: {{subtitleColor}}; margin-bottom: 2rem; font-size: {{subtitleSizeType}};">{{subtitleContent}}</p>
+                        <a href="{{primaryButtonLink}}" style="background: {{primaryButtonBackground}}; color: {{primaryButtonTextColor}}; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; text-decoration: none; display: inline-block; transition: all 0.3s ease; box-shadow: {{primaryButtonShadowType}};">
+                            {{primaryButtonText}}
+                        </a>
+                    </div>
+                </section>`,
+                "propertySchema": {
+                    // Section
+                    section: {
+                        groupName: 'section',
+                        prefix: 'section',
+                        group: 'layout'
+                    },
+                    // Title
+                    title: {
+                        groupName: 'heading',
+                        prefix: 'title',
+                        group: 'content'
+                    },
+                    // Subtitle
+                    subtitle: {
+                        groupName: 'subtitle',
+                        prefix: 'subtitle',
+                        group: 'content'
+                    },
+                    // Icon
+                    icon: {
+                        groupName: 'iconSimple',
+                        prefix: 'icon',
+                        group: 'content'
+                    },
+                    // Primary Button
+                    primaryButton: {
+                        groupName: 'button',
+                        prefix: 'primaryButton',
+                        group: 'content'
+                    }
+                },
+                "properties": {
+                    // Section
+                    "sectionBackgroundColor": "#ffffff",
+                    "sectionSpacing": "4rem 0",
+                    "sectionPaddingType": "2rem",
+
+                    // Title
+                    "titleContent": "<h1>Willkommen bei Kerberos</h1>",
+                    "titleColor": "#063AA8",
+                    "titleSizeType": "large",
+                    "titleSpacing": "1rem",
+
+                    // Subtitle
+                    "subtitleContent": "Professionelle Compliance-Lösungen für Ihr Unternehmen",
+                    "subtitleColor": "#6c757d",
+                    "subtitleSizeType": "medium",
+
+                    // Icon
+                    "iconClass": "&#xf3ed;",
+                    "iconColor": "#063AA8",
+                    "iconSizeType": "large",
+
+                    // Primary Button
+                    "primaryButtonText": "Mehr erfahren",
+                    "primaryButtonLink": "#kontakt",
+                    "primaryButtonIcon": "",
+                    "primaryButtonBackground": "#063AA8",
+                    "primaryButtonTextColor": "#ffffff",
+                    "primaryButtonPaddingType": "medium",
+                    "primaryButtonRadiusType": "medium",
+                    "primaryButtonShadowType": "none",
+                    "primaryButtonHoverColor": "#042777",
+                    "primaryButtonHoverTransformType": "lift"
+                }
+            },
             {
                 "id": "kerberos-guide-flow",
                 "name": "Interaktiver Guide-Flow",

@@ -71,4 +71,38 @@
                 renderPropertyPanel();
             }, 100);
         }
-               
+
+        /**
+         * Toggle Accordion für Unified Property Panel
+         * Unterstützt beide Aufrufvarianten: mit ID-String oder DOM-Element
+         */
+        function toggleAccordion(target) {
+            let accordionContent, accordionIcon;
+
+            if (typeof target === 'string') {
+                // Neue Unified System Variante: ID als String
+                accordionContent = document.getElementById(target);
+                accordionIcon = document.getElementById(target + '-icon');
+            } else {
+                // Legacy Variante: DOM-Element (this)
+                const header = target;
+                accordionContent = header.nextElementSibling;
+                accordionIcon = header.querySelector('.accordion-icon');
+            }
+
+            if (accordionContent) {
+                const isVisible = accordionContent.style.display !== 'none';
+
+                if (isVisible) {
+                    accordionContent.style.display = 'none';
+                    if (accordionIcon) {
+                        accordionIcon.textContent = accordionIcon.textContent.includes('▼') ? '▼' : '+';
+                    }
+                } else {
+                    accordionContent.style.display = 'block';
+                    if (accordionIcon) {
+                        accordionIcon.textContent = accordionIcon.textContent.includes('▼') ? '▲' : '−';
+                    }
+                }
+            }
+        }
