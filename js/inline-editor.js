@@ -76,15 +76,21 @@ function setupInlineEditorListeners() {
  * Behandelt Doppelklick-Events für Text-Editing
  */
 function handleDoubleClick(e) {
-    // Nur in editierbaren Elementen
-    const editableElement = e.target.closest('[data-editable-text]');
+    // Nur in editierbaren Elementen (mit data-property)
+    const editableElement = e.target.closest('[data-property]');
 
     if (!editableElement) return;
+
+    const propertyKey = editableElement.getAttribute('data-property');
+
+    // Prüfe ob es eine Text-Property ist (nicht Color/Icon/etc)
+    if (isColorProperty(propertyKey) || isIconProperty(propertyKey)) {
+        return; // Für Farben und Icons nicht doppelklicken
+    }
 
     e.preventDefault();
     e.stopPropagation();
 
-    const propertyKey = editableElement.getAttribute('data-editable-text');
     const moduleElement = editableElement.closest('.canvas-module');
 
     if (!moduleElement) {
@@ -197,7 +203,7 @@ function disableInlineEditing() {
 // =====================================================
 
 /**
- * Behandelt Single-Click-Events für Color-Picker
+ * Behandelt Single-Click-Events für Color-Picker und Icon-Picker
  */
 function handleSingleClick(e) {
     // Ignoriere Clicks auf Control-Buttons und Toolbar
@@ -208,42 +214,35 @@ function handleSingleClick(e) {
         return; // Lasse normale Handler durchlaufen
     }
 
-    // Color-Picker für farbige Elemente (nur mit Shift+Click)
-    const colorElement = e.target.closest('[data-editable-color]');
+    // Nur mit Shift+Click für spezielle Editoren
+    if (!e.shiftKey) return;
 
-    if (colorElement && e.shiftKey) {
+    const propertyElement = e.target.closest('[data-property]');
+    if (!propertyElement) return;
+
+    const propertyKey = propertyElement.getAttribute('data-property');
+    const moduleElement = propertyElement.closest('.canvas-module');
+
+    if (!moduleElement) return;
+
+    const moduleId = moduleElement.getAttribute('data-module-id');
+
+    // Color-Picker für Farb-Properties
+    if (isColorProperty(propertyKey)) {
         e.preventDefault();
         e.stopPropagation();
 
-        const propertyKey = colorElement.getAttribute('data-editable-color');
-        const moduleElement = colorElement.closest('.canvas-module');
-
-        if (!moduleElement) return;
-
-        const moduleId = moduleElement.getAttribute('data-module-id');
-
         console.log('🎨 Color-Picker aktiviert:', { moduleId, propertyKey });
-
-        openColorPicker(colorElement, propertyKey, moduleId);
+        openColorPicker(propertyElement, propertyKey, moduleId);
         return;
     }
 
-    // Icon-Picker für Icons (nur mit Shift+Click)
-    const iconElement = e.target.closest('[data-editable-icon]');
-
-    if (iconElement && e.shiftKey) {
+    // Icon-Picker für Icon-Properties
+    if (isIconProperty(propertyKey)) {
         e.preventDefault();
         e.stopPropagation();
 
-        const propertyKey = iconElement.getAttribute('data-editable-icon');
-        const moduleElement = iconElement.closest('.canvas-module');
-
-        if (!moduleElement) return;
-
-        const moduleId = moduleElement.getAttribute('data-module-id');
-
         console.log('⭐ Icon-Picker aktiviert:', { moduleId, propertyKey });
-
         openIconPicker(propertyKey, moduleId);
         return;
     }
@@ -463,6 +462,25 @@ function createColorPickerPopover() {
 // =====================================================
 
 /**
+ * Prüft ob eine Property eine Farb-Property ist
+ */
+function isColorProperty(propertyKey) {
+    return propertyKey && (
+        propertyKey.toLowerCase().includes('color') ||
+        propertyKey.toLowerCase().includes('background') && !propertyKey.toLowerCase().includes('image')
+    );
+}
+
+/**
+ * Prüft ob eine Property eine Icon-Property ist
+ */
+function isIconProperty(propertyKey) {
+    return propertyKey && (
+        propertyKey.toLowerCase().includes('icon') && propertyKey.toLowerCase().includes('class')
+    );
+}
+
+/**
  * Selektiert den gesamten Inhalt eines Elements
  */
 function selectElementContents(element) {
@@ -517,20 +535,28 @@ function injectInlineEditorStyles() {
             }
 
             /* Editierbare Elemente Hover - subtiler */
-            [data-editable-text]:hover:not(.inline-editing-active) {
+            [data-property]:hover:not(.inline-editing-active) {
                 outline: 1px dashed rgba(0, 156, 230, 0.4);
                 outline-offset: 2px;
                 background: rgba(0, 156, 230, 0.02);
-                cursor: text;
+                cursor: pointer;
                 transition: all 0.2s ease;
             }
 
-            [data-editable-color]:hover {
+            /* Text-Properties haben text cursor */
+            [data-property]:not([data-property*="Color"]):not([data-property*="icon"]):hover:not(.inline-editing-active) {
+                cursor: text;
+            }
+
+            /* Farb-Properties highlight */
+            [data-property*="Color"]:hover,
+            [data-property*="background"]:hover {
                 box-shadow: 0 0 0 2px rgba(0, 156, 230, 0.3);
                 transition: box-shadow 0.2s ease;
             }
 
-            [data-editable-icon]:hover {
+            /* Icon-Properties scale */
+            [data-property*="iconClass"]:hover {
                 transform: scale(1.1);
                 transition: transform 0.2s ease;
             }
@@ -565,9 +591,7 @@ function injectInlineEditorStyles() {
             }
 
             /* Tooltip für Tastatur-Shortcuts */
-            [data-editable-text]::after,
-            [data-editable-color]::after,
-            [data-editable-icon]::after {
+            [data-property]::after {
                 content: attr(data-edit-hint);
                 position: absolute;
                 bottom: 100%;
@@ -584,17 +608,21 @@ function injectInlineEditorStyles() {
                 z-index: 1000;
             }
 
-            [data-editable-text]:hover::after {
+            /* Text-Properties */
+            [data-property]:not([data-property*="Color"]):not([data-property*="icon"]):hover::after {
                 content: "Doppelklick zum Bearbeiten";
                 opacity: 1;
             }
 
-            [data-editable-color]:hover::after {
+            /* Farb-Properties */
+            [data-property*="Color"]:hover::after,
+            [data-property*="background"]:hover::after {
                 content: "Shift+Klick für Farbauswahl";
                 opacity: 1;
             }
 
-            [data-editable-icon]:hover::after {
+            /* Icon-Properties */
+            [data-property*="iconClass"]:hover::after {
                 content: "Shift+Klick zum Icon ändern";
                 opacity: 1;
             }
