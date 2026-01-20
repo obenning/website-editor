@@ -9,10 +9,10 @@
                 "description": "Modernes Hero-Modul mit dem neuen Unified Property Panel System",
                 "html": `<section style="background: {{sectionBackgroundColor}}; padding: {{sectionSpacing}}; text-align: center; position: relative;" class="kerberos-module-{{moduleId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-                        <div data-editable-icon="iconClass" style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; margin-bottom: 1rem;">{{iconClass}}</div>
-                        <div data-editable-color="titleColor" data-editable-text="titleContent" style="color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</div>
-                        <p data-editable-color="subtitleColor" style="color: {{subtitleColor}}; margin-bottom: 2rem; font-size: {{subtitleSizeType}};">{{subtitleContent}}</p>
-                        <a href="{{primaryButtonLink}}" style="background: {{primaryButtonBackground}}; color: {{primaryButtonTextColor}}; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; text-decoration: none; display: inline-block; transition: all 0.3s ease; box-shadow: {{primaryButtonShadowType}};">
+                        <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; margin-bottom: 1rem;">{{iconClass}}</div>
+                        <div data-property="titleContent" data-content-type="html" style="color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</div>
+                        <p data-property="subtitleContent" style="color: {{subtitleColor}}; margin-bottom: 2rem; font-size: {{subtitleSizeType}};">{{subtitleContent}}</p>
+                        <a href="{{primaryButtonLink}}" data-property="primaryButtonText" style="background: {{primaryButtonBackground}}; color: {{primaryButtonTextColor}}; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; text-decoration: none; display: inline-block; transition: all 0.3s ease; box-shadow: {{primaryButtonShadowType}};">
                             {{primaryButtonText}}
                         </a>
                     </div>
@@ -23,6 +23,7 @@
                         groupName: 'section',
                         prefix: 'section',
                         group: 'section',
+                        only: ['backgroundColor', 'spacing'],
                         overrides: {
                             backgroundColor: { label: 'Hintergrundfarbe' },
                             spacing: { label: 'Abstand oben/unten' }
@@ -33,6 +34,7 @@
                         groupName: 'heading',
                         prefix: 'title',
                         group: 'title',
+                        only: ['content', 'color', 'spacing'],
                         overrides: {
                             content: { label: 'Titel-Text' },
                             color: { label: 'Titel-Farbe' },
@@ -44,6 +46,7 @@
                         groupName: 'subtitle',
                         prefix: 'subtitle',
                         group: 'subtitle',
+                        only: ['content', 'color', 'sizeType'],
                         overrides: {
                             content: { label: 'Untertitel-Text' },
                             color: { label: 'Untertitel-Farbe' },
@@ -55,6 +58,7 @@
                         groupName: 'iconSimple',
                         prefix: 'icon',
                         group: 'icon',
+                        only: ['class', 'color', 'sizeType'],
                         overrides: {
                             class: { label: 'Icon auswählen' },
                             color: { label: 'Icon-Farbe' },
@@ -66,6 +70,7 @@
                         groupName: 'button',
                         prefix: 'primaryButton',
                         group: 'button',
+                        only: ['text', 'link', 'background', 'textColor', 'paddingType', 'radiusType'],
                         overrides: {
                             text: { label: 'Button-Text' },
                             link: { label: 'Button-Link (URL)' },
@@ -122,15 +127,17 @@
                         groupName: 'section',
                         prefix: 'section',
                         group: 'section',
+                        only: ['backgroundColor', 'spacing'],
                         overrides: {
-                            backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                            spacing: { label: 'Abstand oben/unten' }
+                            backgroundColor: { label: 'Hintergrundfarbe' },
+                            spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
                         }
                     },
                     title: {
                         groupName: 'heading',
                         prefix: 'title',
                         group: 'title',
+                        only: ['content', 'color'],
                         overrides: {
                             content: { label: 'Haupttitel', propertyName: 'title' },
                             color: { label: 'Titel-Farbe', propertyName: 'titleColor' }
@@ -140,6 +147,7 @@
                         groupName: 'subtitle',
                         prefix: 'subtitle',
                         group: 'subtitle',
+                        only: ['content', 'color'],
                         overrides: {
                             content: { label: 'Untertitel', propertyName: 'subtitle' },
                             color: { label: 'Untertitel-Farbe', propertyName: 'subtitleColor' }
@@ -249,47 +257,29 @@
             {
                 "id": "kerberos-benefits",
                 "name": "Benefits mit Icons",
-                "category": "Content & Services",
+                "category": "Content & Services", 
                 "description": "Flexible Benefits-Darstellung mit Icons und variablen Grid-Layouts",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe', propertyName: 'subtitleColor' }
-            }
-        },
-        primaryButton: {
-            groupName: 'button',
-            prefix: 'primaryButton',
-            group: 'button',
-            overrides: {
-                text: { label: 'Button-Text' },
-                link: { label: 'Button-Link' },
-                background: { label: 'Button-Hintergrund' },
-                color: { label: 'Button-Textfarbe' }
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -325,14 +315,14 @@
                 <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <div data-editable-color="titleColor" data-editable-text="titleContent" class="title-wrapper" style="color: {{titleColor}}; margin: 0;">{{titleContent}}</div>
-                            <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; margin: 1rem 0 0 0;">{{subtitle}}</p>
+                            <div class="title-wrapper" data-property="titleContent" data-content-type="html" style="color: {{titleColor}}; margin: 0;">{{titleContent}}</div>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; margin: 1rem 0 0 0;">{{subtitle}}</p>
                         </div>
                         <div class="benefits-grid" style="display: grid; grid-template-columns: repeat({{gridColumns}}, 1fr); gap: {{benefitsGap}};">
                             {{benefitItems}}
                         </div>
                         <div style="text-align: center; margin-top: {{primaryButtonSpacing}};">
-                            <a data-editable-text="primaryButtonText" href="{{primaryButtonLink}}" target="{{primaryButtonTarget}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; transition: all 0.3s ease;">{{primaryButtonText}}</a>
+                            <a href="{{primaryButtonLink}}" target="{{primaryButtonTarget}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; transition: all 0.3s ease;">{{primaryButtonText}}</a>
                         </div>
                     </div>
                 </section>`,
@@ -470,17 +460,17 @@
                         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('{{backgroundImage}}') center/cover; opacity: {{backgroundOpacityValue}};" class="background-overlay"></div>
                         <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2;">
                             <div style="text-align: center; margin-bottom: {{contentGap}};">
-                                <h2 data-editable-color="titleColor" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}}; text-align: center;">
+                                <h2 data-property="titleContent" data-content-type="html" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}}; text-align: center;">
                                     {{titleContent}}
                                 </h2>
-                                <h3 data-editable-color="subtitleColor" style="font-family: var(--heading-font-font-family); font-size: var(--heading-3-size); font-weight: var(--heading-font-font-weight); color: {{subtitleColor}}; margin-bottom: {{subtitleSpacing}}; text-align: center;">
+                                <h3 data-property="subtitleContent" data-content-type="html" style="font-family: var(--heading-font-font-family); font-size: var(--heading-3-size); font-weight: var(--heading-font-font-weight); color: {{subtitleColor}}; margin-bottom: {{subtitleSpacing}}; text-align: center;">
                                     {{subtitleContent}}
                                 </h3>
                                 <div style="margin: {{primaryButtonSpacing}}; text-align: center;">
-                                    <a data-editable-text="primaryButtonText" class="kerberos-btn kerberos-btn-{{templateId}}" href="{{primaryButtonLink}}" style="display: inline-block; font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">{{primaryButtonText}}</a>
+                                    <a class="kerberos-btn kerberos-btn-{{templateId}}" href="{{primaryButtonLink}}" data-property="primaryButtonText" style="display: inline-block; font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">{{primaryButtonText}}</a>
                                 </div>
                             </div>
-                            
+
                             {{factsContent}}
                         </div>
                     </section>`,
@@ -549,55 +539,27 @@
                 "name": "Hero mit Bild & Icon",
                 "category": "Hero & Headers",
                 "description": "Hero-Bereich mit anpassbarem Bild und Icon",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel' },
-                color: { label: 'Untertitel-Farbe' }
-            }
-        },
-        icon: {
-            groupName: 'iconSimple',
-            prefix: 'icon',
-            group: 'icon',
-            overrides: {
-                class: { label: 'Icon auswählen' },
-                color: { label: 'Icon-Farbe' },
-                sizeType: { label: 'Icon-Größe' }
-            }
-        },
-        primaryButton: {
-            groupName: 'button',
-            prefix: 'primaryButton',
-            group: 'button',
-            overrides: {
-                text: { label: 'Button-Text' },
-                link: { label: 'Button-Link' },
-                background: { label: 'Button-Hintergrund' },
-                color: { label: 'Button-Textfarbe' }
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -606,9 +568,9 @@
                     {{overlayElements}}
                     <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         {{iconElement}}
-                        <h1 data-editable-color="titleColor" data-editable-text="titleContent" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</h1>
-                        <p data-editable-color="subtitleColor" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); opacity: 0.9; color: {{subtitleColor}}; margin-bottom: {{textSpacing}};">{{subtitleContent}}</p>
-                        <a data-editable-text="primaryButtonText" class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">{{primaryButtonText}}</a>
+                        <h1 data-property="titleContent" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</h1>
+                        <p data-property="subtitleContent" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); opacity: 0.9; color: {{subtitleColor}}; margin-bottom: {{textSpacing}};">{{subtitleContent}}</p>
+                        <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">{{primaryButtonText}}</a>
                     </div>
                 </section>`,
                 "properties": {
@@ -658,9 +620,9 @@
                     {{overlayElements}}
                     <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         {{iconElement}}
-                        <h1 data-editable-color="titleColor" data-editable-text="titleContent" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</h1>
-                        <p data-editable-color="subtitleColor" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); opacity: 0.9; color: {{subtitleColor}}; margin-bottom: {{textSpacing}};">{{subtitleContent}}</p>
-                        <a data-editable-text="primaryButtonText" class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">{{primaryButtonText}}</a>
+                        <h1 data-property="titleContent" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</h1>
+                        <p data-property="subtitleContent" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); opacity: 0.9; color: {{subtitleColor}}; margin-bottom: {{textSpacing}};">{{subtitleContent}}</p>
+                        <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">{{primaryButtonText}}</a>
                     </div>
                 </section>`,
                 "properties": {
@@ -707,34 +669,27 @@
                 "name": "Challenge-Requirement-Solution",
                 "category": "Content & Services",
                 "description": "Ein Lösungsmodul mit drei Kästchen im Kerberos Design - Auto-Hide für leere Felder",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text', propertyName: 'mainTitleRichtext' },
+                content: { label: 'Titel-Text', propertyName: 'title' },
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitleRichtext' },
-                color: { label: 'Untertitel-Farbe', propertyName: 'subtitleColor' }
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -765,18 +720,18 @@
                 <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; position: relative;" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 data-editable-color="titleColor" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{mainTitleRichtext}}</h2>
-                            <p data-editable-color="subtitleColor" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); color: {{subtitleColor}}; margin: 0; opacity: 0.9; max-width: 800px; margin-left: auto; margin-right: auto;">{{subtitleRichtext}}</p>
+                            <h2 data-property="mainTitleRichtext" data-content-type="html" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{mainTitleRichtext}}</h2>
+                            <p data-property="subtitleRichtext" data-content-type="html" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); color: {{subtitleColor}}; margin: 0; opacity: 0.9; max-width: 800px; margin-left: auto; margin-right: auto;">{{subtitleRichtext}}</p>
                         </div>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: {{contentGap}}; margin-bottom: {{bottomSpacing}};">
                             {{solutionBoxes}}
                         </div>
                         <div style="text-align: center; margin: {{ctaSpacing}} 0; display: {{showCTA}};">
-                            <a href="{{ctaLink}}" style="background: {{ctaBackgroundColor}}; color: {{ctaTextColor}}; text-decoration: none; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease; font-family: var(--body-font-font-family); box-shadow: {{primaryButtonShadow}}; display: inline-block;">{{ctaText}}</a>
+                            <a href="{{ctaLink}}" data-property="ctaText" style="background: {{ctaBackgroundColor}}; color: {{ctaTextColor}}; text-decoration: none; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease; font-family: var(--body-font-font-family); box-shadow: {{primaryButtonShadow}}; display: inline-block;">{{ctaText}}</a>
                         </div>
                         <div style="height: 3px; background: linear-gradient(to right, {{challengeColor}} 0%, {{challengeColor}} 33%, {{requirementColor}} 33%, {{requirementColor}} 66%, {{solutionColor}} 66%, {{solutionColor}} 100%); margin: 0 auto 2rem auto; border-radius: 2px; opacity: 0.8; max-width: 600px; display: {{showConnectionLine}};"></div>
                         <div style="text-align: center; margin-top: {{ctaSpacing}}; display: {{showBottomCTA}};">
-                            <a href="{{bottomCtaLink}}" style="background: {{ctaBackgroundColor}}; color: {{ctaTextColor}}; text-decoration: none; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease; font-family: var(--body-font-font-family); box-shadow: {{primaryButtonShadow}};">{{bottomCtaText}}</a>
+                            <a href="{{bottomCtaLink}}" data-property="bottomCtaText" style="background: {{ctaBackgroundColor}}; color: {{ctaTextColor}}; text-decoration: none; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease; font-family: var(--body-font-font-family); box-shadow: {{primaryButtonShadow}};">{{bottomCtaText}}</a>
                         </div>
                     </div>
                 </section>`,
@@ -853,43 +808,27 @@
                 "name": "Hero mit SVG-Grafik",
                 "category": "Hero & Headers",
                 "description": "Hero-Bereich mit optimierten SVG-Grafiken und Call-to-Action",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
-            }
-        },
-        text: {
-            groupName: 'text',
-            prefix: 'text',
-            group: 'text',
-            overrides: {
-                content: { label: 'Text-Inhalt', propertyName: 'text' },
-                color: { label: 'Text-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -898,12 +837,12 @@
                     {{overlayElements}}
                     <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         {{svgElement}}
-                        <h1 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0;">{{title}}</h1>
+                        <h1 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0;">{{title}}</h1>
                         {{subtitleElement}}
                         {{textElement}}
                         {{buttonElement}}
                     </div>
-                    
+
                     <style>
                         .kerberos-module-{{moduleId}} .hero-svg,
                         .kerberos-module-{{moduleId}} .hero-svg-code {
@@ -985,57 +924,30 @@
 
 {
     "id": "kerberos-api-hero-with-text",
-    "name": "API Hero mit Text",
+    "name": "API Hero mit Text", 
     "category": "Hero & Headers",
     "description": "API-Hero mit SVG-Grafik und erweiterten Textfeldern",
-
+    
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' },
-                spacing: { label: 'Abstand unter Untertitel' }
-            }
-        },
-        text: {
-            groupName: 'text',
-            prefix: 'text',
-            group: 'text',
-            overrides: {
-                content: { label: 'Text-Inhalt', propertyName: 'text' },
-                color: { label: 'Text-Farbe' }
-            }
-        },
-        primaryButton: {
-            groupName: 'button',
-            prefix: 'primaryButton',
-            group: 'button',
-            overrides: {
-                text: { label: 'Button-Text' },
-                link: { label: 'Button-Link' },
-                icon: { label: 'Button-Icon' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -1044,10 +956,10 @@
         {{overlayElements}}
         <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
             {{svgElement}}
-            <h1 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0;">{{title}}</h1>
-            <div data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 800px; margin: 0 auto {{subtitleSpacing}} auto;">{{subtitle}}</div>
-            <div data-editable-color="textColor" style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}}; max-width: 900px; margin: 0 auto {{textSpacing}} auto;">{{text}}</div>
-            <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: {{primaryButtonShadow}}; transition: all 0.3s ease;">
+            <h1 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0;">{{title}}</h1>
+            <div data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 800px; margin: 0 auto {{subtitleSpacing}} auto;">{{subtitle}}</div>
+            <div data-property="text" style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}}; max-width: 900px; margin: 0 auto {{textSpacing}} auto;">{{text}}</div>
+            <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: {{primaryButtonShadow}}; transition: all 0.3s ease;">
                 {{primaryButtonText}}
                 <span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span>
             </a>
@@ -1112,44 +1024,27 @@
     "name": "Compliance Dashboard (Interaktiv)",
     "category": "Technology & Tools",
     "description": "Interaktives Dashboard mit Echtzeit-Compliance-Daten, Statistiken und Aktivitätsfeeds",
-
+    
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
-            }
-        },
-        primaryButton: {
-            groupName: 'button',
-            prefix: 'primaryButton',
-            group: 'button',
-            overrides: {
-                text: { label: 'Button-Text' },
-                link: { label: 'Button-Link' },
-                icon: { label: 'Button-Icon' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -1157,34 +1052,34 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             <div style="background: {{cardBackground}}; border-radius: {{cardRadiusType}}; padding: {{cardPaddingType}}; box-shadow: {{cardShadowType}}; border: 1px solid {{cardBorder}}; position: relative; overflow: hidden;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: {{headerSpacing}}; padding-bottom: 1rem; border-bottom: 1px solid {{cardBorder}};">
                     <div style="display: flex; align-items: center; gap: 1rem;">
                         <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{primaryColor}};">{{dashboardIcon}}</div>
-                        <h3 style="font-family: var(--heading-font-font-family); color: {{primaryColor}}; margin: 0; font-size: {{headingSizeType}};">{{dashboardTitle}}</h3>
+                        <h3 data-property="dashboardTitle" style="font-family: var(--heading-font-font-family); color: {{primaryColor}}; margin: 0; font-size: {{headingSizeType}};">{{dashboardTitle}}</h3>
                     </div>
-                    <div style="background: {{statusColor}}; color: white; padding: {{statusPaddingType}}; border-radius: {{statusRadiusType}}; font-size: {{statusTextSizeType}}; font-weight: 600;">{{statusText}}</div>
+                    <div data-property="statusText" style="background: {{statusColor}}; color: white; padding: {{statusPaddingType}}; border-radius: {{statusRadiusType}}; font-size: {{statusTextSizeType}}; font-weight: 600;">{{statusText}}</div>
                 </div>
                 {{dashboardCards}}
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: {{contentGap}}; margin-top: {{bottomSpacing}};">
                     <div style="background: white; border-radius: {{cardRadiusType}}; padding: {{cardPaddingType}}; border: 1px solid {{cardBorder}};">
-                        <h4 data-editable-color="textColor" style="font-family: var(--heading-font-font-family); color: {{textColor}}; margin: 0 0 1rem 0; font-size: {{subHeadingSizeType}};">{{chartTitle}}</h4>
+                        <h4 data-property="chartTitle" style="font-family: var(--heading-font-font-family); color: {{textColor}}; margin: 0 0 1rem 0; font-size: {{subHeadingSizeType}};">{{chartTitle}}</h4>
                         <div style="height: {{chartHeightType}}; background: linear-gradient(45deg, {{primaryColor}}20, {{secondaryColor}}20); border-radius: {{chartRadiusType}}; position: relative; overflow: hidden;">
                             {{chartBars}}
                         </div>
                     </div>
                     <div style="background: white; border-radius: {{cardRadiusType}}; padding: {{cardPaddingType}}; border: 1px solid {{cardBorder}};">
-                        <h4 data-editable-color="textColor" style="font-family: var(--heading-font-font-family); color: {{textColor}}; margin: 0 0 1rem 0; font-size: {{subHeadingSizeType}};">{{activityTitle}}</h4>
+                        <h4 data-property="activityTitle" style="font-family: var(--heading-font-font-family); color: {{textColor}}; margin: 0 0 1rem 0; font-size: {{subHeadingSizeType}};">{{activityTitle}}</h4>
                         <div>
                             {{activityItems}}
                         </div>
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: {{ctaSpacing}}; padding-top: {{ctaSpacing}}; border-top: 1px solid {{cardBorder}};">
-                    <a href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">{{primaryButtonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span></a>
+                    <a href="{{primaryButtonLink}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">{{primaryButtonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span></a>
                 </div>
             </div>
         </div>
@@ -1263,34 +1158,27 @@
                 "name": "API Endpoints Übersicht",
                 "category": "Technology & Tools",
                 "description": "Zeigt API-Endpoints in einer übersichtlichen Grid-Struktur mit optionalen Methods/Status",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -1312,14 +1200,14 @@
                 <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 800px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 800px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: {{endpointGap}};">
                             {{endpointCards}}
                         </div>
                         <div style="margin-top: {{ctaSpacing}}; text-align: center;">
-                            <a class="kerberos-btn kerberos-btn-{{templateId}}" href="{{docsLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{buttonBackground}}; color: {{buttonColor}}; padding: {{buttonPadding}}; border-radius: {{buttonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{buttonShadow}}; border: {{buttonBorder}};">{{buttonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{buttonIcon}}</span></a>
+                            <a class="kerberos-btn kerberos-btn-{{templateId}}" href="{{docsLink}}" data-property="buttonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{buttonBackground}}; color: {{buttonColor}}; padding: {{buttonPadding}}; border-radius: {{buttonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{buttonShadow}}; border: {{buttonBorder}};">{{buttonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{buttonIcon}}</span></a>
                         </div>
                     </div>
                 </section>`,
@@ -1399,34 +1287,27 @@
                 "name": "Product Showcase",
                 "category": "Content & Services",
                 "description": "Responsive Produkt-Showcase mit modernen Hover-Effekten",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -1542,34 +1423,27 @@
                 "name": "Kerberos Lösungsübersicht",
                 "category": "Content & Services",
                 "description": "Editierbare Produkt-/Lösungsübersicht mit Hover-Effekten",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -1677,43 +1551,27 @@
                 "name": "Company Presentation",
                 "category": "Team & About",
                 "description": "Unternehmensvorstellung mit Haupttext, Button und Statistiken im Grid-Layout",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        text: {
-            groupName: 'text',
-            prefix: 'text',
-            group: 'text',
-            overrides: {
-                content: { label: 'Beschreibung', propertyName: 'description' },
-                color: { label: 'Text-Farbe' }
-            }
-        },
-        primaryButton: {
-            groupName: 'button',
-            prefix: 'primaryButton',
-            group: 'button',
-            overrides: {
-                text: { label: 'Button-Text' },
-                link: { label: 'Button-Link' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -1723,9 +1581,9 @@
                         <div style="display: grid; grid-template-columns: 1fr; gap: {{contentGap}}; align-items: center;">
                             <div style="display: grid; grid-template-columns: 1fr 400px; gap: {{mainContentGap}}; align-items: center; margin-bottom: {{sectionSpacing}};">
                                 <div>
-                                    <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0; line-height: 1.2;">{{title}}</h2>
-                                    <div data-editable-color="textColor" style="color: {{textColor}}; font-size: {{textSizeType}}; line-height: {{lineHeightType}}; margin-bottom: {{textSpacing}};">{{description}}</div>
-                                    <a data-editable-text="primaryButtonText" href="{{primaryButtonLink}}" style="display: inline-flex; align-items: center; gap: 0.5rem; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; font-weight: 500; transition: all 0.3s ease;">{{primaryButtonText}}</a>
+                                    <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0; line-height: 1.2;">{{title}}</h2>
+                                    <div data-property="description" data-content-type="html" style="color: {{textColor}}; font-size: {{textSizeType}}; line-height: {{lineHeightType}}; margin-bottom: {{textSpacing}};">{{description}}</div>
+                                    <a href="{{primaryButtonLink}}" data-property="primaryButtonText" style="display: inline-flex; align-items: center; gap: 0.5rem; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; font-weight: 500; transition: all 0.3s ease;">{{primaryButtonText}}</a>
                                 </div>
                                 {{rightSideContent}}
                             </div>
@@ -1793,34 +1651,27 @@
                 "name": "Testimonials Professional",
                 "category": "Content & Images",
                 "description": "Professionelles Testimonial-Modul mit Logos und Links für bis zu 15 Kundenbewertungen",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -1907,8 +1758,8 @@
                 <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div class="kerberos-testimonials-pro-container">
                             <div class="kerberos-testimonials-pro-track">
@@ -1920,7 +1771,7 @@
                         <div style="display: flex; justify-content: center; gap: {{dotsSpacingType}}; margin-top: {{dotsMarginType}};">
                             {{navigationDots}}
                         </div>
-                        <div data-editable-color="subtitleColor" style="text-align: center; margin-top: {{counterMarginType}}; font-size: {{counterSizeType}}; color: {{subtitleColor}}; font-weight: 500;">
+                        <div style="text-align: center; margin-top: {{counterMarginType}}; font-size: {{counterSizeType}}; color: {{subtitleColor}}; font-weight: 500;">
                             {{currentSlide}} von {{totalSlides}}
                         </div>
                     </div>
@@ -2139,34 +1990,27 @@
                 "name": "Team Galerie",
                 "category": "Team & About",
                 "description": "Mitarbeiter-Galerie mit Bildern und Fallback-Avatars",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -2174,8 +2018,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax({{cardMinWidthType}}, 1fr)); gap: {{teamGap}}; max-width: {{maxWidthType}};">
                             {{teamMembers}}
@@ -2245,25 +2089,27 @@
                 "name": "Statistiken mit Icons",
                 "category": "Statistics & Numbers",
                 "description": "Zahlen und Fakten mit anpassbaren Icons und Abständen",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -2296,7 +2142,7 @@
                 <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0;">{{title}}</h2>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0;">{{title}}</h2>
                         </div>
                         <div class="kerberos-stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax({{statMinWidthType}}, 1fr)); gap: {{statsGap}};">
                             {{statsBlocks}}
@@ -2379,53 +2225,27 @@
                 "name": "Modernes Bild-Text Layout",
                 "category": "Content & Images",
                 "description": "Vollständig responsives Bild-Text Layout mit modernen Design-Elementen",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        text: {
-            groupName: 'text',
-            prefix: 'text',
-            group: 'text',
-            overrides: {
-                content: { label: 'Text-Inhalt', propertyName: 'text' },
-                color: { label: 'Text-Farbe' }
-            }
-        },
-        icon: {
-            groupName: 'iconSimple',
-            prefix: 'icon',
-            group: 'icon',
-            overrides: {
-                class: { label: 'Icon auswählen' },
-                color: { label: 'Icon-Farbe' }
-            }
-        },
-        primaryButton: {
-            groupName: 'button',
-            prefix: 'primaryButton',
-            group: 'button',
-            overrides: {
-                text: { label: 'Button-Text' },
-                link: { label: 'Button-Link' },
-                icon: { label: 'Button-Icon' }
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -2440,16 +2260,16 @@
                             </div>
                             <div style="order: {{textOrder}}; padding: {{contentPaddingType}};">
                                 <div style="margin-bottom: {{iconSpacing}}; display: block;">
-                                    <div data-editable-icon="iconClass" style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
+                                    <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
                                 </div>
-                                <div data-editable-color="titleColor" class="kerberos-title-wrapper" style="margin-bottom: {{titleSpacing}}; color: {{titleColor}}; text-align: {{titleAlignment}} !important;">
+                                <div class="kerberos-title-wrapper" data-property="titleContent" data-content-type="html" style="margin-bottom: {{titleSpacing}}; color: {{titleColor}}; text-align: {{titleAlignment}} !important;">
                                     {{titleContent}}
                                 </div>
                                 <div style="margin-bottom: {{textSpacing}};">
-                                    <p data-editable-color="textColor" style="font-size: {{textSizeType}}; line-height: 1.6; color: {{textColor}}; margin: 0 !important;">{{text}}</p>
+                                    <p data-property="text" style="font-size: {{textSizeType}}; line-height: 1.6; color: {{textColor}}; margin: 0 !important;">{{text}}</p>
                                 </div>
                                 <div style="margin-top: {{primaryButtonSpacing}};">
-                                    <a href="{{primaryButtonLink}}" class="kerberos-btn kerberos-btn-{{moduleId}}" style="font-weight: 600; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none !important; display: inline-flex !important; align-items: center; gap: 0.5rem; border: {{primaryButtonBorderType}}; box-shadow: {{primaryButtonShadow}}; cursor: pointer !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;">
+                                    <a href="{{primaryButtonLink}}" class="kerberos-btn kerberos-btn-{{moduleId}}" data-property="primaryButtonText" style="font-weight: 600; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none !important; display: inline-flex !important; align-items: center; gap: 0.5rem; border: {{primaryButtonBorderType}}; box-shadow: {{primaryButtonShadow}}; cursor: pointer !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;">
                                         {{primaryButtonText}}
                                         <span style="font-family: 'Font Awesome 5 Pro'; display: {{showPrimaryButtonIcon}};">{{primaryButtonIcon}}</span>
                                     </a>
@@ -2514,63 +2334,27 @@
                 "name": "Moderne Call-to-Action",
                 "category": "Contact & CTA",
                 "description": "Moderne CTA-Sektion mit Gradient-Hintergrund und animierten Elementen",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        text: {
-            groupName: 'text',
-            prefix: 'text',
-            group: 'text',
-            overrides: {
-                content: { label: 'Text-Inhalt', propertyName: 'text' },
-                color: { label: 'Text-Farbe' }
-            }
-        },
-        icon: {
-            groupName: 'iconSimple',
-            prefix: 'icon',
-            group: 'icon',
-            overrides: {
-                class: { label: 'Icon auswählen' },
-                color: { label: 'Icon-Farbe' }
-            }
-        },
-        primaryButton: {
-            groupName: 'button',
-            prefix: 'primaryButton',
-            group: 'button',
-            overrides: {
-                text: { label: 'Button-Text' },
-                link: { label: 'Button-Link' },
-                icon: { label: 'Button-Icon' }
-            }
-        },
-        secondaryButton: {
-            groupName: 'buttonSecondary',
-            prefix: 'secondaryButton',
-            group: 'button',
-            overrides: {
-                text: { label: 'Zweiter Button-Text' },
-                link: { label: 'Zweiter Button-Link' },
-                icon: { label: 'Zweiter Button-Icon' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -2579,20 +2363,20 @@
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: {{backgroundPattern}}; opacity: {{backgroundOpacityType}};"></div>
                     <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem; text-align: center; position: relative; z-index: 2;">
                         <div style="margin-bottom: {{iconSpacing}}; display: {{showIcon}};">
-                            <div data-editable-icon="iconClass" style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: inline-flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}}; box-shadow: {{iconShadowType}};">{{iconClass}}</div>
+                            <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: inline-flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}}; box-shadow: {{iconShadowType}};">{{iconClass}}</div>
                         </div>
                         <div style="margin-bottom: {{titleSpacing}};">
-                            <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: {{titleSizeType}}; font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0;">{{title}}</h2>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: {{titleSizeType}}; font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0;">{{title}}</h2>
                         </div>
                         <div style="margin-bottom: {{textSpacing}};">
-                            <p data-editable-color="textColor" style="font-family: var(--body-font-font-family); font-size: {{textSizeType}}; line-height: var(--body-font-line-height); color: {{textColor}}; margin: 0; max-width: 700px; margin-left: auto; margin-right: auto;">{{text}}</p>
+                            <p data-property="text" style="font-family: var(--body-font-font-family); font-size: {{textSizeType}}; line-height: var(--body-font-line-height); color: {{textColor}}; margin: 0; max-width: 700px; margin-left: auto; margin-right: auto;">{{text}}</p>
                         </div>
                         <div style="display: flex; flex-wrap: wrap; gap: {{buttonGap}}; justify-content: center; margin-top: {{buttonSpacing}};">
-                            <a href="{{primaryButtonLink}}" class="kerberos-btn-primary kerberos-btn-{{templateId}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonTextColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; border: {{primaryButtonBorder}}; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}}; font-size: var(--button-font-size);">
+                            <a href="{{primaryButtonLink}}" class="kerberos-btn-primary kerberos-btn-{{templateId}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonTextColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; border: {{primaryButtonBorder}}; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}}; font-size: var(--button-font-size);">
                                 {{primaryButtonText}}
                                 <span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span>
                             </a>
-                            <a href="{{secondaryButtonLink}}" class="kerberos-btn-secondary kerberos-btn-{{templateId}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{secondaryButtonBackground}}; color: {{secondaryButtonTextColor}}; padding: {{secondaryButtonPadding}}; border-radius: {{secondaryButtonRadius}}; text-decoration: none; display: {{showSecondaryButton}}; align-items: center; gap: 0.75rem; border: {{secondaryButtonBorder}}; transition: all 0.3s ease; box-shadow: {{secondaryButtonShadow}}; font-size: var(--button-font-size);">
+                            <a href="{{secondaryButtonLink}}" class="kerberos-btn-secondary kerberos-btn-{{templateId}}" data-property="secondaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{secondaryButtonBackground}}; color: {{secondaryButtonTextColor}}; padding: {{secondaryButtonPadding}}; border-radius: {{secondaryButtonRadius}}; text-decoration: none; display: {{showSecondaryButton}}; align-items: center; gap: 0.75rem; border: {{secondaryButtonBorder}}; transition: all 0.3s ease; box-shadow: {{secondaryButtonShadow}}; font-size: var(--button-font-size);">
                                 {{secondaryButtonText}}
                                 <span style="font-family: 'Font Awesome 5 Pro';">{{secondaryButtonIcon}}</span>
                             </a>
@@ -2649,65 +2433,29 @@
             {
                 "id": "kerberos-feature-breaker",
                 "name": "Feature Breaker",
-                "category": "Content & Services",
+                "category": "Content & Services", 
                 "description": "Auffälliges Breaker-Modul für besondere Ankündigungen - ALLE PROPERTIES FUNKTIONIEREN",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundGradient' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
-            }
-        },
-        text: {
-            groupName: 'text',
-            prefix: 'text',
-            group: 'text',
-            overrides: {
-                content: { label: 'Beschreibung', propertyName: 'description' },
-                color: { label: 'Text-Farbe', propertyName: 'descriptionColor' }
-            }
-        },
-        primaryButton: {
-            groupName: 'button',
-            prefix: 'primaryButton',
-            group: 'button',
-            overrides: {
-                text: { label: 'Button-Text' },
-                link: { label: 'Button-Link' },
-                icon: { label: 'Button-Icon' }
-            }
-        },
-        secondaryButton: {
-            groupName: 'buttonSecondary',
-            prefix: 'secondaryButton',
-            group: 'button',
-            overrides: {
-                text: { label: 'Zweiter Button-Text' },
-                link: { label: 'Zweiter Button-Link' },
-                icon: { label: 'Zweiter Button-Icon' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -2772,34 +2520,27 @@
                 "name": "Testimonials Carousel",
                 "category": "Team & About",
                 "description": "Kundenbewertungen mit automatischem Carousel - JAVASCRIPT REPARIERT",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -2807,8 +2548,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; overflow: hidden;" class="kerberos-module-{{templateId}}">
                     <div style="max-width: {{maxWidthType}}; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div class="kerberos-testimonials-container" style="position: relative; max-width: 800px; margin: 0 auto;">
                             <div class="kerberos-testimonials-track" style="display: flex; transition: transform {{transitionSpeedType}} ease; overflow: hidden;">
@@ -2965,34 +2706,27 @@
     "name": "Process Timeline (Responsive)",
     "category": "Content & Services",
     "description": "Prozess-Timeline mit perfekter Responsivität und modernen Hover-Effekten",
-
+    
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -3000,8 +2734,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
+                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             <div style="position: relative; max-width: 800px; margin: 0 auto;">
                 <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: {{timelineWidthType}}; background: linear-gradient(to bottom, {{timelineStartColor}}, {{timelineEndColor}}); transform: translateX(-50%); border-radius: {{timelineRadiusType}}; z-index: 1;"></div>
@@ -3118,34 +2852,27 @@
                 "name": "Process Timeline (Standard)",
                 "category": "Content & Services",
                 "description": "Standard Prozess-Timeline mit editierbaren Schritten",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -3153,8 +2880,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div style="position: relative; max-width: 800px; margin: 0 auto;">
                             <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: {{timelineWidthType}}; background: linear-gradient(to bottom, {{timelineStartColor}}, {{timelineEndColor}}); transform: translateX(-50%); border-radius: {{timelineRadiusType}}; z-index: 1;"></div>
@@ -3227,34 +2954,27 @@
                 "name": "Statistiken mit Icons (Hover-Effekte)",
                 "category": "Content & Services",
                 "description": "Statistik-Darstellung mit animierten Hover-Effekten und Icons",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -3262,8 +2982,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax({{cardMinWidthType}}, 1fr)); gap: {{statsGap}};">
                             {{statsContent}}
@@ -3345,34 +3065,27 @@
                 "name": "Integrations Grid (Filter funktionsfähig)",
                 "category": "Content & Services",
                 "description": "Integration-Grid mit funktionierender Filter-Funktion für Squarespace",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -3380,8 +3093,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div style="margin-bottom: {{contentSpacing}};">
                             <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: {{filterGapType}}; margin-bottom: {{filterSpacingType}};">
@@ -3517,63 +3230,27 @@
     "name": "Text-Button-Modul (Secondary Button konfigurierbar)",
     "category": "Content & Images",
     "description": "Text-Modul mit konfigurierbarem zweiten Button und Rich-Text-Editor",
-
+    
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        text: {
-            groupName: 'text',
-            prefix: 'text',
-            group: 'text',
-            overrides: {
-                content: { label: 'Text-Inhalt', propertyName: 'textContent' },
-                color: { label: 'Text-Farbe' }
-            }
-        },
-        icon: {
-            groupName: 'iconSimple',
-            prefix: 'icon',
-            group: 'icon',
-            overrides: {
-                class: { label: 'Icon auswählen' },
-                color: { label: 'Icon-Farbe' }
-            }
-        },
-        primaryButton: {
-            groupName: 'button',
-            prefix: 'primaryButton',
-            group: 'button',
-            overrides: {
-                text: { label: 'Button-Text' },
-                link: { label: 'Button-Link' },
-                icon: { label: 'Button-Icon' }
-            }
-        },
-        secondaryButton: {
-            groupName: 'buttonSecondary',
-            prefix: 'secondaryButton',
-            group: 'button',
-            overrides: {
-                text: { label: 'Zweiter Button-Text' },
-                link: { label: 'Zweiter Button-Link' },
-                icon: { label: 'Zweiter Button-Icon' }
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -3581,13 +3258,13 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; text-align: {{textAlignmentType}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidthType}}; margin: 0 auto; padding: 0 2rem;">
             <div style="margin-bottom: {{iconSpacing}}; display: {{showIcon}};">
-                <div data-editable-icon="iconClass" style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
+                <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
             </div>
             <div style="margin-bottom: {{titleSpacing}};">
-                <div data-editable-color="titleColor" data-editable-text="titleContent" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}};">{{titleContent}}</div>
+                <div data-property="titleContent" data-content-type="html" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}};">{{titleContent}}</div>
             </div>
             <div style="margin-bottom: {{textSpacing}};">
-                <div data-editable-color="textColor" data-editable-text="textContent" style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}};">{{textContent}}</div>
+                <div data-property="textContent" data-content-type="html" style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}};">{{textContent}}</div>
             </div>
             {{buttonSection}}
         </div>
@@ -3659,34 +3336,27 @@
     "name": "Features Grid mit Hover",
     "category": "Content & Services",
     "description": "Interaktives Features-Grid mit CSS-Hover-Animationen und Icons",
-
+    
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -3725,8 +3395,8 @@
     <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-features-module">
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax({{cardMinWidth}}, 1fr)); gap: {{cardGap}};">
                 {{featureCards}}
@@ -3867,15 +3537,27 @@
                 "name": "Team Kontakt Cards",
                 "category": "Social Proof",
                 "description": "Responsive Ansprechpartner-Karten mit Bildern, Kontaktdaten und CTAs",
-
+                
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -4180,34 +3862,27 @@
     "name": "Pricing Interactive (3 Plans)",
     "category": "Pricing & Plans",
     "description": "Interaktive Pricing-Tabelle mit bis zu 3 Plänen und Feature-Vergleich",
-
+    
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -4215,8 +3890,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             
             <!-- Pricing Plans Grid -->
@@ -4326,34 +4001,27 @@
     "name": "Feature Comparison Table",
     "category": "Pricing & Plans",
     "description": "Reine Feature-Vergleichstabelle ohne Pricing Cards - perfekt für Produkt-/Service-Vergleiche",
-
+    
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
                 content: { label: 'Titel-Text', propertyName: 'title' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
-            }
-        },
-        subtitle: {
-            groupName: 'subtitle',
-            prefix: 'subtitle',
-            group: 'subtitle',
-            overrides: {
-                content: { label: 'Untertitel', propertyName: 'subtitle' },
-                color: { label: 'Untertitel-Farbe' }
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -4361,8 +4029,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             
             <!-- Desktop Table -->
@@ -4503,15 +4171,27 @@
     "name": "Services Overview (Two Column)",
     "category": "Content & Services",
     "description": "Services-Übersicht mit abwechselnden Bild/Text-Spalten und Solutions-Grid",
-
+    
     "propertySchema": {
         section: {
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
-                backgroundColor: { label: 'Hintergrundfarbe', propertyName: 'backgroundColor' },
-                spacing: { label: 'Abstand oben/unten' }
+                backgroundColor: { label: 'Hintergrundfarbe' },
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
+            }
+        },
+        title: {
+            groupName: 'heading',
+            prefix: 'title',
+            group: 'title',
+            only: ['content', 'color', 'spacing'],
+            overrides: {
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -4620,19 +4300,21 @@
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
                 backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten' }
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -4640,8 +4322,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; margin: 0;">{{subtitle}}</p>
+                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; margin: 0;">{{subtitle}}</p>
             </div>
             
             <div class="testimonial-container" style="position: relative; overflow-x: auto; overflow-y: hidden; border-radius: 12px; background: {{containerBackground}}; box-shadow: {{containerShadow}}; scroll-behavior: smooth; padding: 1rem;">
@@ -4732,19 +4414,21 @@
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
                 backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten' }
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -4756,11 +4440,11 @@
                 <div>
                     <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: {{badgeBackground}}; color: {{badgeColor}}; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid {{badgeBorder}};">
                         <span style="font-family: 'Font Awesome 5 Pro';">{{badgeIcon}}</span>
-                        <span>{{badgeText}}</span>
+                        <span data-property="badgeText">{{badgeText}}</span>
                     </div>
-                    <h2 style="font-family: var(--heading-font-font-family); font-size: {{heroTitleSize}}; font-weight: var(--heading-font-font-weight); color: {{heroTitleColor}}; margin-bottom: 1.5rem; line-height: 1.2;">{{heroTitle}}</h2>
-                    <p style="font-family: var(--body-font-font-family); font-size: {{heroTextSize}}; line-height: 1.7; color: {{heroTextColor}}; margin-bottom: 2rem;">{{heroDescription}}</p>
-                    <a href="{{heroButtonLink}}" class="kerberos-btn kerberos-btn-{{moduleId}}" style="display: inline-flex; align-items: center; gap: 0.75rem; background: {{heroButtonBackground}}; color: {{heroButtonColor}}; text-decoration: none; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; box-shadow: {{heroButtonShadow}};">
+                    <h2 data-property="heroTitle" style="font-family: var(--heading-font-font-family); font-size: {{heroTitleSize}}; font-weight: var(--heading-font-font-weight); color: {{heroTitleColor}}; margin-bottom: 1.5rem; line-height: 1.2;">{{heroTitle}}</h2>
+                    <p data-property="heroDescription" data-content-type="html" style="font-family: var(--body-font-font-family); font-size: {{heroTextSize}}; line-height: 1.7; color: {{heroTextColor}}; margin-bottom: 2rem;">{{heroDescription}}</p>
+                    <a href="{{heroButtonLink}}" class="kerberos-btn kerberos-btn-{{moduleId}}" data-property="heroButtonText" style="display: inline-flex; align-items: center; gap: 0.75rem; background: {{heroButtonBackground}}; color: {{heroButtonColor}}; text-decoration: none; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; box-shadow: {{heroButtonShadow}};">
                         <span style="font-family: 'Font Awesome 5 Pro';">{{heroButtonIcon}}</span>
                         {{heroButtonText}}
                     </a>
@@ -4769,10 +4453,10 @@
                     <img src="{{heroLogoImage}}" alt="{{heroLogoAlt}}" style="max-width: 100%; height: auto; max-height: 300px; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(6,58,168,0.15));" />
                 </div>
             </div>
-            
+
             <!-- Stats Section -->
             <div style="background: {{statsBackground}}; border-radius: 16px; padding: {{statsPadding}}; box-shadow: {{statsShadow}}; border: 1px solid {{statsBorder}};">
-                <h3 style="font-family: var(--heading-font-font-family); font-size: {{statsTitleSize}}; font-weight: 700; color: {{statsTitleColor}}; text-align: center; margin-bottom: 3rem;">{{statsTitle}}</h3>
+                <h3 data-property="statsTitle" style="font-family: var(--heading-font-font-family); font-size: {{statsTitleSize}}; font-weight: 700; color: {{statsTitleColor}}; text-align: center; margin-bottom: 3rem;">{{statsTitle}}</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
                     {{statsCards}}
                 </div>
@@ -4870,19 +4554,21 @@
             groupName: 'section',
             prefix: 'section',
             group: 'section',
+            only: ['backgroundColor', 'spacing'],
             overrides: {
                 backgroundColor: { label: 'Hintergrundfarbe' },
-                spacing: { label: 'Abstand oben/unten' }
+                spacing: { label: 'Abstand oben/unten', propertyName: 'sectionSpacing' }
             }
         },
         title: {
             groupName: 'heading',
             prefix: 'title',
             group: 'title',
+            only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text' },
-                color: { label: 'Titel-Farbe' },
-                spacing: { label: 'Abstand unter Titel' }
+                content: { label: 'Titel-Text', propertyName: 'title' },
+                color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
+                spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
         }
     },
@@ -4890,8 +4576,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 data-editable-color="titleColor" data-editable-text="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p data-editable-color="subtitleColor" data-editable-text="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             <div class="kerberos-faq-accordion" data-module-id="{{module
 
