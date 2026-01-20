@@ -494,3 +494,25 @@
             renderCanvas();
             showNotification('📋 Modul dupliziert');
         };
+
+// =====================================================
+// INLINE EDITOR INTEGRATION
+// =====================================================
+
+/**
+ * Initialisiere Inline-Editor nach Canvas-Rendering
+ */
+if (typeof initInlineEditor === 'function') {
+    // Warte, bis DOM bereit ist
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🎨 Initialisiere Inline-Editor von canvas.js...');
+            initInlineEditor();
+        });
+    } else {
+        console.log('🎨 Initialisiere Inline-Editor von canvas.js...');
+        initInlineEditor();
+    }
+}
+
+console.log('✅ canvas.js geladen mit Inline-Editor-Support');

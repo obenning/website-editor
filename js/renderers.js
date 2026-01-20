@@ -90,6 +90,47 @@
                 }
             }
 
+            // 🔥 FALLBACK: Füge alle Properties hinzu, die NICHT im Schema definiert sind
+            // Dies stellt sicher, dass keine Properties verloren gehen
+            const processedKeys = new Set();
+
+            // Sammle alle Keys, die bereits verarbeitet wurden
+            for (const groupProps of Object.values(groupedProperties)) {
+                for (const prop of groupProps) {
+                    processedKeys.add(prop.key);
+                }
+            }
+
+            // Füge alle nicht-verarbeiteten Properties zur "general" Gruppe hinzu
+            if (!groupedProperties['general']) {
+                groupedProperties['general'] = [];
+            }
+
+            for (const [propKey, propValue] of Object.entries(module.properties)) {
+                if (!processedKeys.has(propKey)) {
+                    // Diese Property wurde nicht im Schema definiert - füge sie hinzu
+                    // Versuche den Typ intelligent zu erraten
+                    let type = 'text';
+                    if (typeof propValue === 'boolean' || propValue === 'true' || propValue === 'false') {
+                        type = 'boolean';
+                    } else if (propKey.toLowerCase().includes('color') || propKey.toLowerCase().includes('background')) {
+                        type = 'color';
+                    } else if (propKey.toLowerCase().includes('content') || propKey.toLowerCase().includes('text') || propKey.toLowerCase().includes('description')) {
+                        type = 'richtext';
+                    }
+
+                    groupedProperties['general'].push({
+                        key: propKey,
+                        value: propValue,
+                        definition: {
+                            type: type,
+                            label: propKey
+                        },
+                        parentKey: propKey
+                    });
+                }
+            }
+
             // Render Accordions für jede Gruppe
             const groupTitles = {
                 // Legacy
