@@ -10,9 +10,9 @@
                 "html": `<section style="background: {{sectionBackgroundColor}}; padding: {{sectionSpacing}}; text-align: center; position: relative;" class="kerberos-module-{{moduleId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; margin-bottom: 1rem;">{{iconClass}}</div>
-                        <div style="color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</div>
-                        <p style="color: {{subtitleColor}}; margin-bottom: 2rem; font-size: {{subtitleSizeType}};">{{subtitleContent}}</p>
-                        <a href="{{primaryButtonLink}}" style="background: {{primaryButtonBackground}}; color: {{primaryButtonTextColor}}; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; text-decoration: none; display: inline-block; transition: all 0.3s ease; box-shadow: {{primaryButtonShadowType}};">
+                        <div data-property="titleContent" data-content-type="html" style="color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</div>
+                        <p data-property="subtitleContent" style="color: {{subtitleColor}}; margin-bottom: 2rem; font-size: {{subtitleSizeType}};">{{subtitleContent}}</p>
+                        <a href="{{primaryButtonLink}}" data-property="primaryButtonText" style="background: {{primaryButtonBackground}}; color: {{primaryButtonTextColor}}; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; text-decoration: none; display: inline-block; transition: all 0.3s ease; box-shadow: {{primaryButtonShadowType}};">
                             {{primaryButtonText}}
                         </a>
                     </div>
@@ -315,14 +315,14 @@
                 <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <div class="title-wrapper" style="color: {{titleColor}}; margin: 0;">{{titleContent}}</div>
-                            <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; margin: 1rem 0 0 0;">{{subtitle}}</p>
+                            <div class="title-wrapper" data-property="titleContent" data-content-type="html" style="color: {{titleColor}}; margin: 0;">{{titleContent}}</div>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; margin: 1rem 0 0 0;">{{subtitle}}</p>
                         </div>
                         <div class="benefits-grid" style="display: grid; grid-template-columns: repeat({{gridColumns}}, 1fr); gap: {{benefitsGap}};">
                             {{benefitItems}}
                         </div>
                         <div style="text-align: center; margin-top: {{primaryButtonSpacing}};">
-                            <a href="{{primaryButtonLink}}" target="{{primaryButtonTarget}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; transition: all 0.3s ease;">{{primaryButtonText}}</a>
+                            <a href="{{primaryButtonLink}}" target="{{primaryButtonTarget}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; transition: all 0.3s ease;">{{primaryButtonText}}</a>
                         </div>
                     </div>
                 </section>`,
@@ -460,17 +460,17 @@
                         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('{{backgroundImage}}') center/cover; opacity: {{backgroundOpacityValue}};" class="background-overlay"></div>
                         <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2;">
                             <div style="text-align: center; margin-bottom: {{contentGap}};">
-                                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}}; text-align: center;">
+                                <h2 data-property="titleContent" data-content-type="html" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}}; text-align: center;">
                                     {{titleContent}}
                                 </h2>
-                                <h3 style="font-family: var(--heading-font-font-family); font-size: var(--heading-3-size); font-weight: var(--heading-font-font-weight); color: {{subtitleColor}}; margin-bottom: {{subtitleSpacing}}; text-align: center;">
+                                <h3 data-property="subtitleContent" data-content-type="html" style="font-family: var(--heading-font-font-family); font-size: var(--heading-3-size); font-weight: var(--heading-font-font-weight); color: {{subtitleColor}}; margin-bottom: {{subtitleSpacing}}; text-align: center;">
                                     {{subtitleContent}}
                                 </h3>
                                 <div style="margin: {{primaryButtonSpacing}}; text-align: center;">
-                                    <a class="kerberos-btn kerberos-btn-{{templateId}}" href="{{primaryButtonLink}}" style="display: inline-block; font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">{{primaryButtonText}}</a>
+                                    <a class="kerberos-btn kerberos-btn-{{templateId}}" href="{{primaryButtonLink}}" data-property="primaryButtonText" style="display: inline-block; font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">{{primaryButtonText}}</a>
                                 </div>
                             </div>
-                            
+
                             {{factsContent}}
                         </div>
                     </section>`,
@@ -568,9 +568,9 @@
                     {{overlayElements}}
                     <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         {{iconElement}}
-                        <h1 style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</h1>
-                        <p style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); opacity: 0.9; color: {{subtitleColor}}; margin-bottom: {{textSpacing}};">{{subtitleContent}}</p>
-                        <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">{{primaryButtonText}}</a>
+                        <h1 data-property="titleContent" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</h1>
+                        <p data-property="subtitleContent" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); opacity: 0.9; color: {{subtitleColor}}; margin-bottom: {{textSpacing}};">{{subtitleContent}}</p>
+                        <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">{{primaryButtonText}}</a>
                     </div>
                 </section>`,
                 "properties": {
@@ -620,9 +620,9 @@
                     {{overlayElements}}
                     <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         {{iconElement}}
-                        <h1 style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</h1>
-                        <p style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); opacity: 0.9; color: {{subtitleColor}}; margin-bottom: {{textSpacing}};">{{subtitleContent}}</p>
-                        <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">{{primaryButtonText}}</a>
+                        <h1 data-property="titleContent" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</h1>
+                        <p data-property="subtitleContent" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); opacity: 0.9; color: {{subtitleColor}}; margin-bottom: {{textSpacing}};">{{subtitleContent}}</p>
+                        <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">{{primaryButtonText}}</a>
                     </div>
                 </section>`,
                 "properties": {
@@ -720,18 +720,18 @@
                 <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; position: relative;" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{mainTitleRichtext}}</h2>
-                            <p style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); color: {{subtitleColor}}; margin: 0; opacity: 0.9; max-width: 800px; margin-left: auto; margin-right: auto;">{{subtitleRichtext}}</p>
+                            <h2 data-property="mainTitleRichtext" data-content-type="html" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{mainTitleRichtext}}</h2>
+                            <p data-property="subtitleRichtext" data-content-type="html" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); color: {{subtitleColor}}; margin: 0; opacity: 0.9; max-width: 800px; margin-left: auto; margin-right: auto;">{{subtitleRichtext}}</p>
                         </div>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: {{contentGap}}; margin-bottom: {{bottomSpacing}};">
                             {{solutionBoxes}}
                         </div>
                         <div style="text-align: center; margin: {{ctaSpacing}} 0; display: {{showCTA}};">
-                            <a href="{{ctaLink}}" style="background: {{ctaBackgroundColor}}; color: {{ctaTextColor}}; text-decoration: none; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease; font-family: var(--body-font-font-family); box-shadow: {{primaryButtonShadow}}; display: inline-block;">{{ctaText}}</a>
+                            <a href="{{ctaLink}}" data-property="ctaText" style="background: {{ctaBackgroundColor}}; color: {{ctaTextColor}}; text-decoration: none; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease; font-family: var(--body-font-font-family); box-shadow: {{primaryButtonShadow}}; display: inline-block;">{{ctaText}}</a>
                         </div>
                         <div style="height: 3px; background: linear-gradient(to right, {{challengeColor}} 0%, {{challengeColor}} 33%, {{requirementColor}} 33%, {{requirementColor}} 66%, {{solutionColor}} 66%, {{solutionColor}} 100%); margin: 0 auto 2rem auto; border-radius: 2px; opacity: 0.8; max-width: 600px; display: {{showConnectionLine}};"></div>
                         <div style="text-align: center; margin-top: {{ctaSpacing}}; display: {{showBottomCTA}};">
-                            <a href="{{bottomCtaLink}}" style="background: {{ctaBackgroundColor}}; color: {{ctaTextColor}}; text-decoration: none; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease; font-family: var(--body-font-font-family); box-shadow: {{primaryButtonShadow}};">{{bottomCtaText}}</a>
+                            <a href="{{bottomCtaLink}}" data-property="bottomCtaText" style="background: {{ctaBackgroundColor}}; color: {{ctaTextColor}}; text-decoration: none; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease; font-family: var(--body-font-font-family); box-shadow: {{primaryButtonShadow}};">{{bottomCtaText}}</a>
                         </div>
                     </div>
                 </section>`,
@@ -837,12 +837,12 @@
                     {{overlayElements}}
                     <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         {{svgElement}}
-                        <h1 style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0;">{{title}}</h1>
+                        <h1 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0;">{{title}}</h1>
                         {{subtitleElement}}
                         {{textElement}}
                         {{buttonElement}}
                     </div>
-                    
+
                     <style>
                         .kerberos-module-{{moduleId}} .hero-svg,
                         .kerberos-module-{{moduleId}} .hero-svg-code {
@@ -956,10 +956,10 @@
         {{overlayElements}}
         <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
             {{svgElement}}
-            <h1 style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0;">{{title}}</h1>
-            <div style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 800px; margin: 0 auto {{subtitleSpacing}} auto;">{{subtitle}}</div>
-            <div style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}}; max-width: 900px; margin: 0 auto {{textSpacing}} auto;">{{text}}</div>
-            <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: {{primaryButtonShadow}}; transition: all 0.3s ease;">
+            <h1 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0;">{{title}}</h1>
+            <div data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 800px; margin: 0 auto {{subtitleSpacing}} auto;">{{subtitle}}</div>
+            <div data-property="text" style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}}; max-width: 900px; margin: 0 auto {{textSpacing}} auto;">{{text}}</div>
+            <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: {{primaryButtonShadow}}; transition: all 0.3s ease;">
                 {{primaryButtonText}}
                 <span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span>
             </a>
@@ -1052,34 +1052,34 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             <div style="background: {{cardBackground}}; border-radius: {{cardRadiusType}}; padding: {{cardPaddingType}}; box-shadow: {{cardShadowType}}; border: 1px solid {{cardBorder}}; position: relative; overflow: hidden;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: {{headerSpacing}}; padding-bottom: 1rem; border-bottom: 1px solid {{cardBorder}};">
                     <div style="display: flex; align-items: center; gap: 1rem;">
                         <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{primaryColor}};">{{dashboardIcon}}</div>
-                        <h3 style="font-family: var(--heading-font-font-family); color: {{primaryColor}}; margin: 0; font-size: {{headingSizeType}};">{{dashboardTitle}}</h3>
+                        <h3 data-property="dashboardTitle" style="font-family: var(--heading-font-font-family); color: {{primaryColor}}; margin: 0; font-size: {{headingSizeType}};">{{dashboardTitle}}</h3>
                     </div>
-                    <div style="background: {{statusColor}}; color: white; padding: {{statusPaddingType}}; border-radius: {{statusRadiusType}}; font-size: {{statusTextSizeType}}; font-weight: 600;">{{statusText}}</div>
+                    <div data-property="statusText" style="background: {{statusColor}}; color: white; padding: {{statusPaddingType}}; border-radius: {{statusRadiusType}}; font-size: {{statusTextSizeType}}; font-weight: 600;">{{statusText}}</div>
                 </div>
                 {{dashboardCards}}
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: {{contentGap}}; margin-top: {{bottomSpacing}};">
                     <div style="background: white; border-radius: {{cardRadiusType}}; padding: {{cardPaddingType}}; border: 1px solid {{cardBorder}};">
-                        <h4 style="font-family: var(--heading-font-font-family); color: {{textColor}}; margin: 0 0 1rem 0; font-size: {{subHeadingSizeType}};">{{chartTitle}}</h4>
+                        <h4 data-property="chartTitle" style="font-family: var(--heading-font-font-family); color: {{textColor}}; margin: 0 0 1rem 0; font-size: {{subHeadingSizeType}};">{{chartTitle}}</h4>
                         <div style="height: {{chartHeightType}}; background: linear-gradient(45deg, {{primaryColor}}20, {{secondaryColor}}20); border-radius: {{chartRadiusType}}; position: relative; overflow: hidden;">
                             {{chartBars}}
                         </div>
                     </div>
                     <div style="background: white; border-radius: {{cardRadiusType}}; padding: {{cardPaddingType}}; border: 1px solid {{cardBorder}};">
-                        <h4 style="font-family: var(--heading-font-font-family); color: {{textColor}}; margin: 0 0 1rem 0; font-size: {{subHeadingSizeType}};">{{activityTitle}}</h4>
+                        <h4 data-property="activityTitle" style="font-family: var(--heading-font-font-family); color: {{textColor}}; margin: 0 0 1rem 0; font-size: {{subHeadingSizeType}};">{{activityTitle}}</h4>
                         <div>
                             {{activityItems}}
                         </div>
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: {{ctaSpacing}}; padding-top: {{ctaSpacing}}; border-top: 1px solid {{cardBorder}};">
-                    <a href="{{primaryButtonLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">{{primaryButtonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span></a>
+                    <a href="{{primaryButtonLink}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">{{primaryButtonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span></a>
                 </div>
             </div>
         </div>
@@ -1200,14 +1200,14 @@
                 <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 800px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 800px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: {{endpointGap}};">
                             {{endpointCards}}
                         </div>
                         <div style="margin-top: {{ctaSpacing}}; text-align: center;">
-                            <a class="kerberos-btn kerberos-btn-{{templateId}}" href="{{docsLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{buttonBackground}}; color: {{buttonColor}}; padding: {{buttonPadding}}; border-radius: {{buttonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{buttonShadow}}; border: {{buttonBorder}};">{{buttonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{buttonIcon}}</span></a>
+                            <a class="kerberos-btn kerberos-btn-{{templateId}}" href="{{docsLink}}" data-property="buttonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{buttonBackground}}; color: {{buttonColor}}; padding: {{buttonPadding}}; border-radius: {{buttonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{buttonShadow}}; border: {{buttonBorder}};">{{buttonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{buttonIcon}}</span></a>
                         </div>
                     </div>
                 </section>`,
@@ -1581,9 +1581,9 @@
                         <div style="display: grid; grid-template-columns: 1fr; gap: {{contentGap}}; align-items: center;">
                             <div style="display: grid; grid-template-columns: 1fr 400px; gap: {{mainContentGap}}; align-items: center; margin-bottom: {{sectionSpacing}};">
                                 <div>
-                                    <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0; line-height: 1.2;">{{title}}</h2>
-                                    <div style="color: {{textColor}}; font-size: {{textSizeType}}; line-height: {{lineHeightType}}; margin-bottom: {{textSpacing}};">{{description}}</div>
-                                    <a href="{{primaryButtonLink}}" style="display: inline-flex; align-items: center; gap: 0.5rem; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; font-weight: 500; transition: all 0.3s ease;">{{primaryButtonText}}</a>
+                                    <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0; line-height: 1.2;">{{title}}</h2>
+                                    <div data-property="description" data-content-type="html" style="color: {{textColor}}; font-size: {{textSizeType}}; line-height: {{lineHeightType}}; margin-bottom: {{textSpacing}};">{{description}}</div>
+                                    <a href="{{primaryButtonLink}}" data-property="primaryButtonText" style="display: inline-flex; align-items: center; gap: 0.5rem; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; font-weight: 500; transition: all 0.3s ease;">{{primaryButtonText}}</a>
                                 </div>
                                 {{rightSideContent}}
                             </div>
@@ -1758,8 +1758,8 @@
                 <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div class="kerberos-testimonials-pro-container">
                             <div class="kerberos-testimonials-pro-track">
@@ -2018,8 +2018,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax({{cardMinWidthType}}, 1fr)); gap: {{teamGap}}; max-width: {{maxWidthType}};">
                             {{teamMembers}}
@@ -2142,7 +2142,7 @@
                 <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0;">{{title}}</h2>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0;">{{title}}</h2>
                         </div>
                         <div class="kerberos-stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax({{statMinWidthType}}, 1fr)); gap: {{statsGap}};">
                             {{statsBlocks}}
@@ -2262,14 +2262,14 @@
                                 <div style="margin-bottom: {{iconSpacing}}; display: block;">
                                     <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
                                 </div>
-                                <div class="kerberos-title-wrapper" style="margin-bottom: {{titleSpacing}}; color: {{titleColor}}; text-align: {{titleAlignment}} !important;">
+                                <div class="kerberos-title-wrapper" data-property="titleContent" data-content-type="html" style="margin-bottom: {{titleSpacing}}; color: {{titleColor}}; text-align: {{titleAlignment}} !important;">
                                     {{titleContent}}
                                 </div>
                                 <div style="margin-bottom: {{textSpacing}};">
-                                    <p style="font-size: {{textSizeType}}; line-height: 1.6; color: {{textColor}}; margin: 0 !important;">{{text}}</p>
+                                    <p data-property="text" style="font-size: {{textSizeType}}; line-height: 1.6; color: {{textColor}}; margin: 0 !important;">{{text}}</p>
                                 </div>
                                 <div style="margin-top: {{primaryButtonSpacing}};">
-                                    <a href="{{primaryButtonLink}}" class="kerberos-btn kerberos-btn-{{moduleId}}" style="font-weight: 600; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none !important; display: inline-flex !important; align-items: center; gap: 0.5rem; border: {{primaryButtonBorderType}}; box-shadow: {{primaryButtonShadow}}; cursor: pointer !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;">
+                                    <a href="{{primaryButtonLink}}" class="kerberos-btn kerberos-btn-{{moduleId}}" data-property="primaryButtonText" style="font-weight: 600; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none !important; display: inline-flex !important; align-items: center; gap: 0.5rem; border: {{primaryButtonBorderType}}; box-shadow: {{primaryButtonShadow}}; cursor: pointer !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;">
                                         {{primaryButtonText}}
                                         <span style="font-family: 'Font Awesome 5 Pro'; display: {{showPrimaryButtonIcon}};">{{primaryButtonIcon}}</span>
                                     </a>
@@ -2366,17 +2366,17 @@
                             <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: inline-flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}}; box-shadow: {{iconShadowType}};">{{iconClass}}</div>
                         </div>
                         <div style="margin-bottom: {{titleSpacing}};">
-                            <h2 style="font-family: var(--heading-font-font-family); font-size: {{titleSizeType}}; font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0;">{{title}}</h2>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: {{titleSizeType}}; font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0;">{{title}}</h2>
                         </div>
                         <div style="margin-bottom: {{textSpacing}};">
-                            <p style="font-family: var(--body-font-font-family); font-size: {{textSizeType}}; line-height: var(--body-font-line-height); color: {{textColor}}; margin: 0; max-width: 700px; margin-left: auto; margin-right: auto;">{{text}}</p>
+                            <p data-property="text" style="font-family: var(--body-font-font-family); font-size: {{textSizeType}}; line-height: var(--body-font-line-height); color: {{textColor}}; margin: 0; max-width: 700px; margin-left: auto; margin-right: auto;">{{text}}</p>
                         </div>
                         <div style="display: flex; flex-wrap: wrap; gap: {{buttonGap}}; justify-content: center; margin-top: {{buttonSpacing}};">
-                            <a href="{{primaryButtonLink}}" class="kerberos-btn-primary kerberos-btn-{{templateId}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonTextColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; border: {{primaryButtonBorder}}; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}}; font-size: var(--button-font-size);">
+                            <a href="{{primaryButtonLink}}" class="kerberos-btn-primary kerberos-btn-{{templateId}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonTextColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; border: {{primaryButtonBorder}}; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}}; font-size: var(--button-font-size);">
                                 {{primaryButtonText}}
                                 <span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span>
                             </a>
-                            <a href="{{secondaryButtonLink}}" class="kerberos-btn-secondary kerberos-btn-{{templateId}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{secondaryButtonBackground}}; color: {{secondaryButtonTextColor}}; padding: {{secondaryButtonPadding}}; border-radius: {{secondaryButtonRadius}}; text-decoration: none; display: {{showSecondaryButton}}; align-items: center; gap: 0.75rem; border: {{secondaryButtonBorder}}; transition: all 0.3s ease; box-shadow: {{secondaryButtonShadow}}; font-size: var(--button-font-size);">
+                            <a href="{{secondaryButtonLink}}" class="kerberos-btn-secondary kerberos-btn-{{templateId}}" data-property="secondaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{secondaryButtonBackground}}; color: {{secondaryButtonTextColor}}; padding: {{secondaryButtonPadding}}; border-radius: {{secondaryButtonRadius}}; text-decoration: none; display: {{showSecondaryButton}}; align-items: center; gap: 0.75rem; border: {{secondaryButtonBorder}}; transition: all 0.3s ease; box-shadow: {{secondaryButtonShadow}}; font-size: var(--button-font-size);">
                                 {{secondaryButtonText}}
                                 <span style="font-family: 'Font Awesome 5 Pro';">{{secondaryButtonIcon}}</span>
                             </a>
@@ -2548,8 +2548,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; overflow: hidden;" class="kerberos-module-{{templateId}}">
                     <div style="max-width: {{maxWidthType}}; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div class="kerberos-testimonials-container" style="position: relative; max-width: 800px; margin: 0 auto;">
                             <div class="kerberos-testimonials-track" style="display: flex; transition: transform {{transitionSpeedType}} ease; overflow: hidden;">
@@ -2735,7 +2735,7 @@
         <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
                 <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
+                <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             <div style="position: relative; max-width: 800px; margin: 0 auto;">
                 <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: {{timelineWidthType}}; background: linear-gradient(to bottom, {{timelineStartColor}}, {{timelineEndColor}}); transform: translateX(-50%); border-radius: {{timelineRadiusType}}; z-index: 1;"></div>
@@ -2880,8 +2880,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div style="position: relative; max-width: 800px; margin: 0 auto;">
                             <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: {{timelineWidthType}}; background: linear-gradient(to bottom, {{timelineStartColor}}, {{timelineEndColor}}); transform: translateX(-50%); border-radius: {{timelineRadiusType}}; z-index: 1;"></div>
@@ -2982,8 +2982,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax({{cardMinWidthType}}, 1fr)); gap: {{statsGap}};">
                             {{statsContent}}
@@ -3093,8 +3093,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                            <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                            <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                            <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
                         </div>
                         <div style="margin-bottom: {{contentSpacing}};">
                             <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: {{filterGapType}}; margin-bottom: {{filterSpacingType}};">
@@ -3261,10 +3261,10 @@
                 <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
             </div>
             <div style="margin-bottom: {{titleSpacing}};">
-                <div style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}};">{{titleContent}}</div>
+                <div data-property="titleContent" data-content-type="html" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}};">{{titleContent}}</div>
             </div>
             <div style="margin-bottom: {{textSpacing}};">
-                <div style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}};">{{textContent}}</div>
+                <div data-property="textContent" data-content-type="html" style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}};">{{textContent}}</div>
             </div>
             {{buttonSection}}
         </div>
@@ -3396,7 +3396,7 @@
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
                 <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax({{cardMinWidth}}, 1fr)); gap: {{cardGap}};">
                 {{featureCards}}
@@ -3891,7 +3891,7 @@
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
                 <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             
             <!-- Pricing Plans Grid -->
@@ -4030,7 +4030,7 @@
         <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
                 <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             
             <!-- Desktop Table -->
@@ -4440,11 +4440,11 @@
                 <div>
                     <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: {{badgeBackground}}; color: {{badgeColor}}; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid {{badgeBorder}};">
                         <span style="font-family: 'Font Awesome 5 Pro';">{{badgeIcon}}</span>
-                        <span>{{badgeText}}</span>
+                        <span data-property="badgeText">{{badgeText}}</span>
                     </div>
-                    <h2 style="font-family: var(--heading-font-font-family); font-size: {{heroTitleSize}}; font-weight: var(--heading-font-font-weight); color: {{heroTitleColor}}; margin-bottom: 1.5rem; line-height: 1.2;">{{heroTitle}}</h2>
-                    <p style="font-family: var(--body-font-font-family); font-size: {{heroTextSize}}; line-height: 1.7; color: {{heroTextColor}}; margin-bottom: 2rem;">{{heroDescription}}</p>
-                    <a href="{{heroButtonLink}}" class="kerberos-btn kerberos-btn-{{moduleId}}" style="display: inline-flex; align-items: center; gap: 0.75rem; background: {{heroButtonBackground}}; color: {{heroButtonColor}}; text-decoration: none; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; box-shadow: {{heroButtonShadow}};">
+                    <h2 data-property="heroTitle" style="font-family: var(--heading-font-font-family); font-size: {{heroTitleSize}}; font-weight: var(--heading-font-font-weight); color: {{heroTitleColor}}; margin-bottom: 1.5rem; line-height: 1.2;">{{heroTitle}}</h2>
+                    <p data-property="heroDescription" data-content-type="html" style="font-family: var(--body-font-font-family); font-size: {{heroTextSize}}; line-height: 1.7; color: {{heroTextColor}}; margin-bottom: 2rem;">{{heroDescription}}</p>
+                    <a href="{{heroButtonLink}}" class="kerberos-btn kerberos-btn-{{moduleId}}" data-property="heroButtonText" style="display: inline-flex; align-items: center; gap: 0.75rem; background: {{heroButtonBackground}}; color: {{heroButtonColor}}; text-decoration: none; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; box-shadow: {{heroButtonShadow}};">
                         <span style="font-family: 'Font Awesome 5 Pro';">{{heroButtonIcon}}</span>
                         {{heroButtonText}}
                     </a>
@@ -4453,10 +4453,10 @@
                     <img src="{{heroLogoImage}}" alt="{{heroLogoAlt}}" style="max-width: 100%; height: auto; max-height: 300px; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(6,58,168,0.15));" />
                 </div>
             </div>
-            
+
             <!-- Stats Section -->
             <div style="background: {{statsBackground}}; border-radius: 16px; padding: {{statsPadding}}; box-shadow: {{statsShadow}}; border: 1px solid {{statsBorder}};">
-                <h3 style="font-family: var(--heading-font-font-family); font-size: {{statsTitleSize}}; font-weight: 700; color: {{statsTitleColor}}; text-align: center; margin-bottom: 3rem;">{{statsTitle}}</h3>
+                <h3 data-property="statsTitle" style="font-family: var(--heading-font-font-family); font-size: {{statsTitleSize}}; font-weight: 700; color: {{statsTitleColor}}; text-align: center; margin-bottom: 3rem;">{{statsTitle}}</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
                     {{statsCards}}
                 </div>
@@ -4576,8 +4576,8 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
+                <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             <div class="kerberos-faq-accordion" data-module-id="{{module
 
