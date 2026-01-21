@@ -1112,12 +1112,12 @@
             
             let subtitleElement = '';
             if (showSubtitle && props.subtitle) {
-                subtitleElement = `<div style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); color: ${props.subtitleColor || '#FFFFFF'}; max-width: 800px; margin: 0 auto ${props.textSpacing || '2rem'} auto;">${props.subtitle}</div>`;
+                subtitleElement = `<div data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); color: ${props.subtitleColor || '#FFFFFF'}; max-width: 800px; margin: 0 auto ${props.textSpacing || '2rem'} auto;">${props.subtitle}</div>`;
             }
             
             let textElement = '';
             if (showText && props.text) {
-                textElement = `<div style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: ${props.textColor || '#FFFFFF'}; max-width: 800px; margin: 0 auto ${props.textSpacing || '2rem'} auto;">${props.text}</div>`;
+                textElement = `<div data-property="text" style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: ${props.textColor || '#FFFFFF'}; max-width: 800px; margin: 0 auto ${props.textSpacing || '2rem'} auto;">${props.text}</div>`;
             }
             
             // === BUTTON-STYLING (UNIVERSELL) ===
@@ -1150,14 +1150,14 @@
                 
                 const iconElement = (showButtonIcon && props.buttonIcon) ? `<span style="font-family: 'Font Awesome 5 Pro';">${props.buttonIcon}</span>` : '';
                 
-                buttonElement = `<a class="kerberos-btn kerberos-btn-${module.id}" href="${props.buttonLink || '#'}" 
-                    style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); 
-                        background: ${actualButtonBackground}; color: ${actualButtonColor}; 
-                        padding: ${actualButtonPadding}; border-radius: ${actualButtonRadius}; 
-                        text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; 
-                        box-shadow: ${actualButtonShadow}; transition: all 0.3s ease; 
+                buttonElement = `<a class="kerberos-btn kerberos-btn-${module.id}" href="${props.buttonLink || '#'}"
+                    style="font-family: var(--button-font-family); font-weight: var(--button-font-weight);
+                        background: ${actualButtonBackground}; color: ${actualButtonColor};
+                        padding: ${actualButtonPadding}; border-radius: ${actualButtonRadius};
+                        text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+                        box-shadow: ${actualButtonShadow}; transition: all 0.3s ease;
                         border: 2px solid rgba(255,255,255,0.3);">
-                    ${props.buttonText}
+                    <span data-property="buttonText">${props.buttonText}</span>
                     ${iconElement}
                 </a>`;
             }
@@ -1899,7 +1899,7 @@ function processKerberosTestimonialsPro(module, html) {
                 buttonSection += `
                     <a class="kerberos-btn kerberos-btn-${module.id}" href="${primaryLink}"
                     style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: ${primaryButtonStyles.background}; color: ${primaryButtonStyles.color}; padding: ${primaryButtonStyles.padding}; border-radius: ${primaryButtonStyles.borderRadius}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: ${primaryButtonStyles.boxShadow}; border: ${primaryButtonStyles.border || 'none'}; margin-right: 1rem;">
-                        ${primaryText}
+                        <span data-property="primaryButtonText">${primaryText}</span>
                         ${props.primaryButtonIcon || props.buttonIcon ? '<span style="font-family: \'Font Awesome 5 Pro\';">' + (props.primaryButtonIcon || props.buttonIcon) + '</span>' : ''}
                     </a>`;
             }
@@ -1907,9 +1907,9 @@ function processKerberosTestimonialsPro(module, html) {
             // Secondary Button
             if (props.secondaryButtonText) {
                 buttonSection += `
-                    <a class="kerberos-btn-secondary kerberos-btn-${module.id}" href="${props.secondaryButtonLink || '#'}" 
+                    <a class="kerberos-btn-secondary kerberos-btn-${module.id}" href="${props.secondaryButtonLink || '#'}"
                     style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: ${secondaryButtonStyles.background}; color: ${secondaryButtonStyles.color}; padding: ${secondaryButtonStyles.padding}; border-radius: ${secondaryButtonStyles.borderRadius}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; border: ${secondaryButtonStyles.border || props.secondaryButtonBorder};">
-                        ${props.secondaryButtonText}
+                        <span data-property="secondaryButtonText">${props.secondaryButtonText}</span>
                         ${props.secondaryButtonIcon ? '<span style="font-family: \'Font Awesome 5 Pro\';">' + props.secondaryButtonIcon + '</span>' : ''}
                     </a>`;
             }
@@ -2548,16 +2548,16 @@ function processKerberosTestimonialsPro(module, html) {
                                     ${item.Icon}
                                 </span>
                             </div>
-                            <div style="font-size: ${props.numberSize || '3rem'}; 
-                                        font-weight: 700; 
-                                        color: ${item.NumberColor || '#063AA8'}; 
-                                        margin-bottom: ${props.numberSpacing || '0.5rem'}; 
+                            <div data-property="stat${index}Number" style="font-size: ${props.numberSize || '3rem'};
+                                        font-weight: 700;
+                                        color: ${item.NumberColor || '#063AA8'};
+                                        margin-bottom: ${props.numberSpacing || '0.5rem'};
                                         font-family: var(--heading-font-font-family);
                                         line-height: 1;">
                                 ${item.Number}
                             </div>
-                            <div style="font-size: ${props.textSize || '1rem'}; 
-                                        color: ${item.TextColor || '#6c757d'}; 
+                            <div data-property="stat${index}Text" style="font-size: ${props.textSize || '1rem'};
+                                        color: ${item.TextColor || '#6c757d'};
                                         font-family: var(--body-font-font-family);
                                         line-height: 1.4;">
                                 ${item.Text}
@@ -6739,7 +6739,7 @@ function processUniversalModule(module, html) {
             
             // Beschreibung (Standard-Textarea)
             if (props.description) {
-                breakerContent += `<p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ${props.descriptionColor || 'rgba(255,255,255,0.9)'}; margin: 0 0 ${props.descriptionSpacing || '2rem'} 0; max-width: 600px; margin-left: auto; margin-right: auto;">${props.description}</p>`;
+                breakerContent += `<p data-property="description" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ${props.descriptionColor || 'rgba(255,255,255,0.9)'}; margin: 0 0 ${props.descriptionSpacing || '2rem'} 0; max-width: 600px; margin-left: auto; margin-right: auto;">${props.description}</p>`;
             }
             
             // Button Container
@@ -6748,23 +6748,23 @@ function processUniversalModule(module, html) {
                 
                 // Primary Button (PLATZHALTER-BASIERT)
                 if (props.buttonText) {
-                    breakerContent += `<a class="kerberos-btn kerberos-btn-${module.id}" href="${props.buttonLink || '#'}" style="display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{buttonBackground}}; color: {{buttonColor}}; padding: {{buttonPadding}}; border-radius: {{buttonRadius}}; box-shadow: {{buttonShadow}}; border: {{buttonBorder}}; text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem;">${props.buttonText}`;
-                    
+                    breakerContent += `<a class="kerberos-btn kerberos-btn-${module.id}" href="${props.buttonLink || '#'}" style="display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{buttonBackground}}; color: {{buttonColor}}; padding: {{buttonPadding}}; border-radius: {{buttonRadius}}; box-shadow: {{buttonShadow}}; border: {{buttonBorder}}; text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem;"><span data-property="buttonText">${props.buttonText}</span>`;
+
                     if (props.buttonIcon) {
                         breakerContent += `<span style="font-family: 'Font Awesome 5 Pro';">${props.buttonIcon}</span>`;
                     }
-                    
+
                     breakerContent += `</a>`;
                 }
                 
                 // Secondary Button (PLATZHALDER-BASIERT)
                 if (props.secondaryButtonText && props.showSecondaryButton === 'true') {
-                    breakerContent += `<a class="kerberos-btn-secondary kerberos-btn-${module.id}" href="${props.secondaryButtonLink || '#'}" style="display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{secondaryButtonBackground}}; color: {{secondaryButtonColor}}; padding: {{secondaryButtonPadding}}; border-radius: {{secondaryButtonRadius}}; box-shadow: {{secondaryButtonShadow}}; border: {{secondaryButtonBorder}}; text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem;">${props.secondaryButtonText}`;
-                    
+                    breakerContent += `<a class="kerberos-btn-secondary kerberos-btn-${module.id}" href="${props.secondaryButtonLink || '#'}" style="display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{secondaryButtonBackground}}; color: {{secondaryButtonColor}}; padding: {{secondaryButtonPadding}}; border-radius: {{secondaryButtonRadius}}; box-shadow: {{secondaryButtonShadow}}; border: {{secondaryButtonBorder}}; text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem;"><span data-property="secondaryButtonText">${props.secondaryButtonText}</span>`;
+
                     if (props.secondaryButtonIcon) {
                         breakerContent += `<span style="font-family: 'Font Awesome 5 Pro';">${props.secondaryButtonIcon}</span>`;
                     }
-                    
+
                     breakerContent += `</a>`;
                 }
                 
@@ -6778,7 +6778,7 @@ function processUniversalModule(module, html) {
             
             // COUNTDOWN (Standard-Text)
             if (props.countdownActive === 'true') {
-                breakerContent += `<p style="margin-top: ${props.countdownSpacing || '2rem'}; font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: ${props.countdownColor || '#FFFFFF'}; text-align: center; font-weight: 600; line-height: var(--body-font-line-height);">${props.countdownText || '⏰ Begrenzte Zeit verfügbar!'}</p>`;
+                breakerContent += `<p data-property="countdownText" style="margin-top: ${props.countdownSpacing || '2rem'}; font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: ${props.countdownColor || '#FFFFFF'}; text-align: center; font-weight: 600; line-height: var(--body-font-line-height);">${props.countdownText || '⏰ Begrenzte Zeit verfügbar!'}</p>`;
             }
             
             breakerContent += '</div>';
