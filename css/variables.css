@@ -13,6 +13,28 @@
     --kerberos-border: #DEE2E6;
     --kerberos-shadow: 0 4px 12px rgba(6, 58, 168, 0.1);
     --kerberos-shadow-hover: 0 8px 24px rgba(6, 58, 168, 0.15);
+
+    /* Typography Variables - Editor Fallbacks */
+    --heading-font-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --body-font-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --button-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    --heading-font-font-weight: 700;
+    --heading-font-line-height: 1.2;
+    --body-font-line-height: 1.6;
+    --button-font-weight: 600;
+
+    /* Heading Sizes */
+    --heading-1-size: 3rem;
+    --heading-2-size: 2.25rem;
+    --heading-3-size: 1.75rem;
+    --heading-4-size: 1.375rem;
+
+    /* Text Sizes */
+    --large-text-size: 1.25rem;
+    --normal-text-size: 1rem;
+    --small-text-size: 0.875rem;
+    --normal-meta-size: 0.8rem;
 }
 
 * {
