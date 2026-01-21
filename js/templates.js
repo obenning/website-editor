@@ -2734,7 +2734,7 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
                 <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 600px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             <div style="position: relative; max-width: 800px; margin: 0 auto;">
@@ -2742,7 +2742,7 @@
                 {{timelineSteps}}
             </div>
             <div style="text-align: center; margin-top: {{ctaSpacing}}; padding-top: {{ctaSpacing}}; border-top: 1px solid rgba(0,0,0,0.05);">
-                <a href="{{ctaLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">
+                <a href="{{ctaLink}}" data-property="ctaText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">
                     {{ctaText}}
                     <span style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span>
                 </a>
@@ -3395,14 +3395,14 @@
     <section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-features-module">
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
                 <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax({{cardMinWidth}}, 1fr)); gap: {{cardGap}};">
                 {{featureCards}}
             </div>
             <div style="text-align: center; margin-top: {{ctaSpacing}};">
-                <a class="kerberos-btn-features" href="{{ctaLink}}" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{ctaBackground}}; color: {{ctaColor}}; padding: {{ctaPadding}}; border-radius: {{ctaRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{ctaShadow}};">{{ctaText}}<span style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span></a>
+                <a class="kerberos-btn-features" href="{{ctaLink}}" data-property="ctaText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{ctaBackground}}; color: {{ctaColor}}; padding: {{ctaPadding}}; border-radius: {{ctaRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{ctaShadow}};">{{ctaText}}<span style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span></a>
             </div>
         </div>
     </section>`,
@@ -3890,10 +3890,10 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
                 <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
-            
+
             <!-- Pricing Plans Grid -->
             <div class="pricing-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 4rem;">
                 {{pricingPlans}}
@@ -4029,10 +4029,10 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
                 <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; max-width: 700px; margin: 0 auto;">{{subtitle}}</p>
             </div>
-            
+
             <!-- Desktop Table -->
             <div class="feature-comparison-desktop" style="background: {{tableBackground}}; border-radius: {{tableRadius}}; box-shadow: {{tableShadow}}; overflow: hidden;">
                 <div style="display: grid; grid-template-columns: {{gridColumns}}; gap: {{columnGap}}; padding: {{headerPadding}}; background: {{headerBackground}}; color: {{headerTextColor}}; font-weight: 700;">
@@ -4322,19 +4322,19 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidth}}; margin: 0 auto; padding: 0 2rem;">
             <div style="text-align: center; margin-bottom: {{titleSpacing}};">
-                <h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
-                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; margin: 0;">{{subtitle}}</p>
+                <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{title}}</h2>
+                <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: {{subtitleColor}}; margin: 0;">{{subtitle}}</p>
             </div>
-            
+
             <div class="testimonial-container" style="position: relative; overflow-x: auto; overflow-y: hidden; border-radius: 12px; background: {{containerBackground}}; box-shadow: {{containerShadow}}; scroll-behavior: smooth; padding: 1rem;">
                 <div class="testimonial-track" style="display: flex; gap: 2rem; scroll-snap-type: x mandatory;">
                     {{testimonialCards}}
                 </div>
             </div>
-            
+
             <div class="scroll-hint" style="padding: 1rem 0; display: flex; justify-content: center; align-items: center; gap: 0.5rem; color: {{hintColor}}; font-size: 0.875rem; opacity: 0.7;">
                 <span style="font-family: 'Font Awesome 5 Pro';">&#xf054;</span>
-                <span>{{scrollHintText}}</span>
+                <span data-property="scrollHintText">{{scrollHintText}}</span>
             </div>
         </div>
     </section>`,

@@ -35,6 +35,10 @@ function initInlineEditor() {
     // Event-Listener für Canvas
     setupInlineEditorListeners();
 
+    // Initialisiere visuelle Editoren für Bilder und Hintergründe
+    initVisualEditors();
+    initBackgroundEditor();
+
     console.log('✅ Inline Editor System initialized');
 }
 
@@ -60,10 +64,14 @@ function setupInlineEditorListeners() {
     canvas.addEventListener('dblclick', handleDoubleClick, true);
     canvas.addEventListener('click', handleSingleClick, true);
 
+    // Verhindere Link-Navigation im Canvas (für Button-Editing)
+    canvas.addEventListener('click', preventLinkNavigation, true);
+
     // Escape-Taste zum Abbrechen
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             disableInlineEditing();
+            hideButtonEditMenu();
         }
     });
 }
@@ -171,8 +179,11 @@ function saveTextEdit() {
         // Aktualisiere Property
         module.properties[currentEditingProperty] = newValue;
 
-        // Triggere Update über das bestehende System
-        if (typeof updateProperty === 'function') {
+        // Synchronisiere mit Property Panel über Sync-Manager
+        if (typeof syncProperty === 'function') {
+            syncProperty(currentEditingModuleId, currentEditingProperty, newValue, 'canvas');
+        } else if (typeof updateProperty === 'function') {
+            // Fallback auf altes System wenn Sync-Manager nicht verfügbar
             updateProperty(currentEditingProperty, newValue);
         }
     }
@@ -274,11 +285,19 @@ function openColorPicker(element, propertyKey, moduleId) {
     colorInput.oninput = (e) => {
         const newColor = e.target.value;
 
-        // Live-Update
-        element.style.color = newColor;
+        // Live-Update im Canvas
+        if (propertyKey.toLowerCase().includes('background') && !propertyKey.toLowerCase().includes('text')) {
+            element.style.backgroundColor = newColor;
+        } else {
+            element.style.color = newColor;
+        }
+
         module.properties[propertyKey] = newColor;
 
-        if (typeof updateProperty === 'function') {
+        // Synchronisiere mit Property Panel
+        if (typeof syncProperty === 'function') {
+            syncProperty(moduleId, propertyKey, newColor, 'canvas');
+        } else if (typeof updateProperty === 'function') {
             updateProperty(propertyKey, newColor);
         }
     };
@@ -626,6 +645,46 @@ function injectInlineEditorStyles() {
                 content: "Shift+Klick zum Icon ändern";
                 opacity: 1;
             }
+
+            /* Button-Properties */
+            a[data-property]:hover::after {
+                content: "Klick für Bearbeitungs-Menü";
+                opacity: 1;
+            }
+
+            /* Background-Properties: Farb-Indikator */
+            [data-property*="background"][data-property*="Color"]::before {
+                content: "🎨";
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                background: white;
+                border: 2px solid #063AA8;
+                border-radius: 50%;
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1rem;
+                cursor: pointer;
+                opacity: 0;
+                transition: opacity 0.2s ease;
+                z-index: 100;
+                pointer-events: none;
+            }
+
+            [data-property*="background"][data-property*="Color"]:hover::before {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            /* Image-Properties: Edit-Icon */
+            img[data-property]:hover {
+                outline: 2px solid #063AA8;
+                outline-offset: 2px;
+                cursor: pointer;
+            }
         </style>
     `;
 
@@ -633,7 +692,453 @@ function injectInlineEditorStyles() {
 }
 
 // =====================================================
-// 8. INITIALIZATION ON LOAD
+// 8. BUTTON EDITING (PREVENT LINK NAVIGATION)
+// =====================================================
+
+let buttonEditMenu = null;
+let currentButtonElement = null;
+let currentButtonModuleId = null;
+let currentButtonTextProperty = null;
+let currentButtonLinkProperty = null;
+
+/**
+ * Verhindert Link-Navigation im Canvas
+ */
+function preventLinkNavigation(e) {
+    const link = e.target.closest('a');
+
+    if (!link) return;
+
+    // Prüfe ob der Link im Canvas ist
+    const moduleElement = link.closest('.canvas-module');
+    if (!moduleElement) return;
+
+    // Verhindere Link-Navigation
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Zeige Button-Edit-Menu bei normalem Click
+    if (!e.shiftKey) {
+        showButtonEditMenu(link, moduleElement);
+    }
+}
+
+/**
+ * Erstellt das Button-Edit-Menu
+ */
+function createButtonEditMenu() {
+    const menu = document.createElement('div');
+    menu.id = 'button-edit-menu';
+    menu.style.cssText = `
+        position: fixed;
+        background: white;
+        border: 2px solid #063AA8;
+        border-radius: 8px;
+        padding: 0.75rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        min-width: 250px;
+        display: none;
+    `;
+
+    menu.innerHTML = `
+        <div style="margin-bottom: 0.5rem; font-weight: 600; color: #063AA8; font-size: 0.9rem;">
+            🔘 Button bearbeiten
+        </div>
+        <button id="btn-edit-text" style="
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background: #063AA8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        ">✏️ Text bearbeiten</button>
+        <button id="btn-edit-link" style="
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background: #009CE6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        ">🔗 Link bearbeiten</button>
+        <button id="btn-edit-close" style="
+            width: 100%;
+            padding: 0.5rem;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        ">✖️ Schließen</button>
+    `;
+
+    document.body.appendChild(menu);
+    return menu;
+}
+
+/**
+ * Zeigt das Button-Edit-Menu
+ */
+function showButtonEditMenu(buttonElement, moduleElement) {
+    if (!buttonEditMenu) {
+        buttonEditMenu = createButtonEditMenu();
+
+        // Event-Listener für Menu-Buttons
+        document.getElementById('btn-edit-text').onclick = () => {
+            editButtonText(currentButtonElement);
+            hideButtonEditMenu();
+        };
+
+        document.getElementById('btn-edit-link').onclick = () => {
+            editButtonLink(currentButtonElement, currentButtonModuleId);
+            hideButtonEditMenu();
+        };
+
+        document.getElementById('btn-edit-close').onclick = () => {
+            hideButtonEditMenu();
+        };
+    }
+
+    // Speichere Button-Infos
+    currentButtonElement = buttonElement;
+    currentButtonModuleId = moduleElement.getAttribute('data-module-id');
+
+    // Versuche data-property Attribute zu finden
+    const textProperty = buttonElement.getAttribute('data-property');
+    currentButtonTextProperty = textProperty;
+
+    // Versuche Link-Property zu ermitteln (meist buttonLink, primaryButtonLink, etc.)
+    if (textProperty && textProperty.includes('Text')) {
+        currentButtonLinkProperty = textProperty.replace('Text', 'Link');
+    } else if (textProperty && textProperty.includes('Button')) {
+        currentButtonLinkProperty = textProperty + 'Link';
+    }
+
+    // Positioniere das Menu neben dem Button
+    const rect = buttonElement.getBoundingClientRect();
+    buttonEditMenu.style.display = 'block';
+    buttonEditMenu.style.left = `${rect.left}px`;
+    buttonEditMenu.style.top = `${rect.bottom + 10}px`;
+
+    // Schließe bei Klick außerhalb
+    setTimeout(() => {
+        document.addEventListener('click', closeMenuOnClickOutside);
+    }, 100);
+}
+
+/**
+ * Versteckt das Button-Edit-Menu
+ */
+function hideButtonEditMenu() {
+    if (buttonEditMenu) {
+        buttonEditMenu.style.display = 'none';
+    }
+    currentButtonElement = null;
+    currentButtonModuleId = null;
+    currentButtonTextProperty = null;
+    currentButtonLinkProperty = null;
+
+    document.removeEventListener('click', closeMenuOnClickOutside);
+}
+
+/**
+ * Schließt das Menu bei Klick außerhalb
+ */
+function closeMenuOnClickOutside(e) {
+    if (buttonEditMenu && !buttonEditMenu.contains(e.target) && !e.target.closest('a')) {
+        hideButtonEditMenu();
+    }
+}
+
+/**
+ * Bearbeitet Button-Text (macht Text editierbar)
+ */
+function editButtonText(buttonElement) {
+    if (!buttonElement || !currentButtonTextProperty) return;
+
+    // Aktiviere ContentEditable
+    buttonElement.contentEditable = 'true';
+    buttonElement.focus();
+
+    // Setze globale Editing-Variablen
+    currentlyEditingElement = buttonElement;
+    currentEditingProperty = currentButtonTextProperty;
+    currentEditingModuleId = currentButtonModuleId;
+
+    // Zeige Toolbar
+    showInlineEditorToolbar(buttonElement);
+
+    console.log('✏️ Button-Text-Editing aktiviert:', currentButtonTextProperty);
+}
+
+/**
+ * Bearbeitet Button-Link über Property Panel
+ */
+function editButtonLink(buttonElement, moduleId) {
+    if (!moduleId || !currentButtonLinkProperty) {
+        alert('⚠️ Link-Property konnte nicht ermittelt werden');
+        return;
+    }
+
+    const module = modules.find(m => m.id == moduleId);
+    if (!module) return;
+
+    const currentLink = buttonElement.getAttribute('href') || module.properties[currentButtonLinkProperty] || '#';
+
+    // Zeige Prompt für Link-Eingabe
+    const newLink = prompt('🔗 Button-Link bearbeiten:', currentLink);
+
+    if (newLink !== null && newLink !== currentLink) {
+        // Aktualisiere Link
+        buttonElement.setAttribute('href', newLink);
+        module.properties[currentButtonLinkProperty] = newLink;
+
+        // Synchronisiere mit Property Panel
+        if (typeof syncProperty === 'function') {
+            syncProperty(moduleId, currentButtonLinkProperty, newLink, 'canvas');
+        }
+
+        console.log('✅ Button-Link aktualisiert:', currentButtonLinkProperty, newLink);
+    }
+}
+
+// =====================================================
+// 9. VISUAL EDITORS (Images, Backgrounds, Button Styles)
+// =====================================================
+
+let imageEditOverlay = null;
+let backgroundEditIndicator = null;
+
+/**
+ * Initialisiert visuelle Editoren für Bilder und Hintergründe
+ */
+function initVisualEditors() {
+    const canvas = document.getElementById('canvas') ||
+                   document.getElementById('freshCanvas') ||
+                   document.querySelector('.canvas');
+
+    if (!canvas) return;
+
+    // Event-Delegierung für Image-Hover
+    canvas.addEventListener('mouseenter', handleImageHover, true);
+    canvas.addEventListener('mouseleave', handleImageLeave, true);
+
+    console.log('✅ Visuelle Editoren initialisiert');
+}
+
+/**
+ * Zeigt Edit-Overlay auf Bildern
+ */
+function handleImageHover(e) {
+    const img = e.target;
+
+    // Nur für img-Tags mit data-property
+    if (img.tagName !== 'IMG') return;
+    if (!img.hasAttribute('data-property')) return;
+
+    // Verhindere Overlay auf Modul-Controls
+    if (img.closest('.module-controls')) return;
+
+    // Erstelle Overlay wenn nicht vorhanden
+    if (!imageEditOverlay) {
+        createImageEditOverlay();
+    }
+
+    // Positioniere Overlay über dem Bild
+    const rect = img.getBoundingClientRect();
+    imageEditOverlay.style.display = 'flex';
+    imageEditOverlay.style.left = `${rect.left}px`;
+    imageEditOverlay.style.top = `${rect.top}px`;
+    imageEditOverlay.style.width = `${rect.width}px`;
+    imageEditOverlay.style.height = `${rect.height}px`;
+
+    // Speichere Referenz für Button-Handler
+    imageEditOverlay.dataset.imageProperty = img.getAttribute('data-property');
+    imageEditOverlay.dataset.moduleId = img.closest('.canvas-module')?.getAttribute('data-module-id');
+}
+
+/**
+ * Versteckt Edit-Overlay
+ */
+function handleImageLeave(e) {
+    if (e.target.tagName !== 'IMG') return;
+
+    // Nur verstecken wenn Maus nicht im Overlay ist
+    setTimeout(() => {
+        if (imageEditOverlay && !imageEditOverlay.matches(':hover')) {
+            imageEditOverlay.style.display = 'none';
+        }
+    }, 100);
+}
+
+/**
+ * Erstellt das Image-Edit-Overlay
+ */
+function createImageEditOverlay() {
+    const overlay = document.createElement('div');
+    overlay.id = 'image-edit-overlay';
+    overlay.style.cssText = `
+        position: fixed;
+        background: rgba(6, 58, 168, 0.85);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        z-index: 9999;
+        pointer-events: auto;
+        border: 2px solid #063AA8;
+        border-radius: 4px;
+    `;
+
+    overlay.innerHTML = `
+        <button id="img-edit-change" style="
+            padding: 0.5rem 1rem;
+            background: white;
+            color: #063AA8;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.875rem;
+        ">🖼️ Bild ändern</button>
+        <button id="img-edit-alt" style="
+            padding: 0.5rem 1rem;
+            background: white;
+            color: #063AA8;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.875rem;
+        ">📝 Alt-Text</button>
+    `;
+
+    document.body.appendChild(overlay);
+    imageEditOverlay = overlay;
+
+    // Event-Listener für Buttons
+    document.getElementById('img-edit-change').onclick = () => {
+        openImagePicker();
+    };
+
+    document.getElementById('img-edit-alt').onclick = () => {
+        editImageAltText();
+    };
+
+    // Verstecke Overlay wenn Maus raus geht
+    overlay.addEventListener('mouseleave', () => {
+        overlay.style.display = 'none';
+    });
+}
+
+/**
+ * Öffnet Image-Picker für aktuelles Bild
+ */
+function openImagePicker() {
+    const propertyKey = imageEditOverlay?.dataset.imageProperty;
+    const moduleId = imageEditOverlay?.dataset.moduleId;
+
+    if (!propertyKey || !moduleId) return;
+
+    const module = modules.find(m => m.id == moduleId);
+    if (!module) return;
+
+    // Zeige Prompt für Bild-URL (später kann man hier den echten Image-Picker integrieren)
+    const currentUrl = module.properties[propertyKey] || '';
+    const newUrl = prompt('🖼️ Bild-URL eingeben:', currentUrl);
+
+    if (newUrl !== null && newUrl !== currentUrl) {
+        // Aktualisiere Bild
+        module.properties[propertyKey] = newUrl;
+
+        // Synchronisiere mit Canvas und Property Panel
+        if (typeof syncProperty === 'function') {
+            syncProperty(moduleId, propertyKey, newUrl, 'canvas');
+        }
+
+        // Verstecke Overlay
+        imageEditOverlay.style.display = 'none';
+
+        console.log('✅ Bild aktualisiert:', propertyKey, newUrl);
+    }
+}
+
+/**
+ * Bearbeitet Alt-Text des Bildes
+ */
+function editImageAltText() {
+    const propertyKey = imageEditOverlay?.dataset.imageProperty;
+    const moduleId = imageEditOverlay?.dataset.moduleId;
+
+    if (!propertyKey || !moduleId) return;
+
+    const module = modules.find(m => m.id == moduleId);
+    if (!module) return;
+
+    // Ermittle Alt-Property (meist imageAlt, backgroundAlt, etc.)
+    const altPropertyKey = propertyKey.replace('Url', 'Alt').replace('Image', 'imageAlt');
+
+    const currentAlt = module.properties[altPropertyKey] || '';
+    const newAlt = prompt('📝 Alt-Text bearbeiten:', currentAlt);
+
+    if (newAlt !== null && newAlt !== currentAlt) {
+        module.properties[altPropertyKey] = newAlt;
+
+        // Synchronisiere mit Property Panel
+        if (typeof syncProperty === 'function') {
+            syncProperty(moduleId, altPropertyKey, newAlt, 'canvas');
+        }
+
+        // Verstecke Overlay
+        imageEditOverlay.style.display = 'none';
+
+        console.log('✅ Alt-Text aktualisiert:', altPropertyKey, newAlt);
+    }
+}
+
+/**
+ * Background-Editor: Zeigt Farb-Indikator für Elemente mit Background-Properties
+ */
+function initBackgroundEditor() {
+    const canvas = document.getElementById('canvas') ||
+                   document.getElementById('freshCanvas') ||
+                   document.querySelector('.canvas');
+
+    if (!canvas) return;
+
+    // Finde alle Elemente mit background-bezogenen data-property Attributen
+    const elementsWithBackground = canvas.querySelectorAll('[data-property*="background"]');
+
+    elementsWithBackground.forEach(element => {
+        // Füge Hover-Indicator hinzu (kleiner farbiger Kreis oben rechts)
+        element.style.position = 'relative';
+
+        // Der Indikator wird via CSS ::after pseudo-element hinzugefügt
+    });
+
+    console.log('✅ Background-Editor initialisiert');
+}
+
+/**
+ * Button-Style-Editor: Erweitert das Button-Menu um Style-Optionen
+ */
+function enhanceButtonMenuWithStyles() {
+    // Diese Funktion wird das bestehende Button-Menu erweitern
+    // Fügt Optionen für Farbe, Hintergrund, Padding, etc. hinzu
+
+    // TODO: In zukünftiger Version implementieren
+    // Für jetzt haben wir bereits Text und Link-Editing
+}
+
+// =====================================================
+// 10. INITIALIZATION ON LOAD
 // =====================================================
 
 // Auto-initialisierung wenn DOM bereit ist
