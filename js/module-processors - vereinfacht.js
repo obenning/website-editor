@@ -2599,7 +2599,7 @@ function processKerberosTestimonialsPro(module, html) {
                     // SCHRITT 3: HTML-Elemente in separate Variablen aufteilen
                     const listStart = '<li style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">';
                     const iconDiv = '<div style="font-family: \'Font Awesome 5 Pro\'; font-size: 1.25rem; color: ' + featureColor + '; width: 24px;">' + iconText + '</div>';
-                    const textSpan = '<span style="font-family: var(--body-font-font-family); color: ' + textColor + ';">' + featureText + '</span>';
+                    const textSpan = '<span data-property="feature' + i + 'Text" style="font-family: var(--body-font-font-family); color: ' + textColor + ';">' + featureText + '</span>';
                     const listEnd = '</li>';
 
                     // SCHRITT 4: String-Konkatenation verwenden
@@ -2638,8 +2638,8 @@ function processKerberosTestimonialsPro(module, html) {
                     const responsiveImage = createResponsiveImage('{{imageUrl}}', cardTitle, '', '(max-width: 768px) 100vw, 33vw');
                     const imageElement = responsiveImage.replace(/style="[^"]*"/, 'style="width: 100%; height: 200px; object-fit: cover;"');
                     const contentStart = '<div style="padding: 1rem;">';
-                    const titleElement = '<h4 style="font-family: var(--heading-font-font-family); color: ' + textColor + '; margin: 0 0 0.5rem 0; font-size: 1.1rem;">' + cardTitle + '</h4>';
-                    const descriptionElement = '<p style="font-family: var(--body-font-font-family); color: ' + subtitleColor + '; margin: 0; font-size: 0.9rem;">' + cardDescription + '</p>';
+                    const titleElement = '<h4 data-property="screenshot' + i + 'Title" style="font-family: var(--heading-font-font-family); color: ' + textColor + '; margin: 0 0 0.5rem 0; font-size: 1.1rem;">' + cardTitle + '</h4>';
+                    const descriptionElement = '<p data-property="screenshot' + i + 'Description" style="font-family: var(--body-font-font-family); color: ' + subtitleColor + '; margin: 0; font-size: 0.9rem;">' + cardDescription + '</p>';
                     const contentEnd = '</div>';
                     const cardEnd = '</div>';
 
@@ -2703,12 +2703,12 @@ function processKerberosTestimonialsPro(module, html) {
                             status === 'development' ? 'In Entwicklung' : 'Geplant';
 
                     integrationCards += `
-                        <div class="integration-card" data-category="${category}" 
+                        <div class="integration-card" data-category="${category}"
                             style="background: #FFFFFF; border: 1px solid #DEE2E6; border-radius: 8px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; cursor: pointer; display: block;">
                             <div style="font-size: 3rem; margin-bottom: 1rem;">${icon || '🔗'}</div>
-                            <h4 style="font-family: var(--heading-font-font-family); color: #212529; margin: 0 0 0.5rem 0; font-size: 1.1rem;">${name}</h4>
+                            <h4 data-property="integration${i}Name" style="font-family: var(--heading-font-font-family); color: #212529; margin: 0 0 0.5rem 0; font-size: 1.1rem;">${name}</h4>
                             <div style="background: ${statusColor}; color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.7rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;">${statusText}</div>
-                            <p style="font-family: var(--body-font-font-family); color: #212529; margin: 0; font-size: 0.9rem; opacity: 0.8;">${description}</p>
+                            <p data-property="integration${i}Description" style="font-family: var(--body-font-font-family); color: #212529; margin: 0; font-size: 0.9rem; opacity: 0.8;">${description}</p>
                         </div>`;
                 }
             }
@@ -4213,9 +4213,9 @@ function processUniversalModule(module, html) {
                     endpointCards += `
                     <div class="api-endpoint-card" style="background: ${props.cardBackground}; border: 1px solid ${props.cardBorder}; border-radius: 8px; padding: 1.5rem; transition: all 0.3s ease; cursor: default;">
                         ${badgeHtml}
-                        <h4 style="font-family: var(--heading-font-font-family); color: ${props.textColor}; margin: 0 0 0.5rem 0; font-size: 1.1rem;">${title}</h4>
-                        ${showPaths ? `<p style="font-family: 'Monaco', 'Consolas', monospace; color: ${props.primaryColor}; font-size: 0.9rem; margin: 0 0 1rem 0;">${path}</p>` : ''}
-                        <p style="font-family: var(--body-font-font-family); color: ${props.textColor}; font-size: 0.9rem; margin: 0; opacity: 0.8;">${description}</p>
+                        <h4 data-property="endpoint${i}Title" style="font-family: var(--heading-font-font-family); color: ${props.textColor}; margin: 0 0 0.5rem 0; font-size: 1.1rem;">${title}</h4>
+                        ${showPaths ? `<p data-property="endpoint${i}Path" style="font-family: 'Monaco', 'Consolas', monospace; color: ${props.primaryColor}; font-size: 0.9rem; margin: 0 0 1rem 0;">${path}</p>` : ''}
+                        <p data-property="endpoint${i}Description" style="font-family: var(--body-font-font-family); color: ${props.textColor}; font-size: 0.9rem; margin: 0; opacity: 0.8;">${description}</p>
                     </div>`;
                 }
             }
@@ -6319,8 +6319,8 @@ function processUniversalModule(module, html) {
                     productCards += '<a class="solutions-card-' + module.id + '" href="' + link + '">' +
                         finalImage +
                         '<div style="padding: 1rem;">' +
-                        '<h4 class="solutions-title-' + module.id + '">' + title + '</h4>' +
-                        '<p class="solutions-desc-' + module.id + '">' + description + '</p>' +
+                        '<h4 data-property="product' + i + 'Title" class="solutions-title-' + module.id + '">' + title + '</h4>' +
+                        '<p data-property="product' + i + 'Description" class="solutions-desc-' + module.id + '">' + description + '</p>' +
                         '</div>' +
                         '</a>';
                 }
@@ -6886,6 +6886,7 @@ function processUniversalModule(module, html) {
 
                 if (active === 'true' && number && description) {
                     facts.push({
+                        index: i,
                         number: number,
                         description: description
                     });
@@ -6902,8 +6903,8 @@ function processUniversalModule(module, html) {
                         '<div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">' +
                             '<div style="width: 2px; height: 80px; background: ' + props.lineColor + '; margin-right: 1rem; border-radius: 2px;"></div>' +
                             '<div>' +
-                                '<div style="font-size: ' + factNumberSizeVar + '; font-weight: var(--heading-font-font-weight); color: ' + props.factNumberColor + '; line-height: 1.2; margin-bottom: 0.5rem; font-family: var(--heading-font-font-family);">' + fact.number + '</div>' +
-                                '<div style="font-size: ' + factTextSizeVar + '; color: ' + props.factTextColor + '; line-height: 1.4; font-family: var(--body-font-font-family);">' + fact.description + '</div>' +
+                                '<div data-property="fact' + fact.index + 'Number" style="font-size: ' + factNumberSizeVar + '; font-weight: var(--heading-font-font-weight); color: ' + props.factNumberColor + '; line-height: 1.2; margin-bottom: 0.5rem; font-family: var(--heading-font-font-family);">' + fact.number + '</div>' +
+                                '<div data-property="fact' + fact.index + 'Description" style="font-size: ' + factTextSizeVar + '; color: ' + props.factTextColor + '; line-height: 1.4; font-family: var(--body-font-font-family);">' + fact.description + '</div>' +
                             '</div>' +
                         '</div>' +
                     '</div>';
@@ -7572,14 +7573,14 @@ function processKerberosAboutStats(module, html) {
         if (type === 'number') {
             const number = props[`stat${i}Number`];
             contentHtml = `
-                <div style="font-size: 2.25rem; font-weight: 700; color: ${color}; margin-bottom: 0.5rem; line-height: 1;">${number}</div>
-                <div style="font-size: 0.95rem; color: #495057; line-height: 1.5;">${description}</div>
+                <div data-property="stat${i}Number" style="font-size: 2.25rem; font-weight: 700; color: ${color}; margin-bottom: 0.5rem; line-height: 1;">${number}</div>
+                <div data-property="stat${i}Description" style="font-size: 0.95rem; color: #495057; line-height: 1.5;">${description}</div>
             `;
         } else {
             const label = props[`stat${i}Label`];
             contentHtml = `
-                <div style="font-size: 1.25rem; font-weight: 700; color: ${color}; margin-bottom: 0.5rem;">${label}</div>
-                <div style="font-size: 0.95rem; color: #495057; line-height: 1.5;">${description}</div>
+                <div data-property="stat${i}Label" style="font-size: 1.25rem; font-weight: 700; color: ${color}; margin-bottom: 0.5rem;">${label}</div>
+                <div data-property="stat${i}Description" style="font-size: 0.95rem; color: #495057; line-height: 1.5;">${description}</div>
             `;
         }
         
