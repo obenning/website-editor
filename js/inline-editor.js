@@ -60,10 +60,14 @@ function setupInlineEditorListeners() {
     canvas.addEventListener('dblclick', handleDoubleClick, true);
     canvas.addEventListener('click', handleSingleClick, true);
 
+    // Verhindere Link-Navigation im Canvas (für Button-Editing)
+    canvas.addEventListener('click', preventLinkNavigation, true);
+
     // Escape-Taste zum Abbrechen
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             disableInlineEditing();
+            hideButtonEditMenu();
         }
     });
 }
@@ -637,6 +641,12 @@ function injectInlineEditorStyles() {
                 content: "Shift+Klick zum Icon ändern";
                 opacity: 1;
             }
+
+            /* Button-Properties */
+            a[data-property]:hover::after {
+                content: "Klick für Bearbeitungs-Menü";
+                opacity: 1;
+            }
         </style>
     `;
 
@@ -644,7 +654,225 @@ function injectInlineEditorStyles() {
 }
 
 // =====================================================
-// 8. INITIALIZATION ON LOAD
+// 8. BUTTON EDITING (PREVENT LINK NAVIGATION)
+// =====================================================
+
+let buttonEditMenu = null;
+let currentButtonElement = null;
+let currentButtonModuleId = null;
+let currentButtonTextProperty = null;
+let currentButtonLinkProperty = null;
+
+/**
+ * Verhindert Link-Navigation im Canvas
+ */
+function preventLinkNavigation(e) {
+    const link = e.target.closest('a');
+
+    if (!link) return;
+
+    // Prüfe ob der Link im Canvas ist
+    const moduleElement = link.closest('.canvas-module');
+    if (!moduleElement) return;
+
+    // Verhindere Link-Navigation
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Zeige Button-Edit-Menu bei normalem Click
+    if (!e.shiftKey) {
+        showButtonEditMenu(link, moduleElement);
+    }
+}
+
+/**
+ * Erstellt das Button-Edit-Menu
+ */
+function createButtonEditMenu() {
+    const menu = document.createElement('div');
+    menu.id = 'button-edit-menu';
+    menu.style.cssText = `
+        position: fixed;
+        background: white;
+        border: 2px solid #063AA8;
+        border-radius: 8px;
+        padding: 0.75rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        min-width: 250px;
+        display: none;
+    `;
+
+    menu.innerHTML = `
+        <div style="margin-bottom: 0.5rem; font-weight: 600; color: #063AA8; font-size: 0.9rem;">
+            🔘 Button bearbeiten
+        </div>
+        <button id="btn-edit-text" style="
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background: #063AA8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        ">✏️ Text bearbeiten</button>
+        <button id="btn-edit-link" style="
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background: #009CE6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        ">🔗 Link bearbeiten</button>
+        <button id="btn-edit-close" style="
+            width: 100%;
+            padding: 0.5rem;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        ">✖️ Schließen</button>
+    `;
+
+    document.body.appendChild(menu);
+    return menu;
+}
+
+/**
+ * Zeigt das Button-Edit-Menu
+ */
+function showButtonEditMenu(buttonElement, moduleElement) {
+    if (!buttonEditMenu) {
+        buttonEditMenu = createButtonEditMenu();
+
+        // Event-Listener für Menu-Buttons
+        document.getElementById('btn-edit-text').onclick = () => {
+            editButtonText(currentButtonElement);
+            hideButtonEditMenu();
+        };
+
+        document.getElementById('btn-edit-link').onclick = () => {
+            editButtonLink(currentButtonElement, currentButtonModuleId);
+            hideButtonEditMenu();
+        };
+
+        document.getElementById('btn-edit-close').onclick = () => {
+            hideButtonEditMenu();
+        };
+    }
+
+    // Speichere Button-Infos
+    currentButtonElement = buttonElement;
+    currentButtonModuleId = moduleElement.getAttribute('data-module-id');
+
+    // Versuche data-property Attribute zu finden
+    const textProperty = buttonElement.getAttribute('data-property');
+    currentButtonTextProperty = textProperty;
+
+    // Versuche Link-Property zu ermitteln (meist buttonLink, primaryButtonLink, etc.)
+    if (textProperty && textProperty.includes('Text')) {
+        currentButtonLinkProperty = textProperty.replace('Text', 'Link');
+    } else if (textProperty && textProperty.includes('Button')) {
+        currentButtonLinkProperty = textProperty + 'Link';
+    }
+
+    // Positioniere das Menu neben dem Button
+    const rect = buttonElement.getBoundingClientRect();
+    buttonEditMenu.style.display = 'block';
+    buttonEditMenu.style.left = `${rect.left}px`;
+    buttonEditMenu.style.top = `${rect.bottom + 10}px`;
+
+    // Schließe bei Klick außerhalb
+    setTimeout(() => {
+        document.addEventListener('click', closeMenuOnClickOutside);
+    }, 100);
+}
+
+/**
+ * Versteckt das Button-Edit-Menu
+ */
+function hideButtonEditMenu() {
+    if (buttonEditMenu) {
+        buttonEditMenu.style.display = 'none';
+    }
+    currentButtonElement = null;
+    currentButtonModuleId = null;
+    currentButtonTextProperty = null;
+    currentButtonLinkProperty = null;
+
+    document.removeEventListener('click', closeMenuOnClickOutside);
+}
+
+/**
+ * Schließt das Menu bei Klick außerhalb
+ */
+function closeMenuOnClickOutside(e) {
+    if (buttonEditMenu && !buttonEditMenu.contains(e.target) && !e.target.closest('a')) {
+        hideButtonEditMenu();
+    }
+}
+
+/**
+ * Bearbeitet Button-Text (macht Text editierbar)
+ */
+function editButtonText(buttonElement) {
+    if (!buttonElement || !currentButtonTextProperty) return;
+
+    // Aktiviere ContentEditable
+    buttonElement.contentEditable = 'true';
+    buttonElement.focus();
+
+    // Setze globale Editing-Variablen
+    currentlyEditingElement = buttonElement;
+    currentEditingProperty = currentButtonTextProperty;
+    currentEditingModuleId = currentButtonModuleId;
+
+    // Zeige Toolbar
+    showInlineEditorToolbar(buttonElement);
+
+    console.log('✏️ Button-Text-Editing aktiviert:', currentButtonTextProperty);
+}
+
+/**
+ * Bearbeitet Button-Link über Property Panel
+ */
+function editButtonLink(buttonElement, moduleId) {
+    if (!moduleId || !currentButtonLinkProperty) {
+        alert('⚠️ Link-Property konnte nicht ermittelt werden');
+        return;
+    }
+
+    const module = modules.find(m => m.id == moduleId);
+    if (!module) return;
+
+    const currentLink = buttonElement.getAttribute('href') || module.properties[currentButtonLinkProperty] || '#';
+
+    // Zeige Prompt für Link-Eingabe
+    const newLink = prompt('🔗 Button-Link bearbeiten:', currentLink);
+
+    if (newLink !== null && newLink !== currentLink) {
+        // Aktualisiere Link
+        buttonElement.setAttribute('href', newLink);
+        module.properties[currentButtonLinkProperty] = newLink;
+
+        // Synchronisiere mit Property Panel
+        if (typeof syncProperty === 'function') {
+            syncProperty(moduleId, currentButtonLinkProperty, newLink, 'canvas');
+        }
+
+        console.log('✅ Button-Link aktualisiert:', currentButtonLinkProperty, newLink);
+    }
+}
+
+// =====================================================
+// 9. INITIALIZATION ON LOAD
 // =====================================================
 
 // Auto-initialisierung wenn DOM bereit ist
