@@ -11,7 +11,7 @@
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; margin-bottom: 1rem;">{{iconClass}}</div>
                         <div data-property="titleContent" data-content-type="html" style="color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</div>
-                        <p data-property="subtitleContent" style="color: {{subtitleColor}}; margin-bottom: 2rem; font-size: {{subtitleSizeType}};">{{subtitleContent}}</p>
+                        <div data-property="subtitleContent" data-content-type="html" style="color: {{subtitleColor}}; margin-bottom: 2rem; font-size: {{subtitleSizeType}};">{{subtitleContent}}</div>
                         <a href="{{primaryButtonLink}}" data-property="primaryButtonText" style="background: {{primaryButtonBackground}}; color: {{primaryButtonTextColor}}; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; text-decoration: none; display: inline-block; transition: all 0.3s ease; box-shadow: {{primaryButtonShadowType}};">
                             {{primaryButtonText}}
                         </a>
@@ -94,7 +94,7 @@
                     "titleSpacing": "1rem",
 
                     // Subtitle
-                    "subtitleContent": "Professionelle Compliance-Lösungen für Ihr Unternehmen",
+                    "subtitleContent": "<p>Professionelle Compliance-Lösungen für Ihr Unternehmen</p>",
                     "subtitleColor": "#6c757d",
                     "subtitleSizeType": "medium",
 
@@ -257,9 +257,9 @@
             {
                 "id": "kerberos-benefits",
                 "name": "Benefits mit Icons",
-                "category": "Content & Services", 
+                "category": "Content & Services",
                 "description": "Flexible Benefits-Darstellung mit Icons und variablen Grid-Layouts",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -277,9 +277,19 @@
             group: 'title',
             only: ['content', 'color', 'spacing'],
             overrides: {
-                content: { label: 'Titel-Text', propertyName: 'title' },
+                content: { label: 'Titel-Text', propertyName: 'titleContent' },
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        },
+        subtitle: {
+            groupName: 'subtitle',
+            prefix: 'subtitle',
+            group: 'subtitle',
+            only: ['content', 'color'],
+            overrides: {
+                content: { label: 'Untertitel-Text', propertyName: 'subtitleContent' },
+                color: { label: 'Untertitel-Farbe', propertyName: 'subtitleColor' }
             }
         }
     },
@@ -316,7 +326,7 @@
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="text-align: center; margin-bottom: {{titleSpacing}};">
                             <div class="title-wrapper" data-property="titleContent" data-content-type="html" style="color: {{titleColor}}; margin: 0;">{{titleContent}}</div>
-                            <p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; margin: 1rem 0 0 0;">{{subtitle}}</p>
+                            <div data-property="subtitleContent" data-content-type="html" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: {{subtitleColor}}; margin: 1rem 0 0 0;">{{subtitleContent}}</div>
                         </div>
                         <div class="benefits-grid" style="display: grid; grid-template-columns: repeat({{gridColumns}}, 1fr); gap: {{benefitsGap}};">
                             {{benefitItems}}
@@ -330,6 +340,7 @@
                     "titleContent": "<h2>Ihre Vorteile</h2>",
                     "titleColor": "#063AA8",
                     "titleSpacing": "1rem",
+                    "subtitleContent": "<p>So profitieren Sie von den Datenschutz-Leistungen von Kerberos.</p>",
                     "subtitle": "So profitieren Sie von den Datenschutz-Leistungen von Kerberos.",
                     "subtitleColor": "#6c757d",
                     "backgroundColor": "#FFFFFF",
