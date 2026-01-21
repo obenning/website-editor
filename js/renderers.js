@@ -658,10 +658,24 @@
             if (shouldUpdateImmediately(key)) {
                 updateStatus = 'updating';
                 showUpdateStatus('updating');
-                
-                // 🎯 ZUERST LIVE-UPDATE VERSUCHEN
-                const liveUpdateSuccess = updateComplexModuleLive(selectedModule.id, key, value);
-                
+
+                // 🎯 ZUERST UNIVERSELLEN SYNC-MANAGER VERSUCHEN
+                let liveUpdateSuccess = false;
+                if (typeof syncPropertyToCanvas === 'function') {
+                    liveUpdateSuccess = syncPropertyToCanvas(selectedModule.id, key, value, 'panel');
+                    if (liveUpdateSuccess) {
+                        console.log('✅ Sync-Manager Live-Update erfolgreich für:', key);
+                        updateStatus = 'updated';
+                        showUpdateStatus('updated');
+                        return; // STOPP - kein renderCanvas() nötig
+                    }
+                }
+
+                // FALLBACK: Modul-spezifisches Live-Update
+                if (!liveUpdateSuccess) {
+                    liveUpdateSuccess = updateComplexModuleLive(selectedModule.id, key, value);
+                }
+
                 if (liveUpdateSuccess) {
                     console.log('✅ Live-Update erfolgreich für:', key);
                     updateStatus = 'updated';
@@ -671,7 +685,7 @@
                     console.log('⚠️ Live-Update nicht möglich für:', key, '- verwende renderCanvas()');
                     renderCanvas(); // Nur als Fallback
                 }
-                
+
                 updateStatus = 'updated';
                 showUpdateStatus('updated');
                 return;

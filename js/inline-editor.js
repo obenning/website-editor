@@ -171,8 +171,11 @@ function saveTextEdit() {
         // Aktualisiere Property
         module.properties[currentEditingProperty] = newValue;
 
-        // Triggere Update über das bestehende System
-        if (typeof updateProperty === 'function') {
+        // Synchronisiere mit Property Panel über Sync-Manager
+        if (typeof syncProperty === 'function') {
+            syncProperty(currentEditingModuleId, currentEditingProperty, newValue, 'canvas');
+        } else if (typeof updateProperty === 'function') {
+            // Fallback auf altes System wenn Sync-Manager nicht verfügbar
             updateProperty(currentEditingProperty, newValue);
         }
     }
@@ -274,11 +277,19 @@ function openColorPicker(element, propertyKey, moduleId) {
     colorInput.oninput = (e) => {
         const newColor = e.target.value;
 
-        // Live-Update
-        element.style.color = newColor;
+        // Live-Update im Canvas
+        if (propertyKey.toLowerCase().includes('background') && !propertyKey.toLowerCase().includes('text')) {
+            element.style.backgroundColor = newColor;
+        } else {
+            element.style.color = newColor;
+        }
+
         module.properties[propertyKey] = newColor;
 
-        if (typeof updateProperty === 'function') {
+        // Synchronisiere mit Property Panel
+        if (typeof syncProperty === 'function') {
+            syncProperty(moduleId, propertyKey, newColor, 'canvas');
+        } else if (typeof updateProperty === 'function') {
             updateProperty(propertyKey, newColor);
         }
     };
