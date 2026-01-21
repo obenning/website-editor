@@ -1685,13 +1685,13 @@ function processKerberosTestimonialsPro(module, html) {
             
             let companyHTML = '';
             if (company) {
-                const logoHTML = companyLogo ? 
+                const logoHTML = companyLogo ?
                     `<img src="${companyLogo}" alt="${company} Logo" style="width: 80px; height: 40px; object-fit: contain; margin-right: 0.5rem;">` : '';
-                
-                const companyLink = companyUrl ? 
-                    `<a href="${companyUrl}" target="_blank" rel="noopener" style="color: ${props.linkColor || '#063AA8'}; text-decoration: none;">${company}</a>` :
-                    `<span style="color: ${props.companyColor || '#6c757d'};">${company}</span>`;
-                
+
+                const companyLink = companyUrl ?
+                    `<a href="${companyUrl}" target="_blank" rel="noopener" data-property="testimonial${i}Company" style="color: ${props.linkColor || '#063AA8'}; text-decoration: none;">${company}</a>` :
+                    `<span data-property="testimonial${i}Company" style="color: ${props.companyColor || '#6c757d'};">${company}</span>`;
+
                 companyHTML = `
                     <div style="display: flex; align-items: center; justify-content: center; margin-top: 0.5rem;">
                         ${logoHTML}
@@ -1742,10 +1742,10 @@ function processKerberosTestimonialsPro(module, html) {
                             ${stars}
                         </div>
                         
-                        <blockquote style="font-size: ${props.quoteSize || '1.1rem'}; 
-                                        color: ${props.quoteColor || '#333'}; 
-                                        font-style: italic; 
-                                        line-height: 1.7; 
+                        <blockquote data-property="testimonial${i}Text" style="font-size: ${props.quoteSize || '1.1rem'};
+                                        color: ${props.quoteColor || '#333'};
+                                        font-style: italic;
+                                        line-height: 1.7;
                                         margin: 0 0 auto 0;">
                             "${quote}"
                         </blockquote>
@@ -1776,13 +1776,13 @@ function processKerberosTestimonialsPro(module, html) {
                         </div>
                         
                         <div style="text-align: left;">
-                            <div style="font-weight: 700; 
-                                    color: ${props.authorColor || '#063AA8'}; 
-                                    font-size: ${props.authorSize || '1.1rem'}; 
+                            <div data-property="testimonial${i}Author" style="font-weight: 700;
+                                    color: ${props.authorColor || '#063AA8'};
+                                    font-size: ${props.authorSize || '1.1rem'};
                                     margin-bottom: 0.25rem;">
                                 ${author}
                             </div>
-                            <div style="color: ${props.positionColor || '#6c757d'}; 
+                            <div data-property="testimonial${i}Position" style="color: ${props.positionColor || '#6c757d'};
                                     font-size: ${props.positionSize || '0.9rem'};">
                                 ${position}
                             </div>
@@ -5154,8 +5154,8 @@ function processUniversalModule(module, html) {
                      class="contact-image">
             </div>
             <div class="contact-info">
-                <h3 class="contact-name">${name}</h3>
-                <p class="contact-position">${position}</p>
+                <h3 data-property="contact${i}Name" class="contact-name">${name}</h3>
+                <p data-property="contact${i}Position" class="contact-position">${position}</p>
                 <div class="contact-details">`;
                 
                 // Email (wenn vorhanden)
@@ -5163,16 +5163,16 @@ function processUniversalModule(module, html) {
                     contactCards += `
                     <div class="contact-item">
                         <span class="contact-icon">&#xf0e0;</span>
-                        <a href="mailto:${email}" class="contact-link">${email}</a>
+                        <a href="mailto:${email}" data-property="contact${i}Email" class="contact-link">${email}</a>
                     </div>`;
                 }
-                
+
                 // Phone (wenn vorhanden)
                 if (phone) {
                     contactCards += `
                     <div class="contact-item">
                         <span class="contact-icon">&#xf095;</span>
-                        <a href="tel:${phone.replace(/\s/g, '')}" class="contact-link">${phone}</a>
+                        <a href="tel:${phone.replace(/\s/g, '')}" data-property="contact${i}Phone" class="contact-link">${phone}</a>
                     </div>`;
                 }
                 
@@ -5184,7 +5184,7 @@ function processUniversalModule(module, html) {
                     contactCards += `
                 <a href="${ctaLink}" target="_blank" class="contact-cta" style="background: ${ctaButtonStyles.background}; color: ${ctaButtonStyles.color}; padding: ${ctaButtonStyles.padding}; border-radius: ${ctaButtonStyles.borderRadius}; box-shadow: ${ctaButtonStyles.boxShadow};">
                     ${ctaIcon ? `<span class="cta-icon">${ctaIcon}</span>` : ''}
-                    ${ctaText}
+                    <span data-property="contact${i}CtaText">${ctaText}</span>
                 </a>`;
                 } else {
                     // Spacer wenn kein CTA
@@ -7170,25 +7170,25 @@ function processUniversalModule(module, html) {
                                 ${stars}
                             </div>
                             
-                            <blockquote style="font-size: 1.25rem; 
-                                            color: ${props.quoteColor || '#333'}; 
-                                            font-style: italic; 
-                                            line-height: 1.8; 
-                                            margin: 0 0 2rem 0; 
+                            <blockquote data-property="testimonial${i}Text" style="font-size: 1.25rem;
+                                            color: ${props.quoteColor || '#333'};
+                                            font-style: italic;
+                                            line-height: 1.8;
+                                            margin: 0 0 2rem 0;
                                             max-width: 700px;">
                                 "${quote}"
                             </blockquote>
-                            
-                            <div style="font-weight: 700; 
-                                    color: ${props.authorColor || '#063AA8'}; 
-                                    font-size: 1.1rem; 
+
+                            <div data-property="testimonial${i}Author" style="font-weight: 700;
+                                    color: ${props.authorColor || '#063AA8'};
+                                    font-size: 1.1rem;
                                     margin-bottom: 0.5rem;">
                                 ${author}
                             </div>
-                            
-                            <div style="color: ${props.positionColor || '#6c757d'}; 
+
+                            <div style="color: ${props.positionColor || '#6c757d'};
                                     font-size: 0.95rem;">
-                                ${position}${company ? ` • ${company}` : ''}
+                                <span data-property="testimonial${i}Position">${position}</span>${company ? ` • <span data-property="testimonial${i}Company">${company}</span>` : ''}
                             </div>
                         </div>
                     `;
@@ -7410,9 +7410,9 @@ function processKerberosServicesOverview(module, html) {
                         </div>
                     ` : ''}
                     <div>
-                        <h2 style="font-family: var(--heading-font-font-family); font-size: 1.75rem; font-weight: 700; color: ${props.titleColor}; margin-bottom: 1.25rem; line-height: 1.2; position: relative;">${title}</h2>
-                        <div style="color: ${props.textColor}; margin-bottom: 1.5rem; font-size: 1rem;">${description}</div>
-                        <a href="${buttonLink}" class="kerberos-btn kerberos-btn-${module.id}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: ${props.buttonBackground}; color: ${props.buttonColor}; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(6,58,168,0.2);">${buttonText}</a>
+                        <h2 data-property="service${i}Title" style="font-family: var(--heading-font-font-family); font-size: 1.75rem; font-weight: 700; color: ${props.titleColor}; margin-bottom: 1.25rem; line-height: 1.2; position: relative;">${title}</h2>
+                        <div data-property="service${i}Description" style="color: ${props.textColor}; margin-bottom: 1.5rem; font-size: 1rem;">${description}</div>
+                        <a href="${buttonLink}" class="kerberos-btn kerberos-btn-${module.id}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: ${props.buttonBackground}; color: ${props.buttonColor}; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(6,58,168,0.2);"><span data-property="service${i}ButtonText">${buttonText}</span></a>
                     </div>
                     ${isImageRight ? `
                         <div>
@@ -7442,11 +7442,11 @@ function processKerberosServicesOverview(module, html) {
             
             solutionCards += `
                 <div style="background: white; border-radius: 10px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(6,58,168,0.06); transition: all 0.3s ease; display: flex; flex-direction: column; border: 1px solid ${props.cardBorder}; position: relative; overflow: hidden; cursor: default;"
-                     onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 30px rgba(6,58,168,0.12)'" 
+                     onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 30px rgba(6,58,168,0.12)'"
                      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(6,58,168,0.06)'">
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(135deg, #063AA8, #009CE6);"></div>
-                    <h3 style="font-size: 1.1rem; font-weight: 700; color: ${props.titleColor}; margin-bottom: 0.75rem;">${title}</h3>
-                    <p style="font-size: 0.9rem; line-height: 1.5; color: ${props.textColor}; margin-bottom: 1rem; flex-grow: 1;">${description}</p>
+                    <h3 data-property="solution${i}Title" style="font-size: 1.1rem; font-weight: 700; color: ${props.titleColor}; margin-bottom: 0.75rem;">${title}</h3>
+                    <p data-property="solution${i}Description" style="font-size: 0.9rem; line-height: 1.5; color: ${props.textColor}; margin-bottom: 1rem; flex-grow: 1;">${description}</p>
                     <a href="${link}" style="color: ${props.titleColor}; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;"
                        onmouseover="this.style.color='#009CE6'; this.style.transform='translateX(4px)'" 
                        onmouseout="this.style.color='${props.titleColor}'; this.style.transform='translateX(0)'">
