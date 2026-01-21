@@ -1934,8 +1934,8 @@ function processKerberosTestimonialsPro(module, html) {
                             <div class="feature-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, ${color}10, ${color}05); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></div>
                             <div style="position: relative; z-index: 2;">
                                 <div class="feature-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 2.5rem; color: ${color}; margin-bottom: 1.5rem; transition: all 0.3s ease;">${icon}</div>
-                                <h3 style="font-family: var(--heading-font-font-family); font-size: var(--heading-4-size); font-weight: var(--heading-font-font-weight); color: ${props.textColor}; margin: 0 0 1rem 0;">${title}</h3>
-                                <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ${props.subtitleColor}; margin: 0;">${description}</p>
+                                <h3 data-property="feature${i}Title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-4-size); font-weight: var(--heading-font-font-weight); color: ${props.textColor}; margin: 0 0 1rem 0;">${title}</h3>
+                                <p data-property="feature${i}Description" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ${props.subtitleColor}; margin: 0;">${description}</p>
                             </div>
                         </div>`;
                 }
@@ -1994,10 +1994,10 @@ function processKerberosTestimonialsPro(module, html) {
                         '<div class="timeline-card-desktop timeline-card-left-' + module.id + '" style="' + (isEven ? 'display: none;' : '') + '">' +
                         '<div style="background: ' + (props.cardBackground || '#FFFFFF') + '; border: 1px solid ' + (props.cardBorder || '#E5E7EB') + '; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: right; height: auto;">' +
                         '<div style="display: flex; align-items: center; gap: 0.75rem; justify-content: flex-end; margin-bottom: 0.75rem;">' +
-                        '<h3 style="font-family: var(--heading-font-font-family); color: ' + (props.textColor || '#212529') + '; margin: 0; font-size: 1.1rem; font-weight: 600;">' + title + '</h3>' +
+                        '<h3 data-property="step' + i + 'Title" style="font-family: var(--heading-font-font-family); color: ' + (props.textColor || '#212529') + '; margin: 0; font-size: 1.1rem; font-weight: 600;">' + title + '</h3>' +
                         '<div style="background: ' + color + '; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; min-width: 28px;">' + number + '</div>' +
                         '</div>' +
-                        '<p style="font-family: var(--body-font-font-family); color: #6c757d; margin: 0; line-height: 1.5; font-size: 0.9rem;">' + description + '</p>' +
+                        '<p data-property="step' + i + 'Description" style="font-family: var(--body-font-font-family); color: #6c757d; margin: 0; line-height: 1.5; font-size: 0.9rem;">' + description + '</p>' +
                         '</div>' +
                         '</div>' +
 
@@ -2006,9 +2006,9 @@ function processKerberosTestimonialsPro(module, html) {
                         '<div style="background: ' + (props.cardBackground || '#FFFFFF') + '; border: 1px solid ' + (props.cardBorder || '#E5E7EB') + '; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: left; height: auto;">' +
                         '<div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">' +
                         '<div style="background: ' + color + '; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; min-width: 28px;">' + number + '</div>' +
-                        '<h3 style="font-family: var(--heading-font-font-family); color: ' + (props.textColor || '#212529') + '; margin: 0; font-size: 1.1rem; font-weight: 600;">' + title + '</h3>' +
+                        '<h3 data-property="step' + i + 'Title" style="font-family: var(--heading-font-font-family); color: ' + (props.textColor || '#212529') + '; margin: 0; font-size: 1.1rem; font-weight: 600;">' + title + '</h3>' +
                         '</div>' +
-                        '<p style="font-family: var(--body-font-font-family); color: #6c757d; margin: 0; line-height: 1.5; font-size: 0.9rem;">' + description + '</p>' +
+                        '<p data-property="step' + i + 'Description" style="font-family: var(--body-font-font-family); color: #6c757d; margin: 0; line-height: 1.5; font-size: 0.9rem;">' + description + '</p>' +
                         '</div>' +
                         '</div>' +
 
@@ -2020,9 +2020,9 @@ function processKerberosTestimonialsPro(module, html) {
                         '</div>' +
                         '<div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; justify-content: flex-start;">' +
                         '<div style="background: ' + color + '; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; min-width: 28px;">' + number + '</div>' +
-                        '<h3 style="font-family: var(--heading-font-font-family); color: ' + (props.textColor || '#212529') + '; margin: 0; font-size: 1.1rem; font-weight: 600; text-align: center;">' + title + '</h3>' +
+                        '<h3 data-property="step' + i + 'Title" style="font-family: var(--heading-font-font-family); color: ' + (props.textColor || '#212529') + '; margin: 0; font-size: 1.1rem; font-weight: 600; text-align: center;">' + title + '</h3>' +
                         '</div>' +
-                        '<p style="font-family: var(--body-font-font-family); color: #6c757d; margin: 0; line-height: 1.5; font-size: 0.9rem; text-align: center;">' + description + '</p>' +
+                        '<p data-property="step' + i + 'Description" style="font-family: var(--body-font-font-family); color: #6c757d; margin: 0; line-height: 1.5; font-size: 0.9rem; text-align: center;">' + description + '</p>' +
                         '</div>' +
                         '</div>' +
 
@@ -2284,11 +2284,11 @@ function processKerberosTestimonialsPro(module, html) {
 
                     // HTML-Teile als separate Variablen erstellen
                     const cardHeader = '<div style="margin-bottom: 1.5rem;">';
-                    const titleElement = '<h3 style="font-family: var(--heading-font-font-family); color: ' + textColor + '; margin: 0 0 0.5rem 0; font-size: 1.5rem;">' + name + '</h3>';
+                    const titleElement = '<h3 data-property="plan' + i + 'Name" style="font-family: var(--heading-font-font-family); color: ' + textColor + '; margin: 0 0 0.5rem 0; font-size: 1.5rem;">' + name + '</h3>';
                     const priceElement = '<div style="font-size: 3rem; font-weight: 900; color: ' + planColor + '; margin: 1rem 0;">' + price + '<span style="font-size: 1rem; color: ' + subtitleColor + '; font-weight: 400;">/' + period + '</span></div>';
-                    const descElement = '<p style="font-family: var(--body-font-font-family); color: ' + subtitleColor + '; margin: 0;">' + description + '</p>';
+                    const descElement = '<p data-property="plan' + i + 'Description" style="font-family: var(--body-font-font-family); color: ' + subtitleColor + '; margin: 0;">' + description + '</p>';
                     const cardHeaderClose = '</div>';
-                    const buttonElement = '<a href="' + linkHref + '" style="font-family: var(--button-font-family); background: ' + planColor + '; color: white; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; display: inline-block; font-weight: 700; transition: all 0.3s ease; width: 100%; box-sizing: border-box;">' + buttonTextVal + '</a>';
+                    const buttonElement = '<a data-property="plan' + i + 'ButtonText" href="' + linkHref + '" style="font-family: var(--button-font-family); background: ' + planColor + '; color: white; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; display: inline-block; font-weight: 700; transition: all 0.3s ease; width: 100%; box-sizing: border-box;">' + buttonTextVal + '</a>';
 
                     // Finale Zusammenfügung - CSS direkt ohne separate Variable
                     if (isPopular) {
@@ -2315,10 +2315,10 @@ function processKerberosTestimonialsPro(module, html) {
                     const tableBorderColor = props.tableBorderColor || '#DEE2E6';
 
                     featureRows += '<div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; padding: 1rem; background: ' + rowBg + '; border-bottom: 1px solid ' + tableBorderColor + ';">' +
-                        '<div style="color: ' + tableTextColor + '; font-weight: 600;">' + featureName + '</div>' +
-                        '<div style="text-align: center; color: ' + tableTextColor + ';">' + plan1Feature + '</div>' +
-                        '<div style="text-align: center; color: ' + tableTextColor + ';">' + plan2Feature + '</div>' +
-                        '<div style="text-align: center; color: ' + tableTextColor + ';">' + plan3Feature + '</div>' +
+                        '<div data-property="feature' + i + 'Name" style="color: ' + tableTextColor + '; font-weight: 600;">' + featureName + '</div>' +
+                        '<div data-property="feature' + i + 'Plan1" style="text-align: center; color: ' + tableTextColor + ';">' + plan1Feature + '</div>' +
+                        '<div data-property="feature' + i + 'Plan2" style="text-align: center; color: ' + tableTextColor + ';">' + plan2Feature + '</div>' +
+                        '<div data-property="feature' + i + 'Plan3" style="text-align: center; color: ' + tableTextColor + ';">' + plan3Feature + '</div>' +
                         '</div>';
 
                     // Mobile Feature Cards
@@ -2330,19 +2330,19 @@ function processKerberosTestimonialsPro(module, html) {
                     const plan3Name = props.plan3Name || 'Plan 3';
 
                     mobileFeatureCards += '<div style="background: white; border: 1px solid ' + cardBorder + '; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem;">' +
-                        '<h4 style="color: ' + textColor + '; margin: 0 0 1rem 0; font-size: 1.1rem;">' + featureName + '</h4>' +
+                        '<h4 data-property="feature' + i + 'Name" style="color: ' + textColor + '; margin: 0 0 1rem 0; font-size: 1.1rem;">' + featureName + '</h4>' +
                         '<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">' +
                         '<div style="text-align: center;">' +
                         '<div style="color: ' + planColor + '; margin-bottom: 0.5rem; font-size: 0.9rem;">' + plan1Name + '</div>' +
-                        '<div style="color: ' + tableTextColor + '; font-size: 0.9rem;">' + plan1Feature + '</div>' +
+                        '<div data-property="feature' + i + 'Plan1" style="color: ' + tableTextColor + '; font-size: 0.9rem;">' + plan1Feature + '</div>' +
                         '</div>' +
                         '<div style="text-align: center;">' +
                         '<div style="color: ' + planColor + '; margin-bottom: 0.5rem; font-size: 0.9rem;">' + plan2Name + '</div>' +
-                        '<div style="color: ' + tableTextColor + '; font-size: 0.9rem;">' + plan2Feature + '</div>' +
+                        '<div data-property="feature' + i + 'Plan2" style="color: ' + tableTextColor + '; font-size: 0.9rem;">' + plan2Feature + '</div>' +
                         '</div>' +
                         '<div style="text-align: center;">' +
                         '<div style="color: ' + planColor + '; margin-bottom: 0.5rem; font-size: 0.9rem;">' + plan3Name + '</div>' +
-                        '<div style="color: ' + tableTextColor + '; font-size: 0.9rem;">' + plan3Feature + '</div>' +
+                        '<div data-property="feature' + i + 'Plan3" style="color: ' + tableTextColor + '; font-size: 0.9rem;">' + plan3Feature + '</div>' +
                         '</div>' +
                         '</div>' +
                         '</div>';
@@ -2386,7 +2386,7 @@ function processKerberosTestimonialsPro(module, html) {
                     // HTML-Elemente als separate Variablen
                     const containerStart = '<div style="text-align: center;">';
                     const iconElement = '<div style="font-family: \'Font Awesome 5 Pro\'; font-size: ' + iconSize + '; color: ' + iconColor + '; display: inline-flex; align-items: center; justify-content: center; width: ' + iconContainerSize + '; height: ' + iconContainerSize + '; background: ' + iconBackground + '; border-radius: ' + iconRadius + '; margin-bottom: ' + iconSpacing + ';">' + validIcon + '</div>';
-                    const textElement = '<p style="font-family: var(--body-font-font-family); color: ' + textColor + '; margin: 0; font-weight: 600;">' + benefitText + '</p>';
+                    const textElement = '<p data-property="benefit' + i + 'Text" style="font-family: var(--body-font-font-family); color: ' + textColor + '; margin: 0; font-weight: 600;">' + benefitText + '</p>';
                     const containerEnd = '</div>';
 
                     // Saubere String-Konkatenation
@@ -3127,8 +3127,8 @@ function processKerberosTestimonialsPro(module, html) {
                 if (number && text) {
                     statsBlocks += '<div style="text-align: center; padding: ' + (props.statPadding || '2rem') + '; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(6,58,168,0.1);">' +
                         '<div style="font-family: \'Font Awesome 5 Pro\'; font-size: ' + (props.iconSize || '3rem') + '; color: ' + (iconColor || '#063AA8') + '; margin-bottom: ' + (props.iconSpacing || '1rem') + ';">' + (icon || '&#xf005;') + '</div>' +
-                        '<div style="font-size: ' + (props.numberSize || '3rem') + '; font-weight: 700; color: ' + (numberColor || '#063AA8') + '; margin-bottom: ' + (props.numberSpacing || '0.5rem') + ';">' + number + '</div>' +
-                        '<div style="font-size: ' + (props.textSize || '1rem') + '; color: ' + (textColor || '#6c757d') + ';">' + text + '</div>' +
+                        '<div data-property="stat' + i + 'Number" style="font-size: ' + (props.numberSize || '3rem') + '; font-weight: 700; color: ' + (numberColor || '#063AA8') + '; margin-bottom: ' + (props.numberSpacing || '0.5rem') + ';">' + number + '</div>' +
+                        '<div data-property="stat' + i + 'Text" style="font-size: ' + (props.textSize || '1rem') + '; color: ' + (textColor || '#6c757d') + ';">' + text + '</div>' +
                         '</div>';
                 }
             }
@@ -6189,27 +6189,27 @@ function processUniversalModule(module, html) {
                     const rowBg = i % 2 === 0 ? props.alternateRowBackground : 'transparent';
 
                     featureRows += `<div style="display: grid; grid-template-columns: ${props.gridColumns}; gap: ${props.columnGap}; padding: ${props.rowPadding}; background: ${rowBg}; border-bottom: 1px solid ${props.rowBorderColor};">` +
-                        `<div style="color: ${props.rowTextColor}; font-weight: 600;">${featureName}</div>` +
-                        `<div style="text-align: center; color: ${props.rowTextColor};">${column2}</div>` +
-                        `<div style="text-align: center; color: ${props.rowTextColor};">${column3}</div>` +
-                        `<div style="text-align: center; color: ${props.rowTextColor};">${column4}</div>` +
+                        `<div data-property="feature${i}Name" style="color: ${props.rowTextColor}; font-weight: 600;">${featureName}</div>` +
+                        `<div data-property="feature${i}Column2" style="text-align: center; color: ${props.rowTextColor};">${column2}</div>` +
+                        `<div data-property="feature${i}Column3" style="text-align: center; color: ${props.rowTextColor};">${column3}</div>` +
+                        `<div data-property="feature${i}Column4" style="text-align: center; color: ${props.rowTextColor};">${column4}</div>` +
                         `</div>`;
 
                     // Mobile Feature Cards
                     mobileFeatureCards += `<div style="background: ${props.mobileCardBackground}; border: 1px solid ${props.mobileCardBorder}; border-radius: ${props.mobileCardRadius}; padding: ${props.mobileCardPadding}; margin-bottom: ${props.mobileCardGap};">` +
-                        `<h4 style="color: ${props.rowTextColor}; margin: 0 0 1rem 0; font-size: 1.1rem;">${featureName}</h4>` +
+                        `<h4 data-property="feature${i}Name" style="color: ${props.rowTextColor}; margin: 0 0 1rem 0; font-size: 1.1rem;">${featureName}</h4>` +
                         `<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: ${props.mobileCardGap};">` +
                         `<div style="text-align: center;">` +
                         `<div style="color: ${props.headerBackground}; margin-bottom: 0.5rem; font-size: 0.9rem;">${props.column2Header}</div>` +
-                        `<div style="color: ${props.rowTextColor}; font-size: 0.9rem;">${column2}</div>` +
+                        `<div data-property="feature${i}Column2" style="color: ${props.rowTextColor}; font-size: 0.9rem;">${column2}</div>` +
                         `</div>` +
                         `<div style="text-align: center;">` +
                         `<div style="color: ${props.headerBackground}; margin-bottom: 0.5rem; font-size: 0.9rem;">${props.column3Header}</div>` +
-                        `<div style="color: ${props.rowTextColor}; font-size: 0.9rem;">${column3}</div>` +
+                        `<div data-property="feature${i}Column3" style="color: ${props.rowTextColor}; font-size: 0.9rem;">${column3}</div>` +
                         `</div>` +
                         `<div style="text-align: center;">` +
                         `<div style="color: ${props.headerBackground}; margin-bottom: 0.5rem; font-size: 0.9rem;">${props.column4Header}</div>` +
-                        `<div style="color: ${props.rowTextColor}; font-size: 0.9rem;">${column4}</div>` +
+                        `<div data-property="feature${i}Column4" style="color: ${props.rowTextColor}; font-size: 0.9rem;">${column4}</div>` +
                         `</div>` +
                         `</div>` +
                         `</div>`;
@@ -7012,8 +7012,8 @@ function processUniversalModule(module, html) {
                         <div class="feature-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, ${feature.color}10, ${feature.color}05); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></div>
                         <div style="position: relative; z-index: 2;">
                             <div class="feature-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 2.5rem; color: ${feature.color}; margin-bottom: 1.5rem; transition: all 0.3s ease;">${feature.icon}</div>
-                            <h3 style="font-family: var(--heading-font-font-family); font-size: var(--heading-4-size); font-weight: var(--heading-font-font-weight); color: #212529; margin: 0 0 1rem 0;">${feature.title}</h3>
-                            <p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: #6c757d; margin: 0;">${feature.description}</p>
+                            <h3 data-property="feature${i}Title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-4-size); font-weight: var(--heading-font-font-weight); color: #212529; margin: 0 0 1rem 0;">${feature.title}</h3>
+                            <p data-property="feature${i}Description" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: #6c757d; margin: 0;">${feature.description}</p>
                         </div>
                     </div>
                 `;
@@ -7496,9 +7496,9 @@ function processKerberosTestimonialsHorizontal(module, html) {
                     <div style="color: ${props.quoteIconColor}; font-size: 1.5rem; opacity: 0.7;">
                         <span style="font-family: 'Font Awesome 5 Pro';">&#xf10d;</span>
                     </div>
-                    <p style="font-size: 1rem; line-height: 1.6; color: ${props.quoteColor}; margin: 0; font-style: italic; flex-grow: 1;">${quote}</p>
-                    <h4 style="color: ${props.nameColor}; font-size: 1.1rem; font-weight: 600; margin: 0;">${name}</h4>
-                    ${position ? `<p style="color: ${props.positionColor}; font-size: 0.9rem; font-weight: 400; margin: 0.5rem 0 0 0;">${position}</p>` : ''}
+                    <p data-property="testimonial${i}Quote" style="font-size: 1rem; line-height: 1.6; color: ${props.quoteColor}; margin: 0; font-style: italic; flex-grow: 1;">${quote}</p>
+                    <h4 data-property="testimonial${i}Name" style="color: ${props.nameColor}; font-size: 1.1rem; font-weight: 600; margin: 0;">${name}</h4>
+                    ${position ? `<p data-property="testimonial${i}Position" style="color: ${props.positionColor}; font-size: 0.9rem; font-weight: 400; margin: 0.5rem 0 0 0;">${position}</p>` : ''}
                 </div>
             </div>
         `;
@@ -7673,11 +7673,11 @@ function processKerberosFaqInteractive(module, html) {
                      })('${itemId}', event)"
                      onmouseover="if (!this.nextElementSibling.style.maxHeight || this.nextElementSibling.style.maxHeight === '0px') { this.closest('.faq-item').style.borderColor = '${props.itemHoverBorder || '#063AA8'}'; }"
                      onmouseout="if (!this.nextElementSibling.style.maxHeight || this.nextElementSibling.style.maxHeight === '0px') { this.closest('.faq-item').style.borderColor = '${props.itemBorder || '#E9ECEF'}'; }">
-                    <h3 style="font-family: var(--heading-font-font-family); font-size: 1.1rem; font-weight: 600; color: ${props.questionColor || '#212529'}; margin: 0; flex: 1; padding-right: 1rem; pointer-events: none;">${question}</h3>
+                    <h3 data-property="faq${i}Question" style="font-family: var(--heading-font-font-family); font-size: 1.1rem; font-weight: 600; color: ${props.questionColor || '#212529'}; margin: 0; flex: 1; padding-right: 1rem; pointer-events: none;">${question}</h3>
                     <span class="faq-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 1.25rem; color: ${props.iconColor || '#063AA8'}; transition: all 0.3s ease; flex-shrink: 0; pointer-events: none;">&#xf107;</span>
                 </div>
                 <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem;">
-                    <div style="font-family: var(--body-font-font-family); font-size: 1rem; line-height: 1.7; color: ${props.answerColor || '#495057'}; padding-bottom: 1.5rem; pointer-events: none;">${answer}</div>
+                    <div data-property="faq${i}Answer" data-content-type="html" style="font-family: var(--body-font-font-family); font-size: 1rem; line-height: 1.7; color: ${props.answerColor || '#495057'}; padding-bottom: 1.5rem; pointer-events: none;">${answer}</div>
                 </div>
             </div>
         `;
