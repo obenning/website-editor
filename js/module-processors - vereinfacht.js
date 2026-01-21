@@ -1112,12 +1112,12 @@
             
             let subtitleElement = '';
             if (showSubtitle && props.subtitle) {
-                subtitleElement = `<div style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); color: ${props.subtitleColor || '#FFFFFF'}; max-width: 800px; margin: 0 auto ${props.textSpacing || '2rem'} auto;">${props.subtitle}</div>`;
+                subtitleElement = `<div data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); color: ${props.subtitleColor || '#FFFFFF'}; max-width: 800px; margin: 0 auto ${props.textSpacing || '2rem'} auto;">${props.subtitle}</div>`;
             }
             
             let textElement = '';
             if (showText && props.text) {
-                textElement = `<div style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: ${props.textColor || '#FFFFFF'}; max-width: 800px; margin: 0 auto ${props.textSpacing || '2rem'} auto;">${props.text}</div>`;
+                textElement = `<div data-property="text" style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: ${props.textColor || '#FFFFFF'}; max-width: 800px; margin: 0 auto ${props.textSpacing || '2rem'} auto;">${props.text}</div>`;
             }
             
             // === BUTTON-STYLING (UNIVERSELL) ===
@@ -1150,14 +1150,14 @@
                 
                 const iconElement = (showButtonIcon && props.buttonIcon) ? `<span style="font-family: 'Font Awesome 5 Pro';">${props.buttonIcon}</span>` : '';
                 
-                buttonElement = `<a class="kerberos-btn kerberos-btn-${module.id}" href="${props.buttonLink || '#'}" 
-                    style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); 
-                        background: ${actualButtonBackground}; color: ${actualButtonColor}; 
-                        padding: ${actualButtonPadding}; border-radius: ${actualButtonRadius}; 
-                        text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; 
-                        box-shadow: ${actualButtonShadow}; transition: all 0.3s ease; 
+                buttonElement = `<a class="kerberos-btn kerberos-btn-${module.id}" href="${props.buttonLink || '#'}"
+                    style="font-family: var(--button-font-family); font-weight: var(--button-font-weight);
+                        background: ${actualButtonBackground}; color: ${actualButtonColor};
+                        padding: ${actualButtonPadding}; border-radius: ${actualButtonRadius};
+                        text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+                        box-shadow: ${actualButtonShadow}; transition: all 0.3s ease;
                         border: 2px solid rgba(255,255,255,0.3);">
-                    ${props.buttonText}
+                    <span data-property="buttonText">${props.buttonText}</span>
                     ${iconElement}
                 </a>`;
             }
@@ -1230,16 +1230,16 @@
                 <div class="solution-box challenge-box" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #e74c3c; transition: all 0.3s ease;">
                     <div class="box-header">
                         <i class="box-icon" style="color: ${props.challengeIconColor || '#e74c3c'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeIcon || '⚠️'}</i>
-                        <h3 class="box-title" style="color: ${props.challengeTitleColor || '#333'};">${props.challengeTitle || 'Challenge'}</h3>
+                        <h3 class="box-title" data-property="challengeTitle" style="color: ${props.challengeTitleColor || '#333'};">${props.challengeTitle || 'Challenge'}</h3>
                     </div>
                     <div class="box-content">
-                        ${props.challengeText ? `<p style="color: ${props.challengeTextColor || '#666'};">${props.challengeText}</p>` : ''}
+                        ${props.challengeText ? `<p data-property="challengeText" style="color: ${props.challengeTextColor || '#666'};">${props.challengeText}</p>` : ''}
                         <ul class="solution-list">
-                            ${props.challengePoint1 ? `<li style="display: ${props.challengePoint1AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint1}</li>` : ''}
-                            ${props.challengePoint2 ? `<li style="display: ${props.challengePoint2AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint2}</li>` : ''}
-                            ${props.challengePoint3 ? `<li style="display: ${props.challengePoint3AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint3}</li>` : ''}
-                            ${props.challengePoint4 ? `<li style="display: ${props.challengePoint4AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint4}</li>` : ''}
-                            ${props.challengePoint5 ? `<li style="display: ${props.challengePoint5AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint5}</li>` : ''}
+                            ${props.challengePoint1 ? `<li data-property="challengePoint1" style="display: ${props.challengePoint1AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint1}</li>` : ''}
+                            ${props.challengePoint2 ? `<li data-property="challengePoint2" style="display: ${props.challengePoint2AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint2}</li>` : ''}
+                            ${props.challengePoint3 ? `<li data-property="challengePoint3" style="display: ${props.challengePoint3AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint3}</li>` : ''}
+                            ${props.challengePoint4 ? `<li data-property="challengePoint4" style="display: ${props.challengePoint4AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint4}</li>` : ''}
+                            ${props.challengePoint5 ? `<li data-property="challengePoint5" style="display: ${props.challengePoint5AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint5}</li>` : ''}
                         </ul>
                     </div>
                 </div>`;
@@ -1251,16 +1251,16 @@
                 <div class="solution-box requirement-box" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #f39c12; transition: all 0.3s ease;">
                     <div class="box-header">
                         <i class="box-icon" style="color: ${props.requirementIconColor || '#f39c12'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementIcon || '📋'}</i>
-                        <h3 class="box-title" style="color: ${props.requirementTitleColor || '#333'};">${props.requirementTitle || 'Requirements'}</h3>
+                        <h3 class="box-title" data-property="requirementTitle" style="color: ${props.requirementTitleColor || '#333'};">${props.requirementTitle || 'Requirements'}</h3>
                     </div>
                     <div class="box-content">
-                        ${props.requirementText ? `<p style="color: ${props.requirementTextColor || '#666'};">${props.requirementText}</p>` : ''}
+                        ${props.requirementText ? `<p data-property="requirementText" style="color: ${props.requirementTextColor || '#666'};">${props.requirementText}</p>` : ''}
                         <ul class="solution-list">
-                            ${props.requirementPoint1 ? `<li style="display: ${props.requirementPoint1AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint1}</li>` : ''}
-                            ${props.requirementPoint2 ? `<li style="display: ${props.requirementPoint2AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint2}</li>` : ''}
-                            ${props.requirementPoint3 ? `<li style="display: ${props.requirementPoint3AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint3}</li>` : ''}
-                            ${props.requirementPoint4 ? `<li style="display: ${props.requirementPoint4AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint4}</li>` : ''}
-                            ${props.requirementPoint5 ? `<li style="display: ${props.requirementPoint5AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint5}</li>` : ''}
+                            ${props.requirementPoint1 ? `<li data-property="requirementPoint1" style="display: ${props.requirementPoint1AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint1}</li>` : ''}
+                            ${props.requirementPoint2 ? `<li data-property="requirementPoint2" style="display: ${props.requirementPoint2AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint2}</li>` : ''}
+                            ${props.requirementPoint3 ? `<li data-property="requirementPoint3" style="display: ${props.requirementPoint3AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint3}</li>` : ''}
+                            ${props.requirementPoint4 ? `<li data-property="requirementPoint4" style="display: ${props.requirementPoint4AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint4}</li>` : ''}
+                            ${props.requirementPoint5 ? `<li data-property="requirementPoint5" style="display: ${props.requirementPoint5AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint5}</li>` : ''}
                         </ul>
                     </div>
                 </div>`;
@@ -1272,16 +1272,16 @@
                 <div class="solution-box solution-box-final" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #27ae60; transition: all 0.3s ease;">
                     <div class="box-header">
                         <i class="box-icon" style="color: ${props.solutionIconColor || '#27ae60'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionIcon || '✅'}</i>
-                        <h3 class="box-title" style="color: ${props.solutionTitleColor || '#333'};">${props.solutionTitle || 'Solution'}</h3>
+                        <h3 class="box-title" data-property="solutionTitle" style="color: ${props.solutionTitleColor || '#333'};">${props.solutionTitle || 'Solution'}</h3>
                     </div>
                     <div class="box-content">
-                        ${props.solutionText ? `<p style="color: ${props.solutionTextColor || '#666'};">${props.solutionText}</p>` : ''}
+                        ${props.solutionText ? `<p data-property="solutionText" style="color: ${props.solutionTextColor || '#666'};">${props.solutionText}</p>` : ''}
                         <ul class="solution-list">
-                            ${props.solutionPoint1 ? `<li style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint1}</li>` : ''}
-                            ${props.solutionPoint2 ? `<li style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint2}</li>` : ''}
-                            ${props.solutionPoint3 ? `<li style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint3}</li>` : ''}
-                            ${props.solutionPoint4 ? `<li style="display: ${props.showSolutionPoint4 || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint4}</li>` : ''}
-                            ${props.solutionPoint5 ? `<li style="display: ${props.showSolutionPoint5 || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint5}</li>` : ''}
+                            ${props.solutionPoint1 ? `<li data-property="solutionPoint1" style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint1}</li>` : ''}
+                            ${props.solutionPoint2 ? `<li data-property="solutionPoint2" style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint2}</li>` : ''}
+                            ${props.solutionPoint3 ? `<li data-property="solutionPoint3" style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint3}</li>` : ''}
+                            ${props.solutionPoint4 ? `<li data-property="solutionPoint4" style="display: ${props.showSolutionPoint4 || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint4}</li>` : ''}
+                            ${props.solutionPoint5 ? `<li data-property="solutionPoint5" style="display: ${props.showSolutionPoint5 || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint5}</li>` : ''}
                         </ul>
                     </div>
                 </div>`;
@@ -1685,13 +1685,13 @@ function processKerberosTestimonialsPro(module, html) {
             
             let companyHTML = '';
             if (company) {
-                const logoHTML = companyLogo ? 
+                const logoHTML = companyLogo ?
                     `<img src="${companyLogo}" alt="${company} Logo" style="width: 80px; height: 40px; object-fit: contain; margin-right: 0.5rem;">` : '';
-                
-                const companyLink = companyUrl ? 
-                    `<a href="${companyUrl}" target="_blank" rel="noopener" style="color: ${props.linkColor || '#063AA8'}; text-decoration: none;">${company}</a>` :
-                    `<span style="color: ${props.companyColor || '#6c757d'};">${company}</span>`;
-                
+
+                const companyLink = companyUrl ?
+                    `<a href="${companyUrl}" target="_blank" rel="noopener" data-property="testimonial${i}Company" style="color: ${props.linkColor || '#063AA8'}; text-decoration: none;">${company}</a>` :
+                    `<span data-property="testimonial${i}Company" style="color: ${props.companyColor || '#6c757d'};">${company}</span>`;
+
                 companyHTML = `
                     <div style="display: flex; align-items: center; justify-content: center; margin-top: 0.5rem;">
                         ${logoHTML}
@@ -1742,10 +1742,10 @@ function processKerberosTestimonialsPro(module, html) {
                             ${stars}
                         </div>
                         
-                        <blockquote style="font-size: ${props.quoteSize || '1.1rem'}; 
-                                        color: ${props.quoteColor || '#333'}; 
-                                        font-style: italic; 
-                                        line-height: 1.7; 
+                        <blockquote data-property="testimonial${i}Text" style="font-size: ${props.quoteSize || '1.1rem'};
+                                        color: ${props.quoteColor || '#333'};
+                                        font-style: italic;
+                                        line-height: 1.7;
                                         margin: 0 0 auto 0;">
                             "${quote}"
                         </blockquote>
@@ -1776,13 +1776,13 @@ function processKerberosTestimonialsPro(module, html) {
                         </div>
                         
                         <div style="text-align: left;">
-                            <div style="font-weight: 700; 
-                                    color: ${props.authorColor || '#063AA8'}; 
-                                    font-size: ${props.authorSize || '1.1rem'}; 
+                            <div data-property="testimonial${i}Author" style="font-weight: 700;
+                                    color: ${props.authorColor || '#063AA8'};
+                                    font-size: ${props.authorSize || '1.1rem'};
                                     margin-bottom: 0.25rem;">
                                 ${author}
                             </div>
-                            <div style="color: ${props.positionColor || '#6c757d'}; 
+                            <div data-property="testimonial${i}Position" style="color: ${props.positionColor || '#6c757d'};
                                     font-size: ${props.positionSize || '0.9rem'};">
                                 ${position}
                             </div>
@@ -1899,7 +1899,7 @@ function processKerberosTestimonialsPro(module, html) {
                 buttonSection += `
                     <a class="kerberos-btn kerberos-btn-${module.id}" href="${primaryLink}"
                     style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: ${primaryButtonStyles.background}; color: ${primaryButtonStyles.color}; padding: ${primaryButtonStyles.padding}; border-radius: ${primaryButtonStyles.borderRadius}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: ${primaryButtonStyles.boxShadow}; border: ${primaryButtonStyles.border || 'none'}; margin-right: 1rem;">
-                        ${primaryText}
+                        <span data-property="primaryButtonText">${primaryText}</span>
                         ${props.primaryButtonIcon || props.buttonIcon ? '<span style="font-family: \'Font Awesome 5 Pro\';">' + (props.primaryButtonIcon || props.buttonIcon) + '</span>' : ''}
                     </a>`;
             }
@@ -1907,9 +1907,9 @@ function processKerberosTestimonialsPro(module, html) {
             // Secondary Button
             if (props.secondaryButtonText) {
                 buttonSection += `
-                    <a class="kerberos-btn-secondary kerberos-btn-${module.id}" href="${props.secondaryButtonLink || '#'}" 
+                    <a class="kerberos-btn-secondary kerberos-btn-${module.id}" href="${props.secondaryButtonLink || '#'}"
                     style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: ${secondaryButtonStyles.background}; color: ${secondaryButtonStyles.color}; padding: ${secondaryButtonStyles.padding}; border-radius: ${secondaryButtonStyles.borderRadius}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; border: ${secondaryButtonStyles.border || props.secondaryButtonBorder};">
-                        ${props.secondaryButtonText}
+                        <span data-property="secondaryButtonText">${props.secondaryButtonText}</span>
                         ${props.secondaryButtonIcon ? '<span style="font-family: \'Font Awesome 5 Pro\';">' + props.secondaryButtonIcon + '</span>' : ''}
                     </a>`;
             }
@@ -2548,16 +2548,16 @@ function processKerberosTestimonialsPro(module, html) {
                                     ${item.Icon}
                                 </span>
                             </div>
-                            <div style="font-size: ${props.numberSize || '3rem'}; 
-                                        font-weight: 700; 
-                                        color: ${item.NumberColor || '#063AA8'}; 
-                                        margin-bottom: ${props.numberSpacing || '0.5rem'}; 
+                            <div data-property="stat${index}Number" style="font-size: ${props.numberSize || '3rem'};
+                                        font-weight: 700;
+                                        color: ${item.NumberColor || '#063AA8'};
+                                        margin-bottom: ${props.numberSpacing || '0.5rem'};
                                         font-family: var(--heading-font-font-family);
                                         line-height: 1;">
                                 ${item.Number}
                             </div>
-                            <div style="font-size: ${props.textSize || '1rem'}; 
-                                        color: ${item.TextColor || '#6c757d'}; 
+                            <div data-property="stat${index}Text" style="font-size: ${props.textSize || '1rem'};
+                                        color: ${item.TextColor || '#6c757d'};
                                         font-family: var(--body-font-font-family);
                                         line-height: 1.4;">
                                 ${item.Text}
@@ -2599,7 +2599,7 @@ function processKerberosTestimonialsPro(module, html) {
                     // SCHRITT 3: HTML-Elemente in separate Variablen aufteilen
                     const listStart = '<li style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">';
                     const iconDiv = '<div style="font-family: \'Font Awesome 5 Pro\'; font-size: 1.25rem; color: ' + featureColor + '; width: 24px;">' + iconText + '</div>';
-                    const textSpan = '<span style="font-family: var(--body-font-font-family); color: ' + textColor + ';">' + featureText + '</span>';
+                    const textSpan = '<span data-property="feature' + i + 'Text" style="font-family: var(--body-font-font-family); color: ' + textColor + ';">' + featureText + '</span>';
                     const listEnd = '</li>';
 
                     // SCHRITT 4: String-Konkatenation verwenden
@@ -2638,8 +2638,8 @@ function processKerberosTestimonialsPro(module, html) {
                     const responsiveImage = createResponsiveImage('{{imageUrl}}', cardTitle, '', '(max-width: 768px) 100vw, 33vw');
                     const imageElement = responsiveImage.replace(/style="[^"]*"/, 'style="width: 100%; height: 200px; object-fit: cover;"');
                     const contentStart = '<div style="padding: 1rem;">';
-                    const titleElement = '<h4 style="font-family: var(--heading-font-font-family); color: ' + textColor + '; margin: 0 0 0.5rem 0; font-size: 1.1rem;">' + cardTitle + '</h4>';
-                    const descriptionElement = '<p style="font-family: var(--body-font-font-family); color: ' + subtitleColor + '; margin: 0; font-size: 0.9rem;">' + cardDescription + '</p>';
+                    const titleElement = '<h4 data-property="screenshot' + i + 'Title" style="font-family: var(--heading-font-font-family); color: ' + textColor + '; margin: 0 0 0.5rem 0; font-size: 1.1rem;">' + cardTitle + '</h4>';
+                    const descriptionElement = '<p data-property="screenshot' + i + 'Description" style="font-family: var(--body-font-font-family); color: ' + subtitleColor + '; margin: 0; font-size: 0.9rem;">' + cardDescription + '</p>';
                     const contentEnd = '</div>';
                     const cardEnd = '</div>';
 
@@ -2703,12 +2703,12 @@ function processKerberosTestimonialsPro(module, html) {
                             status === 'development' ? 'In Entwicklung' : 'Geplant';
 
                     integrationCards += `
-                        <div class="integration-card" data-category="${category}" 
+                        <div class="integration-card" data-category="${category}"
                             style="background: #FFFFFF; border: 1px solid #DEE2E6; border-radius: 8px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; cursor: pointer; display: block;">
                             <div style="font-size: 3rem; margin-bottom: 1rem;">${icon || '🔗'}</div>
-                            <h4 style="font-family: var(--heading-font-font-family); color: #212529; margin: 0 0 0.5rem 0; font-size: 1.1rem;">${name}</h4>
+                            <h4 data-property="integration${i}Name" style="font-family: var(--heading-font-font-family); color: #212529; margin: 0 0 0.5rem 0; font-size: 1.1rem;">${name}</h4>
                             <div style="background: ${statusColor}; color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.7rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;">${statusText}</div>
-                            <p style="font-family: var(--body-font-font-family); color: #212529; margin: 0; font-size: 0.9rem; opacity: 0.8;">${description}</p>
+                            <p data-property="integration${i}Description" style="font-family: var(--body-font-font-family); color: #212529; margin: 0; font-size: 0.9rem; opacity: 0.8;">${description}</p>
                         </div>`;
                 }
             }
@@ -4213,9 +4213,9 @@ function processUniversalModule(module, html) {
                     endpointCards += `
                     <div class="api-endpoint-card" style="background: ${props.cardBackground}; border: 1px solid ${props.cardBorder}; border-radius: 8px; padding: 1.5rem; transition: all 0.3s ease; cursor: default;">
                         ${badgeHtml}
-                        <h4 style="font-family: var(--heading-font-font-family); color: ${props.textColor}; margin: 0 0 0.5rem 0; font-size: 1.1rem;">${title}</h4>
-                        ${showPaths ? `<p style="font-family: 'Monaco', 'Consolas', monospace; color: ${props.primaryColor}; font-size: 0.9rem; margin: 0 0 1rem 0;">${path}</p>` : ''}
-                        <p style="font-family: var(--body-font-font-family); color: ${props.textColor}; font-size: 0.9rem; margin: 0; opacity: 0.8;">${description}</p>
+                        <h4 data-property="endpoint${i}Title" style="font-family: var(--heading-font-font-family); color: ${props.textColor}; margin: 0 0 0.5rem 0; font-size: 1.1rem;">${title}</h4>
+                        ${showPaths ? `<p data-property="endpoint${i}Path" style="font-family: 'Monaco', 'Consolas', monospace; color: ${props.primaryColor}; font-size: 0.9rem; margin: 0 0 1rem 0;">${path}</p>` : ''}
+                        <p data-property="endpoint${i}Description" style="font-family: var(--body-font-font-family); color: ${props.textColor}; font-size: 0.9rem; margin: 0; opacity: 0.8;">${description}</p>
                     </div>`;
                 }
             }
@@ -4416,8 +4416,8 @@ function processUniversalModule(module, html) {
                     // Card zusammenbauen
                     let cardTemplate = `<div class="kerberos-benefit-card" style="${cardStyles}">
                         ${iconElement}
-                        <h3 style="${titleStyles}">${title}</h3>
-                        <p style="${descStyles}">${description}</p>
+                        <h3 data-property="benefit${i}Title" style="${titleStyles}">${title}</h3>
+                        <p data-property="benefit${i}Description" style="${descStyles}">${description}</p>
                     </div>`;
 
                     benefitItems += cardTemplate;
@@ -5154,8 +5154,8 @@ function processUniversalModule(module, html) {
                      class="contact-image">
             </div>
             <div class="contact-info">
-                <h3 class="contact-name">${name}</h3>
-                <p class="contact-position">${position}</p>
+                <h3 data-property="contact${i}Name" class="contact-name">${name}</h3>
+                <p data-property="contact${i}Position" class="contact-position">${position}</p>
                 <div class="contact-details">`;
                 
                 // Email (wenn vorhanden)
@@ -5163,16 +5163,16 @@ function processUniversalModule(module, html) {
                     contactCards += `
                     <div class="contact-item">
                         <span class="contact-icon">&#xf0e0;</span>
-                        <a href="mailto:${email}" class="contact-link">${email}</a>
+                        <a href="mailto:${email}" data-property="contact${i}Email" class="contact-link">${email}</a>
                     </div>`;
                 }
-                
+
                 // Phone (wenn vorhanden)
                 if (phone) {
                     contactCards += `
                     <div class="contact-item">
                         <span class="contact-icon">&#xf095;</span>
-                        <a href="tel:${phone.replace(/\s/g, '')}" class="contact-link">${phone}</a>
+                        <a href="tel:${phone.replace(/\s/g, '')}" data-property="contact${i}Phone" class="contact-link">${phone}</a>
                     </div>`;
                 }
                 
@@ -5184,7 +5184,7 @@ function processUniversalModule(module, html) {
                     contactCards += `
                 <a href="${ctaLink}" target="_blank" class="contact-cta" style="background: ${ctaButtonStyles.background}; color: ${ctaButtonStyles.color}; padding: ${ctaButtonStyles.padding}; border-radius: ${ctaButtonStyles.borderRadius}; box-shadow: ${ctaButtonStyles.boxShadow};">
                     ${ctaIcon ? `<span class="cta-icon">${ctaIcon}</span>` : ''}
-                    ${ctaText}
+                    <span data-property="contact${i}CtaText">${ctaText}</span>
                 </a>`;
                 } else {
                     // Spacer wenn kein CTA
@@ -5327,10 +5327,10 @@ function processUniversalModule(module, html) {
                 }
 
                 if (props.title) {
-                    headerContent += '<h2 data-style="TITLE_STYLES">' + (props.title || 'Produkttour') + '</h2>';
+                    headerContent += '<h2 data-property="title" data-style="TITLE_STYLES">' + (props.title || 'Produkttour') + '</h2>';
                 }
                 if (props.subtitle) {
-                    headerContent += '<p data-style="SUBTITLE_STYLES">' + (props.subtitle || 'Entdecken Sie alle Funktionen') + '</p>';
+                    headerContent += '<p data-property="subtitle" data-style="SUBTITLE_STYLES">' + (props.subtitle || 'Entdecken Sie alle Funktionen') + '</p>';
                 }
             }
 
@@ -6319,8 +6319,8 @@ function processUniversalModule(module, html) {
                     productCards += '<a class="solutions-card-' + module.id + '" href="' + link + '">' +
                         finalImage +
                         '<div style="padding: 1rem;">' +
-                        '<h4 class="solutions-title-' + module.id + '">' + title + '</h4>' +
-                        '<p class="solutions-desc-' + module.id + '">' + description + '</p>' +
+                        '<h4 data-property="product' + i + 'Title" class="solutions-title-' + module.id + '">' + title + '</h4>' +
+                        '<p data-property="product' + i + 'Description" class="solutions-desc-' + module.id + '">' + description + '</p>' +
                         '</div>' +
                         '</a>';
                 }
@@ -6739,7 +6739,7 @@ function processUniversalModule(module, html) {
             
             // Beschreibung (Standard-Textarea)
             if (props.description) {
-                breakerContent += `<p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ${props.descriptionColor || 'rgba(255,255,255,0.9)'}; margin: 0 0 ${props.descriptionSpacing || '2rem'} 0; max-width: 600px; margin-left: auto; margin-right: auto;">${props.description}</p>`;
+                breakerContent += `<p data-property="description" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ${props.descriptionColor || 'rgba(255,255,255,0.9)'}; margin: 0 0 ${props.descriptionSpacing || '2rem'} 0; max-width: 600px; margin-left: auto; margin-right: auto;">${props.description}</p>`;
             }
             
             // Button Container
@@ -6748,23 +6748,23 @@ function processUniversalModule(module, html) {
                 
                 // Primary Button (PLATZHALTER-BASIERT)
                 if (props.buttonText) {
-                    breakerContent += `<a class="kerberos-btn kerberos-btn-${module.id}" href="${props.buttonLink || '#'}" style="display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{buttonBackground}}; color: {{buttonColor}}; padding: {{buttonPadding}}; border-radius: {{buttonRadius}}; box-shadow: {{buttonShadow}}; border: {{buttonBorder}}; text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem;">${props.buttonText}`;
-                    
+                    breakerContent += `<a class="kerberos-btn kerberos-btn-${module.id}" href="${props.buttonLink || '#'}" style="display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{buttonBackground}}; color: {{buttonColor}}; padding: {{buttonPadding}}; border-radius: {{buttonRadius}}; box-shadow: {{buttonShadow}}; border: {{buttonBorder}}; text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem;"><span data-property="buttonText">${props.buttonText}</span>`;
+
                     if (props.buttonIcon) {
                         breakerContent += `<span style="font-family: 'Font Awesome 5 Pro';">${props.buttonIcon}</span>`;
                     }
-                    
+
                     breakerContent += `</a>`;
                 }
                 
                 // Secondary Button (PLATZHALDER-BASIERT)
                 if (props.secondaryButtonText && props.showSecondaryButton === 'true') {
-                    breakerContent += `<a class="kerberos-btn-secondary kerberos-btn-${module.id}" href="${props.secondaryButtonLink || '#'}" style="display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{secondaryButtonBackground}}; color: {{secondaryButtonColor}}; padding: {{secondaryButtonPadding}}; border-radius: {{secondaryButtonRadius}}; box-shadow: {{secondaryButtonShadow}}; border: {{secondaryButtonBorder}}; text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem;">${props.secondaryButtonText}`;
-                    
+                    breakerContent += `<a class="kerberos-btn-secondary kerberos-btn-${module.id}" href="${props.secondaryButtonLink || '#'}" style="display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{secondaryButtonBackground}}; color: {{secondaryButtonColor}}; padding: {{secondaryButtonPadding}}; border-radius: {{secondaryButtonRadius}}; box-shadow: {{secondaryButtonShadow}}; border: {{secondaryButtonBorder}}; text-decoration: none; transition: all 0.3s ease; font-size: 1.1rem;"><span data-property="secondaryButtonText">${props.secondaryButtonText}</span>`;
+
                     if (props.secondaryButtonIcon) {
                         breakerContent += `<span style="font-family: 'Font Awesome 5 Pro';">${props.secondaryButtonIcon}</span>`;
                     }
-                    
+
                     breakerContent += `</a>`;
                 }
                 
@@ -6778,7 +6778,7 @@ function processUniversalModule(module, html) {
             
             // COUNTDOWN (Standard-Text)
             if (props.countdownActive === 'true') {
-                breakerContent += `<p style="margin-top: ${props.countdownSpacing || '2rem'}; font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: ${props.countdownColor || '#FFFFFF'}; text-align: center; font-weight: 600; line-height: var(--body-font-line-height);">${props.countdownText || '⏰ Begrenzte Zeit verfügbar!'}</p>`;
+                breakerContent += `<p data-property="countdownText" style="margin-top: ${props.countdownSpacing || '2rem'}; font-family: var(--body-font-font-family); font-size: var(--normal-text-size); color: ${props.countdownColor || '#FFFFFF'}; text-align: center; font-weight: 600; line-height: var(--body-font-line-height);">${props.countdownText || '⏰ Begrenzte Zeit verfügbar!'}</p>`;
             }
             
             breakerContent += '</div>';
@@ -6886,6 +6886,7 @@ function processUniversalModule(module, html) {
 
                 if (active === 'true' && number && description) {
                     facts.push({
+                        index: i,
                         number: number,
                         description: description
                     });
@@ -6902,8 +6903,8 @@ function processUniversalModule(module, html) {
                         '<div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">' +
                             '<div style="width: 2px; height: 80px; background: ' + props.lineColor + '; margin-right: 1rem; border-radius: 2px;"></div>' +
                             '<div>' +
-                                '<div style="font-size: ' + factNumberSizeVar + '; font-weight: var(--heading-font-font-weight); color: ' + props.factNumberColor + '; line-height: 1.2; margin-bottom: 0.5rem; font-family: var(--heading-font-font-family);">' + fact.number + '</div>' +
-                                '<div style="font-size: ' + factTextSizeVar + '; color: ' + props.factTextColor + '; line-height: 1.4; font-family: var(--body-font-font-family);">' + fact.description + '</div>' +
+                                '<div data-property="fact' + fact.index + 'Number" style="font-size: ' + factNumberSizeVar + '; font-weight: var(--heading-font-font-weight); color: ' + props.factNumberColor + '; line-height: 1.2; margin-bottom: 0.5rem; font-family: var(--heading-font-font-family);">' + fact.number + '</div>' +
+                                '<div data-property="fact' + fact.index + 'Description" style="font-size: ' + factTextSizeVar + '; color: ' + props.factTextColor + '; line-height: 1.4; font-family: var(--body-font-font-family);">' + fact.description + '</div>' +
                             '</div>' +
                         '</div>' +
                     '</div>';
@@ -7169,25 +7170,25 @@ function processUniversalModule(module, html) {
                                 ${stars}
                             </div>
                             
-                            <blockquote style="font-size: 1.25rem; 
-                                            color: ${props.quoteColor || '#333'}; 
-                                            font-style: italic; 
-                                            line-height: 1.8; 
-                                            margin: 0 0 2rem 0; 
+                            <blockquote data-property="testimonial${i}Text" style="font-size: 1.25rem;
+                                            color: ${props.quoteColor || '#333'};
+                                            font-style: italic;
+                                            line-height: 1.8;
+                                            margin: 0 0 2rem 0;
                                             max-width: 700px;">
                                 "${quote}"
                             </blockquote>
-                            
-                            <div style="font-weight: 700; 
-                                    color: ${props.authorColor || '#063AA8'}; 
-                                    font-size: 1.1rem; 
+
+                            <div data-property="testimonial${i}Author" style="font-weight: 700;
+                                    color: ${props.authorColor || '#063AA8'};
+                                    font-size: 1.1rem;
                                     margin-bottom: 0.5rem;">
                                 ${author}
                             </div>
-                            
-                            <div style="color: ${props.positionColor || '#6c757d'}; 
+
+                            <div style="color: ${props.positionColor || '#6c757d'};
                                     font-size: 0.95rem;">
-                                ${position}${company ? ` • ${company}` : ''}
+                                <span data-property="testimonial${i}Position">${position}</span>${company ? ` • <span data-property="testimonial${i}Company">${company}</span>` : ''}
                             </div>
                         </div>
                     `;
@@ -7409,9 +7410,9 @@ function processKerberosServicesOverview(module, html) {
                         </div>
                     ` : ''}
                     <div>
-                        <h2 style="font-family: var(--heading-font-font-family); font-size: 1.75rem; font-weight: 700; color: ${props.titleColor}; margin-bottom: 1.25rem; line-height: 1.2; position: relative;">${title}</h2>
-                        <div style="color: ${props.textColor}; margin-bottom: 1.5rem; font-size: 1rem;">${description}</div>
-                        <a href="${buttonLink}" class="kerberos-btn kerberos-btn-${module.id}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: ${props.buttonBackground}; color: ${props.buttonColor}; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(6,58,168,0.2);">${buttonText}</a>
+                        <h2 data-property="service${i}Title" style="font-family: var(--heading-font-font-family); font-size: 1.75rem; font-weight: 700; color: ${props.titleColor}; margin-bottom: 1.25rem; line-height: 1.2; position: relative;">${title}</h2>
+                        <div data-property="service${i}Description" style="color: ${props.textColor}; margin-bottom: 1.5rem; font-size: 1rem;">${description}</div>
+                        <a href="${buttonLink}" class="kerberos-btn kerberos-btn-${module.id}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: ${props.buttonBackground}; color: ${props.buttonColor}; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(6,58,168,0.2);"><span data-property="service${i}ButtonText">${buttonText}</span></a>
                     </div>
                     ${isImageRight ? `
                         <div>
@@ -7441,11 +7442,11 @@ function processKerberosServicesOverview(module, html) {
             
             solutionCards += `
                 <div style="background: white; border-radius: 10px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(6,58,168,0.06); transition: all 0.3s ease; display: flex; flex-direction: column; border: 1px solid ${props.cardBorder}; position: relative; overflow: hidden; cursor: default;"
-                     onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 30px rgba(6,58,168,0.12)'" 
+                     onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 30px rgba(6,58,168,0.12)'"
                      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(6,58,168,0.06)'">
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(135deg, #063AA8, #009CE6);"></div>
-                    <h3 style="font-size: 1.1rem; font-weight: 700; color: ${props.titleColor}; margin-bottom: 0.75rem;">${title}</h3>
-                    <p style="font-size: 0.9rem; line-height: 1.5; color: ${props.textColor}; margin-bottom: 1rem; flex-grow: 1;">${description}</p>
+                    <h3 data-property="solution${i}Title" style="font-size: 1.1rem; font-weight: 700; color: ${props.titleColor}; margin-bottom: 0.75rem;">${title}</h3>
+                    <p data-property="solution${i}Description" style="font-size: 0.9rem; line-height: 1.5; color: ${props.textColor}; margin-bottom: 1rem; flex-grow: 1;">${description}</p>
                     <a href="${link}" style="color: ${props.titleColor}; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;"
                        onmouseover="this.style.color='#009CE6'; this.style.transform='translateX(4px)'" 
                        onmouseout="this.style.color='${props.titleColor}'; this.style.transform='translateX(0)'">
@@ -7572,14 +7573,14 @@ function processKerberosAboutStats(module, html) {
         if (type === 'number') {
             const number = props[`stat${i}Number`];
             contentHtml = `
-                <div style="font-size: 2.25rem; font-weight: 700; color: ${color}; margin-bottom: 0.5rem; line-height: 1;">${number}</div>
-                <div style="font-size: 0.95rem; color: #495057; line-height: 1.5;">${description}</div>
+                <div data-property="stat${i}Number" style="font-size: 2.25rem; font-weight: 700; color: ${color}; margin-bottom: 0.5rem; line-height: 1;">${number}</div>
+                <div data-property="stat${i}Description" style="font-size: 0.95rem; color: #495057; line-height: 1.5;">${description}</div>
             `;
         } else {
             const label = props[`stat${i}Label`];
             contentHtml = `
-                <div style="font-size: 1.25rem; font-weight: 700; color: ${color}; margin-bottom: 0.5rem;">${label}</div>
-                <div style="font-size: 0.95rem; color: #495057; line-height: 1.5;">${description}</div>
+                <div data-property="stat${i}Label" style="font-size: 1.25rem; font-weight: 700; color: ${color}; margin-bottom: 0.5rem;">${label}</div>
+                <div data-property="stat${i}Description" style="font-size: 0.95rem; color: #495057; line-height: 1.5;">${description}</div>
             `;
         }
         
