@@ -1230,16 +1230,16 @@
                 <div class="solution-box challenge-box" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #e74c3c; transition: all 0.3s ease;">
                     <div class="box-header">
                         <i class="box-icon" style="color: ${props.challengeIconColor || '#e74c3c'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeIcon || '⚠️'}</i>
-                        <h3 class="box-title" style="color: ${props.challengeTitleColor || '#333'};">${props.challengeTitle || 'Challenge'}</h3>
+                        <h3 class="box-title" data-property="challengeTitle" style="color: ${props.challengeTitleColor || '#333'};">${props.challengeTitle || 'Challenge'}</h3>
                     </div>
                     <div class="box-content">
-                        ${props.challengeText ? `<p style="color: ${props.challengeTextColor || '#666'};">${props.challengeText}</p>` : ''}
+                        ${props.challengeText ? `<p data-property="challengeText" style="color: ${props.challengeTextColor || '#666'};">${props.challengeText}</p>` : ''}
                         <ul class="solution-list">
-                            ${props.challengePoint1 ? `<li style="display: ${props.challengePoint1AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint1}</li>` : ''}
-                            ${props.challengePoint2 ? `<li style="display: ${props.challengePoint2AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint2}</li>` : ''}
-                            ${props.challengePoint3 ? `<li style="display: ${props.challengePoint3AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint3}</li>` : ''}
-                            ${props.challengePoint4 ? `<li style="display: ${props.challengePoint4AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint4}</li>` : ''}
-                            ${props.challengePoint5 ? `<li style="display: ${props.challengePoint5AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint5}</li>` : ''}
+                            ${props.challengePoint1 ? `<li data-property="challengePoint1" style="display: ${props.challengePoint1AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint1}</li>` : ''}
+                            ${props.challengePoint2 ? `<li data-property="challengePoint2" style="display: ${props.challengePoint2AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint2}</li>` : ''}
+                            ${props.challengePoint3 ? `<li data-property="challengePoint3" style="display: ${props.challengePoint3AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint3}</li>` : ''}
+                            ${props.challengePoint4 ? `<li data-property="challengePoint4" style="display: ${props.challengePoint4AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint4}</li>` : ''}
+                            ${props.challengePoint5 ? `<li data-property="challengePoint5" style="display: ${props.challengePoint5AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint5}</li>` : ''}
                         </ul>
                     </div>
                 </div>`;
@@ -1251,16 +1251,16 @@
                 <div class="solution-box requirement-box" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #f39c12; transition: all 0.3s ease;">
                     <div class="box-header">
                         <i class="box-icon" style="color: ${props.requirementIconColor || '#f39c12'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementIcon || '📋'}</i>
-                        <h3 class="box-title" style="color: ${props.requirementTitleColor || '#333'};">${props.requirementTitle || 'Requirements'}</h3>
+                        <h3 class="box-title" data-property="requirementTitle" style="color: ${props.requirementTitleColor || '#333'};">${props.requirementTitle || 'Requirements'}</h3>
                     </div>
                     <div class="box-content">
-                        ${props.requirementText ? `<p style="color: ${props.requirementTextColor || '#666'};">${props.requirementText}</p>` : ''}
+                        ${props.requirementText ? `<p data-property="requirementText" style="color: ${props.requirementTextColor || '#666'};">${props.requirementText}</p>` : ''}
                         <ul class="solution-list">
-                            ${props.requirementPoint1 ? `<li style="display: ${props.requirementPoint1AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint1}</li>` : ''}
-                            ${props.requirementPoint2 ? `<li style="display: ${props.requirementPoint2AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint2}</li>` : ''}
-                            ${props.requirementPoint3 ? `<li style="display: ${props.requirementPoint3AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint3}</li>` : ''}
-                            ${props.requirementPoint4 ? `<li style="display: ${props.requirementPoint4AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint4}</li>` : ''}
-                            ${props.requirementPoint5 ? `<li style="display: ${props.requirementPoint5AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint5}</li>` : ''}
+                            ${props.requirementPoint1 ? `<li data-property="requirementPoint1" style="display: ${props.requirementPoint1AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint1}</li>` : ''}
+                            ${props.requirementPoint2 ? `<li data-property="requirementPoint2" style="display: ${props.requirementPoint2AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint2}</li>` : ''}
+                            ${props.requirementPoint3 ? `<li data-property="requirementPoint3" style="display: ${props.requirementPoint3AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint3}</li>` : ''}
+                            ${props.requirementPoint4 ? `<li data-property="requirementPoint4" style="display: ${props.requirementPoint4AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint4}</li>` : ''}
+                            ${props.requirementPoint5 ? `<li data-property="requirementPoint5" style="display: ${props.requirementPoint5AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint5}</li>` : ''}
                         </ul>
                     </div>
                 </div>`;
@@ -1272,16 +1272,16 @@
                 <div class="solution-box solution-box-final" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #27ae60; transition: all 0.3s ease;">
                     <div class="box-header">
                         <i class="box-icon" style="color: ${props.solutionIconColor || '#27ae60'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionIcon || '✅'}</i>
-                        <h3 class="box-title" style="color: ${props.solutionTitleColor || '#333'};">${props.solutionTitle || 'Solution'}</h3>
+                        <h3 class="box-title" data-property="solutionTitle" style="color: ${props.solutionTitleColor || '#333'};">${props.solutionTitle || 'Solution'}</h3>
                     </div>
                     <div class="box-content">
-                        ${props.solutionText ? `<p style="color: ${props.solutionTextColor || '#666'};">${props.solutionText}</p>` : ''}
+                        ${props.solutionText ? `<p data-property="solutionText" style="color: ${props.solutionTextColor || '#666'};">${props.solutionText}</p>` : ''}
                         <ul class="solution-list">
-                            ${props.solutionPoint1 ? `<li style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint1}</li>` : ''}
-                            ${props.solutionPoint2 ? `<li style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint2}</li>` : ''}
-                            ${props.solutionPoint3 ? `<li style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint3}</li>` : ''}
-                            ${props.solutionPoint4 ? `<li style="display: ${props.showSolutionPoint4 || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint4}</li>` : ''}
-                            ${props.solutionPoint5 ? `<li style="display: ${props.showSolutionPoint5 || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint5}</li>` : ''}
+                            ${props.solutionPoint1 ? `<li data-property="solutionPoint1" style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint1}</li>` : ''}
+                            ${props.solutionPoint2 ? `<li data-property="solutionPoint2" style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint2}</li>` : ''}
+                            ${props.solutionPoint3 ? `<li data-property="solutionPoint3" style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint3}</li>` : ''}
+                            ${props.solutionPoint4 ? `<li data-property="solutionPoint4" style="display: ${props.showSolutionPoint4 || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint4}</li>` : ''}
+                            ${props.solutionPoint5 ? `<li data-property="solutionPoint5" style="display: ${props.showSolutionPoint5 || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint5}</li>` : ''}
                         </ul>
                     </div>
                 </div>`;
@@ -4416,8 +4416,8 @@ function processUniversalModule(module, html) {
                     // Card zusammenbauen
                     let cardTemplate = `<div class="kerberos-benefit-card" style="${cardStyles}">
                         ${iconElement}
-                        <h3 style="${titleStyles}">${title}</h3>
-                        <p style="${descStyles}">${description}</p>
+                        <h3 data-property="benefit${i}Title" style="${titleStyles}">${title}</h3>
+                        <p data-property="benefit${i}Description" style="${descStyles}">${description}</p>
                     </div>`;
 
                     benefitItems += cardTemplate;
@@ -5327,10 +5327,10 @@ function processUniversalModule(module, html) {
                 }
 
                 if (props.title) {
-                    headerContent += '<h2 data-style="TITLE_STYLES">' + (props.title || 'Produkttour') + '</h2>';
+                    headerContent += '<h2 data-property="title" data-style="TITLE_STYLES">' + (props.title || 'Produkttour') + '</h2>';
                 }
                 if (props.subtitle) {
-                    headerContent += '<p data-style="SUBTITLE_STYLES">' + (props.subtitle || 'Entdecken Sie alle Funktionen') + '</p>';
+                    headerContent += '<p data-property="subtitle" data-style="SUBTITLE_STYLES">' + (props.subtitle || 'Entdecken Sie alle Funktionen') + '</p>';
                 }
             }
 
