@@ -3178,11 +3178,11 @@ function processKerberosTestimonialsPro(module, html) {
                         avatarDiv = '<div class="team-avatar" style="width: ' + avatarSize + '; height: ' + avatarSize + '; border-radius: 50%; margin: 0 auto 1rem auto; background: ' + initialBg + '; background-color: #E9ECEF; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700; transition: transform 0.3s ease;">' + initial + '</div>';
                     }
 
-                    const nameElement = '<h4 style="font-family: var(--heading-font-font-family); font-size: var(--heading-4-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ' + nameColor + '; margin: 0 0 0.5rem 0;">' + safeName + '</h4>';
+                    const nameElement = '<h4 data-property="member' + i + 'Name" style="font-family: var(--heading-font-font-family); font-size: var(--heading-4-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ' + nameColor + '; margin: 0 0 0.5rem 0;">' + safeName + '</h4>';
 
-                    const positionElement = '<p style="font-family: var(--body-font-font-family); font-size: var(--small-text-size); line-height: var(--body-font-line-height); color: ' + positionColor + '; margin: 0 0 1rem 0; font-weight: 600;">' + safePosition + '</p>';
+                    const positionElement = '<p data-property="member' + i + 'Position" style="font-family: var(--body-font-font-family); font-size: var(--small-text-size); line-height: var(--body-font-line-height); color: ' + positionColor + '; margin: 0 0 1rem 0; font-weight: 600;">' + safePosition + '</p>';
 
-                    const descriptionElement = '<p style="font-family: var(--body-font-font-family); font-size: var(--small-text-size); line-height: var(--body-font-line-height); color: ' + descriptionColor + '; margin: 0;">' + safeDescription + '</p>';
+                    const descriptionElement = '<p data-property="member' + i + 'Description" style="font-family: var(--body-font-font-family); font-size: var(--small-text-size); line-height: var(--body-font-line-height); color: ' + descriptionColor + '; margin: 0;">' + safeDescription + '</p>';
 
                     const cardEnd = '</div>';
 
