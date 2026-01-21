@@ -1460,10 +1460,10 @@
             if (props.title) {
                 const titleAlign = props.titleAlignment || 'center';
                 headerContent += `<div style="text-align: ${titleAlign}; margin-bottom: 3rem;">
-                    ${props.title}`;
+                    <div data-property="title">${props.title}</div>`;
 
                 if (props.showSubtitle === 'true' && props.subtitle) {
-                    headerContent += `<p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ${props.subtitleColor || '#6c757d'}; max-width: 800px; margin: 0 auto;">${props.subtitle}</p>`;
+                    headerContent += `<p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ${props.subtitleColor || '#6c757d'}; max-width: 800px; margin: 0 auto;">${props.subtitle}</p>`;
                 }
 
                 headerContent += `</div>`;
@@ -6230,10 +6230,10 @@ function processUniversalModule(module, html) {
             let headerContent = '';
             if (props.title) {
                 headerContent = '<div style="text-align: center; margin-bottom: 3rem;">' +
-                    '<h2 style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ' + props.titleColor + '; margin: 0 0 1rem 0;">' + props.title + '</h2>';
+                    '<h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ' + props.titleColor + '; margin: 0 0 1rem 0;">' + props.title + '</h2>';
 
                 if (props.showSubtitle === 'true' && props.subtitle) {
-                    headerContent += '<p style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ' + props.subtitleColor + '; max-width: 800px; margin: 0 auto;">' + props.subtitle + '</p>';
+                    headerContent += '<p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: ' + props.subtitleColor + '; max-width: 800px; margin: 0 auto;">' + props.subtitle + '</p>';
                 }
 
                 headerContent += '</div>';
@@ -6361,12 +6361,12 @@ function processUniversalModule(module, html) {
             if (props.title) {
                 const titleAlign = props.titleAlignment || 'center';
                 headerContent += `<div style="margin-bottom: 3rem;">`;
-                
-                // RichText-Content direkt verwenden (enthält bereits Styling)
-                headerContent += props.title;
+
+                // RichText-Content mit data-property
+                headerContent += '<div data-property="title">' + props.title + '</div>';
 
                 if (props.showSubtitle === 'true' && props.subtitle) {
-                    headerContent += props.subtitle;
+                    headerContent += '<div data-property="subtitle">' + props.subtitle + '</div>';
                 }
 
                 headerContent += `</div>`;
@@ -6397,9 +6397,9 @@ function processUniversalModule(module, html) {
                         (badge ? '<div style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #063AA8, #009CE6); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; z-index: 2;">' + badge + '</div>' : '') +
                         optimizedImage +
                         '<div style="padding: 1.5rem;">' +
-                        '<div class="showcase-title-' + module.id + '" style="font-family: var(--heading-font-font-family); color: #212529; margin: 0 0 0.75rem 0; font-size: 1.25rem; font-weight: 600;">' + title + '</div>' +
-                        '<div class="showcase-desc-' + module.id + '" style="font-family: var(--body-font-font-family); color: #6c757d; margin: 0 0 1rem 0; font-size: 0.9rem; line-height: 1.5;">' + description + '</div>' +
-                        (props[`product${i}Price`] ? '<div class="showcase-price-' + module.id + '" style="font-weight: 600; color: #063AA8; font-size: 1.1rem;">' + props[`product${i}Price`] + '</div>' : '') +
+                        '<div data-property="product' + i + 'Title" class="showcase-title-' + module.id + '" style="font-family: var(--heading-font-font-family); color: #212529; margin: 0 0 0.75rem 0; font-size: 1.25rem; font-weight: 600;">' + title + '</div>' +
+                        '<div data-property="product' + i + 'Description" class="showcase-desc-' + module.id + '" style="font-family: var(--body-font-font-family); color: #6c757d; margin: 0 0 1rem 0; font-size: 0.9rem; line-height: 1.5;">' + description + '</div>' +
+                        (props[`product${i}Price`] ? '<div data-property="product' + i + 'Price" class="showcase-price-' + module.id + '" style="font-weight: 600; color: #063AA8; font-size: 1.1rem;">' + props[`product${i}Price`] + '</div>' : '') +
                         '</div>' +
                         '</a>';
                 }
@@ -6726,15 +6726,15 @@ function processUniversalModule(module, html) {
 
             // === CONTENT GENERIEREN (RICHTEXT-EDITOR-BASIERT) ===
             let breakerContent = '<div style="text-align: center; position: relative; z-index: 3;">';
-            
+
             // Titel (RichText-Editor-Inhalt direkt verwenden)
             if (props.title) {
-                breakerContent += `<div style="color: ${props.titleColor || '#FFFFFF'}; margin: 0 0 ${props.titleSpacing || '1rem'} 0;">${props.title}</div>`;
+                breakerContent += `<div data-property="title" style="color: ${props.titleColor || '#FFFFFF'}; margin: 0 0 ${props.titleSpacing || '1rem'} 0;">${props.title}</div>`;
             }
-            
+
             // Untertitel (RichText-Editor-Inhalt direkt verwenden)
             if (props.subtitle) {
-                breakerContent += `<div style="color: ${props.subtitleColor || '#FFFFFF'}; margin: 0 0 ${props.subtitleSpacing || '1.5rem'} 0;">${props.subtitle}</div>`;
+                breakerContent += `<div data-property="subtitle" style="color: ${props.subtitleColor || '#FFFFFF'}; margin: 0 0 ${props.subtitleSpacing || '1.5rem'} 0;">${props.subtitle}</div>`;
             }
             
             // Beschreibung (Standard-Textarea)
