@@ -103,6 +103,34 @@
                 });
                 
                 return converted;
+            },
+
+            // === PROPERTY FALLBACK SYSTEM ===
+            // Unified Property Naming mit Backward Compatibility
+            getProperty(props, ...propertyNames) {
+                for (const name of propertyNames) {
+                    if (props[name] !== undefined && props[name] !== null && props[name] !== '') {
+                        return props[name];
+                    }
+                }
+                return '';
+            },
+
+            // Spezielle Fallbacks für häufige Properties
+            getButtonText(props) {
+                return this.getProperty(props, 'primaryButtonText', 'buttonText', 'ctaText');
+            },
+
+            getButtonLink(props) {
+                return this.getProperty(props, 'primaryButtonLink', 'buttonLink', 'ctaLink');
+            },
+
+            getTitle(props) {
+                return this.getProperty(props, 'titleContent', 'title');
+            },
+
+            getSubtitle(props) {
+                return this.getProperty(props, 'subtitleContent', 'subtitle');
             }
         };
 
