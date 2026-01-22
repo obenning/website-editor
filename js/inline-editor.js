@@ -683,6 +683,11 @@ function openIconEditorWithSize(iconElement, propertyKey, moduleId) {
             module.properties[propertyKey] = selectedIcon;
             changed = true;
             console.log('✅ Icon geändert:', propertyKey, '=', selectedIcon);
+
+            // Synchronisiere Icon mit Property Panel
+            if (typeof syncProperty === 'function') {
+                syncProperty(moduleId, propertyKey, selectedIcon, 'canvas');
+            }
         }
 
         // Aktualisiere Größe
@@ -691,6 +696,11 @@ function openIconEditorWithSize(iconElement, propertyKey, moduleId) {
             module.properties[sizeProperty] = newSizeValue;
             changed = true;
             console.log('✅ Icon-Größe geändert:', sizeProperty, '=', newSizeValue);
+
+            // Synchronisiere Icon-Größe mit Property Panel
+            if (typeof syncProperty === 'function') {
+                syncProperty(moduleId, sizeProperty, newSizeValue, 'canvas');
+            }
         }
 
         // Wenn etwas geändert wurde, re-rendere das Canvas
