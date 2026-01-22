@@ -355,48 +355,35 @@
                 return;
             }
 
-            // === UNIFIED PROPERTY PANEL CHECK ===
-            // Prüfe, ob das Template das neue propertySchema-System nutzt
-            if (template.propertySchema) {
-                console.log('✨ Using Unified Property Panel System');
+            // === SIMPLIFIED PROPERTY PANEL - NUR INLINE EDITING ===
+            // Zeige nur Module-Controls und Inline-Editing-Hinweise
+            console.log('✨ Using Simplified Property Panel (Inline Editing Only)');
 
-                const unifiedPropertiesHTML = renderUnifiedPropertyPanel(selectedModule);
+            let inlineEditingHelpHTML = `
+                <div style="background: linear-gradient(135deg, #28a745, #20c997); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; color: white;">
+                    <h4 style="margin: 0 0 1rem 0; font-size: 1.1rem;">
+                        ✨ ${template.name}
+                    </h4>
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 6px; padding: 1rem; margin-bottom: 1rem;">
+                        <p style="margin: 0 0 0.75rem 0; font-size: 0.9rem; font-weight: 600;">📝 Inline-Bearbeitung:</p>
+                        <ul style="margin: 0; padding-left: 1.5rem; font-size: 0.85rem; line-height: 1.8;">
+                            <li><strong>Text:</strong> Doppelklick zum Bearbeiten</li>
+                            <li><strong>Bilder:</strong> Klick auf Bild zum Ändern</li>
+                            <li><strong>Icons:</strong> Klick auf Icon zum Auswählen</li>
+                            <li><strong>Farben:</strong> Shift+Klick für Farbauswahl</li>
+                            <li><strong>Buttons:</strong> Klick auf Button für Menü</li>
+                            <li><strong>Section-Padding/Hintergrund:</strong> Doppelklick auf Hintergrund oder Rechtsklick auf Section</li>
+                        </ul>
+                    </div>
+                    <p style="font-size: 0.8rem; margin: 0; opacity: 0.9;">
+                        💡 Tipp: Alle Inhalte können direkt im Canvas bearbeitet werden - kein Property-Panel mehr nötig!
+                    </p>
+                </div>
+            `;
 
-                if (unifiedPropertiesHTML) {
-                    // Haupttemplate mit CSS-freier Struktur
-                    let html = `
-                        <h4 data-style="HEADER_STYLES">
-                            ${template.name}
-                            <span style="background: #28a745; color: white; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.65rem; margin-left: 0.5rem;">UNIFIED</span>
-                        </h4>
-                        <p data-style="DESCRIPTION_STYLES">${template.description}</p>
-                    `;
-
-                    // CSS-Stile separat definieren
-                    const headerStyles = [
-                        'color: var(--kerberos-primary)',
-                        'margin-bottom: 1rem',
-                        'font-size: 1rem'
-                    ].join('; ');
-
-                    const descriptionStyles = [
-                        'font-size: 0.8rem',
-                        'color: #6c757d',
-                        'margin-bottom: 1.5rem'
-                    ].join('; ');
-
-                    // Replace CSS
-                    html = html.replace('data-style="HEADER_STYLES"', 'style="' + headerStyles + '"');
-                    html = html.replace('data-style="DESCRIPTION_STYLES"', 'style="' + descriptionStyles + '"');
-
-                    // Füge unified properties hinzu
-                    html += unifiedPropertiesHTML;
-
-                    // Render final HTML
-                    panel.innerHTML = controlsTemplate + html;
-                    return;
-                }
-            }
+            // Render final HTML - nur Controls + Inline-Editing-Hilfe
+            panel.innerHTML = controlsTemplate + inlineEditingHelpHTML;
+            return;
 
             // === LEGACY SYSTEM (Fallback) ===
             console.log('📦 Using Legacy Property Panel System');
