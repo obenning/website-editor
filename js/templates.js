@@ -579,16 +579,16 @@
                     {{overlayElements}}
                     <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         {{iconElement}}
-                        <h1 data-property="titleContent" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</h1>
-                        <p data-property="subtitleContent" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); opacity: 0.9; color: {{subtitleColor}}; margin-bottom: {{textSpacing}};">{{subtitleContent}}</p>
+                        <h1 data-property="titleContent" data-content-type="html" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</h1>
+                        <div data-property="subtitleContent" data-content-type="html" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); opacity: 0.9; color: {{subtitleColor}}; margin-bottom: {{textSpacing}};">{{subtitleContent}}</div>
                         <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">{{primaryButtonText}}</a>
                     </div>
                 </section>`,
                 "properties": {
                     // === CONTENT ===
-                    "titleContent": "Compliance & Security Excellence",
+                    "titleContent": "<h1>Compliance & Security Excellence</h1>",
                     "titleColor": "#FFFFFF",
-                    "subtitleContent": "Professionelle Lösungen für Ihre Compliance-Anforderungen",
+                    "subtitleContent": "<p>Professionelle Lösungen für Ihre Compliance-Anforderungen</p>",
                     "subtitleColor": "#FFFFFF",
                     
                     // === PRIMARY BUTTON ===
@@ -631,16 +631,16 @@
                     {{overlayElements}}
                     <div style="position: relative; z-index: 3; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         {{iconElement}}
-                        <h1 data-property="titleContent" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</h1>
-                        <p data-property="subtitleContent" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); opacity: 0.9; color: {{subtitleColor}}; margin-bottom: {{textSpacing}};">{{subtitleContent}}</p>
+                        <h1 data-property="titleContent" data-content-type="html" style="font-family: var(--heading-font-font-family); font-size: var(--heading-1-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</h1>
+                        <div data-property="subtitleContent" data-content-type="html" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); opacity: 0.9; color: {{subtitleColor}}; margin-bottom: {{textSpacing}};">{{subtitleContent}}</div>
                         <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-block; border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s ease;">{{primaryButtonText}}</a>
                     </div>
                 </section>`,
                 "properties": {
                     // === CONTENT ===
-                    "titleContent": "Compliance & Security Excellence",
+                    "titleContent": "<h1>Compliance & Security Excellence</h1>",
                     "titleColor": "#FFFFFF",
-                    "subtitleContent": "Professionelle Lösungen für Ihre Compliance-Anforderungen",
+                    "subtitleContent": "<p>Professionelle Lösungen für Ihre Compliance-Anforderungen</p>",
                     "subtitleColor": "#FFFFFF",
                     
                     // === PRIMARY BUTTON ===
