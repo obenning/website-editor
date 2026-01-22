@@ -33,24 +33,45 @@ const TYPE_MAPPINGS = {
     
     // ===== SIZES =====
     iconSize: {
+        // Kurze Varianten
         'sm': '1.5rem',
         'md': '2rem',
         'lg': '3rem',
-        'xl': '4rem'
+        'xl': '4rem',
+        // Lange Varianten (für bessere Lesbarkeit)
+        'small': '1.5rem',
+        'medium': '2rem',
+        'large': '3rem',
+        'extra-large': '4rem',
+        // Zusätzliche Größen
+        'xs': '1rem',
+        'xxl': '5rem'
     },
     
     textSize: {
+        // Kurze Varianten
         'sm': '0.875rem',
         'md': '1rem',
         'lg': '1.125rem',
-        'xl': '1.25rem'
+        'xl': '1.25rem',
+        // Lange Varianten
+        'small': '0.875rem',
+        'medium': '1rem',
+        'large': '1.125rem',
+        'extra-large': '1.25rem'
     },
-    
+
     titleSize: {
+        // Kurze Varianten
         'sm': '1.5rem',
         'md': '2rem',
         'lg': '2.5rem',
-        'xl': '3rem'
+        'xl': '3rem',
+        // Lange Varianten
+        'small': '1.5rem',
+        'medium': '2rem',
+        'large': '2.5rem',
+        'extra-large': '3rem'
     },
     
     // ===== WIDTHS =====
