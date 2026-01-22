@@ -2189,6 +2189,42 @@ function closeSectionMenuOnClickOutside(e) {
 // 10. INITIALIZATION ON LOAD
 // =====================================================
 
+/**
+ * Öffnet den Section-Editor vom Property-Panel aus
+ */
+function openSectionEditorFromPanel() {
+    if (!selectedModule) {
+        showNotification('⚠️ Bitte wählen Sie zuerst ein Modul aus');
+        return;
+    }
+
+    // Finde die Section im Canvas
+    const canvas = document.getElementById('canvas');
+    if (!canvas) return;
+
+    const moduleElement = canvas.querySelector(`.canvas-module[data-module-id="${selectedModule.id}"]`);
+    if (!moduleElement) {
+        showNotification('⚠️ Modul nicht im Canvas gefunden');
+        return;
+    }
+
+    const section = moduleElement.querySelector('section.kerberos-module');
+    if (!section) {
+        showNotification('⚠️ Keine Section gefunden');
+        return;
+    }
+
+    // Öffne das Section-Padding-Menu in der Mitte des Canvas
+    const canvasRect = canvas.getBoundingClientRect();
+    const x = canvasRect.left + canvasRect.width / 2 - 150; // Zentriert
+    const y = canvasRect.top + 100; // Oben im Canvas
+
+    showSectionPaddingMenu(section, selectedModule.id, x, y);
+}
+
+// Make function globally available for onclick handlers
+window.openSectionEditorFromPanel = openSectionEditorFromPanel;
+
 // Auto-initialisierung wenn DOM bereit ist
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {

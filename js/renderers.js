@@ -361,9 +361,23 @@
 
             let inlineEditingHelpHTML = `
                 <div style="background: linear-gradient(135deg, #28a745, #20c997); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; color: white;">
-                    <h4 style="margin: 0 0 1rem 0; font-size: 1.1rem;">
-                        ✨ ${template.name}
-                    </h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h4 style="margin: 0; font-size: 1.1rem;">
+                            ✨ ${template.name}
+                        </h4>
+                        <button onclick="openSectionEditorFromPanel()" class="btn" style="
+                            background: rgba(255,255,255,0.2);
+                            color: white;
+                            border: 1px solid rgba(255,255,255,0.3);
+                            padding: 0.4rem 0.8rem;
+                            border-radius: 6px;
+                            font-size: 0.8rem;
+                            cursor: pointer;
+                            transition: all 0.2s;
+                        " onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                            ⚙️ Padding & Hintergrund
+                        </button>
+                    </div>
                     <div style="background: rgba(255,255,255,0.15); border-radius: 6px; padding: 1rem; margin-bottom: 1rem;">
                         <p style="margin: 0 0 0.75rem 0; font-size: 0.9rem; font-weight: 600;">📝 Inline-Bearbeitung:</p>
                         <ul style="margin: 0; padding-left: 1.5rem; font-size: 0.85rem; line-height: 1.8;">
@@ -372,7 +386,6 @@
                             <li><strong>Icons:</strong> Klick auf Icon zum Auswählen</li>
                             <li><strong>Farben:</strong> Shift+Klick für Farbauswahl</li>
                             <li><strong>Buttons:</strong> Klick auf Button für Menü</li>
-                            <li><strong>Section-Padding/Hintergrund:</strong> Doppelklick auf Hintergrund oder Rechtsklick auf Section</li>
                         </ul>
                     </div>
                     <p style="font-size: 0.8rem; margin: 0; opacity: 0.9;">
@@ -381,8 +394,15 @@
                 </div>
             `;
 
-            // Render final HTML - nur Controls + Inline-Editing-Hilfe
-            panel.innerHTML = controlsTemplate + inlineEditingHelpHTML;
+            // Check if module has card-based content (Testimonials, Products, Team, etc.)
+            const cardInfo = detectCardType(selectedModule.properties);
+            let cardManagementHTML = '';
+            if (cardInfo) {
+                cardManagementHTML = renderCardManagement(cardInfo, selectedModule.id);
+            }
+
+            // Render final HTML - Controls + Card Management + Inline-Editing-Hilfe
+            panel.innerHTML = controlsTemplate + cardManagementHTML + inlineEditingHelpHTML;
             return;
 
             // === LEGACY SYSTEM (Fallback) ===
@@ -2154,12 +2174,172 @@
 // 🌐 NAMESPACE - Alle Renderer-Funktionen global verfügbar machen
 // ========================================
 
+/**
+ * Aktiviert oder deaktiviert eine Karte (Testimonial, Product, Team, etc.)
+ */
+function toggleCard(prefix, cardNumber, activate) {
+    if (!selectedModule) {
+        showNotification('⚠️ Kein Modul ausgewählt');
+        return;
+    }
+
+    const activeKey = `${prefix}${cardNumber}Active`;
+
+    if (activate) {
+        // Aktiviere die Karte
+        selectedModule.properties[activeKey] = 'true';
+
+        // Wenn es noch keine Properties für diese Karte gibt, füge Standard-Werte hinzu
+        if (prefix === 'testimonial') {
+            if (!selectedModule.properties[`${prefix}${cardNumber}Text`]) {
+                selectedModule.properties[`${prefix}${cardNumber}Text`] = 'Neues Testimonial...';
+                selectedModule.properties[`${prefix}${cardNumber}Author`] = 'Name';
+                selectedModule.properties[`${prefix}${cardNumber}Position`] = 'Position';
+                selectedModule.properties[`${prefix}${cardNumber}Company`] = 'Unternehmen';
+                selectedModule.properties[`${prefix}${cardNumber}Rating`] = '5';
+                selectedModule.properties[`${prefix}${cardNumber}Image`] = '';
+            }
+        } else if (prefix === 'product') {
+            if (!selectedModule.properties[`${prefix}${cardNumber}Title`]) {
+                selectedModule.properties[`${prefix}${cardNumber}Title`] = 'Neues Produkt';
+                selectedModule.properties[`${prefix}${cardNumber}Description`] = 'Produktbeschreibung...';
+                selectedModule.properties[`${prefix}${cardNumber}Image`] = '';
+                selectedModule.properties[`${prefix}${cardNumber}Link`] = '#';
+                selectedModule.properties[`${prefix}${cardNumber}Price`] = '';
+                selectedModule.properties[`${prefix}${cardNumber}Badge`] = '';
+            }
+        } else if (prefix === 'team') {
+            if (!selectedModule.properties[`${prefix}${cardNumber}Name`]) {
+                selectedModule.properties[`${prefix}${cardNumber}Name`] = 'Name';
+                selectedModule.properties[`${prefix}${cardNumber}Position`] = 'Position';
+                selectedModule.properties[`${prefix}${cardNumber}Image`] = '';
+                selectedModule.properties[`${prefix}${cardNumber}Bio`] = '';
+            }
+        }
+
+        showNotification(`✅ Karte ${cardNumber} aktiviert`);
+    } else {
+        // Deaktiviere die Karte
+        selectedModule.properties[activeKey] = 'false';
+        showNotification(`🔄 Karte ${cardNumber} deaktiviert`);
+    }
+
+    // Canvas und Property Panel aktualisieren
+    renderCanvas();
+    renderPropertyPanel();
+}
+
+/**
+ * Erkennt, ob ein Modul Karten-basiert ist (Testimonials, Products, Team, etc.)
+ */
+function detectCardType(properties) {
+    if (properties.hasOwnProperty('testimonial1Active') || properties.hasOwnProperty('testimonial1Text')) {
+        return { type: 'testimonial', max: 30, prefix: 'testimonial' };
+    }
+    if (properties.hasOwnProperty('product1Active') || properties.hasOwnProperty('product1Title')) {
+        return { type: 'product', max: 12, prefix: 'product' };
+    }
+    if (properties.hasOwnProperty('team1Active') || properties.hasOwnProperty('team1Name')) {
+        return { type: 'team', max: 12, prefix: 'team' };
+    }
+    return null;
+}
+
+/**
+ * Rendert Karten-Verwaltung für Module mit Karten
+ */
+function renderCardManagement(cardInfo, moduleId) {
+    const module = modules.find(m => m.id === moduleId);
+    if (!module) return '';
+
+    // Zähle aktive und inaktive Karten
+    let activeCards = [];
+    let inactiveCards = [];
+
+    for (let i = 1; i <= cardInfo.max; i++) {
+        const activeKey = `${cardInfo.prefix}${i}Active`;
+        const isActive = module.properties[activeKey] === 'true';
+
+        if (isActive) {
+            activeCards.push(i);
+        } else {
+            inactiveCards.push(i);
+        }
+    }
+
+    const cardTypeLabel = cardInfo.type === 'testimonial' ? 'Testimonials' :
+                          cardInfo.type === 'product' ? 'Produkte' :
+                          cardInfo.type === 'team' ? 'Team-Mitglieder' : 'Karten';
+
+    return `
+        <div style="background: linear-gradient(135deg, #6f42c1, #8b5cf6); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; color: white;">
+            <h4 style="margin: 0 0 1rem 0; font-size: 1rem;">
+                🃏 ${cardTypeLabel}-Verwaltung
+            </h4>
+            <div style="background: rgba(255,255,255,0.15); border-radius: 6px; padding: 1rem; margin-bottom: 1rem;">
+                <p style="margin: 0 0 0.5rem 0; font-size: 0.9rem;">
+                    <strong>Aktive ${cardTypeLabel}:</strong> ${activeCards.length} / ${cardInfo.max}
+                </p>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+                    ${activeCards.map(i => `
+                        <button onclick="toggleCard('${cardInfo.prefix}', ${i}, false)" class="btn" style="
+                            background: rgba(255,255,255,0.25);
+                            color: white;
+                            border: 1px solid rgba(255,255,255,0.4);
+                            padding: 0.3rem 0.6rem;
+                            border-radius: 4px;
+                            font-size: 0.75rem;
+                            cursor: pointer;
+                            transition: all 0.2s;
+                        " onmouseover="this.style.background='rgba(255,59,48,0.5)'" onmouseout="this.style.background='rgba(255,255,255,0.25)'">
+                            ✓ ${cardInfo.type === 'testimonial' ? 'T' : cardInfo.type === 'product' ? 'P' : 'M'}${i}
+                        </button>
+                    `).join('')}
+                </div>
+            </div>
+            ${inactiveCards.length > 0 ? `
+                <div style="margin-top: 1rem;">
+                    <p style="margin: 0 0 0.5rem 0; font-size: 0.85rem; opacity: 0.9;">
+                        Inaktive ${cardTypeLabel} aktivieren:
+                    </p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        ${inactiveCards.slice(0, 6).map(i => `
+                            <button onclick="toggleCard('${cardInfo.prefix}', ${i}, true)" class="btn" style="
+                                background: rgba(255,255,255,0.1);
+                                color: white;
+                                border: 1px solid rgba(255,255,255,0.3);
+                                padding: 0.3rem 0.6rem;
+                                border-radius: 4px;
+                                font-size: 0.75rem;
+                                cursor: pointer;
+                                transition: all 0.2s;
+                            " onmouseover="this.style.background='rgba(52,199,89,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
+                                + ${cardInfo.type === 'testimonial' ? 'T' : cardInfo.type === 'product' ? 'P' : 'M'}${i}
+                            </button>
+                        `).join('')}
+                        ${inactiveCards.length > 6 ? `
+                            <span style="font-size: 0.75rem; opacity: 0.7; align-self: center;">
+                                +${inactiveCards.length - 6} weitere...
+                            </span>
+                        ` : ''}
+                    </div>
+                </div>
+            ` : ''}
+        </div>
+    `;
+}
+
 window.Renderers = {
     // Hauptfunktionen
     renderPropertyPanel,
     updateProperty,
     applyChanges,
-    
+
+    // Karten-Verwaltung
+    toggleCard,
+    detectCardType,
+    renderCardManagement,
+
     // Property-Picker
     renderColorPicker,
     renderIconPicker,
@@ -2196,5 +2376,8 @@ window.Renderers = {
 
 // Für Rückwärtskompatibilität: Alle Funktionen auch global verfügbar machen
 Object.assign(window, window.Renderers);
+
+// Make critical functions globally available for onclick handlers
+window.toggleCard = toggleCard;
 
 console.log('🎨 Renderers-Namespace geladen mit', Object.keys(window.Renderers).length, 'Funktionen');
