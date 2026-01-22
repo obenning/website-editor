@@ -4469,15 +4469,19 @@
                     // Icon-Element separat erstellen wenn benötigt
                     let iconElement = '';
                     if (showIcons && icon) {
+                        // Individuelle Icon-Größe (falls vorhanden) oder globale Icon-Größe
+                        const individualIconSize = props['benefit' + i + 'IconSize'] || props.iconSize;
+
                         const iconStyles = [
                             'font-family: \'Font Awesome 5 Pro\'',
-                            'font-size: ' + props.iconSize,
+                            'font-size: ' + individualIconSize,
                             'color: ' + iconColor,
                             'margin-bottom: ' + props.iconSpacing,
                             'text-align: center'
                         ].join('; ');
 
-                        iconElement = `<div style="${iconStyles}">${icon}</div>`;
+                        // WICHTIG: data-property und data-size-property für Inline-Editor
+                        iconElement = `<div style="${iconStyles}" data-property="benefit${i}Icon" data-size-property="benefit${i}IconSize">${icon}</div>`;
                     }
 
                     // Card zusammenbauen

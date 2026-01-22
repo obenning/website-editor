@@ -399,7 +399,15 @@
                     "benefit6TitleColor": "#212529",
                     "benefit6DescriptionColor": "#6c757d",
                     "benefit6Active": "false",
-                    
+
+                    // === ICON SIZES (Individuell pro Benefit) ===
+                    "benefit1IconSize": "3rem",
+                    "benefit2IconSize": "3rem",
+                    "benefit3IconSize": "3rem",
+                    "benefit4IconSize": "3rem",
+                    "benefit5IconSize": "3rem",
+                    "benefit6IconSize": "3rem",
+
                     // === BUTTON SYSTEM (Bereinigt) ===
                     "showPrimaryButton": "true",
                     "primaryButtonText": "Jetzt kostenlos beraten lassen",
