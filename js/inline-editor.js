@@ -921,8 +921,17 @@ function isColorProperty(propertyKey) {
  * Prüft ob eine Property eine Icon-Property ist
  */
 function isIconProperty(propertyKey) {
-    return propertyKey && (
-        propertyKey.toLowerCase().includes('icon') && propertyKey.toLowerCase().includes('class')
+    if (!propertyKey) return false;
+    const key = propertyKey.toLowerCase();
+    // Prüfe auf iconClass ODER andere Icon-Properties wie primaryButtonIcon, buttonIcon, etc.
+    return key.includes('icon') && (
+        key.includes('class') ||
+        key.endsWith('icon') ||
+        key.includes('buttonicon') ||
+        key.includes('ctaicon') ||
+        key.includes('badgeicon') ||
+        key.includes('heroicon') ||
+        key.includes('dashboardicon')
     );
 }
 
