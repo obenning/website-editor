@@ -423,8 +423,24 @@ function openIconEditorWithSize(iconElement, propertyKey, moduleId) {
     const module = modules.find(m => m.id == moduleId);
     if (!module) return;
 
-    // Ermittle Size-Property (z.B. "icon" -> "iconSize")
-    const sizeProperty = propertyKey.replace(/Icon$/, 'IconSize') || propertyKey + 'Size';
+    // Ermittle Size-Property intelligent
+    // Prüfe zuerst, ob es ein explizites data-size-property Attribut gibt
+    let sizeProperty = iconElement.getAttribute('data-size-property');
+
+    if (!sizeProperty) {
+        // Versuche intelligente Ableitung
+        // Für "iconClass" -> "iconSizeType"
+        // Für "primaryButtonIcon" -> "primaryButtonIconSize"
+        // Für "dashboardIcon" -> "iconSizeType"
+        if (propertyKey === 'iconClass' || propertyKey === 'dashboardIcon') {
+            sizeProperty = 'iconSizeType';
+        } else if (propertyKey.endsWith('Icon')) {
+            sizeProperty = propertyKey + 'Size';
+        } else {
+            // Fallback: füge Size hinzu
+            sizeProperty = propertyKey + 'Size';
+        }
+    }
 
     // Aktuelle Größe ermitteln
     const currentSize = module.properties[sizeProperty] ||
@@ -660,25 +676,37 @@ function openIconEditorWithSize(iconElement, propertyKey, moduleId) {
     // Speichern-Handler
     modal.querySelector('#icon-editor-save').onclick = () => {
         const newSize = parseFloat(numberInput.value);
+        let changed = false;
 
         // Aktualisiere Icon
         if (selectedIcon && selectedIcon !== module.properties[propertyKey]) {
-            iconElement.innerHTML = selectedIcon;
             module.properties[propertyKey] = selectedIcon;
-            if (typeof syncProperty === 'function') {
-                syncProperty(moduleId, propertyKey, selectedIcon, 'canvas');
-            }
+            changed = true;
+            console.log('✅ Icon geändert:', propertyKey, '=', selectedIcon);
         }
 
         // Aktualisiere Größe
         const newSizeValue = `${newSize}${sizeUnit}`;
-        iconElement.style.fontSize = newSizeValue;
-        module.properties[sizeProperty] = newSizeValue;
-        if (typeof syncProperty === 'function') {
-            syncProperty(moduleId, sizeProperty, newSizeValue, 'canvas');
+        if (module.properties[sizeProperty] !== newSizeValue) {
+            module.properties[sizeProperty] = newSizeValue;
+            changed = true;
+            console.log('✅ Icon-Größe geändert:', sizeProperty, '=', newSizeValue);
         }
 
-        console.log('✅ Icon aktualisiert:', { icon: selectedIcon, size: newSizeValue });
+        // Wenn etwas geändert wurde, re-rendere das Canvas
+        if (changed) {
+            console.log('🔄 Re-rendering Canvas nach Icon-Änderung...');
+            if (typeof renderCanvas === 'function') {
+                renderCanvas();
+            }
+
+            // Aktualisiere auch das Property Panel
+            if (typeof renderPropertyPanel === 'function') {
+                renderPropertyPanel();
+            }
+        }
+
+        console.log('✅ Icon-Editor gespeichert:', { icon: selectedIcon, size: newSizeValue });
         closeModal();
     };
 
@@ -876,29 +904,42 @@ function openImageEditorWithSize(imgElement, propertyKey, moduleId) {
     modal.querySelector('#image-editor-save').onclick = () => {
         const newWidth = parseInt(numberInput.value);
         const newUrl = urlInput.value;
+        let changed = false;
 
         // Aktualisiere Bild-URL
         if (newUrl && newUrl !== module.properties[propertyKey]) {
-            imgElement.src = newUrl;
             module.properties[propertyKey] = newUrl;
-            if (typeof syncProperty === 'function') {
-                syncProperty(moduleId, propertyKey, newUrl, 'canvas');
+            changed = true;
+            console.log('✅ Bild-URL geändert:', propertyKey, '=', newUrl);
+        }
+
+        // Aktualisiere Breite (falls gewünscht)
+        // Hinweis: Breite wird meist nicht als separates Property gespeichert,
+        // sondern über Inline-Styles. Wir speichern es trotzdem für Konsistenz.
+        const newWidthValue = `${newWidth}%`;
+        const widthProperty = propertyKey.replace(/Image$/, 'ImageWidth') || propertyKey + 'Width';
+
+        // Nur speichern wenn es sich geändert hat
+        if (module.properties[widthProperty] !== newWidthValue) {
+            module.properties[widthProperty] = newWidthValue;
+            // Breiten-Property ist optional - nur loggen wenn es existiert
+            console.log('ℹ️ Bild-Breite gesetzt:', widthProperty, '=', newWidthValue);
+        }
+
+        // Wenn etwas geändert wurde, re-rendere das Canvas
+        if (changed) {
+            console.log('🔄 Re-rendering Canvas nach Bild-Änderung...');
+            if (typeof renderCanvas === 'function') {
+                renderCanvas();
+            }
+
+            // Aktualisiere auch das Property Panel
+            if (typeof renderPropertyPanel === 'function') {
+                renderPropertyPanel();
             }
         }
 
-        // Aktualisiere Breite
-        const newWidthValue = `${newWidth}%`;
-        imgElement.style.width = newWidthValue;
-        imgElement.style.height = 'auto'; // Behalte Aspect Ratio
-
-        // Speichere Breite in Properties (falls Property existiert)
-        const widthProperty = propertyKey.replace(/Image$/, 'ImageWidth') || propertyKey + 'Width';
-        module.properties[widthProperty] = newWidthValue;
-        if (typeof syncProperty === 'function') {
-            syncProperty(moduleId, widthProperty, newWidthValue, 'canvas');
-        }
-
-        console.log('✅ Bild aktualisiert:', { url: newUrl, width: newWidthValue });
+        console.log('✅ Bild-Editor gespeichert:', { url: newUrl, width: newWidthValue });
         closeModal();
     };
 
@@ -1747,9 +1788,15 @@ function openImagePicker() {
         // Aktualisiere Bild
         module.properties[propertyKey] = newUrl;
 
-        // Synchronisiere mit Canvas und Property Panel
-        if (typeof syncProperty === 'function') {
-            syncProperty(moduleId, propertyKey, newUrl, 'canvas');
+        // Re-rendere Canvas um Änderungen zu übernehmen
+        console.log('🔄 Re-rendering Canvas nach Bild-Änderung...');
+        if (typeof renderCanvas === 'function') {
+            renderCanvas();
+        }
+
+        // Aktualisiere auch das Property Panel
+        if (typeof renderPropertyPanel === 'function') {
+            renderPropertyPanel();
         }
 
         // Verstecke Overlay
@@ -1780,9 +1827,15 @@ function editImageAltText() {
     if (newAlt !== null && newAlt !== currentAlt) {
         module.properties[altPropertyKey] = newAlt;
 
-        // Synchronisiere mit Property Panel
-        if (typeof syncProperty === 'function') {
-            syncProperty(moduleId, altPropertyKey, newAlt, 'canvas');
+        // Re-rendere Canvas um Änderungen zu übernehmen
+        console.log('🔄 Re-rendering Canvas nach Alt-Text-Änderung...');
+        if (typeof renderCanvas === 'function') {
+            renderCanvas();
+        }
+
+        // Aktualisiere auch das Property Panel
+        if (typeof renderPropertyPanel === 'function') {
+            renderPropertyPanel();
         }
 
         // Verstecke Overlay
