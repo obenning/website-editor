@@ -94,11 +94,11 @@
             // === BATCH-CONVERTER FÜR PROPERTIES ===
             convertTypeProperties(props, mappings) {
                 const converted = {};
-                
+
                 Object.entries(mappings).forEach(([propKey, mapType]) => {
                     const value = props[propKey];
                     if (!value) return;
-                    
+
                     switch(mapType) {
                         case 'spacing':
                             converted[propKey] = this.convertSpacing(value);
@@ -119,8 +119,30 @@
                             converted[propKey] = value;
                     }
                 });
-                
+
                 return converted;
+            },
+
+            // === ICON-SIZE CONVERTER (UNIVERSELL) ===
+            resolveIconSizes(props) {
+                // Durchsuche alle Properties und mappe Icon-Sizes
+                if (!window.TYPE_MAPPINGS || !window.TYPE_MAPPINGS.iconSize) {
+                    console.warn('⚠️ TYPE_MAPPINGS.iconSize nicht verfügbar');
+                    return props;
+                }
+
+                Object.keys(props).forEach(key => {
+                    // Alle Properties die mit "IconSize" enden oder "iconSize" sind
+                    if ((key.endsWith('IconSize') || key === 'iconSize' || key.endsWith('IconSizeType')) && props[key]) {
+                        const value = props[key];
+                        if (window.TYPE_MAPPINGS.iconSize[value]) {
+                            props[key] = window.TYPE_MAPPINGS.iconSize[value];
+                            console.log(`✅ Icon-Size gemappt: ${key}: ${value} → ${props[key]}`);
+                        }
+                    }
+                });
+
+                return props;
             }
         };
 
@@ -2362,6 +2384,11 @@
 
             const props = module.properties;
 
+            // === TYPE-MAPPINGS FÜR ICON-SIZES ANWENDEN ===
+            if (window.kerberosHelpers && window.kerberosHelpers.resolveIconSizes) {
+                window.kerberosHelpers.resolveIconSizes(props);
+            }
+
             // Icon-Größen-Presets anwenden
             const iconSizes = {
                 'small': { size: '2rem', background: '60px' },
@@ -4407,6 +4434,12 @@
             const showIcons = props.showIcons === 'true';
             let benefitItems = '';
 
+            // === TYPE-MAPPINGS FÜR ICON-SIZES ANWENDEN ===
+            // Verwende die universelle resolveIconSizes-Funktion
+            if (window.kerberosHelpers && window.kerberosHelpers.resolveIconSizes) {
+                window.kerberosHelpers.resolveIconSizes(props);
+            }
+
             // BUGFIX: Grid-Columns korrekt verarbeiten
             const gridColumns = props.gridColumns || '4';
             let benefitMinWidth;
@@ -5073,6 +5106,11 @@
         function processKerberosGuideFlow(module, html) {
             const props = module.properties;
             const moduleId = module.id;
+
+            // === TYPE-MAPPINGS FÜR ICON-SIZES ANWENDEN ===
+            if (window.kerberosHelpers && window.kerberosHelpers.resolveIconSizes) {
+                window.kerberosHelpers.resolveIconSizes(props);
+            }
 
             // === CHARACTER-CODES für 100% VS-Code-Sicherheit ===
             const colon = String.fromCharCode(58);        // ":"
@@ -6648,7 +6686,12 @@
         function processKerberosFeaturesGrid(module, html) {
             console.log('🎯 Processing Features Grid Module:', module.id);
             const props = module.properties;
-            
+
+            // === TYPE-MAPPINGS FÜR ICON-SIZES ANWENDEN ===
+            if (window.kerberosHelpers && window.kerberosHelpers.resolveIconSizes) {
+                window.kerberosHelpers.resolveIconSizes(props);
+            }
+
             // === UNIVERSELLE BUTTON-STYLES ===
             const buttonStyles = getUniversalButtonStyles({
                 buttonStyleType: props.buttonStyleType || 'primary',
