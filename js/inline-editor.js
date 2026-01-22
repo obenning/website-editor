@@ -67,6 +67,9 @@ function setupInlineEditorListeners() {
     // Verhindere Link-Navigation im Canvas (für Button-Editing)
     canvas.addEventListener('click', preventLinkNavigation, true);
 
+    // Context-Menu für Section-Padding
+    canvas.addEventListener('contextmenu', handleSectionContextMenu, true);
+
     // Escape-Taste zum Abbrechen
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
@@ -225,9 +228,6 @@ function handleSingleClick(e) {
         return; // Lasse normale Handler durchlaufen
     }
 
-    // Nur mit Shift+Click für spezielle Editoren
-    if (!e.shiftKey) return;
-
     const propertyElement = e.target.closest('[data-property]');
     if (!propertyElement) return;
 
@@ -238,6 +238,29 @@ function handleSingleClick(e) {
 
     const moduleId = moduleElement.getAttribute('data-module-id');
 
+    // Bild-Editor für IMG-Elemente (bei normalem Click)
+    if (e.target.tagName === 'IMG' && propertyKey) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        console.log('🖼️ Bild-Editor aktiviert:', { moduleId, propertyKey });
+        openImageEditorWithSize(e.target, propertyKey, moduleId);
+        return;
+    }
+
+    // Icon-Picker für Icon-Elemente (bei normalem Click)
+    if (isIconElement(e.target) || isIconProperty(propertyKey)) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        console.log('⭐ Icon-Editor aktiviert:', { moduleId, propertyKey });
+        openIconEditorWithSize(propertyElement, propertyKey, moduleId);
+        return;
+    }
+
+    // Nur mit Shift+Click für Color-Picker
+    if (!e.shiftKey) return;
+
     // Color-Picker für Farb-Properties
     if (isColorProperty(propertyKey)) {
         e.preventDefault();
@@ -247,16 +270,19 @@ function handleSingleClick(e) {
         openColorPicker(propertyElement, propertyKey, moduleId);
         return;
     }
+}
 
-    // Icon-Picker für Icon-Properties
-    if (isIconProperty(propertyKey)) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        console.log('⭐ Icon-Picker aktiviert:', { moduleId, propertyKey });
-        openIconPicker(propertyKey, moduleId);
-        return;
-    }
+/**
+ * Prüft ob das Element ein Icon ist
+ */
+function isIconElement(element) {
+    // Prüfe auf Icon-Classes oder Font-Awesome Icons
+    return element.classList.contains('fa') ||
+           element.classList.contains('fas') ||
+           element.classList.contains('far') ||
+           element.classList.contains('fab') ||
+           element.tagName === 'I' ||
+           (element.style && element.style.fontFamily && element.style.fontFamily.includes('Font Awesome'));
 }
 
 /**
@@ -388,6 +414,407 @@ function openIconPicker(propertyKey, moduleId) {
     } else {
         alert('Icon-Picker noch nicht verfügbar. Nutzen Sie das Property Panel.');
     }
+}
+
+/**
+ * Öffnet Icon-Editor mit Größen-Kontrolle
+ */
+function openIconEditorWithSize(iconElement, propertyKey, moduleId) {
+    const module = modules.find(m => m.id == moduleId);
+    if (!module) return;
+
+    // Ermittle Size-Property (z.B. "icon" -> "iconSize")
+    const sizeProperty = propertyKey.replace(/Icon$/, 'IconSize') || propertyKey + 'Size';
+
+    // Aktuelle Größe ermitteln
+    const currentSize = module.properties[sizeProperty] ||
+                       iconElement.style.fontSize ||
+                       window.getComputedStyle(iconElement).fontSize ||
+                       '2rem';
+
+    // Parse size to number (remove 'rem', 'px', etc.)
+    const sizeValue = parseFloat(currentSize) || 2;
+    const sizeUnit = currentSize.replace(/[\d.]/g, '').trim() || 'rem';
+
+    // Erstelle Modal
+    const modal = document.createElement('div');
+    modal.className = 'inline-editor-modal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        z-index: 10000;
+        max-width: 500px;
+        width: 90%;
+    `;
+
+    // Backdrop
+    const backdrop = document.createElement('div');
+    backdrop.className = 'inline-editor-backdrop';
+    backdrop.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 9999;
+    `;
+
+    modal.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3 style="margin: 0; font-family: var(--heading-font-font-family); color: #063AA8;">⭐ Icon bearbeiten</h3>
+            <button class="close-modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6c757d;">&times;</button>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #495057;">
+                Icon-Größe: <span id="icon-size-display">${sizeValue.toFixed(1)}</span>${sizeUnit}
+            </label>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <input type="range" id="icon-size-slider" min="0.5" max="10" step="0.1" value="${sizeValue}" style="
+                    flex: 1;
+                    height: 8px;
+                    border-radius: 4px;
+                    background: linear-gradient(to right, #063AA8, #009CE6);
+                    cursor: pointer;
+                ">
+                <input type="number" id="icon-size-input" value="${sizeValue.toFixed(1)}" min="0.5" max="10" step="0.1" style="
+                    width: 80px;
+                    padding: 0.5rem;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    text-align: center;
+                    font-size: 1rem;
+                ">
+            </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #495057;">
+                Icon-Code (Font Awesome):
+            </label>
+            <input type="text" id="icon-code-input" value="${module.properties[propertyKey] || ''}" placeholder="z.B. &#xf007;" style="
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 1rem;
+                font-family: monospace;
+            ">
+            <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #6c757d;">
+                Tipp: Font Awesome Icons im Format &#xf123; oder besuchen Sie fontawesome.com
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem;">
+            <button id="icon-editor-save" style="
+                flex: 1;
+                padding: 0.75rem;
+                background: #063AA8;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 1rem;
+            ">✓ Speichern</button>
+            <button id="icon-editor-cancel" style="
+                flex: 1;
+                padding: 0.75rem;
+                background: #6c757d;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 1rem;
+            ">✗ Abbrechen</button>
+        </div>
+    `;
+
+    document.body.appendChild(backdrop);
+    document.body.appendChild(modal);
+
+    // Event-Listener für Größen-Regler
+    const slider = modal.querySelector('#icon-size-slider');
+    const numberInput = modal.querySelector('#icon-size-input');
+    const sizeDisplay = modal.querySelector('#icon-size-display');
+
+    slider.oninput = (e) => {
+        const newSize = parseFloat(e.target.value);
+        numberInput.value = newSize.toFixed(1);
+        sizeDisplay.textContent = newSize.toFixed(1);
+    };
+
+    numberInput.oninput = (e) => {
+        const newSize = parseFloat(e.target.value);
+        if (!isNaN(newSize) && newSize >= 0.5 && newSize <= 10) {
+            slider.value = newSize;
+            sizeDisplay.textContent = newSize.toFixed(1);
+        }
+    };
+
+    // Schließen-Handler
+    const closeModal = () => {
+        modal.remove();
+        backdrop.remove();
+    };
+
+    // Speichern-Handler
+    modal.querySelector('#icon-editor-save').onclick = () => {
+        const newSize = parseFloat(numberInput.value);
+        const newIcon = modal.querySelector('#icon-code-input').value;
+
+        // Aktualisiere Icon
+        if (newIcon && newIcon !== module.properties[propertyKey]) {
+            iconElement.innerHTML = newIcon;
+            module.properties[propertyKey] = newIcon;
+            if (typeof syncProperty === 'function') {
+                syncProperty(moduleId, propertyKey, newIcon, 'canvas');
+            }
+        }
+
+        // Aktualisiere Größe
+        const newSizeValue = `${newSize}${sizeUnit}`;
+        iconElement.style.fontSize = newSizeValue;
+        module.properties[sizeProperty] = newSizeValue;
+        if (typeof syncProperty === 'function') {
+            syncProperty(moduleId, sizeProperty, newSizeValue, 'canvas');
+        }
+
+        console.log('✅ Icon aktualisiert:', { icon: newIcon, size: newSizeValue });
+        closeModal();
+    };
+
+    modal.querySelector('#icon-editor-cancel').onclick = closeModal;
+    modal.querySelector('.close-modal').onclick = closeModal;
+    backdrop.onclick = closeModal;
+}
+
+/**
+ * Öffnet Bild-Editor mit Größen-Kontrolle
+ */
+function openImageEditorWithSize(imgElement, propertyKey, moduleId) {
+    const module = modules.find(m => m.id == moduleId);
+    if (!module) return;
+
+    // Aktuelle Größe ermitteln
+    const currentWidth = imgElement.style.width || imgElement.width || 'auto';
+    const currentHeight = imgElement.style.height || imgElement.height || 'auto';
+
+    // Parse width to percentage or pixels
+    let widthValue = 100;
+    let widthUnit = '%';
+
+    if (currentWidth !== 'auto') {
+        const match = currentWidth.match(/^([\d.]+)(\D+)$/);
+        if (match) {
+            widthValue = parseFloat(match[1]);
+            widthUnit = match[2];
+        }
+    }
+
+    // Aktuelle Bild-URL
+    const currentImage = module.properties[propertyKey] || imgElement.src;
+
+    // Erstelle Modal
+    const modal = document.createElement('div');
+    modal.className = 'inline-editor-modal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        z-index: 10000;
+        max-width: 600px;
+        width: 90%;
+    `;
+
+    // Backdrop
+    const backdrop = document.createElement('div');
+    backdrop.className = 'inline-editor-backdrop';
+    backdrop.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 9999;
+    `;
+
+    modal.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3 style="margin: 0; font-family: var(--heading-font-font-family); color: #063AA8;">🖼️ Bild bearbeiten</h3>
+            <button class="close-modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6c757d;">&times;</button>
+        </div>
+
+        <div style="margin-bottom: 1.5rem; text-align: center;">
+            <img id="image-preview" src="${currentImage}" style="max-width: 100%; max-height: 200px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #495057;">
+                Bild-Breite: <span id="image-width-display">${widthValue.toFixed(0)}</span>${widthUnit}
+            </label>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <input type="range" id="image-width-slider" min="10" max="100" step="1" value="${widthValue}" style="
+                    flex: 1;
+                    height: 8px;
+                    border-radius: 4px;
+                    background: linear-gradient(to right, #063AA8, #009CE6);
+                    cursor: pointer;
+                ">
+                <input type="number" id="image-width-input" value="${widthValue.toFixed(0)}" min="10" max="100" step="1" style="
+                    width: 80px;
+                    padding: 0.5rem;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    text-align: center;
+                    font-size: 1rem;
+                ">
+            </div>
+            <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #6c757d;">
+                Einheit: Prozent (%) der Container-Breite
+            </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #495057;">
+                Bild-URL:
+            </label>
+            <input type="text" id="image-url-input" value="${currentImage}" placeholder="https://..." style="
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 0.9rem;
+            ">
+            <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #6c757d;">
+                Oder laden Sie ein Bild hoch:
+                <input type="file" id="image-file-input" accept="image/*" style="margin-top: 0.5rem;">
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem;">
+            <button id="image-editor-save" style="
+                flex: 1;
+                padding: 0.75rem;
+                background: #063AA8;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 1rem;
+            ">✓ Speichern</button>
+            <button id="image-editor-cancel" style="
+                flex: 1;
+                padding: 0.75rem;
+                background: #6c757d;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 1rem;
+            ">✗ Abbrechen</button>
+        </div>
+    `;
+
+    document.body.appendChild(backdrop);
+    document.body.appendChild(modal);
+
+    // Event-Listener für Größen-Regler
+    const slider = modal.querySelector('#image-width-slider');
+    const numberInput = modal.querySelector('#image-width-input');
+    const widthDisplay = modal.querySelector('#image-width-display');
+    const urlInput = modal.querySelector('#image-url-input');
+    const fileInput = modal.querySelector('#image-file-input');
+    const preview = modal.querySelector('#image-preview');
+
+    slider.oninput = (e) => {
+        const newWidth = parseInt(e.target.value);
+        numberInput.value = newWidth;
+        widthDisplay.textContent = newWidth;
+    };
+
+    numberInput.oninput = (e) => {
+        const newWidth = parseInt(e.target.value);
+        if (!isNaN(newWidth) && newWidth >= 10 && newWidth <= 100) {
+            slider.value = newWidth;
+            widthDisplay.textContent = newWidth;
+        }
+    };
+
+    // URL-Änderung -> Update Preview
+    urlInput.oninput = (e) => {
+        preview.src = e.target.value;
+    };
+
+    // File-Upload
+    fileInput.onchange = (e) => {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const dataUrl = event.target.result;
+                preview.src = dataUrl;
+                urlInput.value = dataUrl;
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    // Schließen-Handler
+    const closeModal = () => {
+        modal.remove();
+        backdrop.remove();
+    };
+
+    // Speichern-Handler
+    modal.querySelector('#image-editor-save').onclick = () => {
+        const newWidth = parseInt(numberInput.value);
+        const newUrl = urlInput.value;
+
+        // Aktualisiere Bild-URL
+        if (newUrl && newUrl !== module.properties[propertyKey]) {
+            imgElement.src = newUrl;
+            module.properties[propertyKey] = newUrl;
+            if (typeof syncProperty === 'function') {
+                syncProperty(moduleId, propertyKey, newUrl, 'canvas');
+            }
+        }
+
+        // Aktualisiere Breite
+        const newWidthValue = `${newWidth}%`;
+        imgElement.style.width = newWidthValue;
+        imgElement.style.height = 'auto'; // Behalte Aspect Ratio
+
+        // Speichere Breite in Properties (falls Property existiert)
+        const widthProperty = propertyKey.replace(/Image$/, 'ImageWidth') || propertyKey + 'Width';
+        module.properties[widthProperty] = newWidthValue;
+        if (typeof syncProperty === 'function') {
+            syncProperty(moduleId, widthProperty, newWidthValue, 'canvas');
+        }
+
+        console.log('✅ Bild aktualisiert:', { url: newUrl, width: newWidthValue });
+        closeModal();
+    };
+
+    modal.querySelector('#image-editor-cancel').onclick = closeModal;
+    modal.querySelector('.close-modal').onclick = closeModal;
+    backdrop.onclick = closeModal;
 }
 
 // =====================================================
@@ -767,6 +1194,17 @@ function createButtonEditMenu() {
             cursor: pointer;
             font-size: 0.875rem;
         ">🔗 Link bearbeiten</button>
+        <button id="btn-edit-colors" style="
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        ">🎨 Farben ändern</button>
         <button id="btn-edit-close" style="
             width: 100%;
             padding: 0.5rem;
@@ -801,6 +1239,11 @@ function showButtonEditMenu(buttonElement, moduleElement) {
             hideButtonEditMenu();
         };
 
+        document.getElementById('btn-edit-colors').onclick = () => {
+            editButtonColors(currentButtonElement, currentButtonModuleId);
+            hideButtonEditMenu();
+        };
+
         document.getElementById('btn-edit-close').onclick = () => {
             hideButtonEditMenu();
         };
@@ -814,8 +1257,14 @@ function showButtonEditMenu(buttonElement, moduleElement) {
     const textProperty = buttonElement.getAttribute('data-property');
     currentButtonTextProperty = textProperty;
 
-    // Versuche Link-Property zu ermitteln (meist buttonLink, primaryButtonLink, etc.)
-    if (textProperty && textProperty.includes('Text')) {
+    // Versuche Link-Property zu ermitteln
+    // 1. Prüfe ob es ein explizites data-link-property gibt
+    const explicitLinkProperty = buttonElement.getAttribute('data-link-property');
+    if (explicitLinkProperty) {
+        currentButtonLinkProperty = explicitLinkProperty;
+    }
+    // 2. Fallback: Versuche aus Text-Property abzuleiten
+    else if (textProperty && textProperty.includes('Text')) {
         currentButtonLinkProperty = textProperty.replace('Text', 'Link');
     } else if (textProperty && textProperty.includes('Button')) {
         currentButtonLinkProperty = textProperty + 'Link';
@@ -907,6 +1356,147 @@ function editButtonLink(buttonElement, moduleId) {
 
         console.log('✅ Button-Link aktualisiert:', currentButtonLinkProperty, newLink);
     }
+}
+
+/**
+ * Bearbeitet Button-Farben (Background und Text)
+ */
+function editButtonColors(buttonElement, moduleId) {
+    if (!moduleId) {
+        alert('⚠️ Modul konnte nicht gefunden werden');
+        return;
+    }
+
+    const module = modules.find(m => m.id == moduleId);
+    if (!module) return;
+
+    // Ermittle die Property-Namen für die Farben
+    const textProperty = buttonElement.getAttribute('data-property');
+    let backgroundProperty = null;
+    let colorProperty = null;
+
+    // Versuche Property-Namen zu ermitteln
+    if (textProperty) {
+        // z.B. "primaryButtonText" -> "primaryButtonBackground", "primaryButtonColor"
+        const prefix = textProperty.replace(/Text$/, '');
+        backgroundProperty = prefix + 'Background';
+        colorProperty = prefix + 'Color';
+    }
+
+    // Fallback: Prüfe common button properties
+    if (!backgroundProperty) {
+        const possibleBgProps = ['primaryButtonBackground', 'buttonBackground', 'ctaBackgroundColor'];
+        const possibleColorProps = ['primaryButtonColor', 'buttonColor', 'ctaTextColor'];
+
+        for (const prop of possibleBgProps) {
+            if (module.properties.hasOwnProperty(prop)) {
+                backgroundProperty = prop;
+                break;
+            }
+        }
+
+        for (const prop of possibleColorProps) {
+            if (module.properties.hasOwnProperty(prop)) {
+                colorProperty = prop;
+                break;
+            }
+        }
+    }
+
+    if (!backgroundProperty && !colorProperty) {
+        alert('⚠️ Farb-Properties konnten nicht ermittelt werden');
+        return;
+    }
+
+    // Aktuelle Farben ermitteln
+    const currentBg = module.properties[backgroundProperty] || '#063AA8';
+    const currentColor = module.properties[colorProperty] || '#FFFFFF';
+
+    // Erstelle Color-Picker-Dialog
+    const dialog = document.createElement('div');
+    dialog.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        border: 2px solid #063AA8;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        z-index: 10001;
+        min-width: 350px;
+    `;
+
+    dialog.innerHTML = `
+        <div style="margin-bottom: 1rem; font-weight: 600; color: #063AA8; font-size: 1.1rem;">
+            🎨 Button-Farben bearbeiten
+        </div>
+        <div style="margin-bottom: 1rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Hintergrundfarbe:</label>
+            <input type="color" id="btn-bg-color" value="${currentBg}" style="width: 100%; height: 40px; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Textfarbe:</label>
+            <input type="color" id="btn-text-color" value="${currentColor}" style="width: 100%; height: 40px; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+            <button id="btn-colors-save" style="
+                flex: 1;
+                padding: 0.75rem;
+                background: #063AA8;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: 600;
+            ">✓ Speichern</button>
+            <button id="btn-colors-cancel" style="
+                flex: 1;
+                padding: 0.75rem;
+                background: #6c757d;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: 600;
+            ">✗ Abbrechen</button>
+        </div>
+    `;
+
+    document.body.appendChild(dialog);
+
+    // Event-Listener
+    document.getElementById('btn-colors-save').onclick = () => {
+        const newBg = document.getElementById('btn-bg-color').value;
+        const newColor = document.getElementById('btn-text-color').value;
+
+        // Aktualisiere Button-Style direkt
+        buttonElement.style.background = newBg;
+        buttonElement.style.color = newColor;
+
+        // Aktualisiere Module-Properties
+        if (backgroundProperty) {
+            module.properties[backgroundProperty] = newBg;
+            if (typeof syncProperty === 'function') {
+                syncProperty(moduleId, backgroundProperty, newBg, 'canvas');
+            }
+        }
+
+        if (colorProperty) {
+            module.properties[colorProperty] = newColor;
+            if (typeof syncProperty === 'function') {
+                syncProperty(moduleId, colorProperty, newColor, 'canvas');
+            }
+        }
+
+        console.log('✅ Button-Farben aktualisiert:', { backgroundProperty, colorProperty });
+        dialog.remove();
+    };
+
+    document.getElementById('btn-colors-cancel').onclick = () => {
+        dialog.remove();
+    };
 }
 
 // =====================================================
@@ -1135,6 +1725,214 @@ function enhanceButtonMenuWithStyles() {
 
     // TODO: In zukünftiger Version implementieren
     // Für jetzt haben wir bereits Text und Link-Editing
+}
+
+/**
+ * Behandelt Context-Menu (Rechtsklick) auf Section-Elemente
+ */
+function handleSectionContextMenu(e) {
+    // Prüfe ob auf Section geklickt wurde
+    const section = e.target.closest('section.kerberos-module');
+
+    if (!section) return;
+
+    const moduleElement = section.closest('.canvas-module');
+    if (!moduleElement) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const moduleId = moduleElement.getAttribute('data-module-id');
+    showSectionPaddingMenu(section, moduleId, e.clientX, e.clientY);
+}
+
+let sectionPaddingMenu = null;
+let currentSectionElement = null;
+let currentSectionModuleId = null;
+
+/**
+ * Zeigt das Section-Padding-Menu
+ */
+function showSectionPaddingMenu(sectionElement, moduleId, x, y) {
+    if (!sectionPaddingMenu) {
+        sectionPaddingMenu = createSectionPaddingMenu();
+    }
+
+    currentSectionElement = sectionElement;
+    currentSectionModuleId = moduleId;
+
+    // Positioniere Menu
+    sectionPaddingMenu.style.display = 'block';
+    sectionPaddingMenu.style.left = `${x}px`;
+    sectionPaddingMenu.style.top = `${y}px`;
+
+    // Lade aktuelle Werte
+    const module = modules.find(m => m.id == moduleId);
+    if (module) {
+        const sectionSpacing = module.properties.sectionSpacing || '4rem 0';
+        const padding = module.properties.padding || '2rem';
+
+        // Zeige Werte in Inputs (vereinfacht)
+        document.getElementById('section-spacing-input').value = sectionSpacing;
+        document.getElementById('section-padding-input').value = padding;
+    }
+
+    // Schließe bei Klick außerhalb
+    setTimeout(() => {
+        document.addEventListener('click', closeSectionMenuOnClickOutside);
+    }, 100);
+}
+
+/**
+ * Erstellt das Section-Padding-Menu
+ */
+function createSectionPaddingMenu() {
+    const menu = document.createElement('div');
+    menu.id = 'section-padding-menu';
+    menu.style.cssText = `
+        position: fixed;
+        background: white;
+        border: 2px solid #063AA8;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        min-width: 300px;
+        display: none;
+    `;
+
+    menu.innerHTML = `
+        <div style="margin-bottom: 0.75rem; font-weight: 600; color: #063AA8; font-size: 0.9rem;">
+            📐 Section-Abstände bearbeiten
+        </div>
+        <div style="margin-bottom: 0.75rem;">
+            <label style="display: block; margin-bottom: 0.25rem; font-size: 0.85rem; color: #495057;">
+                Außen-Abstand (sectionSpacing):
+            </label>
+            <input type="text" id="section-spacing-input" placeholder="z.B. 4rem 0" style="
+                width: 100%;
+                padding: 0.5rem;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 0.875rem;
+            ">
+            <div style="font-size: 0.75rem; color: #6c757d; margin-top: 0.25rem;">
+                Format: "oben/unten links/rechts" (z.B. "4rem 0")
+            </div>
+        </div>
+        <div style="margin-bottom: 1rem;">
+            <label style="display: block; margin-bottom: 0.25rem; font-size: 0.85rem; color: #495057;">
+                Innen-Abstand (padding):
+            </label>
+            <input type="text" id="section-padding-input" placeholder="z.B. 2rem" style="
+                width: 100%;
+                padding: 0.5rem;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 0.875rem;
+            ">
+            <div style="font-size: 0.75rem; color: #6c757d; margin-top: 0.25rem;">
+                Format: "2rem" oder "1rem 2rem"
+            </div>
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+            <button id="section-padding-save" style="
+                flex: 1;
+                padding: 0.5rem;
+                background: #063AA8;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.875rem;
+                font-weight: 600;
+            ">✓ Speichern</button>
+            <button id="section-padding-close" style="
+                flex: 1;
+                padding: 0.5rem;
+                background: #6c757d;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.875rem;
+                font-weight: 600;
+            ">✗ Abbrechen</button>
+        </div>
+    `;
+
+    document.body.appendChild(menu);
+
+    // Event-Listener
+    document.getElementById('section-padding-save').onclick = () => {
+        saveSectionPadding();
+    };
+
+    document.getElementById('section-padding-close').onclick = () => {
+        hideSectionPaddingMenu();
+    };
+
+    return menu;
+}
+
+/**
+ * Speichert Section-Padding
+ */
+function saveSectionPadding() {
+    if (!currentSectionElement || !currentSectionModuleId) return;
+
+    const module = modules.find(m => m.id == currentSectionModuleId);
+    if (!module) return;
+
+    const sectionSpacing = document.getElementById('section-spacing-input').value;
+    const padding = document.getElementById('section-padding-input').value;
+
+    // Aktualisiere Section-Style direkt
+    if (sectionSpacing) {
+        currentSectionElement.style.padding = sectionSpacing;
+        module.properties.sectionSpacing = sectionSpacing;
+        if (typeof syncProperty === 'function') {
+            syncProperty(currentSectionModuleId, 'sectionSpacing', sectionSpacing, 'canvas');
+        }
+    }
+
+    // Für inneres Padding müssten wir das innere Div finden
+    // Das ist template-spezifisch, daher vereinfacht:
+    if (padding && module.properties.hasOwnProperty('padding')) {
+        module.properties.padding = padding;
+        if (typeof syncProperty === 'function') {
+            syncProperty(currentSectionModuleId, 'padding', padding, 'canvas');
+        }
+    }
+
+    console.log('✅ Section-Padding aktualisiert');
+    hideSectionPaddingMenu();
+
+    // Re-render Module
+    if (typeof renderCanvas === 'function') {
+        renderCanvas();
+    }
+}
+
+/**
+ * Versteckt Section-Padding-Menu
+ */
+function hideSectionPaddingMenu() {
+    if (sectionPaddingMenu) {
+        sectionPaddingMenu.style.display = 'none';
+    }
+    currentSectionElement = null;
+    currentSectionModuleId = null;
+    document.removeEventListener('click', closeSectionMenuOnClickOutside);
+}
+
+/**
+ * Schließt Menu bei Klick außerhalb
+ */
+function closeSectionMenuOnClickOutside(e) {
+    if (sectionPaddingMenu && !sectionPaddingMenu.contains(e.target)) {
+        hideSectionPaddingMenu();
+    }
 }
 
 // =====================================================
