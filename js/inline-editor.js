@@ -466,6 +466,28 @@ function openIconEditorWithSize(iconElement, propertyKey, moduleId) {
         z-index: 9999;
     `;
 
+    // Generiere Icon-Grid
+    let iconGridHTML = '';
+    if (typeof FONT_AWESOME_ICONS !== 'undefined' && FONT_AWESOME_ICONS.length > 0) {
+        iconGridHTML = FONT_AWESOME_ICONS.map(icon => `
+            <div class="icon-picker-option" data-icon="${icon.unicode}" title="${icon.name}" style="
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 50px;
+                height: 50px;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.2s;
+                font-size: 1.5rem;
+                background: white;
+            " onmouseover="this.style.borderColor='#063AA8'; this.style.background='#f0f7ff';" onmouseout="this.style.borderColor='#ddd'; this.style.background='white';">
+                <span style="font-family: 'Font Awesome 5 Pro';">${icon.unicode}</span>
+            </div>
+        `).join('');
+    }
+
     modal.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
             <h3 style="margin: 0; font-family: var(--heading-font-font-family); color: #063AA8;">⭐ Icon bearbeiten</h3>
@@ -496,19 +518,49 @@ function openIconEditorWithSize(iconElement, propertyKey, moduleId) {
         </div>
 
         <div style="margin-bottom: 1.5rem;">
-            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #495057;">
-                Icon-Code (Font Awesome):
+            <label style="display: block; margin-bottom: 0.75rem; font-weight: 600; color: #495057;">
+                Icon auswählen:
             </label>
-            <input type="text" id="icon-code-input" value="${module.properties[propertyKey] || ''}" placeholder="z.B. &#xf007;" style="
-                width: 100%;
-                padding: 0.75rem;
+            <div style="margin-bottom: 1rem;">
+                <input type="text" id="icon-search" placeholder="Icon suchen..." style="
+                    width: 100%;
+                    padding: 0.75rem;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    font-size: 1rem;
+                ">
+            </div>
+            <div id="icon-picker-grid" style="
+                max-height: 300px;
+                overflow-y: auto;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+                gap: 0.5rem;
+                padding: 0.5rem;
                 border: 1px solid #ddd;
                 border-radius: 4px;
-                font-size: 1rem;
-                font-family: monospace;
+                background: #f8f9fa;
             ">
-            <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #6c757d;">
-                Tipp: Font Awesome Icons im Format &#xf123; oder besuchen Sie fontawesome.com
+                ${iconGridHTML || '<div style="padding: 2rem; text-align: center; color: #6c757d;">Keine Icons verfügbar</div>'}
+            </div>
+            <div style="margin-top: 0.75rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600; color: #495057;">
+                    Aktuelles Icon:
+                </label>
+                <div id="current-icon-display" style="
+                    padding: 1rem;
+                    border: 2px solid #063AA8;
+                    border-radius: 4px;
+                    text-align: center;
+                    font-size: 2rem;
+                    background: white;
+                    min-height: 60px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                ">
+                    <span style="font-family: 'Font Awesome 5 Pro';">${module.properties[propertyKey] || ''}</span>
+                </div>
             </div>
         </div>
 
@@ -560,6 +612,45 @@ function openIconEditorWithSize(iconElement, propertyKey, moduleId) {
         }
     };
 
+    // Icon-Picker Event-Listener
+    let selectedIcon = module.properties[propertyKey] || '';
+    const currentIconDisplay = modal.querySelector('#current-icon-display span');
+    const iconSearch = modal.querySelector('#icon-search');
+    const iconPickerGrid = modal.querySelector('#icon-picker-grid');
+
+    // Icon-Auswahl Handler
+    modal.querySelectorAll('.icon-picker-option').forEach(option => {
+        option.onclick = () => {
+            selectedIcon = option.getAttribute('data-icon');
+            currentIconDisplay.innerHTML = selectedIcon;
+
+            // Highlight das ausgewählte Icon
+            modal.querySelectorAll('.icon-picker-option').forEach(opt => {
+                opt.style.borderColor = '#ddd';
+                opt.style.background = 'white';
+            });
+            option.style.borderColor = '#063AA8';
+            option.style.background = '#e3f2fd';
+        };
+
+        // Highlight aktuelles Icon beim Laden
+        if (option.getAttribute('data-icon') === selectedIcon) {
+            option.style.borderColor = '#063AA8';
+            option.style.background = '#e3f2fd';
+        }
+    });
+
+    // Such-Filter
+    if (iconSearch && typeof FONT_AWESOME_ICONS !== 'undefined') {
+        iconSearch.oninput = (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            modal.querySelectorAll('.icon-picker-option').forEach(option => {
+                const iconName = option.getAttribute('title').toLowerCase();
+                option.style.display = iconName.includes(searchTerm) ? 'inline-flex' : 'none';
+            });
+        };
+    }
+
     // Schließen-Handler
     const closeModal = () => {
         modal.remove();
@@ -569,14 +660,13 @@ function openIconEditorWithSize(iconElement, propertyKey, moduleId) {
     // Speichern-Handler
     modal.querySelector('#icon-editor-save').onclick = () => {
         const newSize = parseFloat(numberInput.value);
-        const newIcon = modal.querySelector('#icon-code-input').value;
 
         // Aktualisiere Icon
-        if (newIcon && newIcon !== module.properties[propertyKey]) {
-            iconElement.innerHTML = newIcon;
-            module.properties[propertyKey] = newIcon;
+        if (selectedIcon && selectedIcon !== module.properties[propertyKey]) {
+            iconElement.innerHTML = selectedIcon;
+            module.properties[propertyKey] = selectedIcon;
             if (typeof syncProperty === 'function') {
-                syncProperty(moduleId, propertyKey, newIcon, 'canvas');
+                syncProperty(moduleId, propertyKey, selectedIcon, 'canvas');
             }
         }
 
@@ -588,7 +678,7 @@ function openIconEditorWithSize(iconElement, propertyKey, moduleId) {
             syncProperty(moduleId, sizeProperty, newSizeValue, 'canvas');
         }
 
-        console.log('✅ Icon aktualisiert:', { icon: newIcon, size: newSizeValue });
+        console.log('✅ Icon aktualisiert:', { icon: selectedIcon, size: newSizeValue });
         closeModal();
     };
 

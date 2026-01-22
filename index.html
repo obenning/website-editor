@@ -5931,7 +5931,7 @@
         function createResponsiveImage(imageUrl, alt = '', additionalClasses = '', sizes = '(max-width: 799px) 100vw, 50vw') {
             if (!imageUrl || !imageUrl.includes('images.squarespace-cdn.com')) {
                 // Fallback für normale Bilder
-                return `<img src="${imageUrl}" alt="${alt}" class="${additionalClasses}" style="width: 100%; height: auto;">`;
+                return `<img data-property="imageUrl" src="${imageUrl}" alt="${alt}" class="${additionalClasses}" style="width: 100%; height: auto;">`;
             }
 
             // Squarespace responsive formats
@@ -5951,11 +5951,12 @@
                 return `${imageUrl}${separator}format=${f.format} ${f.width}`;
             }).join(', ');
 
-            return `<img src="${imageUrl}" 
-                         srcset="${srcset}" 
-                         sizes="${sizes}" 
-                         alt="${alt}" 
-                         class="${additionalClasses}" 
+            return `<img data-property="imageUrl"
+                         src="${imageUrl}"
+                         srcset="${srcset}"
+                         sizes="${sizes}"
+                         alt="${alt}"
+                         class="${additionalClasses}"
                          style="width: 100%; height: auto; object-fit: cover;"
                          loading="lazy"
                          decoding="async">`;
