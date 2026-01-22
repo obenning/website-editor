@@ -1255,19 +1255,19 @@
             // Challenge Box
             if (props.challengeTitle || props.challengePoint1) {
                 solutionBoxesHtml += `
-                <div class="solution-box challenge-box" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #e74c3c; transition: all 0.3s ease;">
+                <div class="solution-box challenge-box" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #e74c3c; transition: all 0.3s ease; word-wrap: break-word; overflow-wrap: break-word;">
                     <div class="box-header">
                         <i class="box-icon" style="color: ${props.challengeIconColor || '#e74c3c'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeIcon || '⚠️'}</i>
-                        <h3 class="box-title" data-property="challengeTitle" style="color: ${props.challengeTitleColor || '#333'};">${props.challengeTitle || 'Challenge'}</h3>
+                        <h3 class="box-title" data-property="challengeTitle" style="color: ${props.challengeTitleColor || '#333'}; word-wrap: break-word; overflow-wrap: break-word;">${props.challengeTitle || 'Challenge'}</h3>
                     </div>
-                    <div class="box-content">
-                        ${props.challengeText ? `<p data-property="challengeText" style="color: ${props.challengeTextColor || '#666'};">${props.challengeText}</p>` : ''}
-                        <ul class="solution-list">
-                            ${props.challengePoint1 ? `<li data-property="challengePoint1" style="display: ${props.challengePoint1AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint1}</li>` : ''}
-                            ${props.challengePoint2 ? `<li data-property="challengePoint2" style="display: ${props.challengePoint2AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint2}</li>` : ''}
-                            ${props.challengePoint3 ? `<li data-property="challengePoint3" style="display: ${props.challengePoint3AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint3}</li>` : ''}
-                            ${props.challengePoint4 ? `<li data-property="challengePoint4" style="display: ${props.challengePoint4AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint4}</li>` : ''}
-                            ${props.challengePoint5 ? `<li data-property="challengePoint5" style="display: ${props.challengePoint5AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint5}</li>` : ''}
+                    <div class="box-content" style="word-wrap: break-word; overflow-wrap: break-word;">
+                        ${props.challengeText ? `<p data-property="challengeText" style="color: ${props.challengeTextColor || '#666'}; word-wrap: break-word; overflow-wrap: break-word;">${props.challengeText}</p>` : ''}
+                        <ul class="solution-list" style="word-wrap: break-word; overflow-wrap: break-word;">
+                            ${props.challengePoint1 ? `<li data-property="challengePoint1" style="display: ${props.challengePoint1AutoDisplay || 'block'}; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint1}</li>` : ''}
+                            ${props.challengePoint2 ? `<li data-property="challengePoint2" style="display: ${props.challengePoint2AutoDisplay || 'block'}; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint2}</li>` : ''}
+                            ${props.challengePoint3 ? `<li data-property="challengePoint3" style="display: ${props.challengePoint3AutoDisplay || 'block'}; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint3}</li>` : ''}
+                            ${props.challengePoint4 ? `<li data-property="challengePoint4" style="display: ${props.challengePoint4AutoDisplay || 'block'}; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint4}</li>` : ''}
+                            ${props.challengePoint5 ? `<li data-property="challengePoint5" style="display: ${props.challengePoint5AutoDisplay || 'block'}; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeListIcon || '•'}</span> ${props.challengePoint5}</li>` : ''}
                         </ul>
                     </div>
                 </div>`;
@@ -1276,19 +1276,19 @@
             // Requirements Box
             if (props.requirementTitle || props.requirementPoint1) {
                 solutionBoxesHtml += `
-                <div class="solution-box requirement-box" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #f39c12; transition: all 0.3s ease;">
+                <div class="solution-box requirement-box" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #f39c12; transition: all 0.3s ease; word-wrap: break-word; overflow-wrap: break-word;">
                     <div class="box-header">
                         <i class="box-icon" style="color: ${props.requirementIconColor || '#f39c12'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementIcon || '📋'}</i>
-                        <h3 class="box-title" data-property="requirementTitle" style="color: ${props.requirementTitleColor || '#333'};">${props.requirementTitle || 'Requirements'}</h3>
+                        <h3 class="box-title" data-property="requirementTitle" style="color: ${props.requirementTitleColor || '#333'}; word-wrap: break-word; overflow-wrap: break-word;">${props.requirementTitle || 'Requirements'}</h3>
                     </div>
-                    <div class="box-content">
-                        ${props.requirementText ? `<p data-property="requirementText" style="color: ${props.requirementTextColor || '#666'};">${props.requirementText}</p>` : ''}
-                        <ul class="solution-list">
-                            ${props.requirementPoint1 ? `<li data-property="requirementPoint1" style="display: ${props.requirementPoint1AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint1}</li>` : ''}
-                            ${props.requirementPoint2 ? `<li data-property="requirementPoint2" style="display: ${props.requirementPoint2AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint2}</li>` : ''}
-                            ${props.requirementPoint3 ? `<li data-property="requirementPoint3" style="display: ${props.requirementPoint3AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint3}</li>` : ''}
-                            ${props.requirementPoint4 ? `<li data-property="requirementPoint4" style="display: ${props.requirementPoint4AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint4}</li>` : ''}
-                            ${props.requirementPoint5 ? `<li data-property="requirementPoint5" style="display: ${props.requirementPoint5AutoDisplay || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint5}</li>` : ''}
+                    <div class="box-content" style="word-wrap: break-word; overflow-wrap: break-word;">
+                        ${props.requirementText ? `<p data-property="requirementText" style="color: ${props.requirementTextColor || '#666'}; word-wrap: break-word; overflow-wrap: break-word;">${props.requirementText}</p>` : ''}
+                        <ul class="solution-list" style="word-wrap: break-word; overflow-wrap: break-word;">
+                            ${props.requirementPoint1 ? `<li data-property="requirementPoint1" style="display: ${props.requirementPoint1AutoDisplay || 'block'}; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint1}</li>` : ''}
+                            ${props.requirementPoint2 ? `<li data-property="requirementPoint2" style="display: ${props.requirementPoint2AutoDisplay || 'block'}; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint2}</li>` : ''}
+                            ${props.requirementPoint3 ? `<li data-property="requirementPoint3" style="display: ${props.requirementPoint3AutoDisplay || 'block'}; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint3}</li>` : ''}
+                            ${props.requirementPoint4 ? `<li data-property="requirementPoint4" style="display: ${props.requirementPoint4AutoDisplay || 'block'}; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint4}</li>` : ''}
+                            ${props.requirementPoint5 ? `<li data-property="requirementPoint5" style="display: ${props.requirementPoint5AutoDisplay || 'block'}; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementListIcon || '•'}</span> ${props.requirementPoint5}</li>` : ''}
                         </ul>
                     </div>
                 </div>`;
@@ -1297,19 +1297,19 @@
             // Solution Box
             if (props.solutionTitle || props.solutionPoint1) {
                 solutionBoxesHtml += `
-                <div class="solution-box solution-box-final" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #27ae60; transition: all 0.3s ease;">
+                <div class="solution-box solution-box-final" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #27ae60; transition: all 0.3s ease; word-wrap: break-word; overflow-wrap: break-word;">
                     <div class="box-header">
                         <i class="box-icon" style="color: ${props.solutionIconColor || '#27ae60'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionIcon || '✅'}</i>
-                        <h3 class="box-title" data-property="solutionTitle" style="color: ${props.solutionTitleColor || '#333'};">${props.solutionTitle || 'Solution'}</h3>
+                        <h3 class="box-title" data-property="solutionTitle" style="color: ${props.solutionTitleColor || '#333'}; word-wrap: break-word; overflow-wrap: break-word;">${props.solutionTitle || 'Solution'}</h3>
                     </div>
-                    <div class="box-content">
-                        ${props.solutionText ? `<p data-property="solutionText" style="color: ${props.solutionTextColor || '#666'};">${props.solutionText}</p>` : ''}
-                        <ul class="solution-list">
-                            ${props.solutionPoint1 ? `<li data-property="solutionPoint1" style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint1}</li>` : ''}
-                            ${props.solutionPoint2 ? `<li data-property="solutionPoint2" style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint2}</li>` : ''}
-                            ${props.solutionPoint3 ? `<li data-property="solutionPoint3" style="display: block;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint3}</li>` : ''}
-                            ${props.solutionPoint4 ? `<li data-property="solutionPoint4" style="display: ${props.showSolutionPoint4 || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint4}</li>` : ''}
-                            ${props.solutionPoint5 ? `<li data-property="solutionPoint5" style="display: ${props.showSolutionPoint5 || 'block'};"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint5}</li>` : ''}
+                    <div class="box-content" style="word-wrap: break-word; overflow-wrap: break-word;">
+                        ${props.solutionText ? `<p data-property="solutionText" style="color: ${props.solutionTextColor || '#666'}; word-wrap: break-word; overflow-wrap: break-word;">${props.solutionText}</p>` : ''}
+                        <ul class="solution-list" style="word-wrap: break-word; overflow-wrap: break-word;">
+                            ${props.solutionPoint1 ? `<li data-property="solutionPoint1" style="display: block; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint1}</li>` : ''}
+                            ${props.solutionPoint2 ? `<li data-property="solutionPoint2" style="display: block; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint2}</li>` : ''}
+                            ${props.solutionPoint3 ? `<li data-property="solutionPoint3" style="display: block; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint3}</li>` : ''}
+                            ${props.solutionPoint4 ? `<li data-property="solutionPoint4" style="display: ${props.showSolutionPoint4 || 'block'}; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint4}</li>` : ''}
+                            ${props.solutionPoint5 ? `<li data-property="solutionPoint5" style="display: ${props.showSolutionPoint5 || 'block'}; word-wrap: break-word; overflow-wrap: break-word;"><span style="font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionListIcon || '✓'}</span> ${props.solutionPoint5}</li>` : ''}
                         </ul>
                     </div>
                 </div>`;
@@ -6388,13 +6388,13 @@ function processUniversalModule(module, html) {
             let headerContent = '';
             if (props.title) {
                 const titleAlign = props.titleAlignment || 'center';
-                headerContent += `<div style="margin-bottom: 3rem;">`;
+                headerContent += `<div style="margin-bottom: 3rem; text-align: ${titleAlign};">`;
 
-                // RichText-Content mit data-property
-                headerContent += '<div data-property="title">' + props.title + '</div>';
+                // Titel als H2 mit korrekten Styles
+                headerContent += `<h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: ${props.titleColor || '#063AA8'}; margin: 0 0 1rem 0;">${props.title}</h2>`;
 
                 if (props.showSubtitle === 'true' && props.subtitle) {
-                    headerContent += '<div data-property="subtitle">' + props.subtitle + '</div>';
+                    headerContent += `<p data-property="subtitle" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); line-height: var(--body-font-line-height); color: ${props.subtitleColor || '#6c757d'}; margin: 0;">${props.subtitle}</p>`;
                 }
 
                 headerContent += `</div>`;
@@ -6421,7 +6421,7 @@ function processUniversalModule(module, html) {
                     const responsiveImage = createResponsiveImage(image, altText, '', '(max-width: 768px) 100vw, 50vw');
                     const optimizedImage = responsiveImage.replace(/style="[^"]*"/, 'style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s ease;"');
 
-                    productCards += '<a class="kerberos-btn kerberos-btn-' + module.id + ' showcase-card-' + module.id + '" href="' + link + '" style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 8px; overflow: hidden; text-decoration: none; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s ease; position: relative;">' +
+                    productCards += '<a class="kerberos-btn kerberos-btn-' + module.id + ' showcase-card-' + module.id + '" href="' + link + '" data-link-property="product' + i + 'Link" style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 8px; overflow: hidden; text-decoration: none; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s ease; position: relative;">' +
                         (badge ? '<div style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #063AA8, #009CE6); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; z-index: 2;">' + badge + '</div>' : '') +
                         optimizedImage +
                         '<div style="padding: 1.5rem;">' +

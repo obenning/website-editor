@@ -734,7 +734,7 @@
                             <h2 data-property="mainTitleRichtext" data-content-type="html" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 1rem 0;">{{mainTitleRichtext}}</h2>
                             <p data-property="subtitleRichtext" data-content-type="html" style="font-family: var(--body-font-font-family); font-size: var(--large-text-size); color: {{subtitleColor}}; margin: 0; opacity: 0.9; max-width: 800px; margin-left: auto; margin-right: auto;">{{subtitleRichtext}}</p>
                         </div>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: {{contentGap}}; margin-bottom: {{bottomSpacing}};">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: {{contentGap}}; margin-bottom: {{bottomSpacing}};">
                             {{solutionBoxes}}
                         </div>
                         <div style="text-align: center; margin: {{ctaSpacing}} 0; display: {{showCTA}};">
