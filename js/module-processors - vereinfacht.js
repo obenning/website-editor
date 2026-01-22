@@ -1257,7 +1257,7 @@
                 solutionBoxesHtml += `
                 <div class="solution-box challenge-box" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #e74c3c; transition: all 0.3s ease; word-wrap: break-word; overflow-wrap: break-word;">
                     <div class="box-header">
-                        <i class="box-icon" style="color: ${props.challengeIconColor || '#e74c3c'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeIcon || '⚠️'}</i>
+                        <i data-property="challengeIcon" class="box-icon" style="color: ${props.challengeIconColor || '#e74c3c'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.challengeIcon || '⚠️'}</i>
                         <h3 class="box-title" data-property="challengeTitle" style="color: ${props.challengeTitleColor || '#333'}; word-wrap: break-word; overflow-wrap: break-word;">${props.challengeTitle || 'Challenge'}</h3>
                     </div>
                     <div class="box-content" style="word-wrap: break-word; overflow-wrap: break-word;">
@@ -1278,7 +1278,7 @@
                 solutionBoxesHtml += `
                 <div class="solution-box requirement-box" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #f39c12; transition: all 0.3s ease; word-wrap: break-word; overflow-wrap: break-word;">
                     <div class="box-header">
-                        <i class="box-icon" style="color: ${props.requirementIconColor || '#f39c12'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementIcon || '📋'}</i>
+                        <i data-property="requirementIcon" class="box-icon" style="color: ${props.requirementIconColor || '#f39c12'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.requirementIcon || '📋'}</i>
                         <h3 class="box-title" data-property="requirementTitle" style="color: ${props.requirementTitleColor || '#333'}; word-wrap: break-word; overflow-wrap: break-word;">${props.requirementTitle || 'Requirements'}</h3>
                     </div>
                     <div class="box-content" style="word-wrap: break-word; overflow-wrap: break-word;">
@@ -1299,7 +1299,7 @@
                 solutionBoxesHtml += `
                 <div class="solution-box solution-box-final" style="flex: 1; background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-top: 4px solid #27ae60; transition: all 0.3s ease; word-wrap: break-word; overflow-wrap: break-word;">
                     <div class="box-header">
-                        <i class="box-icon" style="color: ${props.solutionIconColor || '#27ae60'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionIcon || '✅'}</i>
+                        <i data-property="solutionIcon" class="box-icon" style="color: ${props.solutionIconColor || '#27ae60'}; font-family: 'Font Awesome 5 Pro', sans-serif; font-weight: 900; font-style: normal;">${props.solutionIcon || '✅'}</i>
                         <h3 class="box-title" data-property="solutionTitle" style="color: ${props.solutionTitleColor || '#333'}; word-wrap: break-word; overflow-wrap: break-word;">${props.solutionTitle || 'Solution'}</h3>
                     </div>
                     <div class="box-content" style="word-wrap: break-word; overflow-wrap: break-word;">
@@ -1714,7 +1714,7 @@ function processKerberosTestimonialsPro(module, html) {
             let companyHTML = '';
             if (company) {
                 const logoHTML = companyLogo ?
-                    `<img src="${companyLogo}" alt="${company} Logo" style="width: 80px; height: 40px; object-fit: contain; margin-right: 0.5rem;">` : '';
+                    `<img data-property="testimonial${i}CompanyLogo" src="${companyLogo}" alt="${company} Logo" style="width: 80px; height: 40px; object-fit: contain; margin-right: 0.5rem;">` : '';
 
                 const companyLink = companyUrl ?
                     `<a href="${companyUrl}" target="_blank" rel="noopener" data-property="testimonial${i}Company" style="color: ${props.linkColor || '#063AA8'}; text-decoration: none;">${company}</a>` :
@@ -2044,7 +2044,7 @@ function processKerberosTestimonialsPro(module, html) {
                         '<div class="timeline-card-mobile timeline-card-mobile-' + module.id + '" style="display: none; padding-top: 3rem;">' +
                         '<div style="background: ' + (props.cardBackground || '#FFFFFF') + '; border: 1px solid ' + (props.cardBorder || '#E5E7EB') + '; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); position: relative;">' +
                         '<div style="position: absolute; top: -25px; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; background: ' + color + '; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 12px rgba(6,58,168,0.2);">' +
-                        '<span style="font-family: \'Font Awesome 5 Pro\'; color: white; font-size: 1rem;">' + icon + '</span>' +
+                        '<i data-property="step' + i + 'Icon" style="font-family: \'Font Awesome 5 Pro\'; color: white; font-size: 1rem;">' + icon + '</i>' +
                         '</div>' +
                         '<div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; justify-content: flex-start;">' +
                         '<div style="background: ' + color + '; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; min-width: 28px;">' + number + '</div>' +
@@ -2056,7 +2056,7 @@ function processKerberosTestimonialsPro(module, html) {
 
                         '<!-- Desktop Dot (mittig) -->' +
                         '<div class="timeline-dot-desktop timeline-dot-' + module.id + '" style="position: absolute; left: 50%; top: 2rem; transform: translateX(-50%); width: 50px; height: 50px; background: ' + color + '; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 20; border: 3px solid white; box-shadow: 0 4px 12px rgba(6,58,168,0.2);">' +
-                        '<span style="font-family: \'Font Awesome 5 Pro\'; color: white; font-size: 1rem;">' + icon + '</span>' +
+                        '<i data-property="step' + i + 'Icon" style="font-family: \'Font Awesome 5 Pro\'; color: white; font-size: 1rem;">' + icon + '</i>' +
                         '</div>' +
                         '</div>';
                 }
@@ -2488,10 +2488,10 @@ function processKerberosTestimonialsPro(module, html) {
                 template: (item, index, props) => `
                     <div class="kerberos-stat-card" style="background: ${props.cardBackground}; border: 1px solid ${props.cardBorder}; border-radius: ${props.cardRadius}; padding: ${props.cardPadding}; text-align: center; box-shadow: ${props.cardShadow};">
                         <div style="display: flex; align-items: center; justify-content: center; width: ${iconPreset.background}; height: ${iconPreset.background}; background: ${props.iconBackgroundColor}; border-radius: ${props.iconBackgroundRadius}; margin: 0 auto ${props.iconSpacing};">
-                            <div class="kerberos-stat-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: ${iconPreset.size}; color: ${item.IconColor};">${item.Icon}</div>
+                            <div data-property="stat${index}Icon" class="kerberos-stat-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: ${iconPreset.size}; color: ${item.IconColor};">${item.Icon}</div>
                         </div>
-                        <div style="font-size: ${props.numberSize}; font-weight: 700; color: ${item.NumberColor}; margin-bottom: ${props.numberSpacing};">${item.Number}</div>
-                        <div style="font-size: ${props.textSize}; color: ${item.TextColor}; line-height: 1.4;">${item.Text}</div>
+                        <div data-property="stat${index}Number" style="font-size: ${props.numberSize}; font-weight: 700; color: ${item.NumberColor}; margin-bottom: ${props.numberSpacing};">${item.Number}</div>
+                        <div data-property="stat${index}Text" style="font-size: ${props.textSize}; color: ${item.TextColor}; line-height: 1.4;">${item.Text}</div>
                     </div>`
             });
 
@@ -2559,22 +2559,22 @@ function processKerberosTestimonialsPro(module, html) {
                                     cursor: default;
                                     position: relative;
                                     overflow: hidden;">
-                            <div style="display: inline-block; 
-                                        width: ${iconPreset.background}; 
-                                        height: ${iconPreset.background}; 
-                                        background: ${iconBgColor}; 
-                                        border-radius: ${props.iconBackgroundRadius || '50%'}; 
-                                        display: flex; 
-                                        align-items: center; 
-                                        justify-content: center; 
+                            <div style="display: inline-block;
+                                        width: ${iconPreset.background};
+                                        height: ${iconPreset.background};
+                                        background: ${iconBgColor};
+                                        border-radius: ${props.iconBackgroundRadius || '50%'};
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
                                         margin-bottom: 1.5rem;
                                         transition: all 0.3s ease;">
-                                <span class="feature-icon" style="font-family: 'Font Awesome 5 Pro'; 
-                                                                font-size: ${iconPreset.size}; 
-                                                                color: ${item.IconColor || '#063AA8'}; 
+                                <i data-property="stat${index}Icon" class="feature-icon" style="font-family: 'Font Awesome 5 Pro';
+                                                                font-size: ${iconPreset.size};
+                                                                color: ${item.IconColor || '#063AA8'};
                                                                 line-height: 1;">
                                     ${item.Icon}
-                                </span>
+                                </i>
                             </div>
                             <div data-property="stat${index}Number" style="font-size: ${props.numberSize || '3rem'};
                                         font-weight: 700;
@@ -2733,7 +2733,7 @@ function processKerberosTestimonialsPro(module, html) {
                     integrationCards += `
                         <div class="integration-card" data-category="${category}"
                             style="background: #FFFFFF; border: 1px solid #DEE2E6; border-radius: 8px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; cursor: pointer; display: block;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">${icon || '🔗'}</div>
+                            <i data-property="integration${i}Icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 3rem; margin-bottom: 1rem; display: block;">${icon || '🔗'}</i>
                             <h4 data-property="integration${i}Name" style="font-family: var(--heading-font-font-family); color: #212529; margin: 0 0 0.5rem 0; font-size: 1.1rem;">${name}</h4>
                             <div style="background: ${statusColor}; color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.7rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;">${statusText}</div>
                             <p data-property="integration${i}Description" style="font-family: var(--body-font-font-family); color: #212529; margin: 0; font-size: 0.9rem; opacity: 0.8;">${description}</p>
@@ -3154,7 +3154,7 @@ function processKerberosTestimonialsPro(module, html) {
 
                 if (number && text) {
                     statsBlocks += '<div style="text-align: center; padding: ' + (props.statPadding || '2rem') + '; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(6,58,168,0.1);">' +
-                        '<div style="font-family: \'Font Awesome 5 Pro\'; font-size: ' + (props.iconSize || '3rem') + '; color: ' + (iconColor || '#063AA8') + '; margin-bottom: ' + (props.iconSpacing || '1rem') + ';">' + (icon || '&#xf005;') + '</div>' +
+                        '<div data-property="stat' + i + 'Icon" style="font-family: \'Font Awesome 5 Pro\'; font-size: ' + (props.iconSize || '3rem') + '; color: ' + (iconColor || '#063AA8') + '; margin-bottom: ' + (props.iconSpacing || '1rem') + ';">' + (icon || '&#xf005;') + '</div>' +
                         '<div data-property="stat' + i + 'Number" style="font-size: ' + (props.numberSize || '3rem') + '; font-weight: 700; color: ' + (numberColor || '#063AA8') + '; margin-bottom: ' + (props.numberSpacing || '0.5rem') + ';">' + number + '</div>' +
                         '<div data-property="stat' + i + 'Text" style="font-size: ' + (props.textSize || '1rem') + '; color: ' + (textColor || '#6c757d') + ';">' + text + '</div>' +
                         '</div>';
@@ -3200,7 +3200,7 @@ function processKerberosTestimonialsPro(module, html) {
 
                     if (image) {
                         // Mit Bild
-                        avatarDiv = '<div class="team-avatar" style="width: ' + avatarSize + '; height: ' + avatarSize + '; border-radius: 50%; margin: 0 auto 1rem auto; background: url(\'{{imageUrl}}\') center/cover; background-color: #E9ECEF; transition: transform 0.3s ease;"></div>';
+                        avatarDiv = '<div class="team-avatar" data-property="member' + i + 'Image" style="width: ' + avatarSize + '; height: ' + avatarSize + '; border-radius: 50%; margin: 0 auto 1rem auto; background: url(\'{{imageUrl}}\') center/cover; background-color: #E9ECEF; transition: transform 0.3s ease;"></div>';
                     } else {
                         // Mit Initial-Buchstabe
                         avatarDiv = '<div class="team-avatar" style="width: ' + avatarSize + '; height: ' + avatarSize + '; border-radius: 50%; margin: 0 auto 1rem auto; background: ' + initialBg + '; background-color: #E9ECEF; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700; transition: transform 0.3s ease;">' + initial + '</div>';
@@ -4438,7 +4438,7 @@ function processUniversalModule(module, html) {
                             'text-align: center'
                         ].join('; ');
 
-                        iconElement = `<div style="${iconStyles}">${icon}</div>`;
+                        iconElement = `<div data-property="benefit${i}Icon" style="${iconStyles}">${icon}</div>`;
                     }
 
                     // Card zusammenbauen
@@ -4762,12 +4762,12 @@ function processUniversalModule(module, html) {
                         if (key.includes('secondary') || key.includes('Secondary')) {
                             // Secondary Button
                             const secondaryButtonStyles = getUniversalButtonStyles({
-                                buttonStyleType: props.secondaryButtonStyleType || 'outline',
-                                buttonPaddingType: props.secondaryButtonPaddingType || 'medium',
-                                buttonRadiusType: props.secondaryButtonRadiusType || 'medium',
-                                buttonShadowType: props.secondaryButtonShadowType || 'none',
-                                buttonBackground: props.secondaryButtonBackground || 'transparent',
-                                buttonColor: props.secondaryButtonColor
+                                buttonStyleType: properties.secondaryButtonStyleType || 'outline',
+                                buttonPaddingType: properties.secondaryButtonPaddingType || 'medium',
+                                buttonRadiusType: properties.secondaryButtonRadiusType || 'medium',
+                                buttonShadowType: properties.secondaryButtonShadowType || 'none',
+                                buttonBackground: properties.secondaryButtonBackground || 'transparent',
+                                buttonColor: properties.secondaryButtonColor
                             });
                             html = html.replace(/\{\{secondaryButtonBackground\}\}/g, secondaryButtonStyles.background);
                             html = html.replace(/\{\{secondaryButtonColor\}\}/g, secondaryButtonStyles.color);
@@ -5177,8 +5177,8 @@ function processUniversalModule(module, html) {
                 contactCards += `
         <div class="contact-card">
             <div class="contact-image-container">
-                <img src="${image}?format=300w" 
-                     alt="${name}" 
+                <img data-property="contact${i}Image" src="${image}?format=300w"
+                     alt="${name}"
                      class="contact-image">
             </div>
             <div class="contact-info">
@@ -5374,10 +5374,10 @@ function processUniversalModule(module, html) {
                 let stepIcon = props['step' + i + 'Icon'] || '&#xf135;'; // Unicode statt fa-class
 
                 stepsContent += '<div class="guide-step" data-step="' + i + '" data-style="GUIDE_STEP_STYLES">' +
-                    '<img src="' + stepImage + '" alt="' + stepTitle + '" data-style="STEP_IMAGE_STYLES">' +
+                    '<img data-property="step' + i + 'Image" src="' + stepImage + '" alt="' + stepTitle + '" data-style="STEP_IMAGE_STYLES">' +
                     '<div class="hotspot" data-step="' + i + '" data-style="HOTSPOT_' + i + '_STYLES">' +
                     '<div class="hotspot-btn" data-step="' + i + '" data-style="HOTSPOT_BTN_STYLES">' +
-                    '<span style="font-family: \'Font Awesome 5 Pro\'; color: white; font-size: 1rem;">' + stepIcon + '</span>' +
+                    '<i data-property="step' + i + 'Icon" style="font-family: \'Font Awesome 5 Pro\'; color: white; font-size: 1rem;">' + stepIcon + '</i>' +
                     '</div>' +
                     '</div>' +
                     '</div>';
@@ -6339,7 +6339,7 @@ function processUniversalModule(module, html) {
                     
                     // Responsive Image verwenden
                     const responsiveImage = createResponsiveImage(image, altText, '', '(max-width: 768px) 100vw, 50vw');
-                    const optimizedImage = responsiveImage.replace(/style="[^"]*"/, 'style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s ease, filter 0.4s ease;"');
+                    const optimizedImage = responsiveImage.replace(/style="[^"]*"/, 'style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s ease, filter 0.4s ease;"').replace(/<img/, '<img data-property="product' + i + 'Image"');
 
                     // WICHTIG: Ersetze {{imageUrl}} Platzhalter mit tatsächlicher URL
                     const finalImage = optimizedImage.replace(/\{\{imageUrl\}\}/g, image);
@@ -6419,7 +6419,7 @@ function processUniversalModule(module, html) {
 
                     // Responsive Image verwenden
                     const responsiveImage = createResponsiveImage(image, altText, '', '(max-width: 768px) 100vw, 50vw');
-                    const optimizedImage = responsiveImage.replace(/style="[^"]*"/, 'style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s ease;"');
+                    const optimizedImage = responsiveImage.replace(/style="[^"]*"/, 'style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.4s ease;"').replace(/<img/, '<img data-property="product' + i + 'Image"');
 
                     productCards += '<a class="kerberos-btn kerberos-btn-' + module.id + ' showcase-card-' + module.id + '" href="' + link + '" data-link-property="product' + i + 'Link" style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 8px; overflow: hidden; text-decoration: none; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s ease; position: relative;">' +
                         (badge ? '<div style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #063AA8, #009CE6); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; z-index: 2;">' + badge + '</div>' : '') +
@@ -7040,7 +7040,7 @@ function processUniversalModule(module, html) {
                     <div class="kerberos-feature-card" style="background: ${feature.background}; border: 1px solid ${feature.borderColor}; border-radius: 12px; padding: 2rem; transition: all 0.3s ease; cursor: default; position: relative; overflow: hidden;">
                         <div class="feature-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, ${feature.color}10, ${feature.color}05); opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></div>
                         <div style="position: relative; z-index: 2;">
-                            <div class="feature-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 2.5rem; color: ${feature.color}; margin-bottom: 1.5rem; transition: all 0.3s ease;">${feature.icon}</div>
+                            <i data-property="feature${i}Icon" class="feature-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 2.5rem; color: ${feature.color}; margin-bottom: 1.5rem; transition: all 0.3s ease; display: block;">${feature.icon}</i>
                             <h3 data-property="feature${i}Title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-4-size); font-weight: var(--heading-font-font-weight); color: #212529; margin: 0 0 1rem 0;">${feature.title}</h3>
                             <p data-property="feature${i}Description" style="font-family: var(--body-font-font-family); font-size: var(--normal-text-size); line-height: var(--body-font-line-height); color: #6c757d; margin: 0;">${feature.description}</p>
                         </div>
