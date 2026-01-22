@@ -51,9 +51,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kerberos Module Editor - Erweiterte Version</title>
     <style>
+        /* Global Icon Fix - Verhindere Kursiv-Vererbung für alle Icons */
+        i[class*="fa"],
+        .fa, .fas, .far, .fab, .fal, .fad,
+        [style*="font-family: 'Font Awesome"],
+        [style*="Font Awesome 5 Pro"],
+        .box-icon,
+        .testimonial-rating,
+        span[style*="Font Awesome"] {
+            font-style: normal !important;
+        }
 
-
-
+        /* Speziell für Icons in kursiven Kontexten */
+        blockquote i,
+        blockquote span[style*="Font Awesome"],
+        em i,
+        em span[style*="Font Awesome"],
+        .italic i,
+        [style*="font-style: italic"] i,
+        [style*="font-style: italic"] span[style*="Font Awesome"] {
+            font-style: normal !important;
+        }
     </style>
 </head>
 

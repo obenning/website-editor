@@ -70,6 +70,25 @@ function setupInlineEditorListeners() {
     // Context-Menu für Section-Padding
     canvas.addEventListener('contextmenu', handleSectionContextMenu, true);
 
+    // Double-Click auf Section für Padding-Editor (alternativ zu Rechtsklick)
+    canvas.addEventListener('dblclick', function(e) {
+        // Prüfe ob Double-Click auf Section-Hintergrund (nicht auf editierbaren Elementen)
+        if (e.target.hasAttribute('data-property')) {
+            return; // Lasse normale Text-Editing-Handler durchlaufen
+        }
+
+        const section = e.target.closest('section.kerberos-module');
+        if (section && (e.target === section || e.target.classList.contains('container'))) {
+            const moduleElement = section.closest('.canvas-module');
+            if (moduleElement) {
+                e.preventDefault();
+                e.stopPropagation();
+                const moduleId = moduleElement.getAttribute('data-module-id');
+                showSectionPaddingMenu(section, moduleId, e.clientX, e.clientY);
+            }
+        }
+    }, true);
+
     // Escape-Taste zum Abbrechen
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
@@ -1891,11 +1910,34 @@ function enhanceButtonMenuWithStyles() {
 
 /**
  * Behandelt Context-Menu (Rechtsklick) auf Section-Elemente
+ * ODER Double-Click auf Section-Hintergrund
  */
 function handleSectionContextMenu(e) {
     // Prüfe ob auf Section geklickt wurde
     const section = e.target.closest('section.kerberos-module');
 
+    if (!section) return;
+
+    const moduleElement = section.closest('.canvas-module');
+    if (!moduleElement) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const moduleId = moduleElement.getAttribute('data-module-id');
+    showSectionPaddingMenu(section, moduleId, e.clientX, e.clientY);
+}
+
+/**
+ * Zeigt Section-Editor bei Double-Click auf Section-Background
+ */
+function handleSectionDoubleClick(e) {
+    // Nur wenn auf Section selbst geklickt (nicht auf innere Elemente)
+    if (e.target.tagName !== 'SECTION' && !e.target.classList.contains('container')) {
+        return;
+    }
+
+    const section = e.target.closest('section.kerberos-module');
     if (!section) return;
 
     const moduleElement = section.closest('.canvas-module');

@@ -924,11 +924,11 @@
                     faqItems += `
                         <div class="kerberos-faq-item" data-faq-id="${i}" style="margin-bottom: 1rem; border: 1px solid ${props.borderColor}; border-radius: 8px; background: ${props.cardBackground}; transition: all 0.3s ease; cursor: default;">
                             <div class="faq-header" style="padding: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
-                                <h3 style="font-family: var(--heading-font-font-family); font-size: var(--heading-4-size); color: ${props.titleColor}; margin: 0; font-weight: 600;">${question}</h3>
-                                <div class="faq-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 1.25rem; color: ${props.hoverColor}; transition: transform 0.3s ease;">&#xf067;</div>
+                                <h3 data-property="faq${i}Question" style="font-family: var(--heading-font-font-family); font-size: var(--heading-4-size); color: ${props.titleColor}; margin: 0; font-weight: 600;">${question}</h3>
+                                <div class="faq-icon" style="font-family: 'Font Awesome 5 Pro'; font-size: 1.25rem; color: ${props.hoverColor}; transition: transform 0.3s ease; font-style: normal !important;">&#xf067;</div>
                             </div>
                             <div class="faq-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-                                <div style="padding: 0 1.5rem 1.5rem 1.5rem; color: ${props.subtitleColor}; line-height: 1.6; font-family: var(--body-font-font-family); font-size: var(--normal-text-size);">${answer}</div>
+                                <div data-property="faq${i}Answer" style="padding: 0 1.5rem 1.5rem 1.5rem; color: ${props.subtitleColor}; line-height: 1.6; font-family: var(--body-font-font-family); font-size: var(--normal-text-size);">${answer}</div>
                             </div>
                         </div>`;
                 }
@@ -1262,15 +1262,15 @@
                         <div class="testimonial-slide" style="flex: 0 0 100%; max-width: 100%; box-sizing: border-box; padding: 0 1rem;">
                             <div class="testimonial-content" style="background: ${props.cardBackground || '#FFFFFF'}; border-radius: 12px; padding: 2rem; text-align: center; box-shadow: 0 8px 32px rgba(6,58,168,0.1); height: 100%; min-height: 350px; display: flex; flex-direction: column; justify-content: space-between;">
                                 <div class="testimonial-quote" style="flex: 1; display: flex; flex-direction: column; justify-content: center; margin-bottom: 2rem;">
-                                    <div style="font-size: 1.5rem; color: ${props.starColor || '#FFD700'}; margin-bottom: 1.5rem;">${stars}</div>
-                                    <blockquote style="font-family: 'Playfair Display', serif; font-size: 1.25rem; line-height: 1.6; color: ${props.textColor || '#212529'}; margin: 0; font-style: italic;">"${text}"</blockquote>
+                                    <div style="font-size: 1.5rem; color: ${props.starColor || '#FFD700'}; margin-bottom: 1.5rem; font-style: normal !important;">${stars}</div>
+                                    <blockquote data-property="testimonial${i}Text" style="font-family: 'Playfair Display', serif; font-size: 1.25rem; line-height: 1.6; color: ${props.textColor || '#212529'}; margin: 0; font-style: italic;">"${text}"</blockquote>
                                 </div>
                                 <div class="testimonial-author" style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: auto;">
                                     <div class="author-avatar" style="width: 60px; height: 60px; border-radius: 50%; flex-shrink: 0; ${avatarStyle}">${image ? '' : initial}</div>
                                     <div class="author-info" style="text-align: left; min-width: 0;">
-                                        <div style="font-family: var(--heading-font-font-family, Arial, sans-serif); font-weight: 600; color: ${props.authorColor || '#063AA8'}; margin-bottom: 0.25rem;">${author}</div>
-                                        <div style="font-size: 0.9rem; color: ${props.subtitleColor || '#6c757d'};">${position}</div>
-                                        ${company ? `<div style="font-size: 0.85rem; color: ${props.subtitleColor || '#6c757d'}; opacity: 0.8;">${company}</div>` : ''}
+                                        <div data-property="testimonial${i}Author" style="font-family: var(--heading-font-font-family, Arial, sans-serif); font-weight: 600; color: ${props.authorColor || '#063AA8'}; margin-bottom: 0.25rem;">${author}</div>
+                                        <div data-property="testimonial${i}Position" style="font-size: 0.9rem; color: ${props.subtitleColor || '#6c757d'};">${position}</div>
+                                        ${company ? `<div data-property="testimonial${i}Company" style="font-size: 0.85rem; color: ${props.subtitleColor || '#6c757d'}; opacity: 0.8;">${company}</div>` : ''}
                                     </div>
                                 </div>
                             </div>
