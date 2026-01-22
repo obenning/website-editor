@@ -9,7 +9,7 @@
                 "description": "Modernes Hero-Modul mit dem neuen Unified Property Panel System",
                 "html": `<section style="background: {{sectionBackgroundColor}}; padding: {{sectionSpacing}}; text-align: center; position: relative;" class="kerberos-module-{{moduleId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-                        <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; margin-bottom: 1rem;">{{iconClass}}</div>
+                        <div data-property="iconClass" style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; margin-bottom: 1rem;">{{iconClass}}</div>
                         <div data-property="titleContent" data-content-type="html" style="color: {{titleColor}}; margin-bottom: {{titleSpacing}};">{{titleContent}}</div>
                         <div data-property="subtitleContent" data-content-type="html" style="color: {{subtitleColor}}; margin-bottom: 2rem; font-size: {{subtitleSizeType}};">{{subtitleContent}}</div>
                         <a href="{{primaryButtonLink}}" data-property="primaryButtonText" style="background: {{primaryButtonBackground}}; color: {{primaryButtonTextColor}}; padding: {{primaryButtonPaddingType}}; border-radius: {{primaryButtonRadiusType}}; text-decoration: none; display: inline-block; transition: all 0.3s ease; box-shadow: {{primaryButtonShadowType}};">
@@ -972,7 +972,7 @@
             <div data-property="text" style="font-family: var(--body-font-font-family); font-size: var(--body-text-size); line-height: var(--body-font-line-height); color: {{textColor}}; max-width: 900px; margin: 0 auto {{textSpacing}} auto;">{{text}}</div>
             <a class="kerberos-btn kerberos-btn-{{moduleId}}" href="{{primaryButtonLink}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: {{primaryButtonShadow}}; transition: all 0.3s ease;">
                 {{primaryButtonText}}
-                <span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span>
+                <span data-property="primaryButtonIcon" style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span>
             </a>
         </div>
     </section>`,
@@ -1069,7 +1069,7 @@
             <div style="background: {{cardBackground}}; border-radius: {{cardRadiusType}}; padding: {{cardPaddingType}}; box-shadow: {{cardShadowType}}; border: 1px solid {{cardBorder}}; position: relative; overflow: hidden;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: {{headerSpacing}}; padding-bottom: 1rem; border-bottom: 1px solid {{cardBorder}};">
                     <div style="display: flex; align-items: center; gap: 1rem;">
-                        <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{primaryColor}};">{{dashboardIcon}}</div>
+                        <div data-property="dashboardIcon" style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{primaryColor}};">{{dashboardIcon}}</div>
                         <h3 data-property="dashboardTitle" style="font-family: var(--heading-font-font-family); color: {{primaryColor}}; margin: 0; font-size: {{headingSizeType}};">{{dashboardTitle}}</h3>
                     </div>
                     <div data-property="statusText" style="background: {{statusColor}}; color: white; padding: {{statusPaddingType}}; border-radius: {{statusRadiusType}}; font-size: {{statusTextSizeType}}; font-weight: 600;">{{statusText}}</div>
@@ -1218,7 +1218,7 @@
                             {{endpointCards}}
                         </div>
                         <div style="margin-top: {{ctaSpacing}}; text-align: center;">
-                            <a class="kerberos-btn kerberos-btn-{{templateId}}" href="{{docsLink}}" data-property="buttonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{buttonBackground}}; color: {{buttonColor}}; padding: {{buttonPadding}}; border-radius: {{buttonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{buttonShadow}}; border: {{buttonBorder}};">{{buttonText}}<span style="font-family: 'Font Awesome 5 Pro';">{{buttonIcon}}</span></a>
+                            <a class="kerberos-btn kerberos-btn-{{templateId}}" href="{{docsLink}}" data-property="buttonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{buttonBackground}}; color: {{buttonColor}}; padding: {{buttonPadding}}; border-radius: {{buttonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: {{buttonShadow}}; border: {{buttonBorder}};">{{buttonText}}<span data-property="buttonIcon" style="font-family: 'Font Awesome 5 Pro';">{{buttonIcon}}</span></a>
                         </div>
                     </div>
                 </section>`,
@@ -2271,7 +2271,7 @@
                             </div>
                             <div style="order: {{textOrder}}; padding: {{contentPaddingType}};">
                                 <div style="margin-bottom: {{iconSpacing}}; display: block;">
-                                    <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
+                                    <div data-property="iconClass" style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
                                 </div>
                                 <div class="kerberos-title-wrapper" data-property="titleContent" data-content-type="html" style="margin-bottom: {{titleSpacing}}; color: {{titleColor}}; text-align: {{titleAlignment}} !important;">
                                     {{titleContent}}
@@ -2374,7 +2374,7 @@
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: {{backgroundPattern}}; opacity: {{backgroundOpacityType}};"></div>
                     <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem; text-align: center; position: relative; z-index: 2;">
                         <div style="margin-bottom: {{iconSpacing}}; display: {{showIcon}};">
-                            <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: inline-flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}}; box-shadow: {{iconShadowType}};">{{iconClass}}</div>
+                            <div data-property="iconClass" style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: inline-flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}}; box-shadow: {{iconShadowType}};">{{iconClass}}</div>
                         </div>
                         <div style="margin-bottom: {{titleSpacing}};">
                             <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: {{titleSizeType}}; font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}}; margin: 0;">{{title}}</h2>
@@ -2385,11 +2385,11 @@
                         <div style="display: flex; flex-wrap: wrap; gap: {{buttonGap}}; justify-content: center; margin-top: {{buttonSpacing}};">
                             <a href="{{primaryButtonLink}}" class="kerberos-btn-primary kerberos-btn-{{templateId}}" data-property="primaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonTextColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; border: {{primaryButtonBorder}}; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}}; font-size: var(--button-font-size);">
                                 {{primaryButtonText}}
-                                <span style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span>
+                                <span data-property="primaryButtonIcon" style="font-family: 'Font Awesome 5 Pro';">{{primaryButtonIcon}}</span>
                             </a>
                             <a href="{{secondaryButtonLink}}" class="kerberos-btn-secondary kerberos-btn-{{templateId}}" data-property="secondaryButtonText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{secondaryButtonBackground}}; color: {{secondaryButtonTextColor}}; padding: {{secondaryButtonPadding}}; border-radius: {{secondaryButtonRadius}}; text-decoration: none; display: {{showSecondaryButton}}; align-items: center; gap: 0.75rem; border: {{secondaryButtonBorder}}; transition: all 0.3s ease; box-shadow: {{secondaryButtonShadow}}; font-size: var(--button-font-size);">
                                 {{secondaryButtonText}}
-                                <span style="font-family: 'Font Awesome 5 Pro';">{{secondaryButtonIcon}}</span>
+                                <span data-property="secondaryButtonIcon" style="font-family: 'Font Awesome 5 Pro';">{{secondaryButtonIcon}}</span>
                             </a>
                         </div>
                     </div>
@@ -2755,7 +2755,7 @@
             <div style="text-align: center; margin-top: {{ctaSpacing}}; padding-top: {{ctaSpacing}}; border-top: 1px solid rgba(0,0,0,0.05);">
                 <a href="{{ctaLink}}" data-property="ctaText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{primaryButtonShadow}};">
                     {{ctaText}}
-                    <span style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span>
+                    <span data-property="ctaIcon" style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span>
                 </a>
             </div>
         </div>
@@ -3269,7 +3269,7 @@
     "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; text-align: {{textAlignmentType}};" class="kerberos-module-{{templateId}}">
         <div style="max-width: {{maxWidthType}}; margin: 0 auto; padding: 0 2rem;">
             <div style="margin-bottom: {{iconSpacing}}; display: {{showIcon}};">
-                <div style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
+                <div data-property="iconClass" style="font-family: 'Font Awesome 5 Pro'; font-size: {{iconSizeType}}; color: {{iconColor}}; display: flex; align-items: center; justify-content: center; width: {{iconContainerSizeType}}; height: {{iconContainerSizeType}}; background: {{iconBackground}}; border-radius: {{iconRadiusType}};">{{iconClass}}</div>
             </div>
             <div style="margin-bottom: {{titleSpacing}};">
                 <div data-property="titleContent" data-content-type="html" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); line-height: var(--heading-font-line-height); color: {{titleColor}};">{{titleContent}}</div>
@@ -3413,7 +3413,7 @@
                 {{featureCards}}
             </div>
             <div style="text-align: center; margin-top: {{ctaSpacing}};">
-                <a class="kerberos-btn-features" href="{{ctaLink}}" data-property="ctaText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{ctaBackground}}; color: {{ctaColor}}; padding: {{ctaPadding}}; border-radius: {{ctaRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{ctaShadow}};">{{ctaText}}<span style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span></a>
+                <a class="kerberos-btn-features" href="{{ctaLink}}" data-property="ctaText" style="font-family: var(--button-font-family); font-weight: var(--button-font-weight); background: {{ctaBackground}}; color: {{ctaColor}}; padding: {{ctaPadding}}; border-radius: {{ctaRadius}}; text-decoration: none; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s ease; box-shadow: {{ctaShadow}};">{{ctaText}}<span data-property="ctaIcon" style="font-family: 'Font Awesome 5 Pro';">{{ctaIcon}}</span></a>
             </div>
         </div>
     </section>`,
@@ -4450,18 +4450,18 @@
             <div style="background: {{heroBackground}}; border-radius: 16px; padding: {{heroPadding}}; margin-bottom: 3rem; display: grid; grid-template-columns: {{heroGridColumns}}; gap: 2rem; align-items: center;">
                 <div>
                     <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: {{badgeBackground}}; color: {{badgeColor}}; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid {{badgeBorder}};">
-                        <span style="font-family: 'Font Awesome 5 Pro';">{{badgeIcon}}</span>
+                        <span data-property="badgeIcon" style="font-family: 'Font Awesome 5 Pro';">{{badgeIcon}}</span>
                         <span data-property="badgeText">{{badgeText}}</span>
                     </div>
                     <h2 data-property="heroTitle" style="font-family: var(--heading-font-font-family); font-size: {{heroTitleSize}}; font-weight: var(--heading-font-font-weight); color: {{heroTitleColor}}; margin-bottom: 1.5rem; line-height: 1.2;">{{heroTitle}}</h2>
                     <p data-property="heroDescription" data-content-type="html" style="font-family: var(--body-font-font-family); font-size: {{heroTextSize}}; line-height: 1.7; color: {{heroTextColor}}; margin-bottom: 2rem;">{{heroDescription}}</p>
                     <a href="{{heroButtonLink}}" class="kerberos-btn kerberos-btn-{{moduleId}}" data-property="heroButtonText" style="display: inline-flex; align-items: center; gap: 0.75rem; background: {{heroButtonBackground}}; color: {{heroButtonColor}}; text-decoration: none; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; transition: all 0.3s ease; box-shadow: {{heroButtonShadow}};">
-                        <span style="font-family: 'Font Awesome 5 Pro';">{{heroButtonIcon}}</span>
+                        <span data-property="heroButtonIcon" style="font-family: 'Font Awesome 5 Pro';">{{heroButtonIcon}}</span>
                         {{heroButtonText}}
                     </a>
                 </div>
                 <div style="display: flex; align-items: center; justify-content: center;">
-                    <img src="{{heroLogoImage}}" alt="{{heroLogoAlt}}" style="max-width: 100%; height: auto; max-height: 300px; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(6,58,168,0.15));" />
+                    <img data-property="heroLogoImage" src="{{heroLogoImage}}" alt="{{heroLogoAlt}}" style="max-width: 100%; height: auto; max-height: 300px; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(6,58,168,0.15));" />
                 </div>
             </div>
 
