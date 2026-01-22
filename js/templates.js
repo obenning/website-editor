@@ -2282,7 +2282,7 @@
                                 <div style="margin-top: {{primaryButtonSpacing}};">
                                     <a href="{{primaryButtonLink}}" class="kerberos-btn kerberos-btn-{{moduleId}}" data-property="primaryButtonText" style="font-weight: 600; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none !important; display: inline-flex !important; align-items: center; gap: 0.5rem; border: {{primaryButtonBorderType}}; box-shadow: {{primaryButtonShadow}}; cursor: pointer !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;">
                                         {{primaryButtonText}}
-                                        <span style="font-family: 'Font Awesome 5 Pro'; display: {{showPrimaryButtonIcon}};">{{primaryButtonIcon}}</span>
+                                        <span data-property="primaryButtonIcon" style="font-family: 'Font Awesome 5 Pro'; display: {{showPrimaryButtonIcon}};">{{primaryButtonIcon}}</span>
                                     </a>
                                 </div>
                             </div>
