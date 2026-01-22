@@ -1933,10 +1933,23 @@ function showSectionPaddingMenu(sectionElement, moduleId, x, y) {
     if (module) {
         const sectionSpacing = module.properties.sectionSpacing || '4rem 0';
         const padding = module.properties.padding || '2rem';
+        const backgroundColor = module.properties.backgroundColor || module.properties.sectionBackgroundColor || '#FFFFFF';
 
-        // Zeige Werte in Inputs (vereinfacht)
+        // Zeige Werte in Inputs
         document.getElementById('section-spacing-input').value = sectionSpacing;
         document.getElementById('section-padding-input').value = padding;
+
+        // Für Farb-Input: Konvertiere Gradient/komplexe Werte zu einfacher Farbe
+        const bgInput = document.getElementById('section-background-input');
+        if (backgroundColor.startsWith('#')) {
+            bgInput.value = backgroundColor;
+        } else if (backgroundColor.startsWith('rgb')) {
+            // Versuche RGB zu Hex zu konvertieren (vereinfacht)
+            bgInput.value = '#FFFFFF';
+        } else {
+            // Gradient oder anderer Wert - Standardfarbe anzeigen
+            bgInput.value = '#FFFFFF';
+        }
     }
 
     // Schließe bei Klick außerhalb
@@ -1965,7 +1978,20 @@ function createSectionPaddingMenu() {
 
     menu.innerHTML = `
         <div style="margin-bottom: 0.75rem; font-weight: 600; color: #063AA8; font-size: 0.9rem;">
-            📐 Section-Abstände bearbeiten
+            🎨 Section bearbeiten
+        </div>
+        <div style="margin-bottom: 0.75rem;">
+            <label style="display: block; margin-bottom: 0.25rem; font-size: 0.85rem; color: #495057;">
+                Hintergrundfarbe:
+            </label>
+            <input type="color" id="section-background-input" style="
+                width: 100%;
+                height: 40px;
+                padding: 0.25rem;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                cursor: pointer;
+            ">
         </div>
         <div style="margin-bottom: 0.75rem;">
             <label style="display: block; margin-bottom: 0.25rem; font-size: 0.85rem; color: #495057;">
@@ -2046,8 +2072,28 @@ function saveSectionPadding() {
     const module = modules.find(m => m.id == currentSectionModuleId);
     if (!module) return;
 
+    const backgroundColor = document.getElementById('section-background-input').value;
     const sectionSpacing = document.getElementById('section-spacing-input').value;
     const padding = document.getElementById('section-padding-input').value;
+
+    // Aktualisiere Background-Farbe
+    if (backgroundColor) {
+        currentSectionElement.style.background = backgroundColor;
+
+        // Aktualisiere die richtige Property (abhängig vom Template)
+        if (module.properties.hasOwnProperty('backgroundColor')) {
+            module.properties.backgroundColor = backgroundColor;
+            if (typeof syncProperty === 'function') {
+                syncProperty(currentSectionModuleId, 'backgroundColor', backgroundColor, 'canvas');
+            }
+        }
+        if (module.properties.hasOwnProperty('sectionBackgroundColor')) {
+            module.properties.sectionBackgroundColor = backgroundColor;
+            if (typeof syncProperty === 'function') {
+                syncProperty(currentSectionModuleId, 'sectionBackgroundColor', backgroundColor, 'canvas');
+            }
+        }
+    }
 
     // Aktualisiere Section-Style direkt
     if (sectionSpacing) {
@@ -2067,7 +2113,7 @@ function saveSectionPadding() {
         }
     }
 
-    console.log('✅ Section-Padding aktualisiert');
+    console.log('✅ Section-Einstellungen aktualisiert (Background, Padding, Spacing)');
     hideSectionPaddingMenu();
 
     // Re-render Module
