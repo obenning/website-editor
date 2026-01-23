@@ -757,7 +757,7 @@
                 "name": "Challenge-Requirement-Solution",
                 "category": "Content & Services",
                 "description": "Ein Lösungsmodul mit drei Kästchen im Kerberos Design - Auto-Hide für leere Felder",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -779,6 +779,11 @@
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
+        },
+        points: {
+            groupName: 'cards',
+            label: 'Auflistungspunkte (10 pro Box)',
+            description: 'Bearbeiten Sie challengePointX, requirementPointX und solutionPointX. Leere Punkte werden automatisch ausgeblendet.'
         }
     },
 
@@ -838,8 +843,13 @@
                     "challengePoint1": "Komplexe Regulatorik",
                     "challengePoint2": "Hohe Bußgeldrisiken",
                     "challengePoint3": "Zeitaufwändige Prozesse",
-                    "challengePoint4": "",
-                    "challengePoint5": "",
+                    "challengePoint4": "Fehlende Transparenz",
+                    "challengePoint5": "Mangelnde Expertise",
+                    "challengePoint6": "",
+                    "challengePoint7": "",
+                    "challengePoint8": "",
+                    "challengePoint9": "",
+                    "challengePoint10": "",
 
                     // === REQUIREMENT SEKTION ===
                     "requirementTitle": "Anforderungen",
@@ -849,8 +859,13 @@
                     "requirementPoint1": "Automatisierte Überwachung",
                     "requirementPoint2": "Rechtssichere Dokumentation",
                     "requirementPoint3": "Effiziente Workflows",
-                    "requirementPoint4": "",
-                    "requirementPoint5": "",
+                    "requirementPoint4": "Echtzeit-Reporting",
+                    "requirementPoint5": "Schulungen & Support",
+                    "requirementPoint6": "",
+                    "requirementPoint7": "",
+                    "requirementPoint8": "",
+                    "requirementPoint9": "",
+                    "requirementPoint10": "",
 
                     // === SOLUTION SEKTION ===
                     "solutionTitle": "Kerberos Lösung",
@@ -860,8 +875,13 @@
                     "solutionPoint1": "KI-gestützte Compliance-Engine",
                     "solutionPoint2": "Vollständige Audit-Trails",
                     "solutionPoint3": "Intuitive Benutzeroberfläche",
-                    "solutionPoint4": "",
-                    "solutionPoint5": "",
+                    "solutionPoint4": "Dashboard Analytics",
+                    "solutionPoint5": "24/7 Experten-Support",
+                    "solutionPoint6": "",
+                    "solutionPoint7": "",
+                    "solutionPoint8": "",
+                    "solutionPoint9": "",
+                    "solutionPoint10": "",
 
                     // === CTA BEREICH ===
                     "ctaText": "",
