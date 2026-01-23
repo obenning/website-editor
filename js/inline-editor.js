@@ -2208,10 +2208,18 @@ function openSectionEditorFromPanel() {
         return;
     }
 
-    const section = moduleElement.querySelector('section.kerberos-module');
+    // Versuche zuerst eine section.kerberos-module zu finden
+    let section = moduleElement.querySelector('section.kerberos-module');
+
+    // Falls keine Section gefunden, verwende das erste Kind-Element oder das Modul selbst
     if (!section) {
-        showNotification('⚠️ Keine Section gefunden');
-        return;
+        // Versuche andere gängige Container-Elemente zu finden
+        section = moduleElement.querySelector('section') ||
+                  moduleElement.querySelector('div[style*="background"]') ||
+                  moduleElement.querySelector('div:first-child') ||
+                  moduleElement;
+
+        console.log('📝 Keine section.kerberos-module gefunden, verwende:', section.tagName);
     }
 
     // Öffne das Section-Padding-Menu in der Mitte des Canvas

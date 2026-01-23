@@ -439,6 +439,41 @@ const PROPERTY_TYPES = {
         }
     },
 
+    'ci-color-dropdown': {
+        label: 'CI-Farbe',
+        description: 'Corporate Identity Farbpalette',
+        renderer: (key, value, config = {}) => {
+            const colors = TYPE_MAPPINGS.ciColors;
+            let html = `<select class="form-control" onchange="updateProperty('${key}', this.value)" style="font-size: 0.9rem;">`;
+
+            for (const [name, hex] of Object.entries(colors)) {
+                const selected = value === hex ? 'selected' : '';
+                html += `<option value="${hex}" ${selected} style="background: ${hex}; color: ${hex === '#FFFFFF' ? '#000' : '#fff'};">
+                    ${name} (${hex})
+                </option>`;
+            }
+
+            html += `</select>`;
+
+            // Zeige Farb-Preview
+            html += `<div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <div style="width: 40px; height: 40px; background: ${value || '#063AA8'}; border: 2px solid #ddd; border-radius: 4px;"></div>
+                <span style="font-size: 0.85rem; color: #6c757d;">${value || '#063AA8'}</span>
+            </div>`;
+
+            return html;
+        }
+    },
+
+    'heading-tag-dropdown': {
+        label: 'Überschriften-Tag',
+        description: 'HTML-Tag für Überschrift (H1-H4)',
+        renderer: (key, value, config = {}) => {
+            const tags = TYPE_MAPPINGS.headingTags;
+            return renderDropdown(key, value, tags);
+        }
+    },
+
     // =====================
     // ADVANCED
     // =====================

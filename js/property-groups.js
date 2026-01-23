@@ -18,8 +18,14 @@ const PROPERTY_GROUPS = {
             default: '<h2>Überschrift</h2>',
             group: 'content'
         },
+        tag: {
+            type: 'heading-tag-dropdown',
+            label: 'Überschriften-Tag',
+            default: 'h2',
+            group: 'content'
+        },
         color: {
-            type: 'color',
+            type: 'ci-color-dropdown',
             label: 'Farbe',
             default: '#063AA8',
             group: 'style'
@@ -104,13 +110,13 @@ const PROPERTY_GROUPS = {
             group: 'content'
         },
         background: {
-            type: 'color',
+            type: 'ci-color-dropdown',
             label: 'Hintergrundfarbe',
             default: '#063AA8',
             group: 'style'
         },
         textColor: {
-            type: 'color',
+            type: 'ci-color-dropdown',
             label: 'Textfarbe',
             default: '#ffffff',
             group: 'style'
@@ -133,10 +139,16 @@ const PROPERTY_GROUPS = {
             default: 'none',
             group: 'style'
         },
-        hoverColor: {
-            type: 'color',
-            label: 'Hover Hintergrund',
-            default: '#042777',
+        hoverBackground: {
+            type: 'ci-color-dropdown',
+            label: 'Hover Hintergrundfarbe',
+            default: '#294FC5',
+            group: 'hover'
+        },
+        hoverTextColor: {
+            type: 'ci-color-dropdown',
+            label: 'Hover Textfarbe',
+            default: '#ffffff',
             group: 'hover'
         },
         hoverTransformType: {
@@ -162,16 +174,28 @@ const PROPERTY_GROUPS = {
             group: 'content'
         },
         background: {
-            type: 'color',
+            type: 'ci-color-dropdown',
             label: 'Farbe',
             default: '#063AA8',
             group: 'style'
         },
         textColor: {
-            type: 'color',
+            type: 'ci-color-dropdown',
             label: 'Text',
             default: '#ffffff',
             group: 'style'
+        },
+        hoverBackground: {
+            type: 'ci-color-dropdown',
+            label: 'Hover Hintergrund',
+            default: '#294FC5',
+            group: 'hover'
+        },
+        hoverTextColor: {
+            type: 'ci-color-dropdown',
+            label: 'Hover Text',
+            default: '#ffffff',
+            group: 'hover'
         }
     },
 
@@ -232,32 +256,38 @@ const PROPERTY_GROUPS = {
             group: 'content'
         },
         color: {
-            type: 'color',
+            type: 'ci-color-dropdown',
             label: 'Icon Farbe',
             default: '#063AA8',
             group: 'style'
         },
         sizeType: {
             type: 'size-dropdown',
-            label: 'Größe',
+            label: 'Icon Größe',
             default: 'medium',
             group: 'style'
         },
         backgroundColor: {
-            type: 'color',
-            label: 'Hintergrund',
+            type: 'ci-color-dropdown',
+            label: 'Container Hintergrund',
             default: 'transparent',
             group: 'style'
         },
         backgroundSize: {
-            type: 'dimension-dropdown',
-            label: 'Hintergrund Größe',
-            default: 'none',
+            type: 'range',
+            label: 'Container Größe',
+            default: '60',
+            config: {
+                min: 30,
+                max: 200,
+                step: 5,
+                unit: 'px'
+            },
             group: 'style'
         },
         backgroundRadius: {
             type: 'radius-dropdown',
-            label: 'Hintergrund Rundung',
+            label: 'Container Rundung',
             default: 'none',
             group: 'style'
         }
@@ -272,7 +302,7 @@ const PROPERTY_GROUPS = {
             group: 'content'
         },
         color: {
-            type: 'color',
+            type: 'ci-color-dropdown',
             label: 'Farbe',
             default: '#063AA8',
             group: 'style'
@@ -398,9 +428,9 @@ const PROPERTY_GROUPS = {
             group: 'hover'
         },
         color: {
-            type: 'color',
+            type: 'ci-color-dropdown',
             label: 'Hover Farbe',
-            default: '#042777',
+            default: '#294FC5',
             group: 'hover'
         }
     },
