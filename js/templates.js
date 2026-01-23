@@ -291,6 +291,21 @@
                 content: { label: 'Untertitel-Text', propertyName: 'subtitleContent' },
                 color: { label: 'Untertitel-Farbe', propertyName: 'subtitleColor' }
             }
+        },
+        layout: {
+            groupName: 'layout',
+            prefix: 'layout',
+            group: 'layout',
+            only: ['gridColumns', 'gap'],
+            overrides: {
+                gridColumns: { label: 'Spalten pro Zeile', propertyName: 'gridColumns' },
+                gap: { label: 'Abstand zwischen Karten', propertyName: 'benefitsGap' }
+            }
+        },
+        benefits: {
+            groupName: 'cards',
+            label: 'Benefits (12 Slots)',
+            description: 'Bearbeiten Sie die Benefit-Karten. Nutzen Sie benefitXActive um Karten ein-/auszublenden.'
         }
     },
 
@@ -395,10 +410,58 @@
                     "benefit6Title": "Kosteneffizienz",
                     "benefit6Description": "Optimale Kosten-Nutzen-Verhältnis durch automatisierte Prozesse.",
                     "benefit6Icon": "&#xf51e;",
-                    "benefit6IconColor": "#dc3545",
+                    "benefit6IconColor": "#57CC6F",
                     "benefit6TitleColor": "#212529",
                     "benefit6DescriptionColor": "#6c757d",
                     "benefit6Active": "false",
+
+                    "benefit7Title": "24/7 Support",
+                    "benefit7Description": "Rund um die Uhr erreichbar für Ihre Compliance-Fragen.",
+                    "benefit7Icon": "&#xf59f;",
+                    "benefit7IconColor": "#EF8646",
+                    "benefit7TitleColor": "#212529",
+                    "benefit7DescriptionColor": "#6c757d",
+                    "benefit7Active": "false",
+
+                    "benefit8Title": "Expertise",
+                    "benefit8Description": "Jahrelange Erfahrung in Compliance und Datenschutz.",
+                    "benefit8Icon": "&#xf19d;",
+                    "benefit8IconColor": "#B265E9",
+                    "benefit8TitleColor": "#212529",
+                    "benefit8DescriptionColor": "#6c757d",
+                    "benefit8Active": "false",
+
+                    "benefit9Title": "Flexibilität",
+                    "benefit9Description": "Anpassbare Lösungen für Ihre individuellen Anforderungen.",
+                    "benefit9Icon": "&#xf0c9;",
+                    "benefit9IconColor": "#009CE6",
+                    "benefit9TitleColor": "#212529",
+                    "benefit9DescriptionColor": "#6c757d",
+                    "benefit9Active": "false",
+
+                    "benefit10Title": "Transparenz",
+                    "benefit10Description": "Klare Kommunikation und nachvollziehbare Prozesse.",
+                    "benefit10Icon": "&#xf06e;",
+                    "benefit10IconColor": "#063AA8",
+                    "benefit10TitleColor": "#212529",
+                    "benefit10DescriptionColor": "#6c757d",
+                    "benefit10Active": "false",
+
+                    "benefit11Title": "Innovation",
+                    "benefit11Description": "Modernste Technologien für Ihre Compliance-Anforderungen.",
+                    "benefit11Icon": "&#xf0eb;",
+                    "benefit11IconColor": "#57CC6F",
+                    "benefit11TitleColor": "#212529",
+                    "benefit11DescriptionColor": "#6c757d",
+                    "benefit11Active": "false",
+
+                    "benefit12Title": "Partnerschaft",
+                    "benefit12Description": "Langfristige Zusammenarbeit auf Augenhöhe.",
+                    "benefit12Icon": "&#xf0c0;",
+                    "benefit12IconColor": "#EF8646",
+                    "benefit12TitleColor": "#212529",
+                    "benefit12DescriptionColor": "#6c757d",
+                    "benefit12Active": "false",
 
                     // === ICON SIZES (Individuell pro Benefit) ===
                     "benefit1IconSize": "3rem",
@@ -407,6 +470,12 @@
                     "benefit4IconSize": "3rem",
                     "benefit5IconSize": "3rem",
                     "benefit6IconSize": "3rem",
+                    "benefit7IconSize": "3rem",
+                    "benefit8IconSize": "3rem",
+                    "benefit9IconSize": "3rem",
+                    "benefit10IconSize": "3rem",
+                    "benefit11IconSize": "3rem",
+                    "benefit12IconSize": "3rem",
 
                     // === BUTTON SYSTEM (Bereinigt) ===
                     "showPrimaryButton": "true",
@@ -688,7 +757,7 @@
                 "name": "Challenge-Requirement-Solution",
                 "category": "Content & Services",
                 "description": "Ein Lösungsmodul mit drei Kästchen im Kerberos Design - Auto-Hide für leere Felder",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -710,6 +779,11 @@
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
+        },
+        points: {
+            groupName: 'cards',
+            label: 'Auflistungspunkte (10 pro Box)',
+            description: 'Bearbeiten Sie challengePointX, requirementPointX und solutionPointX. Leere Punkte werden automatisch ausgeblendet.'
         }
     },
 
@@ -769,8 +843,13 @@
                     "challengePoint1": "Komplexe Regulatorik",
                     "challengePoint2": "Hohe Bußgeldrisiken",
                     "challengePoint3": "Zeitaufwändige Prozesse",
-                    "challengePoint4": "",
-                    "challengePoint5": "",
+                    "challengePoint4": "Fehlende Transparenz",
+                    "challengePoint5": "Mangelnde Expertise",
+                    "challengePoint6": "",
+                    "challengePoint7": "",
+                    "challengePoint8": "",
+                    "challengePoint9": "",
+                    "challengePoint10": "",
 
                     // === REQUIREMENT SEKTION ===
                     "requirementTitle": "Anforderungen",
@@ -780,8 +859,13 @@
                     "requirementPoint1": "Automatisierte Überwachung",
                     "requirementPoint2": "Rechtssichere Dokumentation",
                     "requirementPoint3": "Effiziente Workflows",
-                    "requirementPoint4": "",
-                    "requirementPoint5": "",
+                    "requirementPoint4": "Echtzeit-Reporting",
+                    "requirementPoint5": "Schulungen & Support",
+                    "requirementPoint6": "",
+                    "requirementPoint7": "",
+                    "requirementPoint8": "",
+                    "requirementPoint9": "",
+                    "requirementPoint10": "",
 
                     // === SOLUTION SEKTION ===
                     "solutionTitle": "Kerberos Lösung",
@@ -791,8 +875,13 @@
                     "solutionPoint1": "KI-gestützte Compliance-Engine",
                     "solutionPoint2": "Vollständige Audit-Trails",
                     "solutionPoint3": "Intuitive Benutzeroberfläche",
-                    "solutionPoint4": "",
-                    "solutionPoint5": "",
+                    "solutionPoint4": "Dashboard Analytics",
+                    "solutionPoint5": "24/7 Experten-Support",
+                    "solutionPoint6": "",
+                    "solutionPoint7": "",
+                    "solutionPoint8": "",
+                    "solutionPoint9": "",
+                    "solutionPoint10": "",
 
                     // === CTA BEREICH ===
                     "ctaText": "",
@@ -827,7 +916,7 @@
                 "name": "Hero mit SVG-Grafik",
                 "category": "Hero & Headers",
                 "description": "Hero-Bereich mit optimierten SVG-Grafiken und Call-to-Action",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -848,6 +937,21 @@
                 content: { label: 'Titel-Text', propertyName: 'title' },
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        },
+        svg: {
+            groupName: 'image',
+            prefix: 'svg',
+            group: 'svg',
+            only: ['svgType', 'url', 'code', 'alt', 'size', 'spacing', 'color'],
+            overrides: {
+                svgType: { label: 'SVG-Quelle', propertyName: 'svgType' },
+                url: { label: 'SVG-URL', propertyName: 'svgUrl' },
+                code: { label: 'SVG-Code', propertyName: 'svgCode' },
+                alt: { label: 'Alt-Text', propertyName: 'svgAlt' },
+                size: { label: 'Größe', propertyName: 'svgSizeType' },
+                spacing: { label: 'Abstand', propertyName: 'svgSpacing' },
+                color: { label: 'SVG-Farbe', propertyName: 'svgColor' }
             }
         }
     },
@@ -943,10 +1047,10 @@
 
 {
     "id": "kerberos-api-hero-with-text",
-    "name": "API Hero mit Text", 
+    "name": "API Hero mit Text",
     "category": "Hero & Headers",
     "description": "API-Hero mit SVG-Grafik und erweiterten Textfeldern",
-    
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -967,6 +1071,18 @@
                 content: { label: 'Titel-Text', propertyName: 'title' },
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        },
+        svg: {
+            groupName: 'image',
+            prefix: 'svg',
+            group: 'svg',
+            only: ['url', 'alt', 'size', 'spacing'],
+            overrides: {
+                url: { label: 'SVG-URL', propertyName: 'svgUrl' },
+                alt: { label: 'Alt-Text', propertyName: 'svgAlt' },
+                size: { label: 'Größe', propertyName: 'svgSizeType' },
+                spacing: { label: 'Abstand', propertyName: 'svgSpacing' }
             }
         }
     },
@@ -1436,7 +1552,7 @@
                 "name": "Company Presentation",
                 "category": "Team & About",
                 "description": "Unternehmensvorstellung mit Haupttext, Button und Statistiken im Grid-Layout",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -1458,19 +1574,49 @@
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
+        },
+        image: {
+            groupName: 'image',
+            prefix: 'image',
+            group: 'image',
+            only: ['url', 'alt', 'visibility'],
+            overrides: {
+                url: { label: 'Bild-URL', propertyName: 'imageUrl' },
+                alt: { label: 'Alt-Text', propertyName: 'imageAlt' },
+                visibility: { label: 'Bild anzeigen', propertyName: 'showImage' }
+            }
+        },
+        layout: {
+            groupName: 'layout',
+            prefix: 'layout',
+            group: 'layout',
+            only: ['imagePosition'],
+            overrides: {
+                imagePosition: {
+                    label: 'Bild-Position',
+                    propertyName: 'imagePosition',
+                    type: 'select',
+                    options: [
+                        { value: 'right', label: 'Rechts' },
+                        { value: 'left', label: 'Links' }
+                    ]
+                }
+            }
         }
     },
 
-    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; position: relative;" class="kerberos-company-presentation">
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; position: relative;" class="kerberos-company-presentation kerberos-module-{{moduleId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="display: grid; grid-template-columns: 1fr; gap: {{contentGap}}; align-items: center;">
-                            <div style="display: grid; grid-template-columns: 1fr 400px; gap: {{mainContentGap}}; align-items: center; margin-bottom: {{sectionSpacing}};">
-                                <div>
+                            <div class="company-main-grid company-image-{{imagePosition}}" style="display: grid; gap: {{mainContentGap}}; align-items: center; margin-bottom: {{sectionSpacing}};">
+                                <div class="company-image" data-show="{{showImage}}">
+                                    <img data-property="imageUrl" src="{{imageUrl}}" alt="{{imageAlt}}" style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;">
+                                </div>
+                                <div class="company-content">
                                     <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0; line-height: 1.2;">{{title}}</h2>
                                     <div data-property="description" data-content-type="html" style="color: {{textColor}}; font-size: {{textSizeType}}; line-height: {{lineHeightType}}; margin-bottom: {{textSpacing}};">{{description}}</div>
                                     <a href="{{primaryButtonLink}}" data-property="primaryButtonText" style="display: inline-flex; align-items: center; gap: 0.5rem; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; font-weight: 500; transition: all 0.3s ease;">{{primaryButtonText}}</a>
                                 </div>
-                                {{rightSideContent}}
                             </div>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: {{statsGap}};">
                                 {{statisticsGrid}}
@@ -1478,10 +1624,37 @@
                         </div>
                     </div>
                     <style>
+                        .kerberos-module-{{moduleId}} .company-image[data-show="false"] {
+                            display: none;
+                        }
+                        .kerberos-module-{{moduleId}} .company-main-grid {
+                            grid-template-columns: 1fr 400px;
+                        }
+                        .kerberos-module-{{moduleId}} .company-image-left {
+                            grid-template-columns: 400px 1fr;
+                        }
+                        .kerberos-module-{{moduleId}} .company-image-left .company-image {
+                            order: 1;
+                        }
+                        .kerberos-module-{{moduleId}} .company-image-left .company-content {
+                            order: 2;
+                        }
+                        .kerberos-module-{{moduleId}} .company-image-right {
+                            grid-template-columns: 1fr 400px;
+                        }
+                        .kerberos-module-{{moduleId}} .company-image-right .company-content {
+                            order: 1;
+                        }
+                        .kerberos-module-{{moduleId}} .company-image-right .company-image {
+                            order: 2;
+                        }
                         @media (max-width: 768px) {
-                            .kerberos-company-presentation div[style*="grid-template-columns: 1fr 400px"] {
+                            .kerberos-module-{{moduleId}} .company-main-grid {
                                 grid-template-columns: 1fr !important;
                                 gap: {{mobileGap}} !important;
+                            }
+                            .kerberos-module-{{moduleId}} .company-main-grid > * {
+                                order: unset !important;
                             }
                         }
                     </style>
@@ -1501,6 +1674,7 @@
                     "imageUrl": "",
                     "imageAlt": "Unternehmensbild",
                     "showImage": "false",
+                    "imagePosition": "right",
 
                     // === PRIMARY BUTTON ===
                     "primaryButtonText": "Über uns",
@@ -1875,7 +2049,7 @@
                 "name": "Team Galerie",
                 "category": "Team & About",
                 "description": "Mitarbeiter-Galerie mit Bildern und Fallback-Avatars",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -1897,6 +2071,21 @@
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
+        },
+        layout: {
+            groupName: 'layout',
+            prefix: 'layout',
+            group: 'layout',
+            only: ['cardSize', 'gap'],
+            overrides: {
+                cardSize: { label: 'Kartengröße', propertyName: 'cardMinWidthType' },
+                gap: { label: 'Abstand zwischen Karten', propertyName: 'teamGap' }
+            }
+        },
+        members: {
+            groupName: 'cards',
+            label: 'Team-Mitglieder (12 Slots)',
+            description: 'Bearbeiten Sie die Team-Mitglieder. Nutzen Sie memberXActive um Mitglieder ein-/auszublenden.'
         }
     },
 
@@ -1923,7 +2112,7 @@
                     "backgroundColor": "#FFFFFF",
                     "sectionSpacing": "6rem 0",
                     "teamGap": "2rem",
-                    "cardMinWidthType": "medium",
+                    "cardMinWidthType": "small",
                     "maxWidthType": "large",
 
                     // === CARD STYLING ===
@@ -1952,15 +2141,71 @@
                     "member3Position": "IT-Security Experte",
                     "member3Description": "Spezialist für Cybersecurity und technische Compliance-Implementierung.",
                     "member3Image": "",
-                    "member3InitialBg": "linear-gradient(135deg, #EF8646, #28a745)",
+                    "member3InitialBg": "linear-gradient(135deg, #EF8646, #57CC6F)",
                     "member3Active": "false",
 
                     "member4Name": "Sarah Weber",
                     "member4Position": "Legal Consultant",
                     "member4Description": "Rechtsanwältin mit Fokus auf Compliance und Unternehmensrecht.",
                     "member4Image": "",
-                    "member4InitialBg": "linear-gradient(135deg, #28a745, #063AA8)",
+                    "member4InitialBg": "linear-gradient(135deg, #57CC6F, #063AA8)",
                     "member4Active": "false",
+
+                    "member5Name": "Max Mustermann",
+                    "member5Position": "Compliance Manager",
+                    "member5Description": "Spezialist für operative Compliance-Prozesse.",
+                    "member5Image": "",
+                    "member5InitialBg": "linear-gradient(135deg, #EF8646, #B265E9)",
+                    "member5Active": "false",
+
+                    "member6Name": "Julia Klein",
+                    "member6Position": "Risk Analyst",
+                    "member6Description": "Expertin für Risikoanalyse und -bewertung.",
+                    "member6Image": "",
+                    "member6InitialBg": "linear-gradient(135deg, #009CE6, #57CC6F)",
+                    "member6Active": "false",
+
+                    "member7Name": "Peter Groß",
+                    "member7Position": "IT Consultant",
+                    "member7Description": "Berater für technische Compliance-Lösungen.",
+                    "member7Image": "",
+                    "member7InitialBg": "linear-gradient(135deg, #063AA8, #B265E9)",
+                    "member7Active": "false",
+
+                    "member8Name": "Lisa Wagner",
+                    "member8Position": "Legal Advisor",
+                    "member8Description": "Rechtsberatung im Bereich Compliance.",
+                    "member8Image": "",
+                    "member8InitialBg": "linear-gradient(135deg, #B265E9, #009CE6)",
+                    "member8Active": "false",
+
+                    "member9Name": "Martin Schulz",
+                    "member9Position": "Data Protection Officer",
+                    "member9Description": "Datenschutzbeauftragter und DSGVO-Experte.",
+                    "member9Image": "",
+                    "member9InitialBg": "linear-gradient(135deg, #57CC6F, #EF8646)",
+                    "member9Active": "false",
+
+                    "member10Name": "Sophie Braun",
+                    "member10Position": "Audit Manager",
+                    "member10Description": "Leiterin des internen Audit-Teams.",
+                    "member10Image": "",
+                    "member10InitialBg": "linear-gradient(135deg, #009CE6, #063AA8)",
+                    "member10Active": "false",
+
+                    "member11Name": "Robert Fischer",
+                    "member11Position": "Training Specialist",
+                    "member11Description": "Spezialist für Compliance-Schulungen.",
+                    "member11Image": "",
+                    "member11InitialBg": "linear-gradient(135deg, #EF8646, #063AA8)",
+                    "member11Active": "false",
+
+                    "member12Name": "Nina Hoffmann",
+                    "member12Position": "Compliance Analyst",
+                    "member12Description": "Analystin für Compliance-Prozesse.",
+                    "member12Image": "",
+                    "member12InitialBg": "linear-gradient(135deg, #B265E9, #57CC6F)",
+                    "member12Active": "false",
 
                     // === TEXT FARBEN ===
                     "nameColor": "#212529",
@@ -1974,7 +2219,7 @@
                 "name": "Statistiken mit Icons",
                 "category": "Statistics & Numbers",
                 "description": "Zahlen und Fakten mit anpassbaren Icons und Abständen",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -1996,6 +2241,21 @@
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
+        },
+        layout: {
+            groupName: 'layout',
+            prefix: 'layout',
+            group: 'layout',
+            only: ['minWidth', 'gap'],
+            overrides: {
+                minWidth: { label: 'Kartengröße', propertyName: 'statMinWidthType' },
+                gap: { label: 'Abstand zwischen Karten', propertyName: 'statsGap' }
+            }
+        },
+        stats: {
+            groupName: 'cards',
+            label: 'Statistiken (12 Slots)',
+            description: 'Bearbeiten Sie die Statistik-Karten. Nutzen Sie statXActive um Karten ein-/auszublenden.'
         }
     },
 
@@ -2101,7 +2361,71 @@
                     "stat4Icon": "&#xf590;",
                     "stat4IconColor": "#EF8646",
                     "stat4NumberColor": "#EF8646",
-                    "stat4TextColor": "#6c757d"
+                    "stat4TextColor": "#6c757d",
+
+                    "stat5Number": "1000+",
+                    "stat5Text": "Projekte",
+                    "stat5Icon": "&#xf0c0;",
+                    "stat5IconColor": "#57CC6F",
+                    "stat5NumberColor": "#57CC6F",
+                    "stat5TextColor": "#6c757d",
+                    "stat5Active": "false",
+
+                    "stat6Number": "50+",
+                    "stat6Text": "Mitarbeiter",
+                    "stat6Icon": "&#xf0c0;",
+                    "stat6IconColor": "#063AA8",
+                    "stat6NumberColor": "#063AA8",
+                    "stat6TextColor": "#6c757d",
+                    "stat6Active": "false",
+
+                    "stat7Number": "100%",
+                    "stat7Text": "Zufriedenheit",
+                    "stat7Icon": "&#xf118;",
+                    "stat7IconColor": "#009CE6",
+                    "stat7NumberColor": "#009CE6",
+                    "stat7TextColor": "#6c757d",
+                    "stat7Active": "false",
+
+                    "stat8Number": "10+",
+                    "stat8Text": "Auszeichnungen",
+                    "stat8Icon": "&#xf559;",
+                    "stat8IconColor": "#B265E9",
+                    "stat8NumberColor": "#B265E9",
+                    "stat8TextColor": "#6c757d",
+                    "stat8Active": "false",
+
+                    "stat9Number": "5000+",
+                    "stat9Text": "Schulungen",
+                    "stat9Icon": "&#xf19d;",
+                    "stat9IconColor": "#EF8646",
+                    "stat9NumberColor": "#EF8646",
+                    "stat9TextColor": "#6c757d",
+                    "stat9Active": "false",
+
+                    "stat10Number": "95%",
+                    "stat10Text": "Weiterempfehlung",
+                    "stat10Icon": "&#xf164;",
+                    "stat10IconColor": "#57CC6F",
+                    "stat10NumberColor": "#57CC6F",
+                    "stat10TextColor": "#6c757d",
+                    "stat10Active": "false",
+
+                    "stat11Number": "30+",
+                    "stat11Text": "Branchen",
+                    "stat11Icon": "&#xf0c9;",
+                    "stat11IconColor": "#063AA8",
+                    "stat11NumberColor": "#063AA8",
+                    "stat11TextColor": "#6c757d",
+                    "stat11Active": "false",
+
+                    "stat12Number": "24h",
+                    "stat12Text": "Reaktionszeit",
+                    "stat12Icon": "&#xf017;",
+                    "stat12IconColor": "#009CE6",
+                    "stat12NumberColor": "#009CE6",
+                    "stat12TextColor": "#6c757d",
+                    "stat12Active": "false"
                 }
             },
 
@@ -2110,7 +2434,7 @@
                 "name": "Modernes Bild-Text Layout",
                 "category": "Content & Images",
                 "description": "Vollständig responsives Bild-Text Layout mit modernen Design-Elementen",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -2131,6 +2455,23 @@
                 content: { label: 'Titel-Text', propertyName: 'title' },
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        },
+        layout: {
+            groupName: 'layout',
+            prefix: 'layout',
+            group: 'layout',
+            only: ['layoutType'],
+            overrides: {
+                layoutType: {
+                    label: 'Bild-Position',
+                    propertyName: 'layoutType',
+                    type: 'select',
+                    options: [
+                        { value: 'image-left', label: 'Bild links' },
+                        { value: 'image-right', label: 'Bild rechts' }
+                    ]
+                }
             }
         }
     },
@@ -2318,9 +2659,9 @@
             {
                 "id": "kerberos-feature-breaker",
                 "name": "Feature Breaker",
-                "category": "Content & Services", 
+                "category": "Content & Services",
                 "description": "Auffälliges Breaker-Modul für besondere Ankündigungen - ALLE PROPERTIES FUNKTIONIEREN",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -2342,6 +2683,11 @@
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
+        },
+        facts: {
+            groupName: 'cards',
+            label: 'Fakten (6 Slots)',
+            description: 'Bearbeiten Sie die Fakten-Karten. Nutzen Sie factXActive um Fakten ein-/auszublenden.'
         }
     },
 
@@ -2349,6 +2695,9 @@
                     <div class="breaker-animated-bg" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: {{backgroundOpacityType}}; background: {{backgroundPatternType}}; z-index: 1;"></div>
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2;">
                         {{breakerContent}}
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-top: {{factsSpacing}}; padding-top: {{factsSpacing}}; border-top: 1px solid rgba(255,255,255,0.2);">
+                            {{factsBlocks}}
+                        </div>
                     </div>
                 </section>`,
                 "properties": {
@@ -2396,7 +2745,57 @@
                     "backgroundOpacityType": "light",
                     "sectionSpacing": "4rem 0",
 
-                    // === HOVER PROPERTIES ===  
+                    // === FACTS ===
+                    "factsSpacing": "3rem",
+                    "fact1Number": "500+",
+                    "fact1Text": "Zufriedene Kunden",
+                    "fact1Icon": "&#xf0c0;",
+                    "fact1IconColor": "#FFFFFF",
+                    "fact1NumberColor": "#FFFFFF",
+                    "fact1TextColor": "rgba(255,255,255,0.9)",
+                    "fact1Active": "true",
+
+                    "fact2Number": "99%",
+                    "fact2Text": "Erfolgsquote",
+                    "fact2Icon": "&#xf005;",
+                    "fact2IconColor": "#FFFFFF",
+                    "fact2NumberColor": "#FFFFFF",
+                    "fact2TextColor": "rgba(255,255,255,0.9)",
+                    "fact2Active": "true",
+
+                    "fact3Number": "24/7",
+                    "fact3Text": "Support",
+                    "fact3Icon": "&#xf590;",
+                    "fact3IconColor": "#FFFFFF",
+                    "fact3NumberColor": "#FFFFFF",
+                    "fact3TextColor": "rgba(255,255,255,0.9)",
+                    "fact3Active": "true",
+
+                    "fact4Number": "15+",
+                    "fact4Text": "Jahre Erfahrung",
+                    "fact4Icon": "&#xf559;",
+                    "fact4IconColor": "#FFFFFF",
+                    "fact4NumberColor": "#FFFFFF",
+                    "fact4TextColor": "rgba(255,255,255,0.9)",
+                    "fact4Active": "true",
+
+                    "fact5Number": "1000+",
+                    "fact5Text": "Projekte",
+                    "fact5Icon": "&#xf0c0;",
+                    "fact5IconColor": "#FFFFFF",
+                    "fact5NumberColor": "#FFFFFF",
+                    "fact5TextColor": "rgba(255,255,255,0.9)",
+                    "fact5Active": "false",
+
+                    "fact6Number": "100%",
+                    "fact6Text": "Zufriedenheit",
+                    "fact6Icon": "&#xf118;",
+                    "fact6IconColor": "#FFFFFF",
+                    "fact6NumberColor": "#FFFFFF",
+                    "fact6TextColor": "rgba(255,255,255,0.9)",
+                    "fact6Active": "false",
+
+                    // === HOVER PROPERTIES ===
                 }
             },
 
@@ -2653,7 +3052,7 @@
                 "name": "Statistiken mit Icons (Hover-Effekte)",
                 "category": "Content & Services",
                 "description": "Statistik-Darstellung mit animierten Hover-Effekten und Icons",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -2675,6 +3074,21 @@
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
+        },
+        layout: {
+            groupName: 'layout',
+            prefix: 'layout',
+            group: 'layout',
+            only: ['minWidth', 'gap'],
+            overrides: {
+                minWidth: { label: 'Kartengröße', propertyName: 'cardMinWidthType' },
+                gap: { label: 'Abstand zwischen Karten', propertyName: 'statsGap' }
+            }
+        },
+        stats: {
+            groupName: 'cards',
+            label: 'Statistiken (12 Slots)',
+            description: 'Bearbeiten Sie die Statistik-Karten. Nutzen Sie statXActive um Karten ein-/auszublenden.'
         }
     },
 
@@ -2737,25 +3151,45 @@
                     "stat4Icon": "&#xf0c0;",
                     "stat4Active": "true",
 
-                    "stat5Number": "",
-                    "stat5Text": "",
-                    "stat5Icon": "",
+                    "stat5Number": "15+",
+                    "stat5Text": "Jahre Erfahrung",
+                    "stat5Icon": "&#xf559;",
                     "stat5Active": "false",
 
-                    "stat6Number": "",
-                    "stat6Text": "",
-                    "stat6Icon": "",
+                    "stat6Number": "24/7",
+                    "stat6Text": "Support verfügbar",
+                    "stat6Icon": "&#xf590;",
                     "stat6Active": "false",
 
-                    "stat7Number": "",
-                    "stat7Text": "",
-                    "stat7Icon": "",
+                    "stat7Number": "100%",
+                    "stat7Text": "DSGVO-konform",
+                    "stat7Icon": "&#xf505;",
                     "stat7Active": "false",
 
-                    "stat8Number": "",
-                    "stat8Text": "",
-                    "stat8Icon": "",
-                    "stat8Active": "false"
+                    "stat8Number": "1000+",
+                    "stat8Text": "Erfolgreiche Projekte",
+                    "stat8Icon": "&#xf0c0;",
+                    "stat8Active": "false",
+
+                    "stat9Number": "50+",
+                    "stat9Text": "Mitarbeiter",
+                    "stat9Icon": "&#xf0c0;",
+                    "stat9Active": "false",
+
+                    "stat10Number": "95%",
+                    "stat10Text": "Weiterempfehlung",
+                    "stat10Icon": "&#xf164;",
+                    "stat10Active": "false",
+
+                    "stat11Number": "30+",
+                    "stat11Text": "Branchen",
+                    "stat11Icon": "&#xf0c9;",
+                    "stat11Active": "false",
+
+                    "stat12Number": "24h",
+                    "stat12Text": "Reaktionszeit",
+                    "stat12Icon": "&#xf017;",
+                    "stat12Active": "false"
                 }
             },
 
@@ -3035,7 +3469,7 @@
     "name": "Features Grid mit Hover",
     "category": "Content & Services",
     "description": "Interaktives Features-Grid mit CSS-Hover-Animationen und Icons",
-    
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -3057,6 +3491,21 @@
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
+        },
+        layout: {
+            groupName: 'layout',
+            prefix: 'layout',
+            group: 'layout',
+            only: ['minWidth', 'gap'],
+            overrides: {
+                minWidth: { label: 'Kartengröße', propertyName: 'cardMinWidth' },
+                gap: { label: 'Abstand zwischen Karten', propertyName: 'cardGap' }
+            }
+        },
+        features: {
+            groupName: 'cards',
+            label: 'Features (12 Slots)',
+            description: 'Bearbeiten Sie die Feature-Karten. Nutzen Sie featureXActive um Karten ein-/auszublenden.'
         }
     },
 
@@ -3193,40 +3642,40 @@
         "feature6Color": "#DC3545",
         "feature6Active": "true",
 
-        "feature7Title": "",
-        "feature7Description": "",
-        "feature7Icon": "",
-        "feature7Color": "#6C757D",
+        "feature7Title": "API Integration",
+        "feature7Description": "Nahtlose Integration in Ihre bestehenden Systeme über REST-API.",
+        "feature7Icon": "&#xf1e6;",
+        "feature7Color": "#57CC6F",
         "feature7Active": "false",
 
-        "feature8Title": "",
-        "feature8Description": "",
-        "feature8Icon": "",
-        "feature8Color": "#FFC107",
+        "feature8Title": "Multi-Faktor Auth",
+        "feature8Description": "Sichere Authentifizierung mit mehreren Faktoren für höchste Sicherheit.",
+        "feature8Icon": "&#xf132;",
+        "feature8Color": "#063AA8",
         "feature8Active": "false",
 
-        "feature9Title": "",
-        "feature9Description": "",
-        "feature9Icon": "",
-        "feature9Color": "#17A2B8",
+        "feature9Title": "Dashboard Analytics",
+        "feature9Description": "Übersichtliche Dashboards mit Echtzeit-Analysen und Reportings.",
+        "feature9Icon": "&#xf080;",
+        "feature9Color": "#009CE6",
         "feature9Active": "false",
 
-        "feature10Title": "",
-        "feature10Description": "",
-        "feature10Icon": "",
-        "feature10Color": "#6F42C1",
+        "feature10Title": "Automatische Updates",
+        "feature10Description": "Immer auf dem neuesten Stand mit automatischen System-Updates.",
+        "feature10Icon": "&#xf021;",
+        "feature10Color": "#B265E9",
         "feature10Active": "false",
 
-        "feature11Title": "",
-        "feature11Description": "",
-        "feature11Icon": "",
-        "feature11Color": "#E83E8C",
+        "feature11Title": "Schulungen",
+        "feature11Description": "Umfassende Schulungen für Ihr Team zur optimalen Nutzung.",
+        "feature11Icon": "&#xf19d;",
+        "feature11Color": "#EF8646",
         "feature11Active": "false",
 
-        "feature12Title": "",
-        "feature12Description": "",
-        "feature12Icon": "",
-        "feature12Color": "#20C997",
+        "feature12Title": "Compliance Berichte",
+        "feature12Description": "Automatische Erstellung detaillierter Compliance-Berichte.",
+        "feature12Icon": "&#xf15c;",
+        "feature12Color": "#57CC6F",
         "feature12Active": "false"
     },
     "customized": true
