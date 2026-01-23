@@ -2639,9 +2639,9 @@
             {
                 "id": "kerberos-feature-breaker",
                 "name": "Feature Breaker",
-                "category": "Content & Services", 
+                "category": "Content & Services",
                 "description": "Auffälliges Breaker-Modul für besondere Ankündigungen - ALLE PROPERTIES FUNKTIONIEREN",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -2663,6 +2663,11 @@
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
+        },
+        facts: {
+            groupName: 'cards',
+            label: 'Fakten (6 Slots)',
+            description: 'Bearbeiten Sie die Fakten-Karten. Nutzen Sie factXActive um Fakten ein-/auszublenden.'
         }
     },
 
@@ -2670,6 +2675,9 @@
                     <div class="breaker-animated-bg" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: {{backgroundOpacityType}}; background: {{backgroundPatternType}}; z-index: 1;"></div>
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2;">
                         {{breakerContent}}
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-top: {{factsSpacing}}; padding-top: {{factsSpacing}}; border-top: 1px solid rgba(255,255,255,0.2);">
+                            {{factsBlocks}}
+                        </div>
                     </div>
                 </section>`,
                 "properties": {
@@ -2717,7 +2725,57 @@
                     "backgroundOpacityType": "light",
                     "sectionSpacing": "4rem 0",
 
-                    // === HOVER PROPERTIES ===  
+                    // === FACTS ===
+                    "factsSpacing": "3rem",
+                    "fact1Number": "500+",
+                    "fact1Text": "Zufriedene Kunden",
+                    "fact1Icon": "&#xf0c0;",
+                    "fact1IconColor": "#FFFFFF",
+                    "fact1NumberColor": "#FFFFFF",
+                    "fact1TextColor": "rgba(255,255,255,0.9)",
+                    "fact1Active": "true",
+
+                    "fact2Number": "99%",
+                    "fact2Text": "Erfolgsquote",
+                    "fact2Icon": "&#xf005;",
+                    "fact2IconColor": "#FFFFFF",
+                    "fact2NumberColor": "#FFFFFF",
+                    "fact2TextColor": "rgba(255,255,255,0.9)",
+                    "fact2Active": "true",
+
+                    "fact3Number": "24/7",
+                    "fact3Text": "Support",
+                    "fact3Icon": "&#xf590;",
+                    "fact3IconColor": "#FFFFFF",
+                    "fact3NumberColor": "#FFFFFF",
+                    "fact3TextColor": "rgba(255,255,255,0.9)",
+                    "fact3Active": "true",
+
+                    "fact4Number": "15+",
+                    "fact4Text": "Jahre Erfahrung",
+                    "fact4Icon": "&#xf559;",
+                    "fact4IconColor": "#FFFFFF",
+                    "fact4NumberColor": "#FFFFFF",
+                    "fact4TextColor": "rgba(255,255,255,0.9)",
+                    "fact4Active": "true",
+
+                    "fact5Number": "1000+",
+                    "fact5Text": "Projekte",
+                    "fact5Icon": "&#xf0c0;",
+                    "fact5IconColor": "#FFFFFF",
+                    "fact5NumberColor": "#FFFFFF",
+                    "fact5TextColor": "rgba(255,255,255,0.9)",
+                    "fact5Active": "false",
+
+                    "fact6Number": "100%",
+                    "fact6Text": "Zufriedenheit",
+                    "fact6Icon": "&#xf118;",
+                    "fact6IconColor": "#FFFFFF",
+                    "fact6NumberColor": "#FFFFFF",
+                    "fact6TextColor": "rgba(255,255,255,0.9)",
+                    "fact6Active": "false",
+
+                    // === HOVER PROPERTIES ===
                 }
             },
 
@@ -2974,7 +3032,7 @@
                 "name": "Statistiken mit Icons (Hover-Effekte)",
                 "category": "Content & Services",
                 "description": "Statistik-Darstellung mit animierten Hover-Effekten und Icons",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -2996,6 +3054,21 @@
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
+        },
+        layout: {
+            groupName: 'layout',
+            prefix: 'layout',
+            group: 'layout',
+            only: ['minWidth', 'gap'],
+            overrides: {
+                minWidth: { label: 'Kartengröße', propertyName: 'cardMinWidthType' },
+                gap: { label: 'Abstand zwischen Karten', propertyName: 'statsGap' }
+            }
+        },
+        stats: {
+            groupName: 'cards',
+            label: 'Statistiken (12 Slots)',
+            description: 'Bearbeiten Sie die Statistik-Karten. Nutzen Sie statXActive um Karten ein-/auszublenden.'
         }
     },
 
@@ -3058,25 +3131,45 @@
                     "stat4Icon": "&#xf0c0;",
                     "stat4Active": "true",
 
-                    "stat5Number": "",
-                    "stat5Text": "",
-                    "stat5Icon": "",
+                    "stat5Number": "15+",
+                    "stat5Text": "Jahre Erfahrung",
+                    "stat5Icon": "&#xf559;",
                     "stat5Active": "false",
 
-                    "stat6Number": "",
-                    "stat6Text": "",
-                    "stat6Icon": "",
+                    "stat6Number": "24/7",
+                    "stat6Text": "Support verfügbar",
+                    "stat6Icon": "&#xf590;",
                     "stat6Active": "false",
 
-                    "stat7Number": "",
-                    "stat7Text": "",
-                    "stat7Icon": "",
+                    "stat7Number": "100%",
+                    "stat7Text": "DSGVO-konform",
+                    "stat7Icon": "&#xf505;",
                     "stat7Active": "false",
 
-                    "stat8Number": "",
-                    "stat8Text": "",
-                    "stat8Icon": "",
-                    "stat8Active": "false"
+                    "stat8Number": "1000+",
+                    "stat8Text": "Erfolgreiche Projekte",
+                    "stat8Icon": "&#xf0c0;",
+                    "stat8Active": "false",
+
+                    "stat9Number": "50+",
+                    "stat9Text": "Mitarbeiter",
+                    "stat9Icon": "&#xf0c0;",
+                    "stat9Active": "false",
+
+                    "stat10Number": "95%",
+                    "stat10Text": "Weiterempfehlung",
+                    "stat10Icon": "&#xf164;",
+                    "stat10Active": "false",
+
+                    "stat11Number": "30+",
+                    "stat11Text": "Branchen",
+                    "stat11Icon": "&#xf0c9;",
+                    "stat11Active": "false",
+
+                    "stat12Number": "24h",
+                    "stat12Text": "Reaktionszeit",
+                    "stat12Icon": "&#xf017;",
+                    "stat12Active": "false"
                 }
             },
 
@@ -3356,7 +3449,7 @@
     "name": "Features Grid mit Hover",
     "category": "Content & Services",
     "description": "Interaktives Features-Grid mit CSS-Hover-Animationen und Icons",
-    
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -3378,6 +3471,21 @@
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
+        },
+        layout: {
+            groupName: 'layout',
+            prefix: 'layout',
+            group: 'layout',
+            only: ['minWidth', 'gap'],
+            overrides: {
+                minWidth: { label: 'Kartengröße', propertyName: 'cardMinWidth' },
+                gap: { label: 'Abstand zwischen Karten', propertyName: 'cardGap' }
+            }
+        },
+        features: {
+            groupName: 'cards',
+            label: 'Features (12 Slots)',
+            description: 'Bearbeiten Sie die Feature-Karten. Nutzen Sie featureXActive um Karten ein-/auszublenden.'
         }
     },
 
@@ -3514,40 +3622,40 @@
         "feature6Color": "#DC3545",
         "feature6Active": "true",
 
-        "feature7Title": "",
-        "feature7Description": "",
-        "feature7Icon": "",
-        "feature7Color": "#6C757D",
+        "feature7Title": "API Integration",
+        "feature7Description": "Nahtlose Integration in Ihre bestehenden Systeme über REST-API.",
+        "feature7Icon": "&#xf1e6;",
+        "feature7Color": "#57CC6F",
         "feature7Active": "false",
 
-        "feature8Title": "",
-        "feature8Description": "",
-        "feature8Icon": "",
-        "feature8Color": "#FFC107",
+        "feature8Title": "Multi-Faktor Auth",
+        "feature8Description": "Sichere Authentifizierung mit mehreren Faktoren für höchste Sicherheit.",
+        "feature8Icon": "&#xf132;",
+        "feature8Color": "#063AA8",
         "feature8Active": "false",
 
-        "feature9Title": "",
-        "feature9Description": "",
-        "feature9Icon": "",
-        "feature9Color": "#17A2B8",
+        "feature9Title": "Dashboard Analytics",
+        "feature9Description": "Übersichtliche Dashboards mit Echtzeit-Analysen und Reportings.",
+        "feature9Icon": "&#xf080;",
+        "feature9Color": "#009CE6",
         "feature9Active": "false",
 
-        "feature10Title": "",
-        "feature10Description": "",
-        "feature10Icon": "",
-        "feature10Color": "#6F42C1",
+        "feature10Title": "Automatische Updates",
+        "feature10Description": "Immer auf dem neuesten Stand mit automatischen System-Updates.",
+        "feature10Icon": "&#xf021;",
+        "feature10Color": "#B265E9",
         "feature10Active": "false",
 
-        "feature11Title": "",
-        "feature11Description": "",
-        "feature11Icon": "",
-        "feature11Color": "#E83E8C",
+        "feature11Title": "Schulungen",
+        "feature11Description": "Umfassende Schulungen für Ihr Team zur optimalen Nutzung.",
+        "feature11Icon": "&#xf19d;",
+        "feature11Color": "#EF8646",
         "feature11Active": "false",
 
-        "feature12Title": "",
-        "feature12Description": "",
-        "feature12Icon": "",
-        "feature12Color": "#20C997",
+        "feature12Title": "Compliance Berichte",
+        "feature12Description": "Automatische Erstellung detaillierter Compliance-Berichte.",
+        "feature12Icon": "&#xf15c;",
+        "feature12Color": "#57CC6F",
         "feature12Active": "false"
     },
     "customized": true
