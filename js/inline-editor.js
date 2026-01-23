@@ -2236,19 +2236,15 @@ function openSectionEditorFromPanel() {
         return;
     }
 
-    // Versuche zuerst eine section.kerberos-module zu finden
-    let section = moduleElement.querySelector('section.kerberos-module');
-
-    // Falls keine Section gefunden, verwende das erste Kind-Element oder das Modul selbst
-    if (!section) {
-        // Versuche andere gängige Container-Elemente zu finden
-        section = moduleElement.querySelector('section') ||
+    // Versuche zuerst eine section mit kerberos im Klassennamen zu finden
+    let section = moduleElement.querySelector('section[class*="kerberos"]') ||
+                  moduleElement.querySelector('section') ||
+                  moduleElement.querySelector('div[class*="kerberos"]') ||
                   moduleElement.querySelector('div[style*="background"]') ||
                   moduleElement.querySelector('div:first-child') ||
                   moduleElement;
 
-        console.log('📝 Keine section.kerberos-module gefunden, verwende:', section.tagName);
-    }
+    console.log('📝 Section gefunden:', section.tagName, section.className);
 
     // Öffne das Section-Padding-Menu in der Mitte des Canvas
     const canvasRect = canvas.getBoundingClientRect();
