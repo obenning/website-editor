@@ -115,6 +115,38 @@ const TYPE_MAPPINGS = {
         'medium': '0.5',
         'heavy': '0.8',
         'full': '1'
+    },
+
+    // ===== CI-FARBEN =====
+    ciColors: {
+        'Dunkelblau': '#063AA8',
+        'Hellblau': '#009CE6',
+        'Schwarz': '#212529',
+        'Lila': '#B265E9',
+        'Grau': '#ADB5BD',
+        'Orange': '#EF8646',
+        'Grün': '#57CC6F',
+        'Weiß': '#FFFFFF'
+    },
+
+    // Hover-Farben für CI-Farben (automatisches Mapping)
+    ciColorHovers: {
+        '#063AA8': '#294FC5',  // Dunkelblau
+        '#009CE6': '#007DB7',  // Hellblau
+        '#212529': '#3A3F42',  // Schwarz
+        '#B265E9': '#9A52CF',  // Lila
+        '#ADB5BD': '#9199A1',  // Grau
+        '#EF8646': '#D66B34',  // Orange
+        '#57CC6F': '#3FAB5A',  // Grün
+        '#FFFFFF': '#F8F9FA'   // Weiß
+    },
+
+    // ===== HEADING TAGS =====
+    headingTags: {
+        'H1': 'h1',
+        'H2': 'h2',
+        'H3': 'h3',
+        'H4': 'h4'
     }
 };
 

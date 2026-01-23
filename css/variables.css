@@ -2,10 +2,27 @@
    🎨 CSS VARIABLES & RESET
    ======================================== */
 :root {
-    --kerberos-primary: #063AA8;
-    --kerberos-secondary: #009CE6;
-    --kerberos-accent: #B265E9;
-    --kerberos-orange: #EF8646;
+    /* CI-Farben - Hauptfarben */
+    --kerberos-primary: #063AA8;         /* Dunkelblau */
+    --kerberos-secondary: #009CE6;       /* Hellblau */
+    --kerberos-accent: #B265E9;          /* Lila */
+    --kerberos-orange: #EF8646;          /* Orange */
+    --kerberos-green: #57CC6F;           /* Grün */
+    --kerberos-black: #212529;           /* Schwarz */
+    --kerberos-gray: #ADB5BD;            /* Grau */
+    --kerberos-white: #FFFFFF;           /* Weiß */
+
+    /* CI-Farben - Hover-Zustände */
+    --kerberos-primary-hover: #294FC5;   /* Dunkelblau Hover */
+    --kerberos-secondary-hover: #007DB7; /* Hellblau Hover */
+    --kerberos-accent-hover: #9A52CF;    /* Lila Hover */
+    --kerberos-orange-hover: #D66B34;    /* Orange Hover */
+    --kerberos-green-hover: #3FAB5A;     /* Grün Hover */
+    --kerberos-black-hover: #3A3F42;     /* Schwarz Hover */
+    --kerberos-gray-hover: #9199A1;      /* Grau Hover */
+    --kerberos-white-hover: #F8F9FA;     /* Weiß Hover (leicht grau) */
+
+    /* Legacy-Farben (für Kompatibilität) */
     --kerberos-success: #28a745;
     --kerberos-danger: #dc3545;
     --kerberos-dark: #212529;
