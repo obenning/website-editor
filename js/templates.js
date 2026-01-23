@@ -827,7 +827,7 @@
                 "name": "Hero mit SVG-Grafik",
                 "category": "Hero & Headers",
                 "description": "Hero-Bereich mit optimierten SVG-Grafiken und Call-to-Action",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -848,6 +848,21 @@
                 content: { label: 'Titel-Text', propertyName: 'title' },
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        },
+        svg: {
+            groupName: 'image',
+            prefix: 'svg',
+            group: 'svg',
+            only: ['svgType', 'url', 'code', 'alt', 'size', 'spacing', 'color'],
+            overrides: {
+                svgType: { label: 'SVG-Quelle', propertyName: 'svgType' },
+                url: { label: 'SVG-URL', propertyName: 'svgUrl' },
+                code: { label: 'SVG-Code', propertyName: 'svgCode' },
+                alt: { label: 'Alt-Text', propertyName: 'svgAlt' },
+                size: { label: 'Größe', propertyName: 'svgSizeType' },
+                spacing: { label: 'Abstand', propertyName: 'svgSpacing' },
+                color: { label: 'SVG-Farbe', propertyName: 'svgColor' }
             }
         }
     },
@@ -943,10 +958,10 @@
 
 {
     "id": "kerberos-api-hero-with-text",
-    "name": "API Hero mit Text", 
+    "name": "API Hero mit Text",
     "category": "Hero & Headers",
     "description": "API-Hero mit SVG-Grafik und erweiterten Textfeldern",
-    
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -967,6 +982,18 @@
                 content: { label: 'Titel-Text', propertyName: 'title' },
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        },
+        svg: {
+            groupName: 'image',
+            prefix: 'svg',
+            group: 'svg',
+            only: ['url', 'alt', 'size', 'spacing'],
+            overrides: {
+                url: { label: 'SVG-URL', propertyName: 'svgUrl' },
+                alt: { label: 'Alt-Text', propertyName: 'svgAlt' },
+                size: { label: 'Größe', propertyName: 'svgSizeType' },
+                spacing: { label: 'Abstand', propertyName: 'svgSpacing' }
             }
         }
     },
@@ -1436,7 +1463,7 @@
                 "name": "Company Presentation",
                 "category": "Team & About",
                 "description": "Unternehmensvorstellung mit Haupttext, Button und Statistiken im Grid-Layout",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -1458,19 +1485,49 @@
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
             }
+        },
+        image: {
+            groupName: 'image',
+            prefix: 'image',
+            group: 'image',
+            only: ['url', 'alt', 'visibility'],
+            overrides: {
+                url: { label: 'Bild-URL', propertyName: 'imageUrl' },
+                alt: { label: 'Alt-Text', propertyName: 'imageAlt' },
+                visibility: { label: 'Bild anzeigen', propertyName: 'showImage' }
+            }
+        },
+        layout: {
+            groupName: 'layout',
+            prefix: 'layout',
+            group: 'layout',
+            only: ['imagePosition'],
+            overrides: {
+                imagePosition: {
+                    label: 'Bild-Position',
+                    propertyName: 'imagePosition',
+                    type: 'select',
+                    options: [
+                        { value: 'right', label: 'Rechts' },
+                        { value: 'left', label: 'Links' }
+                    ]
+                }
+            }
         }
     },
 
-    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; position: relative;" class="kerberos-company-presentation">
+    "html": `<section style="padding: {{sectionSpacing}}; background: {{backgroundColor}}; position: relative;" class="kerberos-company-presentation kerberos-module-{{moduleId}}">
                     <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
                         <div style="display: grid; grid-template-columns: 1fr; gap: {{contentGap}}; align-items: center;">
-                            <div style="display: grid; grid-template-columns: 1fr 400px; gap: {{mainContentGap}}; align-items: center; margin-bottom: {{sectionSpacing}};">
-                                <div>
+                            <div class="company-main-grid company-image-{{imagePosition}}" style="display: grid; gap: {{mainContentGap}}; align-items: center; margin-bottom: {{sectionSpacing}};">
+                                <div class="company-image" data-show="{{showImage}}">
+                                    <img data-property="imageUrl" src="{{imageUrl}}" alt="{{imageAlt}}" style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;">
+                                </div>
+                                <div class="company-content">
                                     <h2 data-property="title" style="font-family: var(--heading-font-font-family); font-size: var(--heading-2-size); font-weight: var(--heading-font-font-weight); color: {{titleColor}}; margin: 0 0 {{titleSpacing}} 0; line-height: 1.2;">{{title}}</h2>
                                     <div data-property="description" data-content-type="html" style="color: {{textColor}}; font-size: {{textSizeType}}; line-height: {{lineHeightType}}; margin-bottom: {{textSpacing}};">{{description}}</div>
                                     <a href="{{primaryButtonLink}}" data-property="primaryButtonText" style="display: inline-flex; align-items: center; gap: 0.5rem; background: {{primaryButtonBackground}}; color: {{primaryButtonColor}}; padding: {{primaryButtonPadding}}; border-radius: {{primaryButtonRadius}}; text-decoration: none; font-weight: 500; transition: all 0.3s ease;">{{primaryButtonText}}</a>
                                 </div>
-                                {{rightSideContent}}
                             </div>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: {{statsGap}};">
                                 {{statisticsGrid}}
@@ -1478,10 +1535,37 @@
                         </div>
                     </div>
                     <style>
+                        .kerberos-module-{{moduleId}} .company-image[data-show="false"] {
+                            display: none;
+                        }
+                        .kerberos-module-{{moduleId}} .company-main-grid {
+                            grid-template-columns: 1fr 400px;
+                        }
+                        .kerberos-module-{{moduleId}} .company-image-left {
+                            grid-template-columns: 400px 1fr;
+                        }
+                        .kerberos-module-{{moduleId}} .company-image-left .company-image {
+                            order: 1;
+                        }
+                        .kerberos-module-{{moduleId}} .company-image-left .company-content {
+                            order: 2;
+                        }
+                        .kerberos-module-{{moduleId}} .company-image-right {
+                            grid-template-columns: 1fr 400px;
+                        }
+                        .kerberos-module-{{moduleId}} .company-image-right .company-content {
+                            order: 1;
+                        }
+                        .kerberos-module-{{moduleId}} .company-image-right .company-image {
+                            order: 2;
+                        }
                         @media (max-width: 768px) {
-                            .kerberos-company-presentation div[style*="grid-template-columns: 1fr 400px"] {
+                            .kerberos-module-{{moduleId}} .company-main-grid {
                                 grid-template-columns: 1fr !important;
                                 gap: {{mobileGap}} !important;
+                            }
+                            .kerberos-module-{{moduleId}} .company-main-grid > * {
+                                order: unset !important;
                             }
                         }
                     </style>
@@ -1501,6 +1585,7 @@
                     "imageUrl": "",
                     "imageAlt": "Unternehmensbild",
                     "showImage": "false",
+                    "imagePosition": "right",
 
                     // === PRIMARY BUTTON ===
                     "primaryButtonText": "Über uns",
@@ -2110,7 +2195,7 @@
                 "name": "Modernes Bild-Text Layout",
                 "category": "Content & Images",
                 "description": "Vollständig responsives Bild-Text Layout mit modernen Design-Elementen",
-                
+
     "propertySchema": {
         section: {
             groupName: 'section',
@@ -2131,6 +2216,23 @@
                 content: { label: 'Titel-Text', propertyName: 'title' },
                 color: { label: 'Titel-Farbe', propertyName: 'titleColor' },
                 spacing: { label: 'Abstand unter Titel', propertyName: 'titleSpacing' }
+            }
+        },
+        layout: {
+            groupName: 'layout',
+            prefix: 'layout',
+            group: 'layout',
+            only: ['layoutType'],
+            overrides: {
+                layoutType: {
+                    label: 'Bild-Position',
+                    propertyName: 'layoutType',
+                    type: 'select',
+                    options: [
+                        { value: 'image-left', label: 'Bild links' },
+                        { value: 'image-right', label: 'Bild rechts' }
+                    ]
+                }
             }
         }
     },
