@@ -2118,49 +2118,77 @@ function saveSectionPadding() {
     const sectionSpacing = document.getElementById('section-spacing-input').value;
     const padding = document.getElementById('section-padding-input').value;
 
-    // Aktualisiere Background-Farbe
-    if (backgroundColor) {
-        currentSectionElement.style.background = backgroundColor;
+    let changed = false;
 
+    // Aktualisiere Background-Farbe PROPERTY (nicht direkten Style)
+    if (backgroundColor) {
         // Aktualisiere die richtige Property (abhängig vom Template)
         if (module.properties.hasOwnProperty('backgroundColor')) {
             module.properties.backgroundColor = backgroundColor;
+            changed = true;
+            console.log('✅ backgroundColor aktualisiert:', backgroundColor);
             if (typeof syncProperty === 'function') {
                 syncProperty(currentSectionModuleId, 'backgroundColor', backgroundColor, 'canvas');
             }
         }
         if (module.properties.hasOwnProperty('sectionBackgroundColor')) {
             module.properties.sectionBackgroundColor = backgroundColor;
+            changed = true;
+            console.log('✅ sectionBackgroundColor aktualisiert:', backgroundColor);
             if (typeof syncProperty === 'function') {
                 syncProperty(currentSectionModuleId, 'sectionBackgroundColor', backgroundColor, 'canvas');
             }
         }
+        // Falls keine der Properties existiert, erstelle backgroundColor
+        if (!module.properties.hasOwnProperty('backgroundColor') && !module.properties.hasOwnProperty('sectionBackgroundColor')) {
+            module.properties.backgroundColor = backgroundColor;
+            changed = true;
+            console.log('✅ backgroundColor erstellt:', backgroundColor);
+        }
     }
 
-    // Aktualisiere Section-Style direkt
+    // Aktualisiere sectionSpacing PROPERTY
     if (sectionSpacing) {
-        currentSectionElement.style.padding = sectionSpacing;
         module.properties.sectionSpacing = sectionSpacing;
+        changed = true;
+        console.log('✅ sectionSpacing aktualisiert:', sectionSpacing);
         if (typeof syncProperty === 'function') {
             syncProperty(currentSectionModuleId, 'sectionSpacing', sectionSpacing, 'canvas');
         }
     }
 
-    // Für inneres Padding müssten wir das innere Div finden
-    // Das ist template-spezifisch, daher vereinfacht:
-    if (padding && module.properties.hasOwnProperty('padding')) {
+    // Aktualisiere padding PROPERTY
+    if (padding) {
         module.properties.padding = padding;
+        changed = true;
+        console.log('✅ padding aktualisiert:', padding);
         if (typeof syncProperty === 'function') {
             syncProperty(currentSectionModuleId, 'padding', padding, 'canvas');
         }
     }
 
-    console.log('✅ Section-Einstellungen aktualisiert (Background, Padding, Spacing)');
+    if (changed) {
+        console.log('✅ Section-Einstellungen gespeichert - Re-Rendering...');
+        console.log('📊 Aktuelle Properties:', {
+            backgroundColor: module.properties.backgroundColor,
+            sectionBackgroundColor: module.properties.sectionBackgroundColor,
+            sectionSpacing: module.properties.sectionSpacing,
+            padding: module.properties.padding
+        });
+    } else {
+        console.log('ℹ️ Keine Änderungen vorgenommen');
+    }
+
     hideSectionPaddingMenu();
 
-    // Re-render Module
-    if (typeof renderCanvas === 'function') {
+    // Re-render Module NUR wenn Änderungen vorgenommen wurden
+    if (changed && typeof renderCanvas === 'function') {
         renderCanvas();
+
+        // Aktualisiere auch Property Panel
+        if (typeof renderPropertyPanel === 'function') {
+            renderPropertyPanel();
+        }
     }
 }
 
